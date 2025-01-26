@@ -13,6 +13,8 @@ dist-ssr
 *.local
 ./old_assets
 ./site_plan.xmind
+task.md
+
 
 # Editor directories and files
 .vscode/*
