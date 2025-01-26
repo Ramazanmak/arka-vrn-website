@@ -12,9 +12,24 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+
+  <div id="some-image">
+    <img src="./assets/imgs/desktop/catalogue/vases/anna.webp"/>
+
+  </div>
 </template>
 
 <style scoped>
+#some-image{
+  width:200px;
+  background-color: black;
+  padding:auto 0;
+}
+#some-image > img{
+  display:block;
+  max-width:100%;
+  background-color: red;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
