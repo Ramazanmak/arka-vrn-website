@@ -1,45 +1,10 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-
-  <div id="some-image">
-    <img src="./assets/imgs/desktop/catalogue/vases/anna.webp"/>
-
-  </div>
+  <router-view> </router-view>
 </template>
 
 <style scoped>
-#some-image{
-  width:200px;
-  background-color: black;
-  padding:auto 0;
-}
-#some-image > img{
-  display:block;
-  max-width:100%;
-  background-color: red;
-}
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+
 </style>
