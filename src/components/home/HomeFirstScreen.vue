@@ -61,7 +61,6 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
         max-width: 200px;
         padding: 20px 15px;
         margin:0 auto;
-        border-radius:10px;
         font-family:var(--main-font-family);
         font-size:15px;
         font-weight:500;

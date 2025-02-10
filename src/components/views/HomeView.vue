@@ -1,7 +1,7 @@
 <script setup>
 
 import HomeFirstScreen from '../home/HomeFirstScreen.vue';
-import About from '../Home/About.vue';
+import About from '../home/About.vue';
 </script>
 
 <template>
