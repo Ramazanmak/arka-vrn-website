@@ -4,4 +4,10 @@ html{
 body{
     margin:0;
     --main-font-family:"Roboto", serif;
+    --second-main-color:#E96311;
+    --main-bg-color:#efefef;
+}
+.highlighted{
+    color:var(--second-main-color);
+    font-weight:800;
 }

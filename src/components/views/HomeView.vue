@@ -1,10 +1,12 @@
 <script setup>
 
 import HomeFirstScreen from '../home/HomeFirstScreen.vue';
-import About from '../home/About.vue';
+import About from '../home/About/About.vue';
+
+
 </script>
 
 <template>
-    <HomeFirstScreen></HomeFirstScreen>
+    <HomeFirstScreen ></HomeFirstScreen>
     <About></About>
 </template>

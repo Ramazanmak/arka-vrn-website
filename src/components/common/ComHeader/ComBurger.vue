@@ -1,20 +1,12 @@
 <script setup>
 import {ref} from 'vue'
 
-const burgerClassList = ref(['burger'])
 
-function toggleBurger(){
-    if (burgerClassList.value.find(el => el == 'change')){
-        burgerClassList.value.pop();
-    } else{
-        burgerClassList.value.push('change')
-    }
-}
 </script>
 
 
 <template>
-    <div :class=burgerClassList @click="toggleBurger()">
+    <div class="burger">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
