@@ -4,26 +4,30 @@ import ComBurger from './ComBurger.vue';
 import ComSocialMedia from './ComSocialMedia.vue';
 import { ref, computed, reactive} from 'vue';
 
-
+// elements states
 const asideIsHidden = ref(true)
+const burgerIsChanged = computed(() => {
+    return !asideIsHidden.value
+})
+const socialMediaListIsHidden = ref(true)
+const socialMediaIconActivated = computed(() =>{
+    return !socialMediaListIsHidden.value
+});
+
+
 const asideClasses = computed(() => {
     return [
         'aside-nav',
         {'aside-nav_hidden':asideIsHidden.value}
     ]
 });
-const burgerIsChanged = computed(() => {
-    return !asideIsHidden.value
-})
 
-const socialMediaListIsHidden = ref(true)
 const socialMediaListClasses = computed(() => {
     return [
         'social-media-list',
         {'social-media-list_hidden':socialMediaListIsHidden.value}
     ]
 })
-const socialMediaIconActivated = ref(false);
 const socialMediaIconClasses = computed(() => {
     return [
         'social-media-list__icon',
@@ -38,22 +42,24 @@ function toggleAside(){
 
 function toggleSocialMediaList(){
     socialMediaListIsHidden.value = !socialMediaListIsHidden.value
-    socialMediaIconActivated.value = !socialMediaIconActivated.value
 }
 
+defineExpose({
+    asideIsHidden,
+    socialMediaListIsHidden,
+    toggleAside,
+    toggleSocialMediaList
+})
 
 </script>
 
 <template>
-    <div class="header-wrapper">
-
         <header>
-            
             <nav>
                 <ComBurger @click="toggleAside()" :class="{change:burgerIsChanged}"></ComBurger>
                 <div class="nav-list">
                     <a class="nav__button" href="#about"> О нас </a>
-                    <a class="nav__button" href=""> Каталог </a>
+                    <a class="nav__button" href="#catalogue"> Каталог </a>
                     <a class="nav__button" href=""> Контакты </a>
                     <a class="nav__button" href=""> Галерея</a>
                 </div>
@@ -73,7 +79,7 @@ function toggleSocialMediaList(){
     
         <aside :class="asideClasses">
             <a class="aside-nav__link" href="#about" @click="toggleAside()"> О нас </a>
-            <a class="aside-nav__link" href="#about" @click="toggleAside()"> Каталог </a>
+            <a class="aside-nav__link" href="#catalogue" @click="toggleAside()"> Каталог </a>
             <a class="aside-nav__link" href="#about"  @click="toggleAside()"> Контакты </a>
             <a class="aside-nav__link" href="#about"  @click="toggleAside()"> Галерея</a>
         </aside>
@@ -96,19 +102,11 @@ function toggleSocialMediaList(){
                 </svg>
             </a>
         </div>
-    </div>
+
 
 </template>
 
 <style scoped>
-
-.header-wrapper{
-    position:absolute;
-    z-index:1;
-    width:100vw;
-    top:0;
-    left:0;
-}
 
 header{
     width:100%;
@@ -120,7 +118,7 @@ header{
     justify-content: space-between;
     padding:5px 10px;
     position:fixed;
-    z-index:1;
+    z-index:2;
 }
 
 /* Navigational panel */
@@ -168,7 +166,7 @@ nav{
     top:calc(30px + 15px);
     transition:0.4s;
     position:fixed;
-    z-index:0;
+    z-index:1;
 }
 
 .social-media-list__icon{
@@ -275,7 +273,7 @@ nav{
     }
     header{
         padding:25px;
-        position:static;
+        position:absolute;
         background:none;
     }
     .nav-list{

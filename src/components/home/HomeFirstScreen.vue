@@ -4,11 +4,11 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
 
 <template>
     <div id="first-screen" class="home-first-screen-wrapper">
-        <ComHeader></ComHeader>
+
         <section class="home-first-screen-body">
             <h1> АРКА</h1>
             <h2> Производство МАФ-ов</h2>
-            <a class="catalog-link" alt="К продукции">Продукция</a>
+            <a class="catalog-link" alt="К продукции" href="#catalogue">Продукция</a>
         </section>
     </div>
 
@@ -27,13 +27,13 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
     }
 
     .home-first-screen-body{
+        height:100vh;
         color:white;
         text-align: center;
-        height:50%;
-        padding-top:150px;
         display:flex;
         flex-direction:column;
-        justify-content:center ;
+        justify-content:center;
+        align-items: center;
     }
 
     h1, h2{
@@ -48,7 +48,7 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
     h2{
         font-size:12px;
         font-weight:300;
-        padding-bottom:20px;
+        padding-bottom:2%;
     }
   
 
@@ -64,6 +64,8 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
         font-size:15px;
         font-weight:500;
         text-transform: uppercase;
+        text-decoration:none;
+        color:white;
         transition:0.4s;
     }
 
@@ -83,6 +85,7 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
     @media (min-width:1024px){
         .home-first-screen-body{
             font-size:100px;
+            height:80vh;
         }
         .catalog-link{
             font-size:15px;
@@ -102,4 +105,17 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
             padding: 15px 10px;
     }
 }
+
+    @media (min-width:1920px){
+        h1{
+            font-size:90px;
+        }
+        h2{
+            font-size:30px;
+        }
+        .catalog-link{
+            font-size:28px;
+            padding: 30px 100px;
+    }
+    }
 </style>

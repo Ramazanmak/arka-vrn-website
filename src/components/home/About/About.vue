@@ -45,7 +45,7 @@
                 Уже более 25 лет мы занимаемся изготовлением бетонных изделий.Каждая технология отрабатывается многолетним опытом и доводитсядо совершенства. Наша политика - работать на качество изделий. А наша цель - делать улицы нашей Родины красивее и чище.
             </p>
             <div class="achievements__item-photolist">
-                <div class="achievements__item-photolist-photo" v-for="photo in achievementPhotos" v-key="photo.id" :style="photo.style">
+                <div role="img" class="achievements__item-photolist-photo" v-for="photo in achievementPhotos" v-key="photo.id" :style="photo.style">
                 </div>
             </div>
         </section>
@@ -65,10 +65,10 @@
     .achievements{
         background-color: var(--main-bg-color);
         font-family: var(--main-font-family);
-        padding:100px 5% 40px;
+        padding:100px var(--side-padding) 0px;
     }
     .achievements__header{
-        font-size:20px;
+        font-size:var(--h2-font-size);
         font-weight:500;
         color:var(--second-main-color)
     }
@@ -113,16 +113,13 @@
 
     @media (min-width:560px){
         .achievements{
-            padding:140px 10% 40px;
+            padding:140px var(--side-padding) 0px;
         }
     }
 
     @media (min-width:768px){
         .achievements{
-            padding:140px 13% 40px;
-        }
-        .achievements__header{
-            font-size: 40px;
+            padding:140px var(--side-padding) 0px;
         }
         .achievements__item-text{
             font-size:16px;
@@ -131,7 +128,7 @@
 
     @media (min-width:930px){
         .achievements{
-            padding:140px 18% 40px;
+            padding:140px var(--side-padding) 0px;
         }
     }
 
@@ -141,7 +138,7 @@
 
     @media (min-width:1024px){
         .achievements{
-            padding:140px 9% 40px;
+            padding:140px var(--side-padding) 40px;
         }
 
         .achievements__item{
@@ -153,14 +150,13 @@
         
         .achievements__header{
             margin:0;
-            font-size:35px;
         }
         .achievements__header_straight{
             grid-column:1 / 2;
             grid-row: 1 / 2;
         }
         .achievements__item-text{
-            font-size:16px;
+            font-size:clamp(10px, 14px, 16px);
         }
         .achievements__item-text_straight{
             grid-column:1 / 2;
@@ -203,41 +199,32 @@
         .achievements__item{
             padding-bottom:8%;
         }
-        .achievements__header{
-            font-size:40px;
-        }
         .achievements__item-text{
-            font-size:24px; 
+            font-size:20px; 
         }
     }
 
     @media (min-width:1600px){
         .achievements{
-            padding:300px 10% 100px;
-        }
-        .achievements__header{
-            font-size:60px;
+            padding:300px var(--side-padding) 100px;
         }
         .achievements__item-text{
-            font-size:24px;
+            font-size:20px;
         }
     }
 
     @media (min-width:1920px){
         .achievements{
-            padding:300px 15% 100px;
-        }
-        .achievements__header{
-            font-size:70px;
+            padding:300px var(--side-padding) 100px;
         }
         .achievements__item-text{
-            font-size:30px;
+            font-size:20px;
         }
     }
 
     @media (min-width:2200px){
         .achievements__item-text{
-            font-size:35px;
+            font-size:clamp(25px, 28px, 30px);
         }
     }
 </style>

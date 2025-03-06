@@ -6,8 +6,56 @@ body{
     --main-font-family:"Roboto", serif;
     --second-main-color:#E96311;
     --main-bg-color:#efefef;
+    --side-padding:7%;
+    --h2-font-size:20px;  
 }
 .highlighted{
     color:var(--second-main-color);
     font-weight:800;
+}
+
+@media (min-width:560px){
+    body{
+      --side-padding:10%;
+    }
+}
+
+@media (min-width:768px){
+    body{
+      --side-padding:16%;
+      --h2-font-size:25px;  
+    }
+}
+
+@media (min-width:930px){
+    body{
+      --side-padding:18%;
+    }
+}
+
+@media (min-width:1024px){
+    body{
+      --side-padding:15%;
+      --h2-font-size:30px;  
+    }
+}
+
+@media (min-width:1440px){
+    body{
+      --h2-font-size:40px;  
+    }
+}
+
+@media (min-width:1600px){
+    body{
+        --side-padding:17%;
+        --h2-font-size:50px;  
+    }
+}
+
+@media (min-width:1920px){
+    body{
+        --side-padding:18%;
+        --h2-font-size:60px;  
+    }
 }
