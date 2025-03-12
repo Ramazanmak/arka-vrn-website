@@ -54,7 +54,7 @@ const advantages = ref([
 
         <div class="advantages__body">
             <div class="advantages__item-wrapper" v-for="adv in advantages" :key="adv.id">
-                <img class="advantages__item-image":src="adv.src" :alt="adv.name">
+                <img class="advantages__item-image" :src="adv.src" :alt="adv.name">
                 <div class="advantages__item-description">
                     <h3 class="advantages__item-header"> <span>{{ adv.name }} </span></h3>
                     <p class="advantages__item-text"> {{ adv.text }}</p>
