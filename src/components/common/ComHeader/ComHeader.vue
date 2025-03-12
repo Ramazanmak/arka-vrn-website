@@ -76,13 +76,13 @@ defineExpose({
                 </div>
             </div>
         </header>
-    
         <aside :class="asideClasses">
             <a class="aside-nav__link" href="#about" @click="toggleAside()"> О нас </a>
             <a class="aside-nav__link" href="#catalogue" @click="toggleAside()"> Каталог </a>
             <a class="aside-nav__link" href="#about"  @click="toggleAside()"> Контакты </a>
             <a class="aside-nav__link" href="#about"  @click="toggleAside()"> Галерея</a>
         </aside>
+    
     
         <div :class="socialMediaListClasses">
     
@@ -202,7 +202,7 @@ nav{
     width:50vw;
     position:fixed;
     bottom:0;
-    z-index:2;
+    z-index:1;
     transition:0.5s;
 }
 
