@@ -200,8 +200,8 @@ nav{
     align-items: center;
     height:calc(100vh - 30px - 15px);
     width:50vw;
-    position:fixed;
-    bottom:0;
+    position:absolute;
+    top:100%;
     left:0;
     z-index:1;
     transition:0.5s;
@@ -235,7 +235,7 @@ nav{
         height: 35px;
     }
     .aside-nav{
-        height: calc(100% - 35px - 15px);
+        height: calc(100vh - 35px - 15px);
         width:40%;
     }
     .social-media-list{
@@ -257,7 +257,7 @@ nav{
         height: 40px;
     }
     .aside-nav{
-        height: calc(100% - 40px - 15px);
+        height: calc(100vh - 40px - 15px);
         width:30%;
     }
     .social-media-list{
