@@ -203,7 +203,7 @@ nav{
     position:absolute;
     top:100%;
     left:0;
-    z-index:1;
+    z-index:0;
     transition:0.5s;
 }
 
