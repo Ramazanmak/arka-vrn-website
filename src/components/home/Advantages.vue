@@ -30,19 +30,19 @@ const advantages = ref([
         id:5,
         name:"Погрузка",
         text:"Мы осуществляем БЕСПЛАТНУЮ погрузку изделий на транспортное средство",
-        src:"src/assets/imgs/general/advantages/loading.png"
+        src:"../../src/assets/imgs/general/advantages/loading.png"
     },
     {
         id:6,
         name:"Доставка",
         text:"Мы будем рады помочь Вам с транспортировкой наших изделий до места установки",
-        src:"./src/assets/imgs/general/advantages/delivery.png"
+        src:"../../src/assets/imgs/general/advantages/delivery.png"
     },
     {
         id:7,
         name:"Широкий ассортимент",
         text:"Вы сможете подобрать подходящий и интересный именно Вам вариант, исходя из предпочтений стиля, дизайна и цены",
-        src:"../../../src/assets/imgs/general/advantages/range.png"
+        src:"../../src/assets/imgs/general/advantages/range.png"
     }
 ])
 </script>
@@ -90,6 +90,7 @@ const advantages = ref([
     }
 
     .advantages__body{
+        background-image: url("../../src/assets/imgs/general/advantages/range.png");
         display:flex;
         width:100%;
         flex-flow:row wrap;
