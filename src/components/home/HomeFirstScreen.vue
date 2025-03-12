@@ -18,7 +18,7 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
     .home-first-screen-wrapper{
         background:
             linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-            url(general/first-screen-background.png);
+            url(/general/first-screen-background.png);
         height:100vh;
         background-size:cover;
 	    background-repeat: no-repeat;

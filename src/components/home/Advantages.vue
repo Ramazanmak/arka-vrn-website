@@ -6,31 +6,31 @@ const advantages = ref([
         id:1,
         name:"Низкие цены",
         text:"У нас нет лишних наценок, потому что мы производители. Гарантируем лучшие цены в сочетании с отличным качеством",
-        src:"general/advantages/cost.png"
+        src:"/general/advantages/cost.png"
     },
     {
         id:2,
         name:"Высокое качество",
         text:"Мы изготавливаем нашу продукцию только из высококачественного сырья, строго соблюдая все стандарты производства бетонных изделий",
-        src:"general/advantages/quality.png"
+        src:"/general/advantages/quality.png"
     },
     {
         id:3,
         name:"Многолетний опыт",
         text:"Уже более 25 лет мы производим железобетонные изделия высокого качества, проверенные временем",
-        src:"general/advantages/experience.png"
+        src:"/general/advantages/experience.png"
     },
     {
         id:4,
         name:"Высококлассное оборудование",
         text:"Производство продукции осуществляется на высокотехнологичном оборудовании",
-        src:"general/advantages/equipment.png"
+        src:"/general/advantages/equipment.png"
     },
     {
         id:5,
         name:"Погрузка",
         text:"Мы осуществляем БЕСПЛАТНУЮ погрузку изделий на транспортное средство",
-        src:"general/advantages/loading.png"
+        src:"/general/advantages/loading.png"
     },
     {
         id:6,
@@ -42,7 +42,7 @@ const advantages = ref([
         id:7,
         name:"Широкий ассортимент",
         text:"Вы сможете подобрать подходящий и интересный именно Вам вариант, исходя из предпочтений стиля, дизайна и цены",
-        src:"general/advantages/range.png"
+        src:"/general/advantages/range.png"
     }
 ])
 </script>

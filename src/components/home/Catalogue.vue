@@ -5,39 +5,39 @@ const catalogueItems = ref([
     {
         id:1,
         name:"Вазоны",
-        src1:"general/catalogue/vases.webp",
-        src2:"general/catalogue/vases.png"
+        src1:"/general/catalogue/vases.webp",
+        src2:"/general/catalogue/vases.png"
        
     },
     {
         id:2,
         name:"Парковые диваны и скамейки",
-        src1:"general/catalogue/benches.webp",
-        src2:"general/catalogue/benches.png"
+        src1:"/general/catalogue/benches.webp",
+        src2:"/general/catalogue/benches.png"
     },
     {
         id:3,
         name:"Урны",
-        src1:"general/catalogue/bins.webp",
-        src2:"general/catalogue/bins.png"
+        src1:"/general/catalogue/bins.webp",
+        src2:"/general/catalogue/bins.png"
     },
     {
         id:4,
         name:"Антипарковочные элементы",
-        src1:"general/catalogue/antiparkings.webp",
-        src2:"general/catalogue/antiparkings.png"
+        src1:"/general/catalogue/antiparkings.webp",
+        src2:"/general/catalogue/antiparkings.png"
     },
     {
         id:5,
         name:"Мусорные площадки",
-        src1:"general/catalogue/platforms.webp",
-        src2:"general/catalogue/platforms.png"
+        src1:"/general/catalogue/platforms.webp",
+        src2:"/general/catalogue/platforms.png"
     },
     {
         id:6,
         name:"Бетонные блоки и крышки",
-        src1:"general/catalogue/concrete-blocks.webp",
-        src2:"general/catalogue/concrete-blocks.png"
+        src1:"/general/catalogue/concrete-blocks.webp",
+        src2:"/general/catalogue/concrete-blocks.png"
     }
 
 ])
@@ -55,7 +55,7 @@ const catalogueItems = ref([
                     <img class="catalogue__image" :src="category.src2" :alt="category.name">
                 </picture>
                 <div class="catalogue__more-wrapper">
-                    <img class="catalogue__more-logo" src="general/catalogue/arrow.png" alt="more">
+                    <img class="catalogue__more-logo" src="/general/catalogue/arrow.png" alt="more">
                     </img>
                 </div>
             </a>

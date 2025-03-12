@@ -5,7 +5,7 @@
         {
             id:1,
             style:{
-                "background-image":"url('general/achievements/achievements-1of4.png')",
+                "background-image":"url('/general/achievements/achievements-1of4.png')",
                 "grid-column":"1 / 2",
                 "grid-row":"1 / 2",
                 }
@@ -13,7 +13,7 @@
         {
             id:2,
             style:{
-                "background-image":"url('general/achievements/achievements-2of4.png')",
+                "background-image":"url('/general/achievements/achievements-2of4.png')",
                 "grid-column":"2 / 3",
                 "grid-row":"1 / 2",
                 }
@@ -21,7 +21,7 @@
         {
             id:3,
             style:{
-                "background-image":"url('general/achievements/achievements-3of4.png')",
+                "background-image":"url('/general/achievements/achievements-3of4.png')",
                 "grid-column":"1 / 2",
                 "grid-row":"2 / 3",
                 }
@@ -29,7 +29,7 @@
         {
             id:4,
             style:{
-                "background-image":"url('general/achievements/achievements-4of4.png')",
+                "background-image":"url('/general/achievements/achievements-4of4.png')",
                 "grid-column":"2 / 3",
                 "grid-row":"2 / 3",
                 }
@@ -106,7 +106,7 @@
     .achievements__item-photo-single{
         margin:auto;
         background: 
-        url('general/achievements/coverage_orange.png') no-repeat center; 
+        url('/general/achievements/coverage_orange.png') no-repeat center; 
         background-size:90%;
         width:100%;
         max-width:500px;
