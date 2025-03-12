@@ -66,13 +66,13 @@ defineExpose({
             </nav>
     
             <div class="logo">
-                <img class="logo__img" src="../../../assets/imgs/general/new_logo_dark_v3.png" alt="Логотип"/>
+                <img class="logo__img" src="general/new_logo_dark_v3.png" alt="Логотип"/>
             </div>
     
             <div class="social-media">
                 <ComSocialMedia></ComSocialMedia>
                 <div class="social-media-list-box">
-                    <img :class="socialMediaIconClasses" src="../../../assets/imgs/general/contact.svg" @click="toggleSocialMediaList"/>
+                    <img :class="socialMediaIconClasses" src="general/contact.svg" @click="toggleSocialMediaList"/>
                 </div>
             </div>
         </header>
