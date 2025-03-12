@@ -5,6 +5,7 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
 import HomeFirstScreen from '../home/HomeFirstScreen.vue';
 import About from '../home/About/About.vue';
 import Catalogue from '../Home/Catalogue.vue';
+import Advantages from '../Home/Advantages.vue';
 
 const ComHeaderObj = useTemplateRef('header');
 function togglePanels(){
@@ -23,4 +24,5 @@ function togglePanels(){
     <HomeFirstScreen @click="togglePanels"></HomeFirstScreen>
     <About @click="togglePanels"></About>
     <Catalogue  @click="togglePanels"></Catalogue>
+    <Advantages> </Advantages>
 </template>

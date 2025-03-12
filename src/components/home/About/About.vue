@@ -82,7 +82,9 @@
         font-weight:400;
     }
     .achievements__item-photolist{
+        margin:auto;
         width:100%;
+        max-width:500px;
         aspect-ratio:1;
         display:grid;
         gap:1em;
@@ -102,10 +104,12 @@
     }   
 
     .achievements__item-photo-single{
+        margin:auto;
         background: 
-            url('/src/assets/imgs/general/achievements/coverage_orange.png') no-repeat center; 
+        url('/src/assets/imgs/general/achievements/coverage_orange.png') no-repeat center; 
         background-size:90%;
         width:100%;
+        max-width:500px;
         aspect-ratio: 1.3;
     }
 
@@ -136,7 +140,7 @@
 
     /* Настройка компьютерных версий */
 
-    @media (min-width:1024px){
+    @media (min-width:768px){
         .achievements{
             padding:140px var(--side-padding) 40px;
         }
@@ -167,6 +171,7 @@
             grid-column: 2 / 3;
             grid-row: 1 / 3;
             width:35vw;
+            max-width: none;
         }
         .achievements__item-photolist-photo{
             border:2px solid var(--second-main-color);
@@ -191,6 +196,7 @@
             grid-column: 1 / 2;
             grid-row: 1 / 3;
             width: 35vw;
+            max-width: none;
         }
 
     }

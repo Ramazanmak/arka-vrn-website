@@ -7,36 +7,43 @@ body{
     --second-main-color:#E96311;
     --main-bg-color:#efefef;
     --side-padding:7%;
-    --h2-font-size:20px;  
+    --h2-font-size:28px;  
 }
 .highlighted{
     color:var(--second-main-color);
     font-weight:800;
 }
 
+@media (min-width:450px){
+    body{
+        --h2-font-size:30px;
+    }
+}
+
 @media (min-width:560px){
     body{
       --side-padding:10%;
+      --h2-font-size:32px;
     }
 }
 
 @media (min-width:768px){
     body{
-      --side-padding:16%;
-      --h2-font-size:25px;  
+      --side-padding:10%;
+      --h2-font-size:30px;  
     }
 }
 
 @media (min-width:930px){
     body{
-      --side-padding:18%;
+      --side-padding:14%;
     }
 }
 
 @media (min-width:1024px){
     body{
       --side-padding:15%;
-      --h2-font-size:30px;  
+      --h2-font-size:36px;  
     }
 }
 
@@ -55,7 +62,7 @@ body{
 
 @media (min-width:1920px){
     body{
-        --side-padding:18%;
+        --side-padding:15%;
         --h2-font-size:60px;  
     }
 }

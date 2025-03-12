@@ -87,6 +87,7 @@ const catalogueItems = ref([
         aspect-ratio:3/2;
         position:relative;
         border-radius:10px;
+        max-width: 100%;
     }
     .catalogue__body-link:hover{
         transition:0.4s;
@@ -117,11 +118,10 @@ const catalogueItems = ref([
         background-color: var(--second-main-color);
         border-radius:100%;
         position:absolute;
-        bottom:8%;
-        right:10%;
-        /* top:35%;
-        left:45%;   */
+        top:35%;
+        left:45%;  
         opacity: 0%;
+        
     }
 
     .catalogue__more-logo{
@@ -143,13 +143,19 @@ const catalogueItems = ref([
     }
 
     .catalogue__caption{
-        font-size:clamp(12px,13px,14px);
+        font-size:12px;
         margin:0;
         text-align:center;
         padding:3px 0;
         text-transform: uppercase;
         font-weight:500;
         width:100%;
+    }
+
+    @media (min-width:450px){
+        .catalogue__caption{
+            font-size:14px;
+        }
     }
 
     @media (min-width:560px){
@@ -178,10 +184,11 @@ const catalogueItems = ref([
 
     @media (min-width:1024px){
         .catalogue__body-link{
-            padding: 15px;
+            padding: 10px;
+            max-width: 30%;
         }
         .catalogue__caption{
-            font-size:15px;
+            font-size:11px;
         }
     }
 
