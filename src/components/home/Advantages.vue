@@ -12,7 +12,7 @@ const advantages = ref([
         id:2,
         name:"Высокое качество",
         text:"Мы изготавливаем нашу продукцию только из высококачественного сырья, строго соблюдая все стандарты производства бетонных изделий",
-        src:"/public/assets/imgs/general/advantages/quality.png"
+        src:"../../../public/assets/imgs/general/advantages/quality.png"
     },
     {
         id:3,
