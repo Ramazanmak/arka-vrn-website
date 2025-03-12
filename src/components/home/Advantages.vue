@@ -6,43 +6,43 @@ const advantages = ref([
         id:1,
         name:"Низкие цены",
         text:"У нас нет лишних наценок, потому что мы производители. Гарантируем лучшие цены в сочетании с отличным качеством",
-        src:"/src/assets/imgs/general/advantages/cost.png"
+        src:"../../../src/assets/imgs/general/advantages/cost.png"
     },
     {
         id:2,
         name:"Высокое качество",
         text:"Мы изготавливаем нашу продукцию только из высококачественного сырья, строго соблюдая все стандарты производства бетонных изделий",
-        src:"/src/assets/imgs/general/advantages/quality.png"
+        src:"../../../src/assets/imgs/general/advantages/quality.png"
     },
     {
         id:3,
         name:"Многолетний опыт",
         text:"Уже более 25 лет мы производим железобетонные изделия высокого качества, проверенные временем",
-        src:"/src/assets/imgs/general/advantages/experience.png"
+        src:"../../../src/assets/imgs/general/advantages/experience.png"
     },
     {
         id:4,
         name:"Высококлассное оборудование",
         text:"Производство продукции осуществляется на высокотехнологичном оборудовании",
-        src:"/src/assets/imgs/general/advantages/equipment.png"
+        src:"../../../src/assets/imgs/general/advantages/equipment.png"
     },
     {
         id:5,
         name:"Погрузка",
         text:"Мы осуществляем БЕСПЛАТНУЮ погрузку изделий на транспортное средство",
-        src:"/src/assets/imgs/general/advantages/loading.png"
+        src:"../../../src/assets/imgs/general/advantages/loading.png"
     },
     {
         id:6,
         name:"Доставка",
         text:"Мы будем рады помочь Вам с транспортировкой наших изделий до места установки",
-        src:"/src/assets/imgs/general/advantages/delivery.png"
+        src:"../../../src/assets/imgs/general/advantages/delivery.png"
     },
     {
         id:7,
         name:"Широкий ассортимент",
         text:"Вы сможете подобрать подходящий и интересный именно Вам вариант, исходя из предпочтений стиля, дизайна и цены",
-        src:"/src/assets/imgs/general/advantages/range.png"
+        src:"../../../src/assets/imgs/general/advantages/range.png"
     }
 ])
 </script>
@@ -73,6 +73,7 @@ const advantages = ref([
     }
 
     .advantages__header{
+
         margin:0;
         padding-bottom:15px;
         font-size:var(--h2-font-size);
