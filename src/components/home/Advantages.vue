@@ -36,7 +36,7 @@ const advantages = ref([
         id:6,
         name:"Доставка",
         text:"Мы будем рады помочь Вам с транспортировкой наших изделий до места установки",
-        src:"../../../public/advantages/loading.png"
+        src:"/advantages/loading.png"
     },
     {
         id:7,
@@ -90,7 +90,7 @@ const advantages = ref([
     }
 
     .advantages__body{
-        background-image: url("../../../public/advantages/loading.png");
+        background-image: url("/advantages/loading.png");
         display:flex;
         width:100%;
         flex-flow:row wrap;
