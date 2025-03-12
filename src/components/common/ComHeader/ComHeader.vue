@@ -60,7 +60,7 @@ defineExpose({
                 <div class="nav-list">
                     <a class="nav__button" href="#about"> О нас </a>
                     <a class="nav__button" href="#catalogue"> Каталог </a>
-                    <a class="nav__button" href=""> Контакты </a>
+                    <a class="nav__button" href="#catalogue"> Контакты </a>
                     <a class="nav__button" href=""> Галерея</a>
                 </div>
             </nav>
