@@ -5,7 +5,7 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
 import HomeFirstScreen from '../home/HomeFirstScreen.vue';
 import About from '../home/About/About.vue';
 import Catalogue from '../home/Catalogue.vue';
-import Advantages from '../Home/Advantages.vue';
+import Advantages from '../home/Advantages.vue';
 
 const ComHeaderObj = useTemplateRef('header');
 function togglePanels(){
