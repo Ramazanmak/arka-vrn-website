@@ -18,7 +18,7 @@ const advantages = ref([
         id:3,
         name:"Многолетний опыт",
         text:"Уже более 25 лет мы производим железобетонные изделия высокого качества, проверенные временем",
-        src:"../../src/assets/imgs/general/advantages/experience.png"
+        src:"assets/imgs/general/advantages/experience.png"
     },
     {
         id:4,
