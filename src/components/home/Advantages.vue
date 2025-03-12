@@ -6,25 +6,25 @@ const advantages = ref([
         id:1,
         name:"Низкие цены",
         text:"У нас нет лишних наценок, потому что мы производители. Гарантируем лучшие цены в сочетании с отличным качеством",
-        src:"../../../src/assets/imgs/general/advantages/cost.png"
+        src:"../../src/assets/imgs/general/advantages/cost.png"
     },
     {
         id:2,
         name:"Высокое качество",
         text:"Мы изготавливаем нашу продукцию только из высококачественного сырья, строго соблюдая все стандарты производства бетонных изделий",
-        src:"../../../public/assets/imgs/general/advantages/quality.png"
+        src:"../../src/assets/imgs/general/advantages/quality.png"
     },
     {
         id:3,
         name:"Многолетний опыт",
         text:"Уже более 25 лет мы производим железобетонные изделия высокого качества, проверенные временем",
-        src:"../../../src/assets/imgs/general/advantages/experience.png"
+        src:"../../src/assets/imgs/general/advantages/experience.png"
     },
     {
         id:4,
         name:"Высококлассное оборудование",
         text:"Производство продукции осуществляется на высокотехнологичном оборудовании",
-        src:"../../../src/assets/imgs/general/advantages/equipment.png"
+        src:"../../src/assets/imgs/general/advantages/equipment.png"
     },
     {
         id:5,
