@@ -30,7 +30,7 @@ const advantages = ref([
         id:5,
         name:"Погрузка",
         text:"Мы осуществляем БЕСПЛАТНУЮ погрузку изделий на транспортное средство",
-        src:"../../src/assets/imgs/general/advantages/loading.png"
+        src:"../../../public/advantages/loading.png"
     },
     {
         id:6,
@@ -90,7 +90,6 @@ const advantages = ref([
     }
 
     .advantages__body{
-        background-image: url("../../../public/advantages/loading.png");
         display:flex;
         width:100%;
         flex-flow:row wrap;
