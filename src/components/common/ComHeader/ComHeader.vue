@@ -66,7 +66,7 @@ defineExpose({
             </nav>
     
             <div class="logo">
-                <img class="logo__img" src="general/new_logo_dark_v3.png" alt="Логотип"/>
+                <img class="logo__img" src="/ARKA-website/public/general/new_logo_dark_v3.png" alt="Логотип"/>
             </div>
     
             <div class="social-media">
