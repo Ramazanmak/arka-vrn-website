@@ -72,7 +72,7 @@ defineExpose({
             <div class="social-media">
                 <ComSocialMedia></ComSocialMedia>
                 <div class="social-media-list-box">
-                    <img :class="socialMediaIconClasses" src="general/contact.svg" @click="toggleSocialMediaList"/>
+                    <img :class="socialMediaIconClasses" src="/general/contact.svg" @click="toggleSocialMediaList"/>
                 </div>
             </div>
         </header>
