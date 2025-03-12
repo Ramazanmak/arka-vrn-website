@@ -90,7 +90,7 @@ const advantages = ref([
     }
 
     .advantages__body{
-        background-image: url("../../assets/imgs/general/advantages/loading.png");
+        background-image: url("../../../public/advantages/loading.png");
         display:flex;
         width:100%;
         flex-flow:row wrap;
