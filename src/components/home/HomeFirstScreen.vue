@@ -27,7 +27,7 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
     }
 
     .home-first-screen-body{
-        height:100%;
+        height:100vh;
         color:white;
         text-align: center;
         display:flex;

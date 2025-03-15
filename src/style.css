@@ -5,9 +5,11 @@ body{
     margin:0;
     --main-font-family:"Roboto", serif;
     --second-main-color:#E96311;
+    --footer-bg-color:#292929;
     --main-bg-color:#efefef;
     --side-padding:7%;
     --h2-font-size:28px;  
+    --h2-font-weight:500;
 }
 .highlighted{
     color:var(--second-main-color);

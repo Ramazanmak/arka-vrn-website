@@ -73,12 +73,11 @@ const advantages = ref([
     }
 
     .advantages__header{
-
         margin:0;
         padding-bottom:15px;
         font-size:var(--h2-font-size);
-        color:var(--second-main-color);
-        text-align:center;
+        color:var(--second-main-color); 
+        font-weight:var(--h2-font-weight);
     }
 
     .advantages__description{
@@ -131,11 +130,18 @@ const advantages = ref([
     }
 
     @media (min-width:480px){
+       
         .advantages__item-wrapper{
             width:40%;
         }
         .advantages__item-header{
             padding-bottom:15px;
+        }
+    }
+
+    @media (min-width:768px){
+        .advantages__header{
+            text-align:center;
         }
     }
 

@@ -50,7 +50,7 @@
             </div>
         </section>
         <section class="achievements__item">
-            <h2 class="achievements__header achievements__header_reversed"> Насколько мы опытны?</h2>
+            <h2 class="achievements__header achievements__header_reversed"> Наш опыт</h2>
             <p class="achievements__item-text  achievements__item-text_reversed">
                 Свыше <span class="highlighted">2000</span> мусорных площадок нашего производства было установлено в <span class="highlighted">17</span> регионах Воронежской области за 3 года. А наши скамейки, лавки, антипарковочные столбики и полусферы вы можете встретить на улицах, зонах отдыха всего Воронежа. И это далеко не предел!
             </p>
@@ -98,10 +98,6 @@
         border:1px solid var(--second-main-color);
     }
     
-    .achievements__item-photolist-photo:hover{
-        box-shadow:0 0 10px 2px var(--second-main-color);
-        transition:100ms;
-    }   
 
     .achievements__item-photo-single{
         margin:auto;

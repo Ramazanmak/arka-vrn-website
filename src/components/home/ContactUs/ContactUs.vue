@@ -1,14 +1,13 @@
 <script setup>
 import {ref} from 'vue';
-import ComSocialMedia from '../common/ComHeader/ComSocialMedia.vue';
+import ComSocialMedia from '../../common/ComHeader/ComSocialMedia.vue';
 
 </script>
 
 <template>
     <section class="contacts" id="contacts">
-        <div class="contacts__map">
+        <iframe class="contacts__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477.3269391624845!2d39.36895736810846!3d51.617219957523716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x413b30e7e5f7b253%3A0xad25d845941530c9!2z0JDQoNCa0JA!5e0!3m2!1sru!2sru!4v1742039652730!5m2!1sru!2sru" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-        </div>
         <div class="contacts__body">
             <h2 class="contacts__header">Наши контакты</h2>
 
@@ -23,7 +22,9 @@ import ComSocialMedia from '../common/ComHeader/ComSocialMedia.vue';
                 <span class="contacts__schedule"> Пн.-Пт.: 08:00 - 17:00</span>
                 <span class="contacts__schedule"> Сб.-Вс. - Выходной</span>
             </div>
-            <ComSocialMedia/>
+        </div>
+        <div class="contact-us__map">
+
         </div>
 
     </section>
@@ -31,6 +32,8 @@ import ComSocialMedia from '../common/ComHeader/ComSocialMedia.vue';
 
 <style scoped>
     .contacts{
+        background-color: var(--main-bg-color);
+        padding-top:50px;
         width:100%;
         font-family: var(--main-font-family);
         line-height: 1.5em;
@@ -45,7 +48,7 @@ import ComSocialMedia from '../common/ComHeader/ComSocialMedia.vue';
     .contacts__body{
         color:#fff;
         background-color: var(--footer-bg-color);
-        padding: 30px 20px;
+        padding: 50px 20px;
         width: 100%;
         box-sizing: border-box;
     }
@@ -69,25 +72,25 @@ import ComSocialMedia from '../common/ComHeader/ComSocialMedia.vue';
         line-height: 1.5em;
         font-size:13px;
         font-weight:300;
-    }
+}
 
-
-    @media (min-width:768px){
-        .contacts{
-            display:grid;
-            /* grid-template-columns: 1fr 1fr; */
-        }
-        .contacts__map{
-            grid-column: 1 / 2;
-            max-width: 50vw;
-            aspect-ratio: 0;
-        }
-        .contacts__body{
-            grid-column: 2 / 3;
-            padding:100px 30px;
-        }
-        .contacts__header{
-            padding:30px 0 100px;
-        }
+@media (min-width:768px){
+    .contacts{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
     }
+    .contacts__map{
+        grid-column: 1 / 2;
+        max-width: 50vw;
+        height: 100%;
+        aspect-ratio: 0;
+    }
+    .contacts__body{
+        grid-column: 2 / 3;
+        padding:150px 50px;
+    }
+    .contacts__header{
+        padding:60px 0;
+    }
+}
 </style>

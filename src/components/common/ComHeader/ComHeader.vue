@@ -60,8 +60,7 @@ defineExpose({
                 <div class="nav-list">
                     <a class="nav__button" href="#about"> О нас </a>
                     <a class="nav__button" href="#catalogue"> Каталог </a>
-                    <a class="nav__button" href="#catalogue"> Контакты </a>
-                    <a class="nav__button" href=""> Галерея</a>
+                    <a class="nav__button" href="#contacts"> Контакты </a>
                 </div>
             </nav>
     
@@ -78,8 +77,7 @@ defineExpose({
             <aside :class="asideClasses">
                 <a class="aside-nav__link" href="#about" @click="toggleAside()"> О нас </a>
                 <a class="aside-nav__link" href="#catalogue" @click="toggleAside()"> Каталог </a>
-                <a class="aside-nav__link" href="#about"  @click="toggleAside()"> Контакты </a>
-                <a class="aside-nav__link" href="#about"  @click="toggleAside()"> Галерея</a>
+                <a class="aside-nav__link" href="#contacts"  @click="toggleAside()"> Контакты </a>
             </aside>
         </header>
     

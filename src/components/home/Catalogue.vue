@@ -74,7 +74,7 @@ const catalogueItems = ref([
         padding-bottom:20px;
         font-size:var(--h2-font-size);
         color:var(--second-main-color);
-        text-align:center;
+        font-weight:500;
     }
     
     .catalogue__body-link{
@@ -93,23 +93,23 @@ const catalogueItems = ref([
         transition:0.4s;
         color:var(--second-main-color);
     }
-
+    
     .catalogue__body-link:hover .catalogue__image{
         filter:blur(1px) brightness(0.5)
     }
-
+    
     .catalogue__body-link:hover .catalogue__more-wrapper{
         opacity: 100%;
     }
-
-
+    
+    
     .catalogue__image-block{
         display:flex;
         flex-direction: column-reverse;
         justify-content: space-around;
         height:100%;
     }
-
+    
     .catalogue__more-wrapper{
         display:flex;
         align-items: center;
@@ -123,7 +123,7 @@ const catalogueItems = ref([
         opacity: 0%;
         
     }
-
+    
     .catalogue__more-logo{
         display:block;
         margin:auto;
@@ -141,7 +141,7 @@ const catalogueItems = ref([
     .catalogue__image:last-of-type{
         aspect-ratio: 600/337;
     }
-
+    
     .catalogue__caption{
         font-size:12px;
         margin:0;
@@ -151,13 +151,13 @@ const catalogueItems = ref([
         font-weight:500;
         width:100%;
     }
-
+    
     @media (min-width:450px){
         .catalogue__caption{
             font-size:14px;
         }
     }
-
+    
     @media (min-width:560px){
         .catalogue__body-link{
             padding:15px;
@@ -166,7 +166,7 @@ const catalogueItems = ref([
             font-size:15px;
         }
     }
-
+    
     @media (min-width:768px){
         .catalogue__body{
             display:flex;
@@ -180,8 +180,11 @@ const catalogueItems = ref([
         .catalogue__caption{
             font-size:10px;
         }
+        .catalogue__header{
+            text-align:center;
+        }
     }
-
+    
     @media (min-width:1024px){
         .catalogue__body-link{
             padding: 10px;
@@ -191,11 +194,12 @@ const catalogueItems = ref([
             font-size:11px;
         }
     }
-
+    
     @media (min-width:1440px){
         .catalogue__caption{
             font-size:16px
         }
+
         .catalogue__more-wrapper{
             width:12%;
             bottom:10%;
