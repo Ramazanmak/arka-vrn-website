@@ -7,6 +7,7 @@ import About from '../home/About/About.vue';
 import Catalogue from '../home/Catalogue.vue';
 import Advantages from '../home/Advantages.vue';
 import ContactUs from '../home/ContactUs/ContactUs.vue';
+import ComFooter from '../common/ComFooter.vue';
 
 
 const ComHeaderObj = useTemplateRef('header');
@@ -28,4 +29,5 @@ function togglePanels(){
     <Catalogue  @click="togglePanels"/>
     <Advantages @click="togglePanels"/> 
     <ContactUs @click="togglePanels"/>
+    <ComFooter @click="togglePanels"/>
 </template>

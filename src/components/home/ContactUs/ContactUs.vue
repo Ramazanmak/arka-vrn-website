@@ -47,8 +47,8 @@ import ComSocialMedia from '../../common/ComHeader/ComSocialMedia.vue';
     
     .contacts__body{
         color:#fff;
-        background-color: var(--footer-bg-color);
-        padding: 50px 20px;
+        background-color: var(--contacts-bg-color);
+        padding: 50px var(--side-padding);
         width: 100%;
         box-sizing: border-box;
     }
@@ -74,6 +74,8 @@ import ComSocialMedia from '../../common/ComHeader/ComSocialMedia.vue';
         font-weight:300;
 }
 
+
+
 @media (min-width:768px){
     .contacts{
         display:grid;
@@ -91,6 +93,23 @@ import ComSocialMedia from '../../common/ComHeader/ComSocialMedia.vue';
     }
     .contacts__header{
         padding:60px 0;
+    }
+}
+
+@media (min-width:1600px){
+    .contacts__body{
+        padding:220px 100px;
+    }
+    .contacts__header{
+        padding:80px 0;
+    }
+    .contacts__way{
+        font-size:26px;
+        line-height:1.5em
+    }
+    .contacts__schedule, .contacts__adress{
+        font-size:24px;
+        line-height:1.5em;
     }
 }
 </style>

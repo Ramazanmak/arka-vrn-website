@@ -78,6 +78,7 @@ const advantages = ref([
         font-size:var(--h2-font-size);
         color:var(--second-main-color); 
         font-weight:var(--h2-font-weight);
+        text-align:center;
     }
 
     .advantages__description{
@@ -139,11 +140,7 @@ const advantages = ref([
         }
     }
 
-    @media (min-width:768px){
-        .advantages__header{
-            text-align:center;
-        }
-    }
+   
 
     @media (min-width:1024px){
         .advantages__body{

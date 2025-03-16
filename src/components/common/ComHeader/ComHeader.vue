@@ -114,7 +114,7 @@ header{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    padding:5px 10px;
+    padding:6px 10px;
     position:fixed;
     z-index:2;
 }
