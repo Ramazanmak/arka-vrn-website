@@ -5,7 +5,7 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
 import HomeFirstScreen from '../home/HomeFirstScreen.vue';
 import About from '../home/About/About.vue';
 import Catalogue from '../home/Catalogue.vue';
-import Advantages from '../home/Advantages.vue'
+import Advantages from '../home/Advantages.vue';
 import ContactUs from '../home/ContactUs/ContactUs.vue';
 import ComFooter from '../common/ComFooter.vue';
 
@@ -24,7 +24,7 @@ function togglePanels(){
 
 <template>
     <ComHeader ref="header"/>
-    <HomeFirstScreen @click="togglePanels"/>
+    <HomeFirstScreen @click="togglePanels" is-main="true"/>
     <About @click="togglePanels"/>
     <Catalogue  @click="togglePanels"/>
     <Advantages @click="togglePanels"/> 

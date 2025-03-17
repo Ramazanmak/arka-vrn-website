@@ -1,13 +1,23 @@
 <script setup>
-import ComHeader from '../common/ComHeader/ComHeader.vue';
+
+const firstScreenProps = defineProps({
+    isMain:{
+        type:Boolean,
+    },
+    pageName:{
+        type:String,
+        default:"APKA"
+    }
+})
+
 </script>
 
 <template>
     <div id="first-screen" class="home-first-screen-wrapper">
 
         <section class="home-first-screen-body">
-            <h1> АРКА</h1>
-            <h2> Производство МАФ-ов</h2>
+            <h1> {{ firstScreenProps.pageName }}</h1>
+            <h2 v-if="firstScreenProps.isMain" > Производство МАФ-ов</h2>
             <a class="catalog-link" alt="К продукции" href="#catalogue">Продукция</a>
         </section>
     </div>
