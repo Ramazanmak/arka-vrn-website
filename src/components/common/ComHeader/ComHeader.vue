@@ -91,7 +91,7 @@ defineExpose({
             <aside :class="asideClasses">
                 <router-link to="/" @click="[scrollTo('about'),toggleAside()]" class="aside-nav__link"  > О нас </router-link>
                 <router-link to="/" @click="[scrollTo('catalogue'),toggleAside()]" class="aside-nav__link"> Каталог </router-link>
-                <router-link to="/" @click="[scrollTo('catalogue'),toggleAside()]" class="aside-nav__link"> Контакты </router-link>
+                <router-link to="/" @click="[scrollTo('contacts'),toggleAside()]" class="aside-nav__link"> Контакты </router-link>
             </aside>
         </header>
     
