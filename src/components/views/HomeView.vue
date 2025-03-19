@@ -28,6 +28,6 @@ function togglePanels(){
     <About @click="togglePanels"/>
     <Catalogue  @click="togglePanels"/>
     <Advantages @click="togglePanels"/> 
-    <ContactUs @click="togglePanels"/>
+    <ContactUs @click="togglePanels" :isMain="true"/>
     <ComFooter @click="togglePanels"/>
 </template>

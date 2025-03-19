@@ -12,13 +12,15 @@ const routes = [
     {
         path:'/categories/:categoryName',
         component:CategoryPageView, 
-        name:"category"
     }
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    scrollBehavior(to,from,savedPosition){
+        return {top:0}
+    }
 });
 
 export default router;
