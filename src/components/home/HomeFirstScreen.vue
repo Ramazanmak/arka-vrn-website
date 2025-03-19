@@ -7,18 +7,36 @@ const firstScreenProps = defineProps({
     pageName:{
         type:String,
         default:"APKA"
+    },
+    bgImage:{
+        type:String,
+        default:"/general/first-screen-background.png"
     }
 })
+
+const backgroundStyle =
+    `background:
+        linear-gradient(rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.7)) repeat,
+        url(${firstScreenProps.bgImage});
+     background-size:cover;
+     background-repeat:repeat;
+     background-attachment:fixed;
+     background-position:center;
+     height:100vh;`
+
+
 
 </script>
 
 <template>
-    <div id="first-screen" class="home-first-screen-wrapper">
+    <div id="first-screen" class="home-first-screen-wrapper" :style="backgroundStyle">
 
         <section class="home-first-screen-body">
             <h1> {{ firstScreenProps.pageName }}</h1>
-            <h2 v-if="firstScreenProps.isMain" > Производство МАФ-ов</h2>
-            <a class="catalog-link" alt="К продукции" href="#catalogue">Продукция</a>
+            <template v-if="firstScreenProps.isMain" >
+                <h2> Производство МАФ-ов</h2>
+                <a class="catalog-link" alt="К продукции" href="#catalogue">Продукция</a>
+            </template>
         </section>
     </div>
 
@@ -26,24 +44,20 @@ const firstScreenProps = defineProps({
 
 <style scoped>
     .home-first-screen-wrapper{
-        background:
-            linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-            url(/general/first-screen-background.png);
-        height:100vh;
-        background-size:cover;
-	    background-repeat: no-repeat;
-	    background-attachment: fixed;
-	    background-position: top; 
+        display:flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
     .home-first-screen-body{
-        height:100vh;
+        height:100%;
         color:white;
         text-align: center;
         display:flex;
         flex-direction:column;
         justify-content:center;
         align-items: center;
+        padding-bottom:100px;
     }
 
     h1, h2{
@@ -106,6 +120,7 @@ const firstScreenProps = defineProps({
     @media (min-width:1440px){
         h1{
             font-size:70px;
+            /* padding-top:100px; */
         }
         h2{
             font-size:20px;

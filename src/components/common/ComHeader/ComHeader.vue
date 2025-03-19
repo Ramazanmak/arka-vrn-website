@@ -44,6 +44,17 @@ function toggleSocialMediaList(){
     socialMediaListIsHidden.value = !socialMediaListIsHidden.value
 }
 
+// реализация скролла до нужного элемента!
+
+function fn(id){
+    const el = document.getElementById(id);
+    el.scrollIntoView({behavior:"smooth"});
+}
+
+function scrollTo(id){
+    setTimeout(fn,0,id);
+}
+
 defineExpose({
     asideIsHidden,
     socialMediaListIsHidden,
@@ -54,13 +65,16 @@ defineExpose({
 </script>
 
 <template>
-        <header>
+        <header v-bind="$attrs">
             <nav>
-                <ComBurger @click="toggleAside()" :class="{change:burgerIsChanged}"></ComBurger>
+                <ComBurger 
+                    @click="toggleAside()" 
+                    :class="{change:burgerIsChanged}"
+                />
                 <div class="nav-list">
-                    <a class="nav__button" href="#about"> О нас </a>
-                    <a class="nav__button" href="#catalogue"> Каталог </a>
-                    <a class="nav__button" href="#contacts"> Контакты </a>
+                    <router-link to="/" @click="scrollTo('about')" class="nav__button" > О нас </router-link>
+                    <router-link to="/" @click="scrollTo('catalogue')" class="nav__button"> Каталог </router-link>
+                    <router-link to="/" @click="scrollTo('contacts')" class="nav__button"> Контакты </router-link>
                 </div>
             </nav>
     
@@ -75,9 +89,9 @@ defineExpose({
                 </div>
             </div>
             <aside :class="asideClasses">
-                <a class="aside-nav__link" href="#about" @click="toggleAside()"> О нас </a>
-                <a class="aside-nav__link" href="#catalogue" @click="toggleAside()"> Каталог </a>
-                <a class="aside-nav__link" href="#contacts"  @click="toggleAside()"> Контакты </a>
+                <router-link to="/" @click="[scrollTo('about'),toggleAside()]" class="aside-nav__link"  > О нас </router-link>
+                <router-link to="/" @click="[scrollTo('catalogue'),toggleAside()]" class="aside-nav__link"> Каталог </router-link>
+                <router-link to="/" @click="[scrollTo('catalogue'),toggleAside()]" class="aside-nav__link"> Контакты </router-link>
             </aside>
         </header>
     

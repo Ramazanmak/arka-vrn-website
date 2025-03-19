@@ -34,13 +34,15 @@ import {ref} from 'vue'
 }
 
 .change .bar1 {
-    transform: translate(0,240%) rotate(45deg) ;
+    transform: translate(0,230%) rotate(45deg) ;
+    border-radius: 5px;
 }
 
 .change .bar2 {opacity: 0;}
 
 .change .bar3 {
-    transform: translate(0,-240%) rotate(-45deg);
+    transform: translate(0,-230%) rotate(-45deg);
+    border-radius: 5px;
 }
 
 @media (min-width:560px){
@@ -63,11 +65,11 @@ import {ref} from 'vue'
         margin:5px 0;
     }
     .change .bar1 {
-        transform: translate(0,230%) rotate(45deg) ;
+        transform: translate(0,220%) rotate(45deg) ;
     }
     
     .change .bar3 {
-        transform: translate(0,-230%) rotate(-45deg);
+        transform: translate(0,-220%) rotate(-45deg);
     }
 }
 

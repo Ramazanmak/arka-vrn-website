@@ -12,9 +12,9 @@ import ComSocialMedia from '../../common/ComHeader/ComSocialMedia.vue';
             <h2 class="contacts__header">Наши контакты</h2>
 
             <div class="contacts__text">
-                <span class="contacts__way"> +7-903-651-46-78</span>
+                <a class="contacts__way" href="tel:+79222475444"> +7-903-651-46-78</a>
                 <br>
-                <span class="contacts__way"> arka.zabor@yandex.ru</span>
+                <a class="contacts__way" href="mailto:ramazan_M_I@mail.ru"> arka.zabor@yandex.ru</a>
                 <br>
                 <br>
                 <span class="contacts__adress"> Воронежская обл., Новая Усмань, ул. Дорожная, 1-А/1</span>
@@ -33,7 +33,6 @@ import ComSocialMedia from '../../common/ComHeader/ComSocialMedia.vue';
 <style scoped>
     .contacts{
         background-color: var(--main-bg-color);
-        padding-top:50px;
         width:100%;
         font-family: var(--main-font-family);
         line-height: 1.5em;
@@ -63,8 +62,14 @@ import ComSocialMedia from '../../common/ComHeader/ComSocialMedia.vue';
     
     .contacts__way{
         font-size:18px;
-        font-weight:300;
+        font-weight:500;
         letter-spacing: 1px;
+        color:white;
+        text-decoration: none;
+        transition:0.1s
+    }
+    .contacts__way:hover{
+        color:var(--second-main-color)
     }
 
     .contacts__adress, .contacts__schedule{

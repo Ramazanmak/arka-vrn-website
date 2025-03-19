@@ -5,6 +5,7 @@ const catalogueItems = ref([
     {
         id:1,
         name:"Вазоны",
+        routeName:"vases",
         src1:"/general/catalogue/vases.webp",
         src2:"/general/catalogue/vases.png"
        
@@ -12,30 +13,35 @@ const catalogueItems = ref([
     {
         id:2,
         name:"Парковые диваны и скамейки",
+        routeName:"benches",
         src1:"/general/catalogue/benches.webp",
         src2:"/general/catalogue/benches.png"
     },
     {
         id:3,
         name:"Урны",
+        routeName:"bins",
         src1:"/general/catalogue/bins.webp",
         src2:"/general/catalogue/bins.png"
     },
     {
         id:4,
         name:"Антипарковочные элементы",
+        routeName:"antiparking",
         src1:"/general/catalogue/antiparkings.webp",
         src2:"/general/catalogue/antiparkings.png"
     },
     {
         id:5,
         name:"Мусорные площадки",
+        routeName:"platforms",
         src1:"/general/catalogue/platforms.webp",
         src2:"/general/catalogue/platforms.png"
     },
     {
         id:6,
         name:"Бетонные блоки и крышки",
+        routeName:"concrete-blocks",
         src1:"/general/catalogue/concrete-blocks.webp",
         src2:"/general/catalogue/concrete-blocks.png"
     }
@@ -48,7 +54,12 @@ const catalogueItems = ref([
         <h2 class="catalogue__header"> Наша продукция </h2>
         
         <div class="catalogue__body">
-            <a class="catalogue__body-link" href="#about" v-for="category in catalogueItems">
+            <router-link
+                class="catalogue__body-link" 
+                v-for="category in catalogueItems" 
+                :to="'/categories/'+category.routeName"
+                
+            >
                 <picture class="catalogue__image-block">
                     <h3 class="catalogue__caption">{{ category.name }}</h3>
                     <source type="image/webp" :srcset="category.src1">
@@ -58,7 +69,7 @@ const catalogueItems = ref([
                     <img class="catalogue__more-logo" src="/general/catalogue/arrow.png" alt="more">
                     </img>
                 </div>
-            </a>
+            </router-link>
         </div>
     </section>
 </template>
@@ -66,7 +77,7 @@ const catalogueItems = ref([
 <style scoped>
     .catalogue{
         background-color: var(--main-bg-color);
-        padding:50px var(--side-padding) 50px;
+        padding:70px var(--side-padding) 50px;
         font-family: var(--main-font-family);
     }
     .catalogue__header{

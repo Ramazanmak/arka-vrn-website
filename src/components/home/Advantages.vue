@@ -143,6 +143,9 @@ const advantages = ref([
    
 
     @media (min-width:1024px){
+        .advantages{
+            padding-bottom:100px;
+        }
         .advantages__body{
             justify-content:center;
         }

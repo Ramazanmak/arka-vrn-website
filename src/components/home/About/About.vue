@@ -65,7 +65,7 @@
     .achievements{
         background-color: var(--main-bg-color);
         font-family: var(--main-font-family);
-        padding:100px var(--side-padding) 0px;
+        padding:50px var(--side-padding) 0px;
     }
     .achievements__header{
         font-size:var(--h2-font-size);
@@ -113,24 +113,10 @@
 
     @media (min-width:560px){
         .achievements{
-            padding:140px var(--side-padding) 0px;
+            padding:70px var(--side-padding) 0px;
         }
     }
 
-    @media (min-width:768px){
-        .achievements{
-            padding:140px var(--side-padding) 0px;
-        }
-        .achievements__item-text{
-            font-size:16px;
-        }
-    }
-
-    @media (min-width:930px){
-        .achievements{
-            padding:140px var(--side-padding) 0px;
-        }
-    }
 
 
 
@@ -138,7 +124,7 @@
 
     @media (min-width:768px){
         .achievements{
-            padding:140px var(--side-padding) 40px;
+            padding:100px var(--side-padding) 40px;
         }
 
         .achievements__item{
@@ -208,7 +194,7 @@
 
     @media (min-width:1600px){
         .achievements{
-            padding:300px var(--side-padding) 100px;
+            padding:150px var(--side-padding) 100px;
         }
         .achievements__item-text{
             font-size:20px;
@@ -217,7 +203,7 @@
 
     @media (min-width:1920px){
         .achievements{
-            padding:300px var(--side-padding) 100px;
+            padding:180px var(--side-padding) 100px;
         }
         .achievements__item-text{
             font-size:20px;
