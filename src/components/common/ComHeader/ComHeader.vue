@@ -2,7 +2,8 @@
 
 import ComBurger from './ComBurger.vue';
 import ComSocialMedia from './ComSocialMedia.vue';
-import { ref, computed, reactive} from 'vue';
+import { ref, computed} from 'vue';
+import { useRoute, useRouter} from 'vue-router'
 
 // elements states
 const asideIsHidden = ref(true)
@@ -46,12 +47,18 @@ function toggleSocialMediaList(){
 
 // реализация скролла до нужного элемента!
 
+const router = useRouter();
+const route = useRoute();
+
 function fn(id){
     const el = document.getElementById(id);
     el.scrollIntoView({behavior:"smooth"});
 }
 
 function scrollTo(id){
+    if (route.path != '/'){
+        router.push('/')
+    }
     setTimeout(fn,0,id);
 }
 
@@ -72,9 +79,9 @@ defineExpose({
                     :class="{change:burgerIsChanged}"
                 />
                 <div class="nav-list">
-                    <router-link to="/" @click="scrollTo('about')" class="nav__button" > О нас </router-link>
-                    <router-link to="/" @click="scrollTo('catalogue')" class="nav__button"> Каталог </router-link>
-                    <router-link to="/" @click="scrollTo('contacts')" class="nav__button"> Контакты </router-link>
+                    <a  @click="scrollTo('about')" class="nav__button" > О нас </a>
+                    <a @click="scrollTo('catalogue')" class="nav__button"> Каталог </a>
+                    <a @click="scrollTo('contacts')" class="nav__button"> Контакты </a>
                 </div>
             </nav>
     
@@ -89,9 +96,9 @@ defineExpose({
                 </div>
             </div>
             <aside :class="asideClasses">
-                <router-link to="/" @click="[scrollTo('about'),toggleAside()]" class="aside-nav__link"  > О нас </router-link>
-                <router-link to="/" @click="[scrollTo('catalogue'),toggleAside()]" class="aside-nav__link"> Каталог </router-link>
-                <router-link to="/" @click="[scrollTo('contacts'),toggleAside()]" class="aside-nav__link"> Контакты </router-link>
+                <a @click="[scrollTo('about'),toggleAside()]" class="aside-nav__link"  > О нас </a>
+                <a @click="[scrollTo('catalogue'),toggleAside()]" class="aside-nav__link"> Каталог </a>
+                <a @click="[scrollTo('contacts'),toggleAside()]" class="aside-nav__link"> Контакты </a>
             </aside>
         </header>
     
