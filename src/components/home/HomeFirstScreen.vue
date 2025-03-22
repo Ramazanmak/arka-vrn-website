@@ -1,4 +1,5 @@
 <script setup>
+import {useRouter, useRoute} from "vue-router"
 
 const firstScreenProps = defineProps({
     isMain:{
@@ -24,8 +25,20 @@ const backgroundStyle =
      background-position:center;
      height:100vh;`
 
+const router = useRouter();
+const route = useRoute();
 
+    function findElement(id){
+        const el = document.getElementById(id);
+        el.scrollIntoView({behavior:"smooth"});
+    }
 
+    function scrollTo(id){
+        if (route.path != '/'){
+            router.push('/')
+        }
+        setTimeout(findElement,0,id);
+    }
 </script>
 
 <template>
@@ -35,7 +48,7 @@ const backgroundStyle =
             <h1> {{ firstScreenProps.pageName }}</h1>
             <template v-if="firstScreenProps.isMain" >
                 <h2> Производство МАФ-ов</h2>
-                <a class="catalog-link" alt="К продукции" href="#catalogue">Продукция</a>
+                <a class="catalog-link" alt="К продукции" @click="scrollTo('catalogue')">Продукция</a>
             </template>
         </section>
     </div>
@@ -91,6 +104,7 @@ const backgroundStyle =
         text-decoration:none;
         color:white;
         transition:0.4s;
+        cursor:pointer;
     }
 
     .catalog-link:hover{

@@ -50,7 +50,7 @@ function toggleSocialMediaList(){
 const router = useRouter();
 const route = useRoute();
 
-function fn(id){
+function findElement(id){
     const el = document.getElementById(id);
     el.scrollIntoView({behavior:"smooth"});
 }
@@ -59,7 +59,7 @@ function scrollTo(id){
     if (route.path != '/'){
         router.push('/')
     }
-    setTimeout(fn,0,id);
+    setTimeout(findElement,0,id);
 }
 
 defineExpose({
@@ -235,6 +235,7 @@ nav{
     text-transform: uppercase;
     font-family: var(--main-font-family);
     font-weight:600;
+    cursor:pointer;
 }
 
 .aside-nav_hidden{
@@ -308,6 +309,7 @@ nav{
         font-family: var(--main-font-family);
         font-weight:600;
         font-size:12px;
+        cursor:pointer;
     }
     .logo__img{
         height:35px;
