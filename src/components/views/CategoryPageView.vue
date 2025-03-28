@@ -3,7 +3,7 @@ import ComHeader from '../common/ComHeader/ComHeader.vue';
 import HomeFirstScreen from '../home/HomeFirstScreen.vue';
 import ComFooter from '../common/ComFooter.vue';
 import CatPageTouchUs from '../categoryPage/CatPageTouchUs.vue';
-import ProductList from '../categoryPage/ProductLIst/ProductList.vue';
+import ProductList from '../categoryPage/ProductList/ProductList.vue';
 import { catalogueFull } from '../../data/categories';
 import {useRoute} from "vue-router";
 
