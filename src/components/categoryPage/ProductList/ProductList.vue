@@ -133,13 +133,13 @@ function calcMinimalCost(item){
     .subcategory-item__image-first-layer{
         display: block;
         height:100%;
-        padding:30px 0;
+        padding:20px 0;
     }
 
     .subcategory-item__image{
         display: block;
         background-size: cover;
-        height: 150px;
+        height: 130px;
         margin:0 auto;
         transform: scale(1.0);
         padding-bottom:10px;
@@ -202,7 +202,7 @@ function calcMinimalCost(item){
 
     @media (min-width:560px){
         .subcategory-item__image{
-            height:250px;
+            height:220px;
         }   
     }
 
@@ -212,7 +212,7 @@ function calcMinimalCost(item){
             margin:10px;
         }
         .subcategory-item__image{
-            height:150px;
+            height:130px;
         }
         .subcategory__list{
             display: flex;

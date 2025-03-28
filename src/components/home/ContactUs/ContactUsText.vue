@@ -29,7 +29,7 @@
         }
         
         .contacts__way{
-            font-size:18px;
+            font-size:19px;
             font-weight:500;
             letter-spacing: 1px;
             color:white;
@@ -42,14 +42,27 @@
 
         .contacts__adress, .contacts__schedule{
             display: block;
-            line-height: 1.5em;
-            font-size:13px;
+            line-height: 1.7em;
+            font-size:16px;
             font-weight:300;
     }
 
 @media (min-width:768px){
     .contacts__header{
         padding:60px 0;
+    }
+}
+@media (min-width:1440px){
+    .contacts__header{
+        padding:70px 0;
+    }
+    .contacts__way{
+        font-size:22px;
+        line-height:1.5em
+    }
+    .contacts__schedule, .contacts__adress{
+        font-size:19px;
+        line-height:1.5em;
     }
 }
 
@@ -63,6 +76,20 @@
     }
     .contacts__schedule, .contacts__adress{
         font-size:24px;
+        line-height:1.5em;
+    }
+}
+
+@media (min-width:2300px){
+    .contacts__header{
+        padding:90px 0;
+    }
+    .contacts__way{
+        font-size:31px;
+        line-height:1.5em
+    }
+    .contacts__schedule, .contacts__adress{
+        font-size:28px;
         line-height:1.5em;
     }
 }

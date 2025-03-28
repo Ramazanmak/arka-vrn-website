@@ -130,7 +130,7 @@
         .achievements__item{
             display:grid;
             gap:1em;
-            padding-bottom:5%;
+            padding-bottom:8%;
             width:100%;
         }
         
@@ -185,7 +185,7 @@
 
     @media (min-width:1440px){
         .achievements__item{
-            padding-bottom:8%;
+            padding-bottom:10%;
         }
         .achievements__item-text{
             font-size:20px; 

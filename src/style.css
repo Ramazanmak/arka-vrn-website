@@ -38,13 +38,13 @@ body{
 
 @media (min-width:930px){
     body{
-      --side-padding:14%;
+      --side-padding:11%;
     }
 }
 
 @media (min-width:1024px){
     body{
-      --side-padding:15%;
+      --side-padding:11%;
       --h2-font-size:36px;  
     }
 }
@@ -57,7 +57,7 @@ body{
 
 @media (min-width:1600px){
     body{
-        --side-padding:17%;
+        --side-padding:13%;
         --h2-font-size:50px;  
     }
 }
