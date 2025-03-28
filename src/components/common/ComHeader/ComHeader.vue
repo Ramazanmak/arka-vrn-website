@@ -5,6 +5,8 @@ import ComSocialMedia from './ComSocialMedia.vue';
 import { ref, computed} from 'vue';
 import { useRoute, useRouter} from 'vue-router'
 
+
+
 // elements states
 const asideIsHidden = ref(true)
 const burgerIsChanged = computed(() => {

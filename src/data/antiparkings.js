@@ -13,70 +13,84 @@ const antiparkings = {
             items:[
                 {
                     name:"Антипарковочная полусфера 01",
-                    img:"/catalogue/antiparkings/hemiellipse-stone.png",
-                    description:"Парковочная полусфера из мытого бетона",
+                    folderName:"hemiellipse",
+                    defaultImg:"/catalogue/antiparkings/hemiellipse/hemiellipse.png",
+                    description:[],
                     sizes:{
                         height:29,
                         diameter:40,
                         weight:59,
                     },
+                    types:{},
+                    woods:{},
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                        "smooth":"Гладкий бетон"
+                    },
+                    colors:{
+                        "grey":"Серый",
+                        "red":"Красный",
+                        "yellow":"Жёлтый"
+                    },
                     cost:{
-                        "Гранитная крошка": 2000,
-                        "Мраморная крошка": 2500,
+                        "granite": 2000,
+                        "marble": 2500,
+                        "smooth-grey":1500,
+                        "smooth-red":1700,
+                        "smooth-yellow":1700
                     }
                 },
                 {
                     name:"Антипарковочная полусфера 02",
-                    img:"/catalogue/antiparkings/hemisphere-stone.png",
-                    description:"Парковочная полусфера из мытого бетона",
+                    folderName:"hemisphere",
+                    defaultImg:"/catalogue/antiparkings/hemisphere/hemisphere.png",
+                    description:[],
                     sizes:{
                         height:25,
                         diameter:50,
                         weight:77,
                     },
-                    cost:{
-                        "Гранитная крошка": 2000,
-                        "Мраморная крошка": 2500,
-                    }
-                },
-                {
-                    name:"Антипарковочная полусфера 01",
-                    img:"/catalogue/antiparkings/hemiellipse.png",
-                    description:"Парковочная полусфера из гладкого бетона",
-                    sizes:{
-                        height:30,
-                        diameter:40,
+                    types:{},
+                    woods:{},
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                        "smooth":"Гладкий бетон"
+                    },
+                    colors:{
+                        "grey":"Серый",
+                        "red":"Красный",
+                        "yellow":"Жёлтый"
                     },
                     cost:{
-                        "Серый бетон": 1500,
-                        "В цвете": 1700,
+                        "granite": 2000,
+                        "marble": 2500,
+                        "smooth-grey":1500,
+                        "smooth-red":1700,
+                        "smooth-yellow":1700
                     }
                 },
-                {
-                    name:"Антипарковочная полусфера 02",
-                    img:"/catalogue/antiparkings/hemisphere.png",
-                    description:"Парковочная полусфера из гладкого бетона",
-                    sizes:{
-                        height:25,
-                        diameter:50,
-                    },
-                    cost:{
-                        "Серый бетон": 1500,
-                        "В цвете": 1700,
-                    }
-                },
+                
                 {
                     name:"Шар антипарковочный",
-                    img:"/catalogue/antiparkings/sphere.png",
-                    description:"Парковочный шар из мытого бетона",
+                    folderName:"sphere",
+                    defaultImg:"/catalogue/antiparkings/sphere/sphere.png",
+                    description:[],
                     sizes:{
                         height:55,
                         diameter:50,
                         weight:178,
                     },
+                    types:{},
+                    woods:{},
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 7000,
-                        "Мраморная крошка": 8600,
+                        "granite": 7000,
+                        "marble": 8600,
                     }
                 },
             ],
@@ -88,45 +102,76 @@ const antiparkings = {
             items:[
                 {
                     name:"Антипарковочный столбик Москва",
-                    img:"/catalogue/antiparkings/moskow.png",
-                    description:"Парковочный столбик из мытого бетона",
+                    folderName:"moscow",
+                    defaultImg:`/catalogue/antiparkings/moscow/moscow.png`,
+                    description:[],
                     sizes:{
                         height:60,
                         width:29.5,
                         length:29.5,
                         weight:90,
                     },
+                    types:{},
+                    woods:{},
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 5000,
-                        "Мраморная крошка": 6500,
+                        "granite": 5000,
+                        "marble": 6500,
                     }
                 },
                 {
                     name:"Антипарковочный столбик Стопхам",
-                    img:"/catalogue/antiparkings/stopham-30.png",
-                    description:"Парковочный столбик из гладкого бетона",
+                    folderName:"stopham-30",
+                    defaultImg:"/catalogue/antiparkings/stopham-30/stopham-30.png",
+                    description:[],
                     sizes:{
                         height:30,
                         diameter:35,
                         weight:69,
                     },
+                    types:{},
+                    woods:{},
+                    materials:{
+                        "smooth":"Гладкий бетон"
+                    },
+                    colors:{
+                        "grey":"Серый",
+                        "red":"Красный",
+                        "yellow":"Жёлтый"
+                    },
                     cost:{
-                        "Серый бетон": 1800,
-                        "В цвете": 2000,
+                        "smooth-grey":1800,
+                        "smooth-red":2000,
+                        "smooth-yellow":2000
                     }
                 },
                 {
                     name:"Антипарковочный столбик Стопхам",
-                    img:"/catalogue/antiparkings/stopham-50.png",
-                    description:"Парковочный столбик из гладкого бетона",
+                    folderName:"stopham-50",
+                    defaultImg:"/catalogue/antiparkings/stopham-50/stopham-50.png",
+                    description:[],
                     sizes:{
                         height:50,
                         diameter:35,
                         weight:115,
                     },
+                    types:{},
+                    woods:{},
+                    materials:{
+                        "smooth":"Гладкий бетон"
+                    },
+                    colors:{
+                        "grey":"Серый",
+                        "red":"Красный",
+                        "yellow":"Жёлтый"
+                    },
                     cost:{
-                        "Серый бетон": 2800,
-                        "В цвете": 3000,
+                        "smooth-grey":2800,
+                        "smooth-red":3000,
+                        "smooth-yellow":3000
                     }
                 },
             ]

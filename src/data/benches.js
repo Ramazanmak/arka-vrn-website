@@ -13,89 +13,161 @@ const benches = {
             items:[
                 {
                     name:"Пелагея (длина 224 см)",
-                    img:"/catalogue/benches/pelageya-224.png",
-                    description:"Парковый диван из мытого бетона",
+                    folderName:"pelageya-224",
+                    defaultImg:"/catalogue/benches/pelageya-224/pelageya-224.png",
+                    description:[],
                     sizes:{
                         height:90,
                         width:224,
                         lenght:45,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Полисандр",
+                        "mahogany":"Махагон"
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 22400,
-                        "Мраморная крошка": 0,
-                    }
+                        "granite-rosewood": 22400,
+                        "granite-mahogany":22400,
+                        "marble-rosewood": 25000,
+                        "marble-mahogany": 25000
+                    }   
                 },
                 {
                     name:"Пелагея (длина 174 см)",
-                    img:"/catalogue/benches/pelageya-174.png",
-                    description:"Парковый диван из мытого бетона",
+                    folderName:"pelageya-174",
+                    defaultImg:"/catalogue/benches/pelageya-174/pelageya-174.png",                    
+                    description:[],
                     sizes:{
                         height:90,
                         width:174,
                         lenght:45,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Полисандр",
+                        "mahogany":"Махагон"
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 18000,
-                        "Мраморная крошка": 20300,
-                    }
+                        "granite-rosewood": 18000,
+                        "granite-mahogany":18000,
+                        "marble-rosewood": 20300,
+                        "marble-mahogany": 20300
+                    }   
                 },
                 {
                     name:"Пелагея (длина 118 см)",
-                    img:"/catalogue/benches/pelageya-118.png",
-                    description:"Парковый диван из мытого бетона",
+                    folderName:"pelageya-118",
+                    defaultImg:"/catalogue/benches/pelageya-118/pelageya-118.png",                    
+                    description:[],
                     sizes:{
                         height:90,
                         width:118,
                         lenght:45,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Полисандр",
+                        "mahogany":"Махагон"
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 15500,
-                        "Мраморная крошка": 0,
-                    }
+                        "granite-rosewood": 15500,
+                        "granite-mahogany":15500,
+                        "marble-rosewood": 17300,
+                        "marble-mahogany": 17300,
+                    }   
                 },
                 {
                     name:"Валерия",
-                    img:"/catalogue/benches/valeria.png",
-                    description:"Парковый диван из мытого бетона",
+                    folderName:"valeria",
+                    defaultImg:"/catalogue/benches/valeria/valeria.png", 
+                    description:[],
                     sizes:{
                         height:90,
                         width:172,
                         lenght:72,
                         weight:230,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Полисандр",
+                        "mahogany":"Махагон"
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 19200,
-                        "Мраморная крошка": 21500,
-                    }
+                        "granite-rosewood": 19200,
+                        "granite-mahogany":19200,
+                        "marble-rosewood": 21500,
+                        "marble-mahogany": 21500,
+                    }   
                 },
                 {
                     name:"Агата",
-                    img:"/catalogue/benches/agata.png",
-                    description:"Парковый диван из мытого бетона",
+                    folderName:"agata",
+                    defaultImg:"/catalogue/benches/agata/agata.png", 
+                    description:[],
                     sizes:{
                         height:90,
                         width:172,
                         lenght:72,
                         weight:190,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Полисандр",
+                        "mahogany":"Махагон"
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 16900,
-                        "Мраморная крошка": 19200,
-                    }
+                        "granite-rosewood": 16900,
+                        "granite-mahogany":16900,
+                        "marble-rosewood": 19200,
+                        "marble-mahogany": 19200,
+                    }   
                 },
                 {
                     name:"Александра (со спинкой)",
-                    img:"/catalogue/benches/alexandra-back.png",
-                    description:"Парковый диван из мытого бетона",
+                    folderName:"alexandra-back",
+                    defaultImg:"/catalogue/benches/alexandra-back/alexandra-back.png", 
+                    description:[],
                     sizes:{
                         height:48,
                         width:190,
                         lenght:45,
                         weight:224,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Полисандр",
+                        "mahogany":"Махагон"
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 14200,
-                        "Мраморная крошка":16300,
+                        "granite-rosewood": 14200,
+                        "granite-mahogany":14200,
+                        "marble-rosewood": 16300,
+                        "marble-mahogany": 16300,
                     }
                 },
             ]
@@ -107,48 +179,84 @@ const benches = {
             items:[
                 {
                     name:"Александра",
-                    img:"/catalogue/benches/alexandra.png",
-                    description:"Скамейка из мытого бетона",
+                    folderName:"alexandra",
+                    defaultImg:"/catalogue/benches/alexandra/alexandra.png", 
+                    description:[],
                     sizes:{
                         height:48,
                         width:190,
                         lenght:45,
                         weight:210,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Полисандр",
+                        "mahogany":"Махагон"
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 12300,
-                        "Мраморная крошка": 14600,
-                    }
+                        "granite-rosewood": 12300,
+                        "granite-mahogany":12300,
+                        "marble-rosewood": 14600,
+                        "marble-mahogany": 14600,
+                    }   
                 },
                 {
                     name:"Дина",
-                    img:"/catalogue/benches/dina.png",
-                    description:"Скамейка из мытого бетона",
+                    folderName:"dina",
+                    defaultImg:"/catalogue/benches/dina/dina.png", 
+                    description:[],
                     sizes:{
                         height:45,
                         width:182,
                         lenght:58,
                         weight:167,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Полисандр",
+                        "mahogany":"Махагон"
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 13500,
-                        "Мраморная крошка": 15800,
-                    }
+                        "granite-rosewood": 13500,
+                        "granite-mahogany":13500,
+                        "marble-rosewood": 15800,
+                        "marble-mahogany": 15800,
+                    }   
                 },
                 {
                     name:"Ада",
-                    img:"/catalogue/benches/ada.png",
-                    description:"Скамейка из мытого бетона",
+                    folderName:"ada",
+                    defaultImg:"/catalogue/benches/ada/ada.png", 
+                    description:[],
                     sizes:{
                         height:44,
                         width:200,
                         lenght:50,
                         weight:300,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Полисандр",
+                        "mahogany":"Махагон"
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 38800,
-                        "Мраморная крошка": 40000,
-                    }
+                        "granite-rosewood": 38800,
+                        "granite-mahogany":38800,
+                        "marble-rosewood": 40000,
+                        "marble-mahogany": 40000,
+                    }   
                 },
             ]
         }

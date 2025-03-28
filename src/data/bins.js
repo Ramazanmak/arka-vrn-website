@@ -10,49 +10,71 @@ const bins = {
         {
             name:"Урны",
             message:"Временно не производим исполнения из мраморной крошки.",
-            caution:"",
+            caution:[],
             items:[
                 {
                     name:"Римма",
-                    img:"/catalogue/bins/rimma.png",
-                    description:"Урна из мытого бетона с деревянной отделкой",
+                    folderName:"rimma",
+                    defaultImg:"/catalogue/bins/rimma/rimma.png",
+                    description:[],
                     sizes:{
                         height:55,
                         width:47,
-                        lenght:45,
+                        lenght:42,
                         weight:65,
                     },
+                    types:{},
+                    woods:{
+                        "rosewood":"Палисандр",
+                    },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 11000,
-                        "Мраморная крошка": 13200,
+                        "granite-rousewood": 11000,
+                        "annmarble-rousewood": 13200,
                     }
                 },
                 {
                     name:"Валентина",
-                    img:"/catalogue/bins/valentina.png",
+                    folderName:"valentina",
                     description:"Урна из мытого бетона",
+                    defaultImg:"/catalogue/bins/valentina/valentina.png",
                     sizes:{
                         height:60,
                         width:45,
                         lenght:45,
                         weight:127,
                     },
+                    types:{},
+                    woods:{ },
+                    materials:{
+                        "granite":"Гранитная крошка",
+                        "marble":"Мраморная крошка",
+                    },
                     cost:{
-                        "Гранитная крошка": 8000,
-                        "Мраморная крошка": 10300,
+                        "granite-rousewood": 11000,
+                        "annmarble-rousewood": 13200,
                     }
                 },
                 {
                     name:"Металлическая вставка",
-                    img:"/catalogue/bins/metal.png",
-                    description:"",
+                    folderName:"metal",
+                    defaultImg:"/catalogue/bins/metal/metal.png",
+                    description:[],
                     sizes:{
                         height:45,
                         width:38,
                         lenght:38,
                     },
+                    types:{},
+                    woods:{ },
+                    materials:{
+                        "metal":"Металл",
+                    },
                     cost:{
-                        "default": 11000,
+                        "metal": 2300,
                     }
                 }
             ]
