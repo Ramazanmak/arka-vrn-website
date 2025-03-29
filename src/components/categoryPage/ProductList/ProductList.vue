@@ -229,6 +229,7 @@ function calcMinimalCost(item){
 
         .subcategory__list{
             display: flex;
+            background-color: red;
             flex-flow: row wrap;
             justify-content: center;
 
