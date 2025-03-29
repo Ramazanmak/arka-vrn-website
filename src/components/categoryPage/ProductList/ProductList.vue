@@ -48,28 +48,31 @@ function calcMinimalCost(item){
                             class="subcategory-item"
                             v-for="item in subcategory.items"
                             >
-                            <div class="subcategory-item__body">
+                            <div class="subcategory-item__image-wrapper">
                                 <div class="subcategory-item__image-first-layer">
                                     <img 
                                         :src="item.defaultImg" 
                                         class="subcategory-item__image"
                                         />
                                 </div>
+                            </div>
+                            <div class="subcategory-item__body">
+                                
                                 <p class="subcategory-item__subcategory-name"> {{subcategory.name}}</p>
                                 
                                 <h3 class="subcategory-item-header"> 
                                     {{ item.name }}
                                 </h3>
-                            </div>
 
-                            <div class="subcategory-item__footer">
-                                <p class="subcategory-item__cost">
-                                    от {{ calcMinimalCost(item) }}р.
-                                </p>
+                                <div class="subcategory-item__footer">
+                                    <p class="subcategory-item__cost">
+                                        от {{ calcMinimalCost(item) }}р.
+                                    </p>
 
-                                <button class="subcategory-item__add-button">
-                                    + 
-                                </button>
+                                    <button class="subcategory-item__add-button">
+                                        + 
+                                    </button>
+                                </div>
                             </div>
                         </article>
                     </div>
@@ -107,11 +110,16 @@ function calcMinimalCost(item){
     .subcategory-item{
         border-radius:10px;
         padding:10px;
-        margin-top:25px;
-        transition:0.4s;
+        margin:25px auto;
+        transition:0.2s;
+        height:400px;
+        max-width: 300px;
         border-top:2px solid var(--second-main-color);
         border-bottom:2px solid var(--second-main-color);
         box-shadow: 0 0 5px -2px var(--contacts-bg-color);  
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .subcategory-item:hover{
@@ -130,17 +138,23 @@ function calcMinimalCost(item){
 
     /* IMAGE */
 
-    .subcategory-item__image-first-layer{
-        display: block;
-        height:100%;
-        padding:20px 0;
+    .subcategory-item__image-wrapper{
+        flex-grow:1;
     }
-
+    
+    .subcategory-item__image-first-layer{
+        height: 100%;
+        display: flex;
+        flex-flow:column;
+        justify-content: center;
+        align-items: center;
+    }
+    
     .subcategory-item__image{
         display: block;
         background-size: cover;
-        height: 130px;
-        margin:0 auto;
+        margin: auto;
+        width:100%;
         transform: scale(1.0);
         padding-bottom:10px;
     }
@@ -157,6 +171,7 @@ function calcMinimalCost(item){
 
     .subcategory-item-header{
         padding:5px 0 20px 0;
+        height:2em;
         margin:0;
         font-size:20px;
         font-weight:600;
@@ -165,6 +180,9 @@ function calcMinimalCost(item){
     }
 
     /* FOOTER */
+    .subcategory-item__body{
+        flex-grow:0;
+    }
 
     .subcategory-item__footer{
         display: flex;
@@ -190,7 +208,7 @@ function calcMinimalCost(item){
         border:none;
         border-radius: 10px;
         color:#fff;
-        transition: 0.4s;
+        transition: 0.2s;
     }
 
     .subcategory-item__add-button:hover{
@@ -200,20 +218,15 @@ function calcMinimalCost(item){
 
     /* RESPONSIVENESS */
 
-    @media (min-width:560px){
-        .subcategory-item__image{
-            height:220px;
-        }   
-    }
 
-    @media (min-width:768px){
+
+    @media (min-width:560px){
         .subcategory-item{
             width:40%;
             margin:10px;
+            height:360px;
         }
-        .subcategory-item__image{
-            height:130px;
-        }
+
         .subcategory__list{
             display: flex;
             flex-flow: row wrap;
@@ -221,21 +234,84 @@ function calcMinimalCost(item){
 
         }
     }
+
+    @media (min-width:768px){
+        .subcategory-item{
+            height:400px;
+        }
+    }
     @media (min-width:1024px){
         .subcategory-item{
+            width:25%;
             margin:15px;
         }
-        .subcategory-item__image{
-            height:170px;
+        .subcategory-item__cost{
+            font-size:16px;
         }
     }
     @media (min-width:1440px){
-        .subcategory-item__image{
-            height:170px;
+        .subcategory-item__subcategory-name{
+            font-size:16px;
+        }
+        .subcategory-item-header{
+            font-size:22px;
+            padding:10px 0 25px 0;
         }
 
         .subcategory-item{
             width:28%;
+            max-width: 300px;
+            height:450px
+        }
+
+        .subcategory-item__cost{
+            font-size:18px;
+        }
+
+        .subcategory-item__add-button{
+            padding:0 10px;
+            font-size:30px;
+        }
+    }
+
+    @media (min-width:1600px){
+        .subcategory-item__subcategory-name{
+            font-size:18px;
+        }
+        .subcategory-item{
+            width:28%;
+            max-width: 400px;
+            height:550px
+        }
+        .subcategory-item-header{
+            font-size:26px;
+            padding:15px 0 30px 0;
+        }
+        .subcategory-item__cost{
+            font-size:24px;
+        }
+    }
+
+    @media (min-width:1920px){
+        .subcategory-item__subcategory-name{
+            font-size:23px;
+        }
+        .subcategory-item-header{
+            font-size:32px;
+        }
+        .subcategory-item{
+            height:600px;
+            max-width:400px;
+        }
+        .subcategory-item__cost{
+            font-size:26px;
+        }
+    }
+
+    @media (min-width: 2560px){
+        .subcategory-item{
+            height:600px;
+            max-width:450px;
         }
     }
 </style>
