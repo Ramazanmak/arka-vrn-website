@@ -17,7 +17,7 @@ const platfrorms = {
                 {
                     name:'"Спасибо за чистоту"',
                     folderName:"thank",
-                    defaultImg:"/catalogue/platforms/thank/thank.png",
+                    defaultImg:"/catalogue/platforms/thank/thank",
                     types:{
                         opened:"Открытого типа",
                         closed:"Закрытого типа"
@@ -39,7 +39,7 @@ const platfrorms = {
                 {
                     name:'"Цветок"',
                     folderName:"flower",
-                    defaultImg:"/catalogue/platforms/flower/flower.png",
+                    defaultImg:"/catalogue/platforms/flower/flower",
                     types:{
                         opened:"Открытого типа",
                         closed:"Закрытого типа"

@@ -14,7 +14,7 @@ const benches = {
                 {
                     name:"Пелагея (длина 224 см)",
                     folderName:"pelageya-224",
-                    defaultImg:"/catalogue/benches/pelageya-224/pelageya-224.png",
+                    defaultImg:"/catalogue/benches/pelageya-224/pelageya-224",
                     description:[],
                     sizes:{
                         height:90,
@@ -40,7 +40,7 @@ const benches = {
                 {
                     name:"Пелагея (длина 174 см)",
                     folderName:"pelageya-174",
-                    defaultImg:"/catalogue/benches/pelageya-174/pelageya-174.png",                    
+                    defaultImg:"/catalogue/benches/pelageya-174/pelageya-174",                    
                     description:[],
                     sizes:{
                         height:90,
@@ -66,7 +66,7 @@ const benches = {
                 {
                     name:"Пелагея (длина 118 см)",
                     folderName:"pelageya-118",
-                    defaultImg:"/catalogue/benches/pelageya-118/pelageya-118.png",                    
+                    defaultImg:"/catalogue/benches/pelageya-118/pelageya-118",                    
                     description:[],
                     sizes:{
                         height:90,
@@ -92,7 +92,7 @@ const benches = {
                 {
                     name:"Валерия",
                     folderName:"valeria",
-                    defaultImg:"/catalogue/benches/valeria/valeria.png", 
+                    defaultImg:"/catalogue/benches/valeria/valeria", 
                     description:[],
                     sizes:{
                         height:90,
@@ -119,7 +119,7 @@ const benches = {
                 {
                     name:"Агата",
                     folderName:"agata",
-                    defaultImg:"/catalogue/benches/agata/agata.png", 
+                    defaultImg:"/catalogue/benches/agata/agata", 
                     description:[],
                     sizes:{
                         height:90,
@@ -146,7 +146,7 @@ const benches = {
                 {
                     name:"Александра (со спинкой)",
                     folderName:"alexandra-back",
-                    defaultImg:"/catalogue/benches/alexandra-back/alexandra-back.png", 
+                    defaultImg:"/catalogue/benches/alexandra-back/alexandra-back", 
                     description:[],
                     sizes:{
                         height:48,
@@ -180,7 +180,7 @@ const benches = {
                 {
                     name:"Александра",
                     folderName:"alexandra",
-                    defaultImg:"/catalogue/benches/alexandra/alexandra.png", 
+                    defaultImg:"/catalogue/benches/alexandra/alexandra", 
                     description:[],
                     sizes:{
                         height:48,
@@ -207,7 +207,7 @@ const benches = {
                 {
                     name:"Дина",
                     folderName:"dina",
-                    defaultImg:"/catalogue/benches/dina/dina.png", 
+                    defaultImg:"/catalogue/benches/dina/dina", 
                     description:[],
                     sizes:{
                         height:45,
@@ -234,7 +234,7 @@ const benches = {
                 {
                     name:"Ада",
                     folderName:"ada",
-                    defaultImg:"/catalogue/benches/ada/ada.png", 
+                    defaultImg:"/catalogue/benches/ada/ada", 
                     description:[],
                     sizes:{
                         height:44,

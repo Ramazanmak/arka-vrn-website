@@ -15,7 +15,7 @@ const bins = {
                 {
                     name:"Римма",
                     folderName:"rimma",
-                    defaultImg:"/catalogue/bins/rimma/rimma.png",
+                    defaultImg:"/catalogue/bins/rimma/rimma",
                     description:[],
                     sizes:{
                         height:55,
@@ -40,7 +40,7 @@ const bins = {
                     name:"Валентина",
                     folderName:"valentina",
                     description:"Урна из мытого бетона",
-                    defaultImg:"/catalogue/bins/valentina/valentina.png",
+                    defaultImg:"/catalogue/bins/valentina/valentina",
                     sizes:{
                         height:60,
                         width:45,
@@ -61,7 +61,7 @@ const bins = {
                 {
                     name:"Металлическая вставка",
                     folderName:"metal",
-                    defaultImg:"/catalogue/bins/metal/metal.png",
+                    defaultImg:"/catalogue/bins/metal/metal",
                     description:[],
                     sizes:{
                         height:45,

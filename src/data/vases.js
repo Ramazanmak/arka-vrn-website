@@ -14,7 +14,7 @@ const vases = {
                 {
                     name:"Анна",
                     folderName:"anna",
-                    defaultImg:"/catalogue/vases/anna/anna.png", 
+                    defaultImg:"/catalogue/vases/anna/anna", 
                     description:[],
                     sizes:{
                         height:45,
@@ -35,7 +35,7 @@ const vases = {
                 {
                     name:"София",
                     folderName:"sofia",
-                    defaultImg:"/catalogue/vases/sofia/sofia.png",
+                    defaultImg:"/catalogue/vases/sofia/sofia",
                     description:[],
                     sizes:{
                         height:56.6,
@@ -56,7 +56,7 @@ const vases = {
                 {
                     name:"Мария",
                     folderName:"maria",
-                    defaultImg:"/catalogue/vases/maria/maria.png",
+                    defaultImg:"/catalogue/vases/maria/maria",
                     description:[],
                     sizes:{
                         height:40,
@@ -78,7 +78,7 @@ const vases = {
                 {
                     name:"Валентина",
                     folderName:"valentina",
-                    defaultImg:"/catalogue/vases/valentina/valentina.png",
+                    defaultImg:"/catalogue/vases/valentina/valentina",
                     description:[],
                     sizes:{
                         height:60,
@@ -100,7 +100,7 @@ const vases = {
                 {
                     name:"Дарина",
                     folderName:"darina",
-                    defaultImg:"/catalogue/vases/darina/darina.png",
+                    defaultImg:"/catalogue/vases/darina/darina",
                     description:[],
                     sizes:{
                         height:40,
@@ -122,7 +122,7 @@ const vases = {
                 {
                     name:"Лилия",
                     folderName:"lilia",
-                    defaultImg:"/catalogue/vases/lilia/lilia.png",
+                    defaultImg:"/catalogue/vases/lilia/lilia",
                     description:[],
                     sizes:{
                         height:40,
@@ -145,7 +145,7 @@ const vases = {
                 {
                     name:"Виктория",
                     folderName:"victoria",
-                    defaultImg:"/catalogue/vases/victoria/victoria.png",
+                    defaultImg:"/catalogue/vases/victoria/victoria",
                     description:[],
                     sizes:{
                         height:40,
@@ -167,7 +167,7 @@ const vases = {
                 {
                     name:"Елена",
                     folderName:"elena",
-                    defaultImg:"/catalogue/vases/elena/elena.png",
+                    defaultImg:"/catalogue/vases/elena/elena",
                     description:[],
                     sizes:{
                         height:60,
@@ -189,7 +189,7 @@ const vases = {
                 {
                     name:"Ева",
                     folderName:"eva",
-                    defaultImg:"/catalogue/vases/eva/eva.png",
+                    defaultImg:"/catalogue/vases/eva/eva",
                     description:[],
                     sizes:{
                         height:40,

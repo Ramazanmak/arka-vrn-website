@@ -14,7 +14,7 @@ const antiparkings = {
                 {
                     name:"Антипарковочная полусфера 01",
                     folderName:"hemiellipse",
-                    defaultImg:"/catalogue/antiparkings/hemiellipse/hemiellipse.png",
+                    defaultImg:"/catalogue/antiparkings/hemiellipse/hemiellipse",
                     description:[],
                     sizes:{
                         height:29,
@@ -44,7 +44,7 @@ const antiparkings = {
                 {
                     name:"Антипарковочная полусфера 02",
                     folderName:"hemisphere",
-                    defaultImg:"/catalogue/antiparkings/hemisphere/hemisphere.png",
+                    defaultImg:"/catalogue/antiparkings/hemisphere/hemisphere",
                     description:[],
                     sizes:{
                         height:25,
@@ -75,7 +75,7 @@ const antiparkings = {
                 {
                     name:"Шар антипарковочный",
                     folderName:"sphere",
-                    defaultImg:"/catalogue/antiparkings/sphere/sphere.png",
+                    defaultImg:"/catalogue/antiparkings/sphere/sphere",
                     description:[],
                     sizes:{
                         height:55,
@@ -103,7 +103,7 @@ const antiparkings = {
                 {
                     name:"Антипарковочный столбик Москва",
                     folderName:"moscow",
-                    defaultImg:`/catalogue/antiparkings/moscow/moscow.png`,
+                    defaultImg:`/catalogue/antiparkings/moscow/moscow`,
                     description:[],
                     sizes:{
                         height:60,
@@ -125,7 +125,7 @@ const antiparkings = {
                 {
                     name:"Антипарковочный столбик Стопхам",
                     folderName:"stopham-30",
-                    defaultImg:"/catalogue/antiparkings/stopham-30/stopham-30.png",
+                    defaultImg:"/catalogue/antiparkings/stopham-30/stopham-30-1",
                     description:[],
                     sizes:{
                         height:30,
@@ -151,7 +151,7 @@ const antiparkings = {
                 {
                     name:"Антипарковочный столбик Стопхам",
                     folderName:"stopham-50",
-                    defaultImg:"/catalogue/antiparkings/stopham-50/stopham-50.png",
+                    defaultImg:"/catalogue/antiparkings/stopham-50/stopham-50",
                     description:[],
                     sizes:{
                         height:50,

@@ -49,12 +49,14 @@ function calcMinimalCost(item){
                             v-for="item in subcategory.items"
                             >
                             <div class="subcategory-item__image-wrapper">
-                                <div class="subcategory-item__image-first-layer">
+                                <pirture class="subcategory-item__image-first-layer">
+                                    <source type="image/webp" :srcset="item.defaultImg + '.webp'">
+                                    <source type="image/png" :srcset="item.defaultImg + '.png'">
                                     <img 
-                                        :src="item.defaultImg" 
+                                        :src="item.defaultImg + '.png'"
                                         class="subcategory-item__image"
                                         />
-                                </div>
+                                </pirture>
                             </div>
                             <div class="subcategory-item__body">
                                 
@@ -229,7 +231,6 @@ function calcMinimalCost(item){
 
         .subcategory__list{
             display: flex;
-            background-color: red;
             flex-flow: row wrap;
             justify-content: center;
 
