@@ -24,6 +24,14 @@ function calcMinimalCost(item){
     return itemMinimalCost;
 }
 
+const testWebP = new Image();
+
+testWebP.onload = testWebP.onerror = function() {
+    console.log('Поддержка WebP:', testWebP.width !== 1);
+};
+testWebP.src = 'data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMw' +
+'AgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA';
+
 </script>
 
 <template>
@@ -49,17 +57,15 @@ function calcMinimalCost(item){
                             v-for="item in subcategory.items"
                             >
                             <div class="subcategory-item__image-wrapper">
-                                <pirture class="subcategory-item__image-first-layer">
-                                    <source type="image/webp" :srcset="item.defaultImg + '.webp'">
-                                    <source type="image/png" :srcset="item.defaultImg + '.png'">
+                                <picture class="subcategory-item__image-first-layer">
+                                    <source type="image/webp":srcset="item.defaultImg + '.webp'"/>
                                     <img 
-                                        :src="item.defaultImg + '.png'"
-                                        class="subcategory-item__image"
-                                        />
-                                </pirture>
+                                        :src="item.defaultImg + '.png'" 
+                                        class="subcategory-item__image"/>
+                                </picture>
+                                
                             </div>
                             <div class="subcategory-item__body">
-                                
                                 <p class="subcategory-item__subcategory-name"> {{subcategory.name}}</p>
                                 
                                 <h3 class="subcategory-item-header"> 
@@ -153,11 +159,10 @@ function calcMinimalCost(item){
     }
     
     .subcategory-item__image{
-        display: block;
+        /* display: block;  */
         background-size: cover;
         margin: auto;
         width:100%;
-        transform: scale(1.0);
         padding-bottom:10px;
     }
     

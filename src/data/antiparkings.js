@@ -125,7 +125,7 @@ const antiparkings = {
                 {
                     name:"Антипарковочный столбик Стопхам",
                     folderName:"stopham-30",
-                    defaultImg:"/catalogue/antiparkings/stopham-30/stopham-30-1",
+                    defaultImg:"/catalogue/antiparkings/stopham-30/stopham-30",
                     description:[],
                     sizes:{
                         height:30,
