@@ -24,7 +24,7 @@ function togglePanels(){
 
 <template>
     <ComHeader ref="header"/>
-    <HomeFirstScreen @click="togglePanels" is-main="true"/>
+    <HomeFirstScreen @click="togglePanels" :is-main="true"/>
     <About @click="togglePanels"/>
     <Catalogue  @click="togglePanels"/>
     <Advantages @click="togglePanels"/> 

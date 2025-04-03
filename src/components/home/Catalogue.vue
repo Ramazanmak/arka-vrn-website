@@ -1,5 +1,6 @@
 <script setup>
-import {ref, reactive} from 'vue'
+import {ref} from 'vue'
+import {useRouter, useRoute} from 'vue-router'
 
 const catalogueItems = ref([
     {
@@ -47,6 +48,13 @@ const catalogueItems = ref([
     }
 
 ])
+
+const router = useRouter();
+const route = useRoute()
+
+function goToCategory(category){
+    router.push(`/categories/${category}`)
+}
 </script>
 
 <template>
@@ -54,10 +62,10 @@ const catalogueItems = ref([
         <h2 class="catalogue__header"> Наша продукция </h2>
         
         <div class="catalogue__body">
-            <router-link
+            <a
                 class="catalogue__body-link" 
                 v-for="category in catalogueItems" 
-                :to="'/categories/'+category.routeName"
+                @click.stop="goToCategory(category.routeName)"
                 
             >
                 <picture class="catalogue__image-block">
@@ -69,7 +77,7 @@ const catalogueItems = ref([
                     <img class="catalogue__more-logo" src="/general/catalogue/arrow.png" alt="more">
                     </img>
                 </div>
-            </router-link>
+            </a>
         </div>
     </section>
 </template>

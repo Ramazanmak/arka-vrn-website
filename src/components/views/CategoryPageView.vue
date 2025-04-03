@@ -10,7 +10,6 @@ import {useRoute} from "vue-router";
 
 const route = useRoute();
 const data = catalogueFull.find(el => el.routeName == route.params.categoryName);
-console.log(data)
 
 </script>
 

@@ -4,12 +4,13 @@ const antiparkings = {
     routeName:"antiparking",
     empty:false,
     bgImage:"/general/catalogue/antiparkings.png",
-    description:"Бетонные ограничители служат для обеспечения безопасного движения транспортных средств и перемещения пешеходов. Установка полусфер и столбиков возможна на любой поверхности, будь то газон, тротуарная плитка или асфальт. Мы изготавливаем ограничители как из мытого бетона (бетон с фактурой мраморной или гранитной крошки), так и бетона под покраску.",
+    description:["Бетонные ограничители служат для обеспечения безопасного движения транспортных средств и перемещения пешеходов. Установка полусфер и столбиков возможна на любой поверхности, будь то газон, тротуарная плитка или асфальт. Мы изготавливаем ограничители как из мытого бетона (бетон с фактурой мраморной или гранитной крошки), так и бетона под покраску."],
     subcategories:[
         {
             name:"Антипарковочные полусферы",
             message:"Исполняются в вариантах из мытого и гладкого бетона. Доступна покраска гладкого бетона в любой цвет.",
             caution:"Временно не производим исполнения из мраморной крошки.",
+            cardType:"short",
             items:[
                 {
                     name:"Антипарковочная полусфера 01",
@@ -21,24 +22,26 @@ const antiparkings = {
                         diameter:40,
                         weight:59,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                        "smooth":"Гладкий бетон"
-                    },
-                    colors:{
-                        "grey":"Серый",
-                        "red":"Красный",
-                        "yellow":"Жёлтый"
-                    },
                     cost:{
-                        "granite": 2000,
-                        "marble": 2500,
-                        "smooth-grey":1500,
-                        "smooth-red":1700,
-                        "smooth-yellow":1700
+                        "granite": 2200,
+                        "marble": 2700,
+                        "smooth-grey":1700,
+                        "smooth-red":1900,
+                        "smooth-yellow":1900
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                            "smooth":"Гладкий бетон"
+                        },
+                        colors:{
+                            "grey":"Серый",
+                            "red":"Красный",
+                            "yellow":"Жёлтый"
+                        },
                     }
                 },
                 {
@@ -51,24 +54,26 @@ const antiparkings = {
                         diameter:50,
                         weight:77,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                        "smooth":"Гладкий бетон"
-                    },
-                    colors:{
-                        "grey":"Серый",
-                        "red":"Красный",
-                        "yellow":"Жёлтый"
-                    },
                     cost:{
-                        "granite": 2000,
-                        "marble": 2500,
-                        "smooth-grey":1500,
-                        "smooth-red":1700,
-                        "smooth-yellow":1700
+                        "granite": 2200,
+                        "marble": 2700,
+                        "smooth-grey":1700,
+                        "smooth-red":1900,
+                        "smooth-yellow":1900
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                            "smooth":"Гладкий бетон"
+                        },
+                        colors:{
+                            "grey":"Серый",
+                            "red":"Красный",
+                            "yellow":"Жёлтый"
+                        },
                     }
                 },
                 
@@ -82,15 +87,17 @@ const antiparkings = {
                         diameter:50,
                         weight:178,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 7000,
                         "marble": 8600,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
                     }
                 },
             ],
@@ -99,6 +106,7 @@ const antiparkings = {
             name:"Антипарковочные столбики",
             message:"Исполняются в вариантах из мытого и гладкого бетона. Доступна покраска гладкого бетона в любой цвет.",
             caution:"Временно не производим исполнения из мраморной крошки.",
+            cardType:"short",
             items:[
                 {
                     name:"Антипарковочный столбик Москва",
@@ -111,15 +119,17 @@ const antiparkings = {
                         length:29.5,
                         weight:90,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 5000,
                         "marble": 6500,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
                     }
                 },
                 {
@@ -132,20 +142,23 @@ const antiparkings = {
                         diameter:35,
                         weight:69,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "smooth":"Гладкий бетон"
-                    },
-                    colors:{
-                        "grey":"Серый",
-                        "red":"Красный",
-                        "yellow":"Жёлтый"
-                    },
                     cost:{
                         "smooth-grey":1800,
                         "smooth-red":2000,
                         "smooth-yellow":2000
+                    },
+                    choosable:{     
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "smooth":"Гладкий бетон"
+                        },
+                        colors:{
+                            "grey":"Серый",
+                            "red":"Красный",
+                            "yellow":"Жёлтый"
+                        },
+                        
                     }
                 },
                 {
@@ -158,20 +171,22 @@ const antiparkings = {
                         diameter:35,
                         weight:115,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "smooth":"Гладкий бетон"
-                    },
-                    colors:{
-                        "grey":"Серый",
-                        "red":"Красный",
-                        "yellow":"Жёлтый"
-                    },
                     cost:{
                         "smooth-grey":2800,
                         "smooth-red":3000,
                         "smooth-yellow":3000
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "smooth":"Гладкий бетон"
+                        },
+                        colors:{
+                            "grey":"Серый",
+                            "red":"Красный",
+                            "yellow":"Жёлтый"
+                        },
                     }
                 },
             ]

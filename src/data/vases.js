@@ -4,12 +4,13 @@ const vases = {
     routeName:"vases",
     empty:false,
     bgImage:"/general/catalogue/vases.png",
-    description:"Для обустройства территории возле офиса, улиц и площадей идеально подходят бетонные вазоны. Мы предлагаем долговечные и лаконичные цветочницы, конструкция которых обеспечивает достаточную вентиляцию для почвы: для отвода лишней жидкости на дне предусмотрены дренажные отверстия. Крупные и объемные вазоны могут быть использованы для зонирования территории, ограждения проезда автомобилей, ограничения пешеходной зоны.",
+    description:["Для обустройства территории возле офиса, улиц и площадей идеально подходят бетонные вазоны. Мы предлагаем долговечные и лаконичные цветочницы, конструкция которых обеспечивает достаточную вентиляцию для почвы: для отвода лишней жидкости на дне предусмотрены дренажные отверстия. Крупные и объемные вазоны могут быть использованы для зонирования территории, ограждения проезда автомобилей, ограничения пешеходной зоны."],
     subcategories:[
         {
             name:"Вазоны бетонные",
             message:"Исполняются в вариантах из мытого бетона на гранитной крошке.",
             caution:"Временно не производим исполнения из мраморной крошки.",
+            cardType:"short",
             items:[
                 {
                     name:"Анна",
@@ -21,15 +22,17 @@ const vases = {
                         diameter:58,
                         weight:127,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 8000,
                         "marble": 10300,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
                     }
                 },
                 {
@@ -42,15 +45,17 @@ const vases = {
                         diameter:54,
                         weight:130,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 8000,
                         "marble": 10300,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
                     }
                 },
                 {
@@ -64,15 +69,17 @@ const vases = {
                         lenght:59,
                         weight:123,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 8000,
                         "marble": 10300,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
                     }
                 },
                 {
@@ -86,15 +93,17 @@ const vases = {
                         lenght:45,
                         weight:127,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 8000,
                         "marble": 10300,
+                    },
+                    choosable:{     
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
                     }
                 },
                 {
@@ -108,15 +117,17 @@ const vases = {
                         lenght:100,
                         weight:153,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 8900,
                         "marble": 11200,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
                     }
                 },
                 {
@@ -131,15 +142,18 @@ const vases = {
                         lenght:43.5,
                         weight:164,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 8500,
                         "marble": 10800,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
+                        
                     }
                 },
                 {
@@ -153,15 +167,18 @@ const vases = {
                         lenght:40,
                         weight:195,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 8800,
                         "marble": 11000,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
+                        
                     }
                 },
                 {
@@ -175,15 +192,17 @@ const vases = {
                         lenght:59,
                         weight:171,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "granite":"Гранитная крошка",
-                        "marble":"Мраморная крошка",
-                    },
                     cost:{
                         "granite": 8900,
                         "marble": 11200,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
                     }
                 },
                 {
@@ -197,13 +216,15 @@ const vases = {
                         inDiameter:57,
                         weight:195,
                     },
-                    types:{},
-                    woods:{},
-                    materials:{
-                        "smooth":"Гладкий бетон",
-                    },
                     cost:{
                         "smooth": 7500,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "smooth":"Гладкий бетон",
+                        },
                     }
                 },
             ]
