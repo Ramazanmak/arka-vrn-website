@@ -286,7 +286,7 @@ watchEffect(() => {
         display: flex;
         flex-direction:row;
         justify-content:space-between;
-        align-items: end;
+        align-items: center;
         /* width:60%; */
     }
 
@@ -295,13 +295,13 @@ watchEffect(() => {
         padding-left:20px;
         margin:0;
         font-weight:500;
-        font-size:calc(var(--font-base));
+        font-size:calc(var(--font-base) + 3px);
         color:var(--second-main-color);
         text-align: left;
     }
 
     .item-content__add-button{
-        font-size:calc(var(--font-base));
+        font-size:calc(var(--font-base)+3px);
         padding:0 7px;
         aspect-ratio: 1 / 1;
         height:1.5em;
@@ -355,7 +355,7 @@ watchEffect(() => {
 
     .item-content__setting-text{
         margin:0;
-        font-size:calc(var(--font-base) - 4px);
+        font-size:calc(var(--font-base) - 1px);
     }
 
     .item-content__radio{
