@@ -38,7 +38,7 @@ const benches = {
                             "marble":"Мраморная крошка",
                         },
                         woods:{
-                            "rosewood":"Полисандр",
+                            "rosewood":"Палисандр",
                             "mahogany":"Махагон"
                         },
                     }
@@ -69,7 +69,7 @@ const benches = {
                             "marble":"Мраморная крошка",
                         },
                         woods:{
-                            "rosewood":"Полисандр",
+                            "rosewood":"Палисандр",
                             "mahogany":"Махагон"
                         },
                     }
@@ -100,7 +100,7 @@ const benches = {
                             "marble":"Мраморная крошка",
                         },
                         woods:{
-                            "rosewood":"Полисандр",
+                            "rosewood":"Палисандр",
                             "mahogany":"Махагон"
                         },
                     }
@@ -132,7 +132,7 @@ const benches = {
                             "marble":"Мраморная крошка",
                         },
                         woods:{
-                            "rosewood":"Полисандр",
+                            "rosewood":"Палисандр",
                             "mahogany":"Махагон"
                         },
                     }
@@ -164,7 +164,7 @@ const benches = {
                             "marble":"Мраморная крошка",
                         },
                         woods:{
-                            "rosewood":"Полисандр",
+                            "rosewood":"Палисандр",
                             "mahogany":"Махагон"
                         },
                     }
@@ -196,7 +196,7 @@ const benches = {
                             "marble":"Мраморная крошка",
                         },
                         woods:{
-                            "rosewood":"Полисандр",
+                            "rosewood":"Палисандр",
                             "mahogany":"Махагон"
                         },
                     }
@@ -236,7 +236,7 @@ const benches = {
                             "marble":"Мраморная крошка",
                         },
                         woods:{
-                            "rosewood":"Полисандр",
+                            "rosewood":"Палисандр",
                             "mahogany":"Махагон"
                         },
                     }
@@ -269,7 +269,7 @@ const benches = {
                             "marble":"Мраморная крошка",
                         },
                         woods:{
-                            "rosewood":"Полисандр",
+                            "rosewood":"Палисандр",
                             "mahogany":"Махагон"
                         },
                     }
@@ -301,7 +301,7 @@ const benches = {
                             "marble":"Мраморная крошка",
                         },
                         woods:{
-                            "rosewood":"Полисандр",
+                            "rosewood":"Палисандр",
                             "mahogany":"Махагон"
                         },
                           

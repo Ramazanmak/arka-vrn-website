@@ -297,6 +297,7 @@ watchEffect(() => {
         border-bottom:2px solid var(--second-main-color);
         box-shadow: 0 0 5px -2px var(--contacts-bg-color);      
         box-sizing: border-box;
+        transition:0.4s;
     }
 
     .item-content:hover{
@@ -331,7 +332,7 @@ watchEffect(() => {
         padding-top:20px;
         display:block;
         max-width:100%;
-        max-height:230px;
+        max-height:200px;
     }
 
     .item-content__main-info{
@@ -353,7 +354,7 @@ watchEffect(() => {
     .item-content__header{
         padding:15px 0;
         margin:0;
-        font-size:calc(var(--font-base) + 7px);
+        font-size:calc(var(--font-base) + 3px);
         font-weight:600;
         color:var(--contacts-bg-color) ;
         transition-duration:0.4s;
@@ -368,7 +369,6 @@ watchEffect(() => {
         flex-direction:row;
         justify-content:space-between;
         align-items: center;
-        /* width:60%; */
     }
 
     .item-content__cost{
@@ -457,7 +457,6 @@ watchEffect(() => {
             --font-base:18px
         }
         .item-content{
-            max-width:450px;
             padding:30px;
         }
         .item-content__general-block{
@@ -513,13 +512,13 @@ watchEffect(() => {
 
         .item-content__general-block{
             /* background-color: green; */
-            width:40%;
+            width:45%;
             flex-grow: 0;
             padding:0 30px;
         }
         .item-content__detailed-block{
             /* background-color: red; */
-            width:50%;
+            width:45%;
             flex-grow:1;
             padding:20px 0 20px 50px;
         }
@@ -545,8 +544,6 @@ watchEffect(() => {
         .item-content__general-block{
             /* background-color: green; */
             height:550px;
-            width:40%;
-            flex-grow: 0;
             padding:0 30px;
         }
     }
@@ -568,10 +565,7 @@ watchEffect(() => {
             padding-top: 5px;
         }
         .item-content__general-block{
-            /* background-color: green; */
             height:600px;
-            width:40%;
-            flex-grow: 0;
             padding:0 30px;
         }
     }

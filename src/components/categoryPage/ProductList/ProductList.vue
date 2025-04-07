@@ -33,34 +33,25 @@ function chooseItem(item, subcategoryName){
     chosenItem.value = item;
     chosenSubcategoryName.value = subcategoryName;
     isExtendedCardHidden.value = false;
+    toggleBodyScroll()
 }
 
 function antichoose(){
     chosenItem.value=undefined;
     chosenSubcategoryName.value="";
     isExtendedCardHidden.value = true;
+    toggleBodyScroll()
 }
 
-// На будущее для отмены скролла фона
+function toggleBodyScroll(){
+    const body = document.querySelector('body');
+    if (!isExtendedCardHidden.value){
+        body.style.overflow = 'hidden'
+    } else {
+        body.style.overflow = 'scroll'
+    }
 
-// function handleBodyScroll(event){
-//     console.log(event)
-//     event.preventDefault()
-// }
-
-// function toggleBodyScroll(){
-//     const body = document.querySelector('body');
-//     if (!isExtendedCardHidden.value){
-//         body[0].addEventListener('scroll', (event) => {
-//             event.preventDefault();
-//         })
-//     } else {
-//         body[0].removeEventListener('scroll',(event) => {
-//             event.preventDefault();
-//         });
-//     }
-
-// }
+}
 
 </script>
 
@@ -122,9 +113,9 @@ function antichoose(){
                         'subcategory__extended-card-wrapper',
                         extendedCardWrapperClasses
                         ]"
-                    v-if="chosenSubcategoryName !== ''"
-                    @click="antichoose"
-                    @scroll.stop
+                        v-if="chosenSubcategoryName !== ''"
+                        @click="antichoose"
+                        @scroll.stop
                     >
                     <div class="subcategory__extended-card">
                         <CardExtended
@@ -132,7 +123,18 @@ function antichoose(){
                             :subcategory="chosenSubcategoryName"
                             @click.stop
                         />
+                        <picture 
+                            class="subcategory__extended-card-close"
+                            @click.prevent = "antichoose">
+                            <source type="img/svg" src="/general/close_btn.svg">
+                            <source type="img/png" src="/general/close_btn.png">
+                            <img 
+                                class="subcategory__extended-card-close-image" 
+                                src="/general/close_btn.png" 
+                                alt="Закрыть">
+                        </picture>
                     </div>
+
                 </div>
             </div>
 
@@ -193,6 +195,9 @@ function antichoose(){
     }
 
     .subcategory__extended-card-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         position: fixed;
         left:0;
         top:0;
@@ -217,10 +222,24 @@ function antichoose(){
     .subcategory__extended-card-wrapper_visible{
         visibility: visible;
     }
+    .subcategory__extended-card{
+        position:relative;
+        width:90%;
+        max-width: 450px;
+    }
+    .subcategory__extended-card-close{
+        /* background-color: red; */
+        position:absolute;
+        right:10px;
+        top:10px;
+    }
     
+    .subcategory__extended-card-close-image{
+        width:20px;
+    }
     /* RESPONSIVENESS */
 
-    @media (min-height:800px){
+    @media (min-height:860px){
         .subcategory__extended-card-wrapper{
             display:flex;
             flex-direction: column;
@@ -248,6 +267,13 @@ function antichoose(){
         .subcategory-item{
             height:400px;
         }
+        .subcategory__extended-card-close{
+            right:20px;
+            top:20px;
+        }
+        .subcategory__extended-card-close-image{
+            width:25px;
+        }
     }
 
     @media (min-width:1024px){
@@ -260,6 +286,17 @@ function antichoose(){
             flex-direction: column;
             justify-content: center;
         }
+        .subcategory__extended-card{
+            max-width: none;
+        }
+        .subcategory__extended-card-close{
+            right:15px;
+            top:15px;
+        }
+        
+        .subcategory__extended-card-close-image{
+            width:28px;
+        }
     }
     @media (min-width:1440px){
         
@@ -267,6 +304,15 @@ function antichoose(){
             width:28%;
             max-width: 300px;
             height:450px
+        }
+
+        .subcategory__extended-card-close{
+            right:20px;
+            top:20px;
+        }
+        
+        .subcategory__extended-card-close-image{
+            width:33px;
         }
 
     }
