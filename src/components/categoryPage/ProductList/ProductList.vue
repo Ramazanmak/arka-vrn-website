@@ -202,13 +202,12 @@ onBeforeUnmount(()=>{
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content:center;
         position: fixed;
         left:0;
         top:0;
         z-index:2;
         box-sizing: border-box;
-        padding: 30px 0 30px 0;
+        padding:10vh 0 10vh 0;
         background-color: rgba(0,0,0,0.7);
         width: 100%;
         height:100vh;
@@ -230,7 +229,6 @@ onBeforeUnmount(()=>{
         position:relative;
         width:90%;
         max-width: 450px;
-        margin:40px auto 0;
     }
     .subcategory__extended-card-close{
         /* background-color: red; */
