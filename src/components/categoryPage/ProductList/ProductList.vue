@@ -3,7 +3,7 @@ import CardRegular from './CardRegular.vue';
 import CardExtended from './CardExtended.vue';
 import CategoryDescription from './CategoryDescription.vue';
 
-import {ref, computed} from 'vue'
+import {ref, computed, onBeforeUnmount} from 'vue'
 
 const props = defineProps({
     categoryObject:{
@@ -53,6 +53,10 @@ function toggleBodyScroll(){
 
 }
 
+onBeforeUnmount(()=>{
+    const body = document.querySelector('body');
+    body.style.overflow = 'auto'
+})
 </script>
 
 <template>
@@ -198,13 +202,13 @@ function toggleBodyScroll(){
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content:center;
         position: fixed;
         left:0;
         top:0;
         z-index:2;
-        margin:auto;
         box-sizing: border-box;
-        padding: 20px var(--side-padding);
+        padding: 30px 0 30px 0;
         background-color: rgba(0,0,0,0.7);
         width: 100%;
         height:100vh;
@@ -226,6 +230,7 @@ function toggleBodyScroll(){
         position:relative;
         width:90%;
         max-width: 450px;
+        margin:40px auto 0;
     }
     .subcategory__extended-card-close{
         /* background-color: red; */
