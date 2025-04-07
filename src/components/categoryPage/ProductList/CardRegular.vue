@@ -140,7 +140,8 @@ function calcMinimalCost(item){
         font-size:25px;
         padding:0 7px;
         margin-right:10px;
-        aspect-ratio: 1 / 1;
+        height: 1.3em;
+        width:1.3em;
         background-color: var(--contacts-bg-color);
         border:none;
         border-radius: 10px;

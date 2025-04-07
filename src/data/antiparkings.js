@@ -43,7 +43,7 @@ const antiparkings = {
                     colorable:true,
                     colors:{
                         "hemiellipse-smooth":{
-                            "grey":"Серый",
+                            "grey":"Не окрашеный",
                             "red":"Красный",
                             "yellow":"Жёлтый"
                         }
@@ -80,7 +80,7 @@ const antiparkings = {
                     colorable:true,
                     colors:{
                         "hemisphere-smooth":{
-                            "grey":"Серый",
+                            "grey":"Не окрашеный",
                             "red":"Красный",
                             "yellow":"Жёлтый"
                         }
@@ -176,7 +176,7 @@ const antiparkings = {
                     colorable:true,
                     colors:{
                         "stopham-30-smooth":{
-                            "grey":"Серый",
+                            "grey":"Не окрашенный",
                             "red":"Красный",
                             "yellow":"Жёлтый"
                         }
@@ -210,7 +210,7 @@ const antiparkings = {
                     colorable:true,
                     colors:{
                         "stopham-50-smooth":{
-                            "grey":"Серый",
+                            "grey":"Не окрашеный",
                             "red":"Красный",
                             "yellow":"Жёлтый"
                         }

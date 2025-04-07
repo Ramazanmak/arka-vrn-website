@@ -189,7 +189,7 @@ watchEffect(() => {
 
                         <p class="item-content__setting-text">
                             {{ namesOfProps[sizeName] }}: {{ sizeValue }}
-                             {{ unitsOfProps[sizeName] }};
+                             {{ unitsOfProps[sizeName] }}  &nbsp
                         </p>
                     </li>
                 </ul>
@@ -383,8 +383,8 @@ watchEffect(() => {
 
     .item-content__add-button{
         font-size:calc(var(--font-base) + 3px);
-        aspect-ratio: 1 / 1;
         height:1.3em;
+        width:1.3em;
         background-color: var(--contacts-bg-color);
         border:none;
         border-radius:5px;

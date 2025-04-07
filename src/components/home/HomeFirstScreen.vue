@@ -17,7 +17,7 @@ const firstScreenProps = defineProps({
 
 const backgroundStyle =
     `background:
-        linear-gradient(rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.7)) repeat,
+        linear-gradient(rgba(0, 0, 0, 0.5),  rgba(0, 0, 0, 0.5)) repeat,
         url(${firstScreenProps.bgImage});
      background-size:cover;
      background-repeat:repeat;

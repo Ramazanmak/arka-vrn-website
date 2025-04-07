@@ -227,7 +227,7 @@ onBeforeUnmount(()=>{
     }
     .subcategory__extended-card{
         position:relative;
-        width:90%;
+        width:85%;
         max-width: 450px;
     }
     .subcategory__extended-card-close{
@@ -291,6 +291,7 @@ onBeforeUnmount(()=>{
         }
         .subcategory__extended-card{
             max-width: none;
+            width:85%;
         }
         .subcategory__extended-card-close{
             right:15px;
@@ -308,6 +309,10 @@ onBeforeUnmount(()=>{
             max-width: 300px;
             height:450px
         }
+        
+        .subcategory__extended-card{
+            width:75%;
+        }
 
         .subcategory__extended-card-close{
             right:20px;
@@ -324,14 +329,20 @@ onBeforeUnmount(()=>{
         .subcategory-item{
             width:28%;
             max-width: 400px;
-            height:550px
+            height:550px;
+            margin:20px;
         }
+        
     }
 
     @media (min-width:1920px){
         .subcategory-item{
             height:600px;
             max-width:400px;
+            margin:25px;
+        }
+        .subcategory__extended-card{
+            width:70%;
         }
     }
 
@@ -339,6 +350,9 @@ onBeforeUnmount(()=>{
         .subcategory-item{
             height:600px;
             max-width:450px;
+        }
+        .subcategory__extended-card{
+            width:65%;
         }
     }
 </style>

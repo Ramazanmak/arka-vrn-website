@@ -190,7 +190,7 @@ function goToCategory(category){
         .catalogue__body{
             display:flex;
             flex-flow:row wrap;
-            justify-content: space-around;
+            justify-content: space-between;
         }
         .catalogue__body-link{
             max-width:45%;
