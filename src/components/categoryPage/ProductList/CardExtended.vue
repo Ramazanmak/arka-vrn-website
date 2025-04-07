@@ -1,6 +1,6 @@
 <script setup>
 
-import {ref, computed, watchEffect} from 'vue';
+import {ref, computed, watchEffect, watchSyncEffect} from 'vue';
 
 const props = defineProps({
     itemProps:{
@@ -64,44 +64,87 @@ const allChoosableProps = [
 
 const chosenPropsValues = ref({
     types:"",
-    woods:"",
     materials:"",
-    colors:"",
-    cost:"",
+    woods:"",
 });
+
+const chosenColors = ref("");
+
+
+const isColorsAllowed = computed(() => {
+    const firstCondition = props.itemProps.colorable;
+    const secondCondition = (chosenPropsValues.value["materials"] !== 'granite');
+    const thirdCondition = (chosenPropsValues.value["materials"] !== 'marble');
+    const result = firstCondition && secondCondition && thirdCondition
+    return result
+})
+
+// Установка начальных значений цены и изображения
+const preConfigurationId= ref(props.itemProps.folderName)
+
+const configurationId = computed(()=>{
+    if (chosenColors.value == ""){
+        return preConfigurationId.value
+    }
+    return preConfigurationId.value + '-' + chosenColors.value;
+})
+
+const imgPath = computed(() => {
+    return props.itemProps.folderPath + configurationId.value
+})
 
 // Установка начального значения выбираемых параметров
 
+watchEffect(() =>{
 
-Object.keys(chosenPropsValues.value).forEach((el) =>{
-    const choosable = props.itemProps.choosable;
-    if (Object.keys(choosable).includes(el)){
-        chosenPropsValues.value[el] = Object.keys(choosable[el])[0];
-    }
-})
-
-setTimeout(() =>{
-    console.log(chosenPropsValues.value)
-},0)
-
-
-// Установка начальных значений цены и изображения
-
-const imgPath = ref(props.itemProps.defaultImg);
-const cost = ref(props.itemProps.folderName)
-
-watchEffect(() => {
-    cost.value=props.itemProps.folderName
-    imgPath.value = props.itemProps.defaultImg
-
-    Object.values(chosenPropsValues.value).forEach((value) => {
-        if(value != ""){
-            cost.value = cost.value + '-' + value
-            imgPath.value = imgPath.value +'-'+ value
+    Object.keys(chosenPropsValues.value).forEach((el) =>{
+        const choosable = props.itemProps.choosable;
+        if (Object.keys(choosable).includes(el)){
+            chosenPropsValues.value[el] = Object.keys(choosable[el])[0];
+        } else {
+            chosenPropsValues.value[el] = "";
         }
     })
 })
 
+
+
+
+console.log(preConfigurationId.value)
+
+watchEffect(() => {
+    preConfigurationId.value=props.itemProps.folderName
+
+    Object.values(chosenPropsValues.value).forEach((value) => {
+        if(value != "" && value != undefined){
+            preConfigurationId.value = preConfigurationId.value + '-' + value
+        }
+    })
+})
+
+
+watchEffect(() => {
+    if (isColorsAllowed.value){
+        chosenColors.value = Object.keys(props.itemProps.colors[preConfigurationId.value])[0];
+    }
+})
+
+function makeChoice(optionName,parName){
+    chosenPropsValues.value[parName] = optionName
+    console.log(configurationId.value)
+}
+function makeColorChoice(optionName){
+    chosenColors.value = optionName
+    console.log(configurationId.value)
+}
+
+
+
+watchEffect(() => {
+    if (!isColorsAllowed.value){
+        chosenColors.value = "";
+    }
+})
 
 
 </script>
@@ -110,7 +153,7 @@ watchEffect(() => {
     <div class="item-content">
         <div class="item-content__general-block">
             <picture class="item-content__img-container">
-                <source type="image/webp":srcset="imgPath + '.webp'"/>
+                <!-- <source type="image/webp":srcset="imgPath + '.webp'"/> -->
                 <source type="image/png":srcset="imgPath + '.png'"/>
                 <img 
                     :src="imgPath + '.png'" 
@@ -126,7 +169,7 @@ watchEffect(() => {
                             + 
                         </button>
                         <p class="item-content__cost">
-                            {{ itemProps.cost[cost]}} &#8381
+                            {{ itemProps.cost[configurationId]}} &#8381
                         </p>
                     </div>
                 </div>
@@ -142,7 +185,8 @@ watchEffect(() => {
                 <ul class="item-content__setting">
                     <h4 class="item-content__setting-header"> Размеры </h4>
                     <li class="item-content__setting-option"
-                        v-for="(sizeValue,sizeName) in itemProps.sizes">
+                        v-for="(sizeValue,sizeName) in (itemProps.sizes[configurationId] || itemProps.sizes[`default`])">
+
                         <p class="item-content__setting-text">
                             {{ namesOfProps[sizeName] }}: {{ sizeValue }}
                              {{ unitsOfProps[sizeName] }};
@@ -156,45 +200,80 @@ watchEffect(() => {
                 
 
             <!-- Здесь описание параметров, выбираемых пользователем -->
-            <ul
-                v-for="(parValue,parName) in itemProps.choosable"
-                class="item-content__setting"
-                >
-                <h4 class="item-content__setting-header"> 
-                    {{ namesOfProps[parName] }}
-                </h4>
-
-                <li 
-                    v-for="(optionValue, optionName) in parValue" 
-                    class="item-content__setting-option">
-                    <input  
-                        type="radio" 
-                        :value="optionName"
-                        v-model="chosenPropsValues[parName]"
-                        class="item-content__radio"
-
+            <template v-for="(parValue,parName) in itemProps.choosable">
+                <ul
+                    v-if="Object.keys(parValue).length > 0"
+                    class="item-content__setting"
                     >
-                    <label class="item-content__setting-text"> 
-                        {{ optionValue }}
-                    </label>
-                </li>
+                    <h4 class="item-content__setting-header"> 
+                        {{ namesOfProps[parName] }}
+                    </h4>
+    
+                    <li 
+                        v-for="(optionValue, optionName) in parValue" 
+                        class="item-content__setting-option"
+                        @click="makeChoice(optionName,parName)">
+                        <input  
+                            type="radio" 
+                            :value="optionName"
+                            v-model="chosenPropsValues[parName]"
+                            class="item-content__radio"
+                            @click.stop
+                        >
+                        <label class="item-content__setting-text"> 
+                            {{ optionValue }}
+                        </label>
+                    </li>
+    
+                </ul>
+            </template>
 
-            </ul>
+            <!-- Здесь описание цветов -->
+            <template v-if="isColorsAllowed">
+                <ul
+                    v-if="Object.keys(itemProps['colors']).length > 0"
+                    class="item-content__setting"
+                    >
+
+                    <h4 class="item-content__setting-header"> 
+                        {{ namesOfProps['colors'] }}
+                    </h4>
+                    
+                    <li
+                        v-for="(optionValue, optionName) in itemProps.colors[preConfigurationId]" 
+                        class="item-content__setting-option"
+                        @click="makeColorChoice(optionName)">
+
+                        <input  
+                            type="radio" 
+                            :value="optionName"
+                            v-model="chosenColors"
+                            class="item-content__radio"
+                            @click.stop
+                        >
+                        <label class="item-content__setting-text"> 
+                            {{ optionValue }}
+                        </label>
+                    </li>
+                </ul>
+            </template>
+
+
 
             <!-- Описание словесное -->
-            <h4 class="item-content__setting-header"> Описание</h4>
-            <ul 
-                v-if="itemProps.description.length > 0" 
-                class="item-content__description">
-
-                <li class="item-content__description-point"
-                    v-for="point in itemProps.description">
-                    <p class="item-content__setting-text">
-                        {{ point }}
-                    </p>
-                </li>
-
-            </ul>
+            <template v-if="itemProps.description.length > 0" >
+                <h4 class="item-content__setting-header"> Описание</h4>
+                <ul class="item-content__description">
+    
+                    <li class="item-content__description-point"
+                        v-for="point in itemProps.description">
+                        <p class="item-content__setting-text">
+                            {{ point }}
+                        </p>
+                    </li>
+    
+                </ul>
+            </template>
 
 
             
@@ -210,7 +289,8 @@ watchEffect(() => {
     .item-content{
         border-radius:10px;
         padding:10px;
-        max-width: 300px;
+        max-width: 450px;
+        background-color: var(--main-bg-color);
         transition:0.2s;
         margin:auto;
         border-top:2px solid var(--second-main-color);
@@ -251,12 +331,12 @@ watchEffect(() => {
         padding-top:20px;
         display:block;
         max-width:100%;
-        max-height:225px;
+        max-height:230px;
     }
 
     .item-content__main-info{
         flex-grow:0;
-        padding: 15px 0;
+        padding: 15px 10px;
     }
 
     .item-content__subcategory-name{
@@ -273,10 +353,11 @@ watchEffect(() => {
     .item-content__header{
         padding:15px 0;
         margin:0;
-        font-size:calc(var(--font-base) + 9px);
+        font-size:calc(var(--font-base) + 7px);
         font-weight:600;
         color:var(--contacts-bg-color) ;
         transition-duration:0.4s;
+
     }
 
       /* Настройка подвала карточки */
@@ -301,21 +382,24 @@ watchEffect(() => {
     }
 
     .item-content__add-button{
-        font-size:calc(var(--font-base)+3px);
-        padding:0 7px;
+        font-size:calc(var(--font-base) + 3px);
         aspect-ratio: 1 / 1;
-        height:1.5em;
+        height:1.3em;
         background-color: var(--contacts-bg-color);
         border:none;
-        border-radius: 10px;
+        border-radius:5px;
         color:#fff;
         transition: 0.2s;
         flex-grow: 0;
     }
 
+    .item-content__add-button:hover{
+        background-color: var(--second-main-color);
+    }
+
     /* БЛОК С ПОДРОБНЫМИ НАСТРОЙКАМИ */
     .item-content__detailed-block{
-        padding:20px 0;
+        padding:20px 10px;
         display:flex;
         flex-direction: column;
         justify-content: center;
@@ -397,7 +481,6 @@ watchEffect(() => {
             justify-content: space-between;
             width:100%;
             max-width: none;
-            margin:60px 0 150px 0;
         }
       
         .item-content__general-block{

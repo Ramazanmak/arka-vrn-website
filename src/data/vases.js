@@ -15,17 +15,20 @@ const vases = {
                 {
                     name:"Анна",
                     folderName:"anna",
-                    defaultImg:"/catalogue/vases/anna/anna", 
+                    folderPath:"/catalogue/vases/anna/", 
                     description:[],
                     sizes:{
-                        height:45,
-                        diameter:58,
-                        weight:127,
+                        "default":{
+                            height:45,
+                            diameter:58,
+                            weight:127,
+                        }
                     },
                     cost:{
-                        "granite": 8000,
-                        "marble": 10300,
+                        "anna-granite": 8000,
+                        "anna-marble": 10300,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{},
@@ -38,17 +41,20 @@ const vases = {
                 {
                     name:"София",
                     folderName:"sofia",
-                    defaultImg:"/catalogue/vases/sofia/sofia",
+                    folderPath:"/catalogue/vases/sofia/",
                     description:[],
                     sizes:{
-                        height:56.6,
-                        diameter:54,
-                        weight:130,
+                        "default":{
+                            height:56.6,
+                            diameter:54,
+                            weight:130,
+                        }
                     },
                     cost:{
-                        "granite": 8000,
-                        "marble": 10300,
+                        "sofia-granite": 8000,
+                        "sofia-marble": 10300,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{},
@@ -61,18 +67,21 @@ const vases = {
                 {
                     name:"Мария",
                     folderName:"maria",
-                    defaultImg:"/catalogue/vases/maria/maria",
+                    folderPath:"/catalogue/vases/maria/",
                     description:[],
                     sizes:{
-                        height:40,
-                        width:59,
-                        lenght:59,
-                        weight:123,
+                        "default":{
+                            height:40,
+                            width:59,
+                            length:59,
+                            weight:123,
+                        }
                     },
                     cost:{
-                        "granite": 8000,
-                        "marble": 10300,
+                        "maria-granite": 8000,
+                        "maria-marble": 10300,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{},
@@ -85,18 +94,21 @@ const vases = {
                 {
                     name:"Валентина",
                     folderName:"valentina",
-                    defaultImg:"/catalogue/vases/valentina/valentina",
+                    folderPath:"/catalogue/vases/valentina/",
                     description:[],
                     sizes:{
-                        height:60,
-                        width:45,
-                        lenght:45,
-                        weight:127,
+                        "default":{
+                            height:60,
+                            width:45,
+                            length:45,
+                            weight:127,
+                        }
                     },
                     cost:{
-                        "granite": 8000,
-                        "marble": 10300,
+                        "valentina-granite": 8000,
+                        "valentina-marble": 10300,
                     },
+                    colorable:false,
                     choosable:{     
                         types:{},
                         woods:{},
@@ -109,18 +121,21 @@ const vases = {
                 {
                     name:"Дарина",
                     folderName:"darina",
-                    defaultImg:"/catalogue/vases/darina/darina",
+                    folderPath:"/catalogue/vases/darina/",
                     description:[],
                     sizes:{
-                        height:40,
-                        width:45,
-                        lenght:100,
-                        weight:153,
+                        "default":{
+                            height:40,
+                            width:45,
+                            length:100,
+                            weight:153,
+                        }
                     },
                     cost:{
-                        "granite": 8900,
-                        "marble": 11200,
+                        "darina-granite": 8900,
+                        "darina-marble": 11200,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{},
@@ -133,19 +148,22 @@ const vases = {
                 {
                     name:"Лилия",
                     folderName:"lilia",
-                    defaultImg:"/catalogue/vases/lilia/lilia",
+                    folderPath:"/catalogue/vases/lilia/",
                     description:[],
                     sizes:{
-                        height:40,
-                        exWidth:99,
-                        inWidth:38,
-                        lenght:43.5,
-                        weight:164,
+                        "default":{
+                            height:40,
+                            exWidth:99,
+                            inWidth:38,
+                            length:43.5,
+                            weight:164,
+                        }
                     },
                     cost:{
-                        "granite": 8500,
-                        "marble": 10800,
+                        "lilia-granite": 8500,
+                        "lilia-marble": 10800,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{},
@@ -159,18 +177,21 @@ const vases = {
                 {
                     name:"Виктория",
                     folderName:"victoria",
-                    defaultImg:"/catalogue/vases/victoria/victoria",
+                    folderPath:"/catalogue/vases/victoria/",
                     description:[],
                     sizes:{
-                        height:40,
-                        width:45,
-                        lenght:40,
-                        weight:195,
+                        "default":{
+                            height:40,
+                            width:45,
+                            length:40,
+                            weight:195,
+                        }
                     },
                     cost:{
-                        "granite": 8800,
-                        "marble": 11000,
+                        "victoria-granite": 8800,
+                        "victoria-marble": 11000,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{},
@@ -184,18 +205,21 @@ const vases = {
                 {
                     name:"Елена",
                     folderName:"elena",
-                    defaultImg:"/catalogue/vases/elena/elena",
+                    folderPath:"/catalogue/vases/elena/",
                     description:[],
                     sizes:{
-                        height:60,
-                        width:59,
-                        lenght:59,
-                        weight:171,
+                        "default":{
+                            height:60,
+                            width:59,
+                            length:59,
+                            weight:171,
+                        }
                     },
                     cost:{
-                        "granite": 8900,
-                        "marble": 11200,
+                        "elena-granite": 8900,
+                        "elena-marble": 11200,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{},
@@ -208,17 +232,20 @@ const vases = {
                 {
                     name:"Ева",
                     folderName:"eva",
-                    defaultImg:"/catalogue/vases/eva/eva",
+                    folderPath:"/catalogue/vases/eva/",
                     description:[],
                     sizes:{
-                        height:40,
-                        exDiameter:76,
-                        inDiameter:57,
-                        weight:195,
+                        "default":{
+                            height:40,
+                            exDiameter:76,
+                            inDiameter:57,
+                            weight:195,
+                        }
                     },
                     cost:{
-                        "smooth": 7500,
+                        "eva-smooth": 7500,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{},

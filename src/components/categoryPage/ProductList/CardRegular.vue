@@ -28,7 +28,7 @@ function calcMinimalCost(item){
 
 <div class="subcategory-item__image-wrapper">
     <picture class="subcategory-item__image-first-layer">
-        <source type="image/webp":srcset="itemProps.defaultImg + '.webp'"/>
+        <source type="image/webp":srcset="itemProps.folderPath + itemProps.folderName + '.webp'"/>
         <img 
             :src="itemProps.defaultImg + '.png'" 
             class="subcategory-item__image"/>

@@ -17,21 +17,30 @@ const platfrorms = {
                 {
                     name:'Спасибо за чистоту',
                     folderName:"thank",
-                    defaultImg:"/catalogue/platforms/thank/thank",
+                    folderPath:"/catalogue/platforms/thank/",
                     sizes:{
-                        height:160,
-                        width:260,
-                        length:600,
+                        "thank-opened":{
+                            height:160,
+                            width:260,
+                            length:600,
+                        },
+                        "thank-closed":{
+                            height:160,
+                            width:300,
+                            length:460,
+                        }
                     },
+                
                     description:[
                         "Открытая площадка на три евроконтейнера",
                         "Надпись в теле бетона",
                         "Дополнительные подкатные плиты обеспечивают плавный подход к площадке и удобное выкатывание контейнеров"
                     ],
                     cost:{
-                        "thank-opened":100000,
-                        "thank-closed":100000,
+                        "thank-opened":"от 100000",
+                        "thank-closed":"от 100000",
                     },
+                    colorable:false,
                     choosable:{
                         types:{
                             opened:"Открытого типа",
@@ -42,11 +51,18 @@ const platfrorms = {
                 {
                     name:'Цветок',
                     folderName:"flower",
-                    defaultImg:"/catalogue/platforms/flower/flower",
+                    folderPath:"/catalogue/platforms/flower/",
                     sizes:{
-                        height:175,
-                        width:360,
-                        length:400,
+                        "flower-opened":{
+                            height:175,
+                            width:360,
+                            length:400,
+                        },
+                        "flower-closed":{
+                            height:175,
+                            width:680,
+                            length:780,
+                        }
                     },
                     description:[
                         "Открытая эксклюзивная площадка",
@@ -54,9 +70,10 @@ const platfrorms = {
                         "Конструкция самостоящей панели позволяет собрать площадку любых конфигураций и размеров",
                     ],
                     cost:{
-                        "flower-opened":100000,
-                        "flower-closed":100000,
+                        "flower-opened":"от 100000",
+                        "flower-closed":"от 100000",
                     },
+                    colorable:false,
                     choosable:{
                         types:{
                             opened:"открытого типа",

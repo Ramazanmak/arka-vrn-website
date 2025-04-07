@@ -16,18 +16,21 @@ const bins = {
                 {
                     name:"Римма",
                     folderName:"rimma",
-                    defaultImg:"/catalogue/bins/rimma/rimma",
+                    folderPath:"/catalogue/bins/rimma/",
                     description:[],
                     sizes:{
-                        height:55,
-                        width:47,
-                        lenght:42,
-                        weight:65,
+                        "default":{
+                            height:55,
+                            width:47,
+                            length:42,
+                            weight:65,
+                        }
                     },
                     cost:{
-                        "granite-rousewood": 11000,
-                        "annmarble-rousewood": 13200,
+                        "rimma-granite-rosewood": 11000,
+                        "rimma-marble-rosewood": 13200,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{
@@ -42,18 +45,21 @@ const bins = {
                 {
                     name:"Валентина",
                     folderName:"valentina",
-                    description:"Урна из мытого бетона",
-                    defaultImg:"/catalogue/bins/valentina/valentina",
+                    description:["Урна из мытого бетона"],
+                    folderPath:"/catalogue/bins/valentina/",
                     sizes:{
-                        height:60,
-                        width:45,
-                        lenght:45,
-                        weight:127,
+                        "default":{
+                            height:60,
+                            width:45,
+                            length:45,
+                            weight:127,
+                        }
                     },
                     cost:{
-                        "granite-rousewood": 11000,
-                        "annmarble-rousewood": 13200,
+                        "valentina-granite": 11000,
+                        "valentina-marble": 13200,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{ },
@@ -66,16 +72,19 @@ const bins = {
                 {
                     name:"Металлическая вставка",
                     folderName:"metal",
-                    defaultImg:"/catalogue/bins/metal/metal",
+                    folderPath:"/catalogue/bins/metal/",
                     description:[],
                     sizes:{
-                        height:45,
-                        width:38,
-                        lenght:38,
+                        "default":{
+                            height:45,
+                            width:38,
+                            length:38,
+                        }
                     },
                     cost:{
-                        "metal": 2300,
+                        "metal-metal": 2300,
                     },
+                    colorable:false,
                     choosable:{
                         types:{},
                         woods:{ },
