@@ -309,7 +309,7 @@ onBeforeUnmount(()=>{
             max-width: 300px;
             height:450px
         }
-        
+
         .subcategory__extended-card{
             width:75%;
         }
