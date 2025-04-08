@@ -150,7 +150,6 @@ watchEffect(() => {
 </script>
 
 <template>
-    <div class="item-content">
         <div class="item-content__general-block">
             <picture class="item-content__img-container">
                 <!-- <source type="image/webp":srcset="imgPath + '.webp'"/> -->
@@ -278,7 +277,6 @@ watchEffect(() => {
 
             
         </div>
-    </div>
 </template>
 
 <style scoped>
@@ -286,25 +284,7 @@ watchEffect(() => {
         --font-base:15px;
     }
 
-    .item-content{
-        border-radius:10px;
-        padding:10px;
-        max-width: 450px;
-        background-color: var(--main-bg-color);
-        transition:0.2s;
-        margin:auto;
-        border-top:2px solid var(--second-main-color);
-        border-bottom:2px solid var(--second-main-color);
-        box-shadow: 0 0 5px -2px var(--contacts-bg-color);      
-        box-sizing: border-box;
-        transition:0.4s;
-    }
 
-    .item-content:hover{
-        box-shadow: 0 0 20px 1px var(--contacts-bg-color);
-        border-top:2px solid var(--contacts-bg-color);
-        border-bottom:2px solid var(--contacts-bg-color);
-    }
     /* БЛОК С ОБЩЕЙ ИНФОРМАЦИЕЙ */
 
 
@@ -402,7 +382,7 @@ watchEffect(() => {
         padding:20px 10px;
         display:flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
     }
     .item-content__setting-header{
         margin:0;
@@ -472,7 +452,7 @@ watchEffect(() => {
 
     @media (min-width:1024px){
         *{
-            --font-base:17px
+            --font-base:19px
         }
         .item-content{
             display: flex;
@@ -488,24 +468,23 @@ watchEffect(() => {
             flex-grow: 0;
             padding-right:30px;
             border-bottom:none;
+            border-right:1px solid var(--contacts-bg-color)
         }
         .item-content__detailed-block{
             /* background-color: red; */
+            max-height: 450px   ;
+            overflow: scroll;
+            scrollbar-width: none;
             width:50%;
             flex-grow:1;
             padding-left:30px;
-            border-left:1px solid var(--contacts-bg-color)
         }
     }
 
     @media (min-width:1440px){
         *{
-            --font-base:22px
+            --font-base:23px
         }
-        .item-content__general-block{
-            height:450px;
-        }
-
         .item-content__setting-header{
             padding:25px 0 0 0;
         }
@@ -542,9 +521,12 @@ watchEffect(() => {
             padding:40px 0 0 0;
         }
         .item-content__general-block{
-            /* background-color: green; */
             height:550px;
             padding:0 30px;
+        }
+        
+        .item-content__detailed-block{
+            max-height:550px;
         }
     }
 
@@ -567,6 +549,9 @@ watchEffect(() => {
         .item-content__general-block{
             height:600px;
             padding:0 30px;
+        }
+        .item-content__detailed-block{
+            max-height:600px;
         }
     }
 </style>

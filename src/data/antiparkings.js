@@ -126,7 +126,8 @@ const antiparkings = {
                     name:"Антипарковочный столбик Москва",
                     folderName:"moscow",
                     folderPath:`/catalogue/antiparkings/moscow/`,
-                    description:[],
+                    description:[
+                    ],
                     sizes:{
                         "default":{
                             height:60,
@@ -223,3 +224,42 @@ const antiparkings = {
 
 
 export {antiparkings}
+
+
+
+/*
+    .subcategory-item-extended-wrapper{
+        height:80vh;
+        margin:60px auto;
+        border-radius:10px;
+        padding:30px 10px;
+        max-width: 450px;
+        border-top:2px solid var(--second-main-color);
+        border-bottom:2px solid var(--second-main-color);
+        box-shadow: 0 0 5px -2px var(--contacts-bg-color);      
+        box-sizing: border-box;
+        transition:0.4s;
+    }
+    .subcategory-item-extended{
+        height:100%;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+
+
+    @media (min-width:560px){
+        .item-content{
+            padding:30px;
+        }
+    }
+
+    @media (min-width: 1024px){
+        .item-content{
+            display: flex;
+            flex-direction:row;
+            justify-content: space-between;
+            width:100%;
+            max-width: none;
+        }
+    }
+*/

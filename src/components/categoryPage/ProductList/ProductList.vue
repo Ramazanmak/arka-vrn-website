@@ -122,11 +122,15 @@ onBeforeUnmount(()=>{
                         @scroll.stop
                     >
                     <div class="subcategory__extended-card">
-                        <CardExtended
-                            :itemProps="chosenItem"
-                            :subcategory="chosenSubcategoryName"
-                            @click.stop
-                        />
+                        <div 
+                            class="subcategory__extended-inner-wrapper"
+                            @click.stop>
+                            <CardExtended
+                                :itemProps="chosenItem"
+                                :subcategory="chosenSubcategoryName"
+                                
+                            />
+                        </div>
                         <picture 
                             class="subcategory__extended-card-close"
                             @click.prevent = "antichoose">
@@ -183,7 +187,17 @@ onBeforeUnmount(()=>{
     }
 
     .subcategory-item-extended{
-        margin:60px auto 120px;
+        margin:60px auto;
+        border-radius:10px;
+        padding:10px;
+        max-width: 450px;
+        background-color: var(--main-bg-color);
+        transition:0.2s;
+        border-top:2px solid var(--second-main-color);
+        border-bottom:2px solid var(--second-main-color);
+        box-shadow: 0 0 5px -2px var(--contacts-bg-color);      
+        box-sizing: border-box;
+        transition:0.4s;
     }
     .subcategory-item:hover{
         box-shadow: 0 0 20px 1px var(--contacts-bg-color);
@@ -202,18 +216,18 @@ onBeforeUnmount(()=>{
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         position: fixed;
         left:0;
         top:0;
         z-index:2;
         box-sizing: border-box;
-        padding:10vh 0 10vh 0;
+        padding:0 10px;
         background-color: rgba(0,0,0,0.7);
         width: 100%;
         height:100vh;
         backdrop-filter: blur(5px) brightness(90%);
         transition-duration:0.4s;
-        overflow-y: scroll;
     }
     .subcategory__extended-card-wrapper::-webkit-scrollbar{
         width:0;
@@ -226,17 +240,34 @@ onBeforeUnmount(()=>{
         visibility: visible;
     }
     .subcategory__extended-card{
+        background-color: var(--main-bg-color);
         position:relative;
-        width:85%;
+        max-height:95vh;
+        padding:30px 10px;
+        border-radius:10px;
         max-width: 450px;
-    }
-    .subcategory__extended-card-close{
-        /* background-color: red; */
-        position:absolute;
-        right:10px;
-        top:10px;
+        border-top:2px solid var(--second-main-color);
+        border-bottom:2px solid var(--second-main-color);
+        box-shadow: 0 0 5px -2px var(--contacts-bg-color);      
+        box-sizing: border-box;
+        transition:0.4s;
     }
     
+    .subcategory__extended-inner-wrapper{
+        height:100%;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        background-color: var(--main-bg-color);
+    }
+    
+    .subcategory__extended-card-close{
+        position:absolute;
+        padding:5px;
+        border-radius: 5px;
+        right:10px;
+        top:10px;
+        background-color: var(--main-bg-color);
+    }
     .subcategory__extended-card-close-image{
         width:20px;
     }
@@ -263,13 +294,19 @@ onBeforeUnmount(()=>{
             margin:10px;
             height:360px;
         }
-
+        .subcategory-item-extended{
+            padding:30px;
+        }
+        .subcategory__extended-card{
+            padding:20px 20px;
+        }
     }
 
     @media (min-width:768px){
         .subcategory-item{
             height:400px;
         }
+
         .subcategory__extended-card-close{
             right:20px;
             top:20px;
@@ -284,15 +321,36 @@ onBeforeUnmount(()=>{
             width:25%;
             margin:15px;
         }
+        .subcategory-item-extended{
+            display: flex;
+            flex-direction:row;
+            justify-content: space-between;
+            width:100%;
+            max-width: none;
+            
+        }
         .subcategory__extended-card-wrapper{
             display:flex;
             flex-direction: column;
             justify-content: center;
         }
         .subcategory__extended-card{
-            max-width: none;
             width:85%;
+            max-width: none;
+            max-height: none;
+            height:500px;
         }
+
+        .subcategory__extended-inner-wrapper{
+            display: flex;
+            flex-direction:row;
+            justify-content: space-between;
+            align-items: center;
+            width:100%;
+            max-width: none;
+            overflow-y: hidden;
+        }
+
         .subcategory__extended-card-close{
             right:15px;
             top:15px;
@@ -312,6 +370,7 @@ onBeforeUnmount(()=>{
 
         .subcategory__extended-card{
             width:75%;
+            height:600px;
         }
 
         .subcategory__extended-card-close{
@@ -343,6 +402,7 @@ onBeforeUnmount(()=>{
         }
         .subcategory__extended-card{
             width:70%;
+            height:700px;
         }
     }
 
@@ -353,6 +413,7 @@ onBeforeUnmount(()=>{
         }
         .subcategory__extended-card{
             width:65%;
+            height:800px;
         }
     }
 </style>
