@@ -130,11 +130,9 @@ watchEffect(() => {
 
 function makeChoice(optionName,parName){
     chosenPropsValues.value[parName] = optionName
-    console.log(configurationId.value)
 }
 function makeColorChoice(optionName){
     chosenColors.value = optionName
-    console.log(configurationId.value)
 }
 
 

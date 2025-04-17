@@ -159,7 +159,11 @@ console.log(descriptionObject.routeName);
             width:50%
         }
     }
-
+    @media (min-width:1024px){
+        .description__extra{
+            padding:40px 0;
+        }
+    }
     @media (min-width:1440px){
         .description__text{
             font-size: 22px;
