@@ -4,9 +4,7 @@ const platfrorms = {
     routeName:"platforms",
     empty:false,
     bgImage:"/general/catalogue/platforms.png",
-    description:[
-        "Бетонные мусорные площадки отличаются своей надежностью и долговечностью, а также послужат украшением улицы. Мы предоставляем несколько вариантов мусорных площадок: 'Спасибо за чистоту' и 'Цветок' в двух вариациях (открытого и закрытого типов). Доступна покраска в любые цвета.",
-    ],
+    description:'/catalogue/platforms/platforms-description/platforms.md',
     subcategories:[
         {
             name:"Мусорные площадки",

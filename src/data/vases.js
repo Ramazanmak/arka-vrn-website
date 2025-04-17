@@ -4,7 +4,7 @@ const vases = {
     routeName:"vases",
     empty:false,
     bgImage:"/general/catalogue/vases.png",
-    description:["Для обустройства территории возле офиса, улиц и площадей идеально подходят бетонные вазоны. Мы предлагаем долговечные и лаконичные цветочницы, конструкция которых обеспечивает достаточную вентиляцию для почвы: для отвода лишней жидкости на дне предусмотрены дренажные отверстия. Крупные и объемные вазоны могут быть использованы для зонирования территории, ограждения проезда автомобилей, ограничения пешеходной зоны."],
+    description:'/catalogue/vases/vases-description/vases.md',
     subcategories:[
         {
             name:"Вазоны бетонные",
@@ -53,6 +53,31 @@ const vases = {
                     cost:{
                         "sofia-granite": 8000,
                         "sofia-marble": 10300,
+                    },
+                    colorable:false,
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
+                    }
+                },
+                {
+                    name:"Марта",
+                    folderName:"marta",
+                    folderPath:"/catalogue/vases/marta/",
+                    description:[],
+                    sizes:{
+                        "default":{
+                            height:40,
+                            diameter:59,
+                        }
+                    },
+                    cost:{
+                        "marta-granite": 7500,
+                        "marta-marble": 9800,
                     },
                     colorable:false,
                     choosable:{
@@ -251,6 +276,66 @@ const vases = {
                         woods:{},
                         materials:{
                             "smooth":"Гладкий бетон",
+                        },
+                    }
+                },
+            ]
+        },
+        {
+            name:"Вазоны металлические",
+            message:"Металлические вазоны, обшитые деревом. В комплект вазона входит пластиковое корыто объемом 90л для посадки растений. Дерево обработано тонирующими пропитками с синтетическими смолами и покрыто атмосферостойким лаком в два слоя. Металлический каркас окрашен грунт-эмалью",
+            cardType:"short",
+            items:[
+                {
+                    name:"КрашеМир (прямоугольный)",
+                    folderName:"prettier-square",
+                    folderPath:"/catalogue/vases/prettier-square/",
+                    description:[],
+                    sizes:{
+                        "default":{
+                            height:50,
+                            length:45,
+                            width:40,
+                        }
+                    },
+                    cost:{
+                        "prettier-square-metal-rosewood": 20000,
+                        "prettier-square-metal-mahogany": 20000,
+                    },
+                    colorable:false,
+                    choosable:{
+                        woods:{
+                            "rosewood":"Палисандр",
+                            "mahogany":"Махагон"
+                        },
+                        materials:{
+                            "metal":"Металл",
+                        },
+                    }
+                },
+                {
+                    name:"КрашеМир (круглый)",
+                    folderName:"prettier-round",
+                    folderPath:"/catalogue/vases/prettier-round/",
+                    description:[],
+                    sizes:{
+                        "default":{
+                            height:66.5,
+                            diameter:66
+                        }
+                    },
+                    cost:{
+                        "prettier-round-metal-rosewood": 20000,
+                        "prettier-round-metal-mahogany": 20000,
+                    },
+                    colorable:false,
+                    choosable:{
+                        woods:{
+                            "rosewood":"Палисандр",
+                            "mahogany":"Махагон"
+                        },
+                        materials:{
+                            "metal":"Металл",
                         },
                     }
                 },

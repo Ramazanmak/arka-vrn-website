@@ -50,6 +50,9 @@ const route = useRoute();
                 <h2> Производство МАФ-ов</h2>
                 <a class="catalog-link" alt="К продукции" @click="scrollTo('catalogue')">Продукция</a>
             </template>
+            <template v-else="firstScreenProps.isMain" >
+                <a class="catalog-link" style="margin-top:40px" alt="К продукции" @click="findElement('category')">К товарам</a>
+            </template>
         </section>
     </div>
 

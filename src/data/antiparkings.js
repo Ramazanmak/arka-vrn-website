@@ -4,7 +4,7 @@ const antiparkings = {
     routeName:"antiparking",
     empty:false,
     bgImage:"/general/catalogue/antiparkings.png",
-    description:["Бетонные ограничители служат для обеспечения безопасного движения транспортных средств и перемещения пешеходов. Установка полусфер и столбиков возможна на любой поверхности, будь то газон, тротуарная плитка или асфальт. Мы изготавливаем ограничители как из мытого бетона (бетон с фактурой мраморной или гранитной крошки), так и бетона под покраску."],
+    description:'/catalogue/antiparkings/antiparkings-description/antiparkings.md',
     subcategories:[
         {
             name:"Антипарковочные полусферы",
@@ -24,12 +24,19 @@ const antiparkings = {
                             weight:59,
                         }
                     },
-                    cost:{
+                    _cost: {
                         "hemiellipse-granite": 2200,
                         "hemiellipse-marble": 2700,
-                        "hemiellipse-smooth-grey":1700,
-                        "hemiellipse-smooth-red":1900,
-                        "hemiellipse-smooth-yellow":1900
+                        "hemiellipse-smooth-grey": 1700,
+                        "hemiellipse-smooth-red": 1900,
+                        "hemiellipse-smooth-yellow": 1900,
+                        "hemiellipse-smooth-white":1900
+                    },
+                    get cost() {
+                        return this._cost
+                    },
+                    set cost(value) {
+                        this._cost = value
                     },
                     choosable:{
                         types:{},
@@ -45,7 +52,8 @@ const antiparkings = {
                         "hemiellipse-smooth":{
                             "grey":"Не окрашеный",
                             "red":"Красный",
-                            "yellow":"Жёлтый"
+                            "yellow":"Жёлтый",
+                            "white":"Белый"
                         }
                     },
                 },
@@ -66,7 +74,8 @@ const antiparkings = {
                         "hemisphere-marble": 2700,
                         "hemisphere-smooth-grey":1700,
                         "hemisphere-smooth-red":1900,
-                        "hemisphere-smooth-yellow":1900
+                        "hemisphere-smooth-yellow":1900,
+                        "hemisphere-smooth-white":1900
                     },
                     choosable:{
                         types:{},
@@ -82,7 +91,8 @@ const antiparkings = {
                         "hemisphere-smooth":{
                             "grey":"Не окрашеный",
                             "red":"Красный",
-                            "yellow":"Жёлтый"
+                            "yellow":"Жёлтый",
+                            "white":"Белый",
                         }
 
                     },
@@ -101,8 +111,8 @@ const antiparkings = {
                         }
                     },
                     cost:{
-                        "sphere-granite": 7000,
-                        "sphere-marble": 8600,
+                        "sphere-granite": 7200,
+                        "sphere-marble": 8800,
                     },
                     colorable:false,
                     choosable:{
@@ -137,8 +147,8 @@ const antiparkings = {
                         }
                     },
                     cost:{
-                        "moscow-granite": 5000,
-                        "moscow-marble": 6500,
+                        "moscow-granite": 5500,
+                        "moscow-marble": 7000,
                     },
                     colorable:false,
                     choosable:{
@@ -151,7 +161,7 @@ const antiparkings = {
                     }
                 },
                 {
-                    name:"Антипарковочный столбик Стопхам",
+                    name:"Антипарковочный столбик 'Стопхам' (30см)",
                     folderName:"stopham-30",
                     folderPath:"/catalogue/antiparkings/stopham-30/",
                     description:[],
@@ -165,12 +175,17 @@ const antiparkings = {
                     cost:{
                         "stopham-30-smooth-grey":1800,
                         "stopham-30-smooth-red":2000,
-                        "stopham-30-smooth-yellow":2000
+                        "stopham-30-smooth-yellow":2000,
+                        "stopham-30-smooth-white":2000,
+                        "stopham-30-granite":1800,
+                        "stopham-30-marble":2000,
                     },
                     choosable:{     
                         types:{},
                         woods:{},
                         materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
                             "smooth":"Гладкий бетон"
                         },
                     },
@@ -179,12 +194,13 @@ const antiparkings = {
                         "stopham-30-smooth":{
                             "grey":"Не окрашенный",
                             "red":"Красный",
-                            "yellow":"Жёлтый"
+                            "yellow":"Жёлтый",
+                            "white":"Белый"
                         }
                     },
                 },
                 {
-                    name:"Антипарковочный столбик Стопхам",
+                    name:"Антипарковочный столбик 'Стопхам' (50см)",
                     folderName:"stopham-50",
                     folderPath:"/catalogue/antiparkings/stopham-50/",
                     description:[],
@@ -199,12 +215,17 @@ const antiparkings = {
                     cost:{
                         "stopham-50-smooth-grey":2800,
                         "stopham-50-smooth-red":3000,
-                        "stopham-50-smooth-yellow":3000
+                        "stopham-50-smooth-yellow":3000,
+                        "stopham-50-smooth-white":3000,
+                        "stopham-50-granite":2800,
+                        "stopham-50-marble":3000,
                     },
                     choosable:{
                         types:{},
                         woods:{},
                         materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
                             "smooth":"Гладкий бетон"
                         },
                     },
@@ -213,7 +234,48 @@ const antiparkings = {
                         "stopham-50-smooth":{
                             "grey":"Не окрашеный",
                             "red":"Красный",
-                            "yellow":"Жёлтый"
+                            "yellow":"Жёлтый",
+                            "white":"Белый"
+                        }
+                    },
+                },
+                {
+                    name:"Антипарковочный столбик 'Стопхам' (75см)",
+                    folderName:"stopham-75",
+                    folderPath:"/catalogue/antiparkings/stopham-75/",
+                    description:[],
+                    sizes:{
+                        "default":{
+                            height:75,
+                            diameter:35,
+                            weight:161,
+                        }
+                    },
+
+                    cost:{
+                        "stopham-75-smooth-grey":3800,
+                        "stopham-75-smooth-red":4000,
+                        "stopham-75-smooth-yellow":4000,
+                        "stopham-75-smooth-white":4000,
+                        "stopham-75-granite":3800,
+                        "stopham-75-marble":4000,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                            "smooth":"Гладкий бетон",
+                        },
+                    },
+                    colorable:true,
+                    colors:{
+                        "stopham-75-smooth":{
+                            "grey":"Не окрашеный",
+                            "red":"Красный",
+                            "yellow":"Жёлтый",
+                            "white":"Белый"
                         }
                     },
                 },

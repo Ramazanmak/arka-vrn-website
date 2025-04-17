@@ -5,7 +5,7 @@ const bins = {
     routeName:"bins",
     empty:false,
     bgImage:"/general/catalogue/bins.png",
-    description:["Бетон - это один из самых надежных материалов для изготовления урн. Мы предлагаем лаконичные бетонные урны, а так же урны, где комбинируется дерево и бетон. Наш ассортимент постоянно расширяется, но если вы не нашли нужную урну, то мы возьмем индивидуальный заказ на проектирование."],
+    description:'/catalogue/bins/bins-description/bins.md',
     subcategories:[
         {
             name:"Урны",

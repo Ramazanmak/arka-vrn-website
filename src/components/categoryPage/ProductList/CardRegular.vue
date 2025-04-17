@@ -30,7 +30,7 @@ function calcMinimalCost(item){
     <picture class="subcategory-item__image-first-layer">
         <source type="image/webp":srcset="itemProps.folderPath + itemProps.folderName + '.webp'"/>
         <img 
-            :src="itemProps.defaultImg + '.png'" 
+            :src="itemProps.folderPath + itemProps.folderName + '.png'" 
             class="subcategory-item__image"/>
     </picture>
         
@@ -40,9 +40,9 @@ function calcMinimalCost(item){
             {{subcategory}}
         </p>
         
-        <h3 class="subcategory-item-header"> 
+        <h4 class="subcategory-item-header"> 
             {{ itemProps.name }}
-        </h3>
+        </h4>
 
         <div class="subcategory-item__footer">
             <p class="subcategory-item__cost">
@@ -66,7 +66,7 @@ function calcMinimalCost(item){
         border-top:2px solid var(--contacts-bg-color);
         border-bottom:2px solid var(--contacts-bg-color);
     }
-    .subcategory-item:hover  h3{
+    .subcategory-item:hover  h4{
         color:var(--second-main-color);
 
     }
@@ -92,8 +92,9 @@ function calcMinimalCost(item){
     .subcategory-item__image{
         /* display: block;  */
         margin: auto;
-        width:100%;
         padding-bottom:10px;
+        max-height: 250px;
+        max-width: 100%;
     }
     
     .subcategory-item__subcategory-name{

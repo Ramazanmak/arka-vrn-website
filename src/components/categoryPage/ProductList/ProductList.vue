@@ -48,7 +48,7 @@ function toggleBodyScroll(){
     if (!isExtendedCardHidden.value){
         body.style.overflow = 'hidden'
     } else {
-        body.style.overflow = 'scroll'
+        body.style.overflow = 'auto'
     }
 
 }
@@ -61,21 +61,25 @@ onBeforeUnmount(()=>{
 
 <template>
     <section class="category-wrapper" @keydown.escape="antichoose">
+        <CategoryDescription 
+            :description="props.categoryObject.description"
+            :routeName="categoryObject.routeName"/>
+
         <h2 v-if="props.categoryObject.empty"> 
             {{ props.categoryObject.description }}
         </h2>
     
         <div v-else class="content-wrapper">
-            <div class="category">
+            <div id="category" class="category">
                 <div 
                     v-for="subcategory in subcategories" 
                     class="subcategory"
                 >
-                    <h2  
+                    <h3  
                         class="subcategory-name"
                     >
                      {{ subcategory.name }}
-                    </h2>
+                    </h3>
 
                     <!-- Если требуются короткие карточки -->
                     <div 
@@ -110,6 +114,8 @@ onBeforeUnmount(()=>{
                                 :itemProps="item" 
                                 :subcategory="subcategory.name"/>
                         </article>
+
+                        
                     </div>
                 </div>
 
@@ -146,7 +152,6 @@ onBeforeUnmount(()=>{
                 </div>
             </div>
 
-            <CategoryDescription :description="props.categoryObject.description[0]"/>
         </div>
     </section>
 </template>
@@ -159,12 +164,13 @@ onBeforeUnmount(()=>{
         background-color: var(--main-bg-color);
         width:100%;
         font-family: var(--main-font-family);
-        padding:70px var(--side-padding) 50px;
+        padding:50px var(--side-padding) 100px;
         box-sizing: border-box;
     }
 
     .subcategory-name{
         padding:20px 0;
+        margin:0;
         color:var(--second-main-color);
         font-size:var(--h2-font-size);
         font-weight:var(--h2-font-weight);
@@ -242,7 +248,7 @@ onBeforeUnmount(()=>{
     .subcategory__extended-card{
         background-color: var(--main-bg-color);
         position:relative;
-        max-height:95vh;
+        max-height:85vh;
         padding:30px 10px;
         border-radius:10px;
         max-width: 450px;
@@ -410,6 +416,7 @@ onBeforeUnmount(()=>{
         .subcategory-item{
             height:600px;
             max-width:450px;
+            margin:30px
         }
         .subcategory__extended-card{
             width:65%;

@@ -45,7 +45,12 @@
                 Уже более 25 лет мы занимаемся изготовлением бетонных изделий.Каждая технология отрабатывается многолетним опытом и доводитсядо совершенства. Наша политика - работать на качество изделий. А наша цель - делать улицы нашей Родины красивее и чище.
             </p>
             <div class="achievements__item-photolist">
-                <div role="img" class="achievements__item-photolist-photo" v-for="photo in achievementPhotos" v-key="photo.id" :style="photo.style">
+                <div 
+                    role="img" 
+                    class="achievements__item-photolist-photo" 
+                    v-for="photo in achievementPhotos" 
+                    :key="photo.id" 
+                    :style="photo.style">
                 </div>
             </div>
         </section>

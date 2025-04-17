@@ -23,11 +23,12 @@ const props = defineProps({
 
 const namesOfProps = {
     sizes: 'Размеры',
+    sizeVariants:'Варианты размеров',
     description:'Описание',
     cost:'Цена',
     types:'Типы',
     materials:'Основной материал',
-    woods:'Порода древисины',
+    woods:'Порода древесины',
     colors:'Цвет',
     height:'Высота',
     width:'Ширина',
@@ -66,6 +67,7 @@ const chosenPropsValues = ref({
     types:"",
     materials:"",
     woods:"",
+    sizeVariants:""
 });
 
 const chosenColors = ref("");
@@ -109,9 +111,6 @@ watchEffect(() =>{
 
 
 
-
-console.log(preConfigurationId.value)
-
 watchEffect(() => {
     preConfigurationId.value=props.itemProps.folderName
 
@@ -152,7 +151,7 @@ watchEffect(() => {
 <template>
         <div class="item-content__general-block">
             <picture class="item-content__img-container">
-                <!-- <source type="image/webp":srcset="imgPath + '.webp'"/> -->
+                <source type="image/webp":srcset="imgPath + '.webp'"/>
                 <source type="image/png":srcset="imgPath + '.png'"/>
                 <img 
                     :src="imgPath + '.png'" 
@@ -160,7 +159,7 @@ watchEffect(() => {
             </picture>
             <div class="item-content__main-info">
                 <p class="item-content__subcategory-name"> {{ subcategory }}</p>
-                <h3 class="item-content__header"> {{ itemProps.name }} </h3>
+                <h4 class="item-content__header"> {{ itemProps.name }} </h4>
                 <div class="item-content__cost-block">
                     <div class="item-content__footer">
         
@@ -182,7 +181,7 @@ watchEffect(() => {
 
                 <!-- Описание размеров -->
                 <ul class="item-content__setting">
-                    <h4 class="item-content__setting-header"> Размеры </h4>
+                    <h5 class="item-content__setting-header"> Размеры </h5>
                     <li class="item-content__setting-option"
                         v-for="(sizeValue,sizeName) in (itemProps.sizes[configurationId] || itemProps.sizes[`default`])">
 
@@ -204,9 +203,9 @@ watchEffect(() => {
                     v-if="Object.keys(parValue).length > 0"
                     class="item-content__setting"
                     >
-                    <h4 class="item-content__setting-header"> 
+                    <h5 class="item-content__setting-header"> 
                         {{ namesOfProps[parName] }}
-                    </h4>
+                    </h5>
     
                     <li 
                         v-for="(optionValue, optionName) in parValue" 
@@ -234,9 +233,9 @@ watchEffect(() => {
                     class="item-content__setting"
                     >
 
-                    <h4 class="item-content__setting-header"> 
+                    <h5 class="item-content__setting-header"> 
                         {{ namesOfProps['colors'] }}
-                    </h4>
+                    </h5>
                     
                     <li
                         v-for="(optionValue, optionName) in itemProps.colors[preConfigurationId]" 
@@ -261,7 +260,7 @@ watchEffect(() => {
 
             <!-- Описание словесное -->
             <template v-if="itemProps.description.length > 0" >
-                <h4 class="item-content__setting-header"> Описание</h4>
+                <h5 class="item-content__setting-header"> Описание</h5>
                 <ul class="item-content__description">
     
                     <li class="item-content__description-point"
@@ -312,7 +311,8 @@ watchEffect(() => {
         padding-top:20px;
         display:block;
         max-width:100%;
-        max-height:200px;
+        max-height:220px;
+
     }
 
     .item-content__main-info{

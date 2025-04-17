@@ -4,7 +4,7 @@ const benches = {
     routeName:"benches",
     empty:false,
     bgImage:"/general/catalogue/benches.png",
-    description:["Бетонные диваны и скамейки - одни из самых востребованных малых архитектурных форм. Они практичны и прочны, отличаются антивандальными свойствами. Прекрасным дополнением к скамейкам служат урны или вазоны, которые можно расположить по краям скамейки."],
+    description:'/catalogue/benches/benches-description/benches.md',
     subcategories:[
         {
             name:"Парковые диваны",
@@ -201,6 +201,38 @@ const benches = {
                         },
                     }
                 },
+                {
+                    name:"Павлина (со спинкой)",
+                    folderName:"pavlina-back",
+                    folderPath:"/catalogue/benches/pavlina-back/", 
+                    description:[],
+                    sizes:{
+                        "default":{
+                            height:44,
+                            width:210,
+                            length:44.5,
+                            weight:210,
+                        }
+                    },
+                    cost:{
+                        "pavlina-back-granite-rosewood": 16000,
+                        "pavlina-back-granite-mahogany":16000,
+                        "pavlina-back-marble-rosewood": 18000,
+                        "pavlina-back-marble-mahogany": 18000,
+                    },   
+                    colorable:false,
+                    choosable:{
+                        types:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
+                        woods:{
+                            "rosewood":"Палисандр",
+                            "mahogany":"Махагон"
+                        },
+                    }
+                },
             ]
         },
         {
@@ -305,6 +337,38 @@ const benches = {
                             "mahogany":"Махагон"
                         },
                           
+                    }
+                },
+                {
+                    name:"Павлина",
+                    folderName:"pavlina",
+                    folderPath:"/catalogue/benches/pavlina/", 
+                    description:[],
+                    sizes:{
+                        "default":{
+                            height:44,
+                            width:210,
+                            length:44.5,
+                            weight:210,
+                        }
+                    },
+                    cost:{
+                        "pavlina-granite-rosewood": 15000,
+                        "pavlina-granite-mahogany":15000,
+                        "pavlina-marble-rosewood": 17000,
+                        "pavlina-marble-mahogany": 17000,
+                    },   
+                    colorable:false,
+                    choosable:{
+                        types:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
+                        woods:{
+                            "rosewood":"Палисандр",
+                            "mahogany":"Махагон"
+                        },
                     }
                 },
             ]
