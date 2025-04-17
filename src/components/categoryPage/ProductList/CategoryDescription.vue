@@ -162,7 +162,7 @@ console.log(descriptionObject.routeName);
 
     @media (min-width:1440px){
         .description__text{
-            font-size: 25px;
+            font-size: 22px;
         }
     }
     @media (min-width:1920px){
