@@ -36,7 +36,6 @@ onMounted(() => {
     fetchDescription();
 })
 
-console.log(descriptionObject.routeName);
 
 
 </script>
