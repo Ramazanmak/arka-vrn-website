@@ -6,9 +6,9 @@
     <h2 class="contacts__header">Наши контакты</h2>
 
     <div class="contacts__text">
-        <a class="contacts__way" href="tel:+79222475444"> +7-903-651-46-78</a>
+        <a class="contacts__way" href="tel:+79036514678"> +7-903-651-46-78</a>
         <br>
-        <a class="contacts__way" href="mailto:ramazan_M_I@mail.ru"> arka.zabor@yandex.ru</a>
+        <a class="contacts__way" href="mailto:arka.zabor@yandex.ru"> arka.zabor@yandex.ru</a>
         <br>
         <br>
         <span class="contacts__adress"> Воронежская обл., Новая Усмань, ул. Дорожная, 1-А/1</span>
