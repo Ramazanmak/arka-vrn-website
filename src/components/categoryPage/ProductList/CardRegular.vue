@@ -1,4 +1,6 @@
 <script setup>
+import {onMounted} from 'vue'
+import tippy from 'tippy.js'
 
 const props = defineProps({
     itemProps:{
@@ -21,6 +23,8 @@ function calcMinimalCost(item){
     const itemMinimalCost = allItemCosts.sort((a,b) => a-b)[0];
     return itemMinimalCost;
 }
+
+
 
 </script>
 
@@ -49,7 +53,10 @@ function calcMinimalCost(item){
                 от {{ calcMinimalCost(itemProps) }} &#8381
             </p>
 
-            <button class="subcategory-item__add-button">
+            <button
+                id="extended-card-basket-btn" 
+                class="subcategory-item__add-button"
+                @click.stop>
                 + 
             </button>
         </div>

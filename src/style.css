@@ -10,10 +10,19 @@ body{
     --side-padding:7%;
     --h2-font-size:28px;  
     --h2-font-weight:500;
+    --font-base:15px;
 }
 .highlighted{
     color:var(--second-main-color);
     font-weight:800;
+}
+
+.tippy-box[data-theme~='arka']{
+    background-color: var(--contacts-bg-color);
+    font-family:var(--main-font-family);
+    font-size:calc(var(--font-base) - 5px);
+    padding:5px;
+    width:50vw
 }
 
 @media (min-width:450px){
@@ -26,6 +35,7 @@ body{
     body{
       --side-padding:10%;
       --h2-font-size:32px;
+      --font-base:18px
     }
 }
 
@@ -46,19 +56,22 @@ body{
     body{
       --side-padding:11%;
       --h2-font-size:36px;  
+      --font-base:19px
     }
 }
 
 @media (min-width:1440px){
     body{
       --h2-font-size:40px;  
+      --font-base:23px
     }
 }
 
 @media (min-width:1600px){
     body{
         --side-padding:13%;
-        --h2-font-size:50px;  
+        --h2-font-size:50px;
+        --font-base:24px  
     }
 }
 
@@ -66,5 +79,6 @@ body{
     body{
         --side-padding:15%;
         --h2-font-size:60px;  
+        --font-base:29px
     }
 }

@@ -2,8 +2,10 @@
 import CardRegular from './CardRegular.vue';
 import CardExtended from './CardExtended.vue';
 import CategoryDescription from './CategoryDescription.vue';
+import tippy from 'tippy.js'
+import 'tippy.js/dist/tippy.css';
 
-import {ref, computed, onBeforeUnmount} from 'vue'
+import {ref, computed, onBeforeUnmount, onMounted} from 'vue'
 
 const props = defineProps({
     categoryObject:{
@@ -57,6 +59,17 @@ onBeforeUnmount(()=>{
     const body = document.querySelector('body');
     body.style.overflow = 'auto'
 })
+
+onMounted(()=>{
+    tippy('#extended-card-basket-btn',{
+        theme:'arka',
+        content:"Корзина пока не работает, но скоро будет!",
+        placement:'bottom-end',
+        zIndex:1,
+        maxWidth:'200px',
+    })
+})
+
 </script>
 
 <template>

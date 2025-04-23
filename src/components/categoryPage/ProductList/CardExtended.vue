@@ -1,6 +1,7 @@
 <script setup>
 
-import {ref, computed, watchEffect, watchSyncEffect} from 'vue';
+import {ref, computed, watchEffect, onMounted} from 'vue';
+import tippy from 'tippy.js';
 
 const props = defineProps({
     itemProps:{
@@ -144,6 +145,13 @@ watchEffect(() => {
 })
 
 
+onMounted(()=>{
+    tippy('[data-tippy-content]',{
+        theme:'arka',
+        placement:'bottom-start'
+    })
+})
+
 </script>
 
 <template>
@@ -161,7 +169,9 @@ watchEffect(() => {
                 <div class="item-content__cost-block">
                     <div class="item-content__footer">
         
-                        <button class="item-content__add-button">
+                        <button 
+                            class="item-content__add-button" 
+                            data-tippy-content="Корзина пока не работает, но скоро будет!">
                             + 
                         </button>
                         <p class="item-content__cost">
@@ -276,10 +286,10 @@ watchEffect(() => {
         </div>
 </template>
 
+
+
+
 <style scoped>
-    *{
-        --font-base:15px;
-    }
 
 
     /* БЛОК С ОБЩЕЙ ИНФОРМАЦИЕЙ */
@@ -431,9 +441,6 @@ watchEffect(() => {
   
 
     @media (min-width:560px){
-        *{
-            --font-base:18px
-        }
         .item-content{
             padding:30px;
         }
@@ -449,9 +456,7 @@ watchEffect(() => {
     }
 
     @media (min-width:1024px){
-        *{
-            --font-base:19px
-        }
+        
         .item-content{
             display: flex;
             flex-direction:row;
@@ -480,9 +485,7 @@ watchEffect(() => {
     }
 
     @media (min-width:1440px){
-        *{
-            --font-base:23px
-        }
+        
         .item-content__setting-header{
             padding:25px 0 0 0;
         }
@@ -502,9 +505,7 @@ watchEffect(() => {
     }
 
     @media (min-width:1600px){
-        *{
-            --font-base:24px
-        }
+    
         .item-content__header{
             padding:15px 0; 
         }
@@ -529,9 +530,7 @@ watchEffect(() => {
     }
 
     @media (min-width:1920px){
-        *{
-            --font-base:29px
-        }
+        
         .item-content__header{
             padding:15px 0;
         }
