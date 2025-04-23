@@ -10,7 +10,7 @@ body{
     --side-padding:7%;
     --h2-font-size:28px;  
     --h2-font-weight:500;
-    --font-base:15px;
+    --font-base:16px;
 }
 .highlighted{
     color:var(--second-main-color);
@@ -20,7 +20,7 @@ body{
 .tippy-box[data-theme~='arka']{
     background-color: var(--contacts-bg-color);
     font-family:var(--main-font-family);
-    font-size:calc(var(--font-base) - 5px);
+    font-size:calc(var(--font-base) - 2px);
     padding:5px;
     width:50vw
 }
@@ -57,6 +57,13 @@ body{
       --side-padding:11%;
       --h2-font-size:36px;  
       --font-base:19px
+    }
+    .tippy-box[data-theme~='arka']{
+        background-color: var(--contacts-bg-color);
+        font-family:var(--main-font-family);
+        font-size:calc(var(--font-base) - 5px);
+        padding:5px;
+        width:50vw
     }
 }
 

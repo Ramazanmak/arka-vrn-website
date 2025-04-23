@@ -148,7 +148,9 @@ watchEffect(() => {
 onMounted(()=>{
     tippy('[data-tippy-content]',{
         theme:'arka',
-        placement:'bottom-start'
+        placement:'top-start',
+        zIndex:3,
+        maxWidth:'200px',
     })
 })
 

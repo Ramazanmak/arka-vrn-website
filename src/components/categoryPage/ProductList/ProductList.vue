@@ -61,12 +61,15 @@ onBeforeUnmount(()=>{
 })
 
 onMounted(()=>{
-    tippy('#extended-card-basket-btn',{
-        theme:'arka',
-        content:"Корзина пока не работает, но скоро будет!",
-        placement:'bottom-end',
-        zIndex:1,
-        maxWidth:'200px',
+    const buttons = Array.from(document.getElementsByClassName('subcategory-item__add-button'))
+    buttons.forEach((el) => {
+        tippy(`#${el.id}`,{
+            theme:'arka',
+            content:"Корзина пока не работает, но скоро будет!",
+            placement:'top-end',
+            zIndex:1,
+            maxWidth:'150px',
+        })
     })
 })
 

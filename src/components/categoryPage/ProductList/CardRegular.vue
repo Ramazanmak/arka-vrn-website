@@ -54,7 +54,7 @@ function calcMinimalCost(item){
             </p>
 
             <button
-                id="extended-card-basket-btn" 
+                :id="itemProps.folderName" 
                 class="subcategory-item__add-button"
                 @click.stop>
                 + 
