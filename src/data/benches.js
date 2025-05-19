@@ -13,7 +13,7 @@ const benches = {
             cardType:"short",
             items:[
                 {
-                    name:"Пелагея (длина 224 см)",
+                    name:"Пелагея (ширина 224 см)",
                     folderName:"pelageya-224",
                     folderPath:"/catalogue/benches/pelageya-224/",
                     description:[],
@@ -44,7 +44,7 @@ const benches = {
                     }
                 },
                 {
-                    name:"Пелагея (длина 174 см)",
+                    name:"Пелагея (ширина 174 см)",
                     folderName:"pelageya-174",
                     folderPath:"/catalogue/benches/pelageya-174/",                    
                     description:[],
@@ -74,37 +74,7 @@ const benches = {
                         },
                     }
                 },
-                {
-                    name:"Пелагея (длина 118 см)",
-                    folderName:"pelageya-118",
-                    folderPath:"/catalogue/benches/pelageya-118/",                    
-                    description:[],
-                    sizes:{
-                        "default":{
-                            height:90,
-                            width:118,
-                            length:45,
-                        }
-                    },
-                    cost:{
-                        "pelageya-118-granite-rosewood": 15500,
-                        "pelageya-118-granite-mahogany":15500,
-                        "pelageya-118-marble-rosewood": 17300,
-                        "pelageya-118-marble-mahogany": 17300,
-                    },   
-                    colorable:false,
-                    choosable:{
-                        types:{},
-                        materials:{
-                            "granite":"Гранитная крошка",
-                            "marble":"Мраморная крошка",
-                        },
-                        woods:{
-                            "rosewood":"Палисандр",
-                            "mahogany":"Махагон"
-                        },
-                    }
-                },
+                
                 {
                     name:"Валерия",
                     folderName:"valeria",
@@ -138,23 +108,54 @@ const benches = {
                     }
                 },
                 {
-                    name:"Агата",
-                    folderName:"agata",
-                    folderPath:"/catalogue/benches/agata/", 
+                    name:"Агата (ширина 174 см)",
+                    folderName:"agata-174",
+                    folderPath:"/catalogue/benches/agata-174/", 
                     description:[],
                     sizes:{
                         "default":{
                             height:90,
-                            width:172,
+                            width:174,
                             length:72,
                             weight:190,
                         }
                     },
                     cost:{
-                        "agata-granite-rosewood": 16900,
-                        "agata-granite-mahogany":16900,
-                        "agata-marble-rosewood": 19200,
-                        "agata-marble-mahogany": 19200,
+                        "agata-174-granite-rosewood": 17400,
+                        "agata-174-granite-mahogany":17400,
+                        "agata-174-marble-rosewood": 19700,
+                        "agata-174-marble-mahogany": 19700,
+                    },   
+                    colorable:false,
+                    choosable:{
+                        types:{},
+                        materials:{
+                            "granite":"Гранитная крошка",
+                            "marble":"Мраморная крошка",
+                        },
+                        woods:{
+                            "rosewood":"Палисандр",
+                            "mahogany":"Махагон"
+                        },
+                    }
+                },
+                {
+                    name:"Агата (ширина 224 см)",
+                    folderName:"agata-224",
+                    folderPath:"/catalogue/benches/agata-224/", 
+                    description:[],
+                    sizes:{
+                        "default":{
+                            height:90,
+                            width:224,
+                            length:72,
+                        }
+                    },
+                    cost:{
+                        "agata-224-granite-rosewood": 21900,
+                        "agata-224-granite-mahogany":21900,
+                        "agata-224-marble-rosewood": 24200,
+                        "agata-224-marble-mahogany": 24200,
                     },   
                     colorable:false,
                     choosable:{

@@ -78,9 +78,11 @@ onMounted(()=>{
 <template>
     <section class="category-wrapper" @keydown.escape="antichoose">
         <CategoryDescription 
-            :description="props.categoryObject.description"
-            :routeName="categoryObject.routeName"/>
+            :description="props.categoryObject.description" 
+            :routeName="categoryObject.routeName"
+        />
 
+        
         <h2 v-if="props.categoryObject.empty"> 
             {{ props.categoryObject.description }}
         </h2>

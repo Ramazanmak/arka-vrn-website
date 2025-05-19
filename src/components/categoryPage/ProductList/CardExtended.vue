@@ -172,6 +172,7 @@ onMounted(()=>{
                     <div class="item-content__footer">
         
                         <button 
+                            :item="itemProps.folderName"
                             class="item-content__add-button" 
                             data-tippy-content="Корзина пока не работает, но скоро будет!">
                             + 

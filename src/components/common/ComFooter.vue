@@ -32,16 +32,16 @@
     }
     .footer__header{
         color:#525252;
-        font-size:var(--h2-font-size);
+        /* font-size:var(--h2-font-size); */
         font-weight:var(--h2-font-weight);
         margin:0;
         padding-bottom:20px;
     }
     .copyright-wrapper{
         padding-top:20px;
-        color:white;
+        color:#818181;
         font-weight:200;
-        font-size:12px
+        font-size:10px
     }
 
     .privacy{

@@ -18,7 +18,17 @@ const converter = new showdown.Converter();
 
 function fillWithHtml(htmlText){
     const descriptionTextBlock = document.querySelector('.description__text');
-    descriptionTextBlock.innerHTML = htmlText + descriptionTextBlock.innerHTML;
+    if (descriptionObject.routeName != 'platforms'){
+        descriptionTextBlock.innerHTML = htmlText + descriptionTextBlock.innerHTML;
+    } else {
+        descriptionTextBlock.innerHTML = `
+    
+        <div style="height:10vh; text-align: center; margin-top:5vh">
+            Данный раздел пока находится в разработке :)    
+        </div>
+        
+        `
+    }
 }
 
 async function fetchDescription(){
@@ -42,6 +52,8 @@ onMounted(() => {
 
 
 <template>
+
+    
     <div class="description">
         <h2 class="description__header">
             Описание
