@@ -25,8 +25,8 @@ const antiparkings = {
                         }
                     },
                     _cost: {
-                        "hemiellipse-granite": 2200,
-                        "hemiellipse-marble": 2700,
+                        "hemiellipse-granite": 2100,
+                        "hemiellipse-marble": 2500,
                         "hemiellipse-smooth-grey": 1500,
                         "hemiellipse-smooth-red": 1700,
                         "hemiellipse-smooth-yellow": 1700,
@@ -70,8 +70,8 @@ const antiparkings = {
                         }
                     },
                     cost:{
-                        "hemisphere-granite": 2200,
-                        "hemisphere-marble": 2700,
+                        "hemisphere-granite": 2100,
+                        "hemisphere-marble": 2500,
                         "hemisphere-smooth-grey":1500,
                         "hemisphere-smooth-red":1700,
                         "hemisphere-smooth-yellow":1700,

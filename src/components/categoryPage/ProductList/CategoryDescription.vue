@@ -14,6 +14,7 @@ const descriptionObject = defineProps({
     }
 })
 
+
 const converter = new showdown.Converter();
 
 function fillWithHtml(htmlText){
@@ -22,11 +23,9 @@ function fillWithHtml(htmlText){
         descriptionTextBlock.innerHTML = htmlText + descriptionTextBlock.innerHTML;
     } else {
         descriptionTextBlock.innerHTML = `
-    
         <div style="height:10vh; text-align: center; margin-top:5vh">
             Данный раздел пока находится в разработке :)    
         </div>
-        
         `
     }
 }
