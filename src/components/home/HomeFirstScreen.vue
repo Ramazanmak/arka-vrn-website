@@ -202,7 +202,7 @@ const route = useRoute();
             height:90vh;
         }
         .main-header{
-            font-size:29px;
+            font-size:28px;
         }
         .about-list{
             font-size: 15px;
@@ -225,10 +225,10 @@ const route = useRoute();
             height:100vh;
         }
         .main-header{
-            font-size:38px;
+            font-size:36px;
         }
         .about-list{
-            font-size: 18px;
+            font-size: 17px;
         }
         .invitation-to-quiz{
             font-size: 16px;
