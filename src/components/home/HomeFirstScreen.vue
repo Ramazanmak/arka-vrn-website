@@ -79,7 +79,6 @@ const route = useRoute();
             url('/general/first-screen-background.png');
         background-size:cover;
         background-repeat:repeat;
-        background-attachment:fixed;
         background-position:center;
         height:100vh;
         display:flex;
@@ -87,7 +86,7 @@ const route = useRoute();
         justify-content:flex-end;
         font-family:var(--main-font-family);
         --bullet-size:10px;
-        --padding-bottom:4vh;
+        --padding-bottom:2vh;
     }
     .home-first-screen-body{
         height:calc(100% - 45px);
@@ -101,7 +100,7 @@ const route = useRoute();
     }
         
     .main-header {
-        font-size:17px;
+        font-size:19px;
         color:white;
         text-align:left;
         margin:0 auto;
@@ -169,7 +168,7 @@ const route = useRoute();
 
     @media (min-width: 560px){
         .main-header{
-            font-size:21px;
+            font-size:23px;
         }
         .about-list{
             font-size: 12px;
@@ -182,8 +181,11 @@ const route = useRoute();
         }
     }
     @media (min-width:768px){
+        .home-first-screen-body{
+            --padding-bottom:4vh;
+        }
         .main-header{
-            font-size:25px;
+            font-size:27px;
         }
         .about-list{
             font-size: 15px;
@@ -200,9 +202,10 @@ const route = useRoute();
 
         .home-first-screen-body{
             height:90vh;
+            --padding-bottom:4vh;
         }
         .main-header{
-            font-size:28px;
+            font-size:30px;
         }
         .about-list{
             font-size: 15px;
@@ -222,10 +225,11 @@ const route = useRoute();
 
     @media (min-width:1440px){
         .home-first-screen-body{
-            height:80vh;
+            height:100vh;
+            width:80%;
         }
         .main-header{
-            font-size:36px;
+            font-size:38px;
         }
         .about-list{
             font-size: 17px;
@@ -239,8 +243,12 @@ const route = useRoute();
     }
 
     @media (min-width:1920px){
+        .home-first-screen-body{
+            height:100vh;
+            width:70%;
+        }
         .main-header{
-            font-size:43px;
+            font-size:45px;
         }
         .about-list{
             font-size: 18px;
@@ -256,9 +264,12 @@ const route = useRoute();
     /* Под разную высоту мобилок */
 
     @media (min-width:360px) and (max-width:450px) and (min-height:750px) {
-
+        .home-first-screen-body{
+            height:100vh;
+            width:70%;
+        }
         .main-header{
-            font-size:21px;
+            font-size:23px;
         }
         .about-list{
             font-size: 12px;
@@ -270,11 +281,11 @@ const route = useRoute();
             font-size:14px;
         }
     }
-
+    
     @media (min-width:360px) and (min-height:1010px) {
-
+        
         .main-header{
-            font-size:37px;
+            font-size:39px;
         }
         .about-list{
             font-size: 18px;
