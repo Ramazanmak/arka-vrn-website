@@ -202,7 +202,7 @@ const route = useRoute();
             height:90vh;
         }
         .main-header{
-            font-size:28px;
+            font-size:29px;
         }
         .about-list{
             font-size: 15px;
