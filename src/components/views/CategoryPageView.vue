@@ -4,7 +4,7 @@ import {useRoute} from "vue-router";
 import { useTemplateRef } from 'vue';
 
 import ComHeader from '../common/ComHeader/ComHeader.vue';
-import HomeFirstScreen from '../home/HomeFirstScreen.vue';
+import CategoryFirstScreen from '../categoryPage/CategoryFirstScreen.vue';
 import ComFooter from '../common/ComFooter.vue';
 import CatPageTouchUs from '../categoryPage/CatPageTouchUs.vue';
 import ProductList from '../categoryPage/ProductList/ProductList.vue';
@@ -27,7 +27,7 @@ const data = catalogueFull.find(el => el.routeName == route.params.categoryName)
 
 <template>
     <ComHeader ref="header"></ComHeader>
-    <HomeFirstScreen @click="togglePanels" :pageName="data.name" :bgImage="data.bgImage"/>
+    <CategoryFirstScreen @click="togglePanels" :pageName="data.name" :bgImage="data.bgImage"/>
     <ProductList @click="togglePanels" :category-object="data"/>
     <CatPageTouchUs @click="togglePanels" /> 
     <ComFooter @click="togglePanels" />

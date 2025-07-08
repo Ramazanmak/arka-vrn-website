@@ -160,7 +160,7 @@ nav{
 /* Logo-block */
 
 .logo{
-    width:calc(100%/3);;
+    width:calc(100%/3);
 }
 .logo__img{
     display:block;
