@@ -266,7 +266,7 @@ const route = useRoute();
     @media (min-width:360px) and (max-width:450px) and (min-height:750px) {
         .home-first-screen-body{
             height:100vh;
-            width:70%;
+            width:80%;
         }
         .main-header{
             font-size:23px;
