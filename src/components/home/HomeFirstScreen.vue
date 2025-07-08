@@ -222,7 +222,7 @@ const route = useRoute();
 
     @media (min-width:1440px){
         .home-first-screen-body{
-            height:100vh;
+            height:80vh;
         }
         .main-header{
             font-size:36px;
