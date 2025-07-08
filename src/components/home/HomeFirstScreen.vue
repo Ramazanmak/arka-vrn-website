@@ -152,6 +152,7 @@ const route = useRoute();
         color:white;
         transition:0.4s;
         cursor:pointer;
+        margin-left: auto;
     }
 
     .catalog-link:hover{
@@ -218,7 +219,7 @@ const route = useRoute();
         .check-list-link{
             font-size:15px;
             max-width:300px;
-            margin-left:40px
+            margin-left:40px      
         }
     }
  
