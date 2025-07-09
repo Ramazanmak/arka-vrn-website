@@ -61,7 +61,7 @@ const route = useRoute();
                 </li>
             </ul>
             <p class="invitation-to-quiz">
-                Пройдите опрос за 60 секунд и получите чек-лист «7 скрытых рисков при закупке МАФ: как сэкономить до 1 млн ₽ и избежать срыва сроков»
+                Пройдите опрос за 60 секунд и получите чек-лист «7 скрытых рисков при закупке МАФ: как сэкономить до 1 млн ₽ на штрафах и переделках»
             </p>
 
             <a class="check-list-link">
@@ -119,7 +119,8 @@ const route = useRoute();
 
     .about-list__item{
         padding:5px 20px;
-        position: relative;
+        position:relative;
+        max-width: 480px
         /* background-color: red; */
     }
     .about-list__item::before{
@@ -137,6 +138,7 @@ const route = useRoute();
     .invitation-to-quiz{
         font-size:10px;
         text-align: left;
+        max-width:720px;
         padding:0 0 var(--padding-bottom);
         margin:0;
     }
@@ -155,7 +157,7 @@ const route = useRoute();
         margin-left: auto;
     }
 
-    .catalog-link:hover{
+    .check-list-link:hover{
         box-shadow:#fff  0 0 10px;
     }
 
@@ -209,7 +211,7 @@ const route = useRoute();
             font-size:30px;
         }
         .about-list{
-            font-size: 15px;
+            font-size: 14px;
             padding-left:40px
         }
         .invitation-to-quiz{
@@ -230,11 +232,12 @@ const route = useRoute();
             width:80%;
         }
         .main-header{
-            font-size:38px;
+            font-size:36px;
         }
         .about-list{
-            font-size: 17px;
+            font-size: 15px;
         }
+        
         .invitation-to-quiz{
             font-size: 16px;
         }
