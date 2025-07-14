@@ -15,6 +15,7 @@ dist-ssr
 ./site_plan.xmind
 task.md
 ./src/components/Home/
+./dist/general/Checklist_MAF_hidden_risks.pdf
 
 
 # Editor directories and files

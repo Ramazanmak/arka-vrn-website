@@ -9,7 +9,7 @@
       <section class="anchor-wrapper">
         <p class="message"> Спасибо за прохождение квиза!</p>
         <a class="download-anchor" 
-          href="../../../dist/general/Checklist_MAF_hidden_risks.pdf"
+          href="https://arka-vrn.ru/Checklist_MAF_hidden_risks.pdf"
           download="Checklist_MAF_hidden_risks.pdf">
           Скачать чек лист
         </a>
