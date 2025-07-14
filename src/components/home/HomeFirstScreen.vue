@@ -37,6 +37,10 @@ const route = useRoute();
         }
         setTimeout(findElement,0,id);
     }
+
+    function goToThankYou(){
+        router.push(`/thankyou`)
+    }
 </script>
 
 <template>
@@ -64,9 +68,12 @@ const route = useRoute();
                 Пройдите опрос за 60 секунд и получите чек-лист «7 скрытых рисков при закупке МАФ: как сэкономить до 1 млн ₽ на штрафах и переделках»
             </p>
 
-            <a class="check-list-link">
+            <a class="check-list-link" 
+                onclick="Marquiz.showModal('686faa599147f80019d0e986')">
                 Пройти опрос и получить чек лист
             </a>
+              
+            <router-link to="/thankyou"> Страница спасибо</router-link>
         </section>
     </div>
 
@@ -127,7 +134,7 @@ const route = useRoute();
         content:'';
         position:absolute;
         left:0;
-        top:10px;
+        top:18%;
         width: var(--bullet-size); /* Нужная ширина */
         height: var(--bullet-size); /* Нужная высота */
         background-image: url('/general/bullet-icon.svg');

@@ -13,7 +13,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 
-
+    <script>
+      (function(w, d, s, o){
+        var j = d.createElement(s); j.async = true; j.src = '//script.marquiz.ru/v2.js';j.onload = function() {
+          if (document.readyState !== 'loading') Marquiz.init(o);
+          else document.addEventListener("DOMContentLoaded", function() {
+            Marquiz.init(o);
+          });
+        };
+        d.head.insertBefore(j, d.head.firstElementChild);
+        console.log("script works")
+      })(window, document, 'script', {
+          host: '//quiz.marquiz.ru',
+          region: 'ru',
+          id: '686faa599147f80019d0e986',
+          autoOpen: false,
+          autoOpenFreq: 'once',
+          openOnExit: false,
+          disableOnMobile: false
+        }
+      );
+    </script>
 
 
     <title> ARKA </title>
@@ -37,12 +57,14 @@
       });
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/102759054" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
 
 
-
-
+  
     <div id="app"></div>
+    <!-- Quiz-->
+    <script>
+      
+    </script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

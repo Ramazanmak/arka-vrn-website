@@ -216,9 +216,10 @@ nav{
 .aside-nav{
     background-color: #000;
     display:flex;
+    padding:20px 10px;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     height:calc(100vh - 30px - 15px);
     width:50vw;
     position:absolute;
