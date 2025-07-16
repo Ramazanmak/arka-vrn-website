@@ -98,8 +98,6 @@
   background-color:#fff;
   position:relative;
   height:65vh;
-  overflow-y:scroll;
-  scrollbar-width: 1px;
 }
 
 .grey-part{
