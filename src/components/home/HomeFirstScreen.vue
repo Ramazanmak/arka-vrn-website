@@ -72,6 +72,10 @@ const route = useRoute();
                 onclick="Marquiz.showModal('686faa599147f80019d0e986')">
                 Пройти опрос и получить чек лист
             </a>
+
+            <router-link to="/thankyou">
+                Страница спасибо!
+            </router-link>
               
         </section>
     </div>

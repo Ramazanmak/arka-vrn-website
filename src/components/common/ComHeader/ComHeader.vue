@@ -296,7 +296,7 @@ nav{
         display:none;
     }
     header{
-        padding:25px;
+        padding:10px 25px;
         position:absolute;
         background:none;
     }
@@ -334,7 +334,7 @@ nav{
 
 @media (min-width:1440px){
     header{
-        padding:25px;
+        padding:10px 25px;
     }
     .nav__button{
         font-size:15px;
@@ -347,7 +347,7 @@ nav{
 
 @media (min-width:1600px){
     header{
-        padding:35px;
+        padding:15px 35px;
     }
     .nav__button{
         font-size:16px;
@@ -360,7 +360,7 @@ nav{
 
 @media (min-width:1920px){
     header{
-        padding:45px;
+        padding:15px 45px;
     }
     .nav__button{
         font-size:22px;
