@@ -73,6 +73,9 @@ const route = useRoute();
                 Пройти опрос и получить чек лист
             </a>
 
+            <router-link to="/thankyou">
+                Страница спасибо!
+            </router-link>
               
         </section>
     </div>
