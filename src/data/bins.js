@@ -56,8 +56,8 @@ const bins = {
                         }
                     },
                     cost:{
-                        "valentina-granite": 11000,
-                        "valentina-marble": 13200,
+                        "valentina-granite": 8000,
+                        "valentina-marble": 10300,
                     },
                     colorable:false,
                     choosable:{

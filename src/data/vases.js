@@ -299,8 +299,8 @@ const vases = {
                         }
                     },
                     cost:{
-                        "prettier-square-metal-rosewood": 20000,
-                        "prettier-square-metal-mahogany": 20000,
+                        "prettier-square-metal-rosewood": 15000,
+                        "prettier-square-metal-mahogany": 15000,
                     },
                     colorable:false,
                     choosable:{
@@ -325,8 +325,8 @@ const vases = {
                         }
                     },
                     cost:{
-                        "prettier-round-metal-rosewood": 20000,
-                        "prettier-round-metal-mahogany": 20000,
+                        "prettier-round-metal-rosewood": 15000,
+                        "prettier-round-metal-mahogany": 15000,
                     },
                     colorable:false,
                     choosable:{

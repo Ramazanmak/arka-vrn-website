@@ -73,9 +73,6 @@ const route = useRoute();
                 Пройти опрос и получить чек лист
             </a>
 
-            <router-link to="/thankyou">
-                Страница спасибо!
-            </router-link>
               
         </section>
     </div>
@@ -141,7 +138,7 @@ const route = useRoute();
         width: var(--bullet-size); /* Нужная ширина */
         height: var(--bullet-size); /* Нужная высота */
         background-image: url('/general/bullet-icon.svg');
-        background-size: contain; /* Масштабирует картинку по размеру блока */
+        background-size: cover; /* Масштабирует картинку по размеру блока */
         background-repeat: no-repeat;
     }
 

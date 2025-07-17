@@ -87,9 +87,9 @@ defineExpose({
                 </div>
             </nav>
     
-            <div class="logo">
+            <router-link to="/" class="logo">
                 <img class="logo__img" src="/general/new_logo_dark_v3.png" alt="Логотип"/>
-            </div>
+            </router-link>
     
             <div class="social-media">
                 <ComSocialMedia></ComSocialMedia>
@@ -160,6 +160,7 @@ nav{
 /* Logo-block */
 
 .logo{
+    display:block;
     width:calc(100%/3);
 }
 .logo__img{
