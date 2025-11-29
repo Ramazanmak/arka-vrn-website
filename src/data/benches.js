@@ -13,22 +13,22 @@ const benches = {
             cardType:"short",
             items:[
                 {
-                    name:"Пелагея (ширина 224 см)",
+                    name:"Пелагея (длина 224 см)",
                     folderName:"pelageya-224",
                     folderPath:"/catalogue/benches/pelageya-224/",
                     description:[],
                     sizes:{
                         "default":{
                             height:90,
-                            width:224,
-                            length:45,
+                            length:224,
+                            width:45,
                         }
                     },
                     cost:{
-                        "pelageya-224-granite-rosewood": 22400,
-                        "pelageya-224-granite-mahogany":22400,
-                        "pelageya-224-marble-rosewood": 25000,
-                        "pelageya-224-marble-mahogany": 25000
+                        "pelageya-224-granite-rosewood": 23000,
+                        "pelageya-224-granite-mahogany":23000,
+                        "pelageya-224-marble-rosewood": 25300,
+                        "pelageya-224-marble-mahogany": 25300
                     },   
                     colorable:false,
                     choosable:{
@@ -44,22 +44,22 @@ const benches = {
                     }
                 },
                 {
-                    name:"Пелагея (ширина 174 см)",
+                    name:"Пелагея (длина 174 см)",
                     folderName:"pelageya-174",
                     folderPath:"/catalogue/benches/pelageya-174/",                    
                     description:[],
                     sizes:{
                         "default":{
                             height:90,
-                            width:174,
-                            length:45,
+                            length:174,
+                            width:45,
                         }
                     },
                     cost:{
-                        "pelageya-174-granite-rosewood": 18000,
-                        "pelageya-174-granite-mahogany":18000,
-                        "pelageya-174-marble-rosewood": 20300,
-                        "pelageya-174-marble-mahogany": 20300
+                        "pelageya-174-granite-rosewood": 18500,
+                        "pelageya-174-granite-mahogany":18500,
+                        "pelageya-174-marble-rosewood": 20800,
+                        "pelageya-174-marble-mahogany": 20800
                     },   
                     colorable:false,
                     choosable:{
@@ -83,16 +83,16 @@ const benches = {
                     sizes:{
                         "default":{
                             height:90,
-                            width:172,
-                            length:72,
+                            length:172,
+                            width:72,
                             weight:230,
                         }
                     },
                     cost:{
-                        "valeria-granite-rosewood": 19200,
-                        "valeria-granite-mahogany":19200,
-                        "valeria-marble-rosewood": 21500,
-                        "valeria-marble-mahogany": 21500,
+                        "valeria-granite-rosewood": 19700,
+                        "valeria-granite-mahogany":19700,
+                        "valeria-marble-rosewood": 22000,
+                        "valeria-marble-mahogany": 22000,
                     },  
                     colorable:false,
                     choosable:{
@@ -108,23 +108,23 @@ const benches = {
                     }
                 },
                 {
-                    name:"Агата (ширина 174 см)",
-                    folderName:"agata-174",
-                    folderPath:"/catalogue/benches/agata-174/", 
+                    name:"Агата (длина 172 см)",
+                    folderName:"agata-172",
+                    folderPath:"/catalogue/benches/agata-172/", 
                     description:[],
                     sizes:{
                         "default":{
                             height:90,
-                            width:174,
-                            length:72,
+                            length:172,
+                            width:72,
                             weight:190,
                         }
                     },
                     cost:{
-                        "agata-174-granite-rosewood": 17400,
-                        "agata-174-granite-mahogany":17400,
-                        "agata-174-marble-rosewood": 19700,
-                        "agata-174-marble-mahogany": 19700,
+                        "agata-172-granite-rosewood": 17400,
+                        "agata-172-granite-mahogany":17400,
+                        "agata-172-marble-rosewood": 19700,
+                        "agata-172-marble-mahogany": 19700,
                     },   
                     colorable:false,
                     choosable:{
@@ -140,22 +140,22 @@ const benches = {
                     }
                 },
                 {
-                    name:"Агата (ширина 224 см)",
-                    folderName:"agata-224",
-                    folderPath:"/catalogue/benches/agata-224/", 
+                    name:"Агата (ширина 222 см)",
+                    folderName:"agata-222",
+                    folderPath:"/catalogue/benches/agata-222/", 
                     description:[],
                     sizes:{
                         "default":{
                             height:90,
-                            width:224,
-                            length:72,
+                            length:222,
+                            width:72,
                         }
                     },
                     cost:{
-                        "agata-224-granite-rosewood": 21900,
-                        "agata-224-granite-mahogany":21900,
-                        "agata-224-marble-rosewood": 24200,
-                        "agata-224-marble-mahogany": 24200,
+                        "agata-222-granite-rosewood": 21900,
+                        "agata-222-granite-mahogany":21900,
+                        "agata-222-marble-rosewood": 24200,
+                        "agata-222-marble-mahogany": 24200,
                     },   
                     colorable:false,
                     choosable:{
@@ -178,16 +178,16 @@ const benches = {
                     sizes:{
                         "default":{
                             height:48,
-                            width:190,
-                            length:45,
+                            length:190,
+                            width:45,
                             weight:224,
                         }
                     },
                     cost:{
-                        "alexandra-back-granite-rosewood": 14200,
-                        "alexandra-back-granite-mahogany":14200,
-                        "alexandra-back-marble-rosewood": 16300,
-                        "alexandra-back-marble-mahogany": 16300,
+                        "alexandra-back-granite-rosewood": 14700,
+                        "alexandra-back-granite-mahogany":14700,
+                        "alexandra-back-marble-rosewood": 16800,
+                        "alexandra-back-marble-mahogany": 16800,
                     },
                     colorable:false,
                     choosable:{
@@ -210,8 +210,8 @@ const benches = {
                     sizes:{
                         "default":{
                             height:44,
-                            width:210,
-                            length:44.5,
+                            length:210,
+                            width:44.5,
                             weight:210,
                         }
                     },
@@ -250,16 +250,16 @@ const benches = {
                     sizes:{
                         "default":{
                             height:48,
-                            width:190,
-                            length:45,
+                            length:190,
+                            width:45,
                             weight:210,
                         }
                     },
                     cost:{
-                        "alexandra-granite-rosewood": 12300,
-                        "alexandra-granite-mahogany":12300,
-                        "alexandra-marble-rosewood": 14600,
-                        "alexandra-marble-mahogany": 14600,
+                        "alexandra-granite-rosewood": 12800,
+                        "alexandra-granite-mahogany":12800,
+                        "alexandra-marble-rosewood": 15100,
+                        "alexandra-marble-mahogany": 15100,
                     },   
                     colorable:false,
                     choosable:{
@@ -282,16 +282,16 @@ const benches = {
                     sizes:{
                         "default":{
                             height:45,
-                            width:182,
-                            length:58,
+                            length:182,
+                            width:58,
                             weight:167,
                         }
                     },
                     cost:{
-                        "dina-granite-rosewood": 13500,
-                        "dina-granite-mahogany":13500,
-                        "dina-marble-rosewood": 15800,
-                        "dina-marble-mahogany": 15800,
+                        "dina-granite-rosewood": 14000,
+                        "dina-granite-mahogany":14000,
+                        "dina-marble-rosewood": 16300,
+                        "dina-marble-mahogany": 16300,
                     },   
                     colorable:false,
                     choosable:{
@@ -315,16 +315,16 @@ const benches = {
                     sizes:{
                         "default":{
                             height:44,
-                            width:200,
-                            length:50,
+                            length:200,
+                            width:50,
                             weight:300,
                         }
                     },
                     cost:{
-                        "ada-granite-rosewood": 38800,
-                        "ada-granite-mahogany":38800,
-                        "ada-marble-rosewood": 40000,
-                        "ada-marble-mahogany": 40000,
+                        "ada-granite-rosewood": 39500,
+                        "ada-granite-mahogany":39500,
+                        "ada-marble-rosewood": 41000,
+                        "ada-marble-mahogany": 41000,
                     },
                     colorable:false,
                     choosable:{
@@ -348,8 +348,8 @@ const benches = {
                     sizes:{
                         "default":{
                             height:44,
-                            width:210,
-                            length:44.5,
+                            length:210,
+                            width:44.5,
                             weight:210,
                         }
                     },

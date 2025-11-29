@@ -27,8 +27,8 @@ const bins = {
                         }
                     },
                     cost:{
-                        "rimma-granite-rosewood": 11000,
-                        "rimma-marble-rosewood": 13200,
+                        "rimma-granite-rosewood": 11500,
+                        "rimma-marble-rosewood": 13700,
                     },
                     colorable:false,
                     choosable:{
@@ -56,8 +56,8 @@ const bins = {
                         }
                     },
                     cost:{
-                        "valentina-granite": 8000,
-                        "valentina-marble": 10300,
+                        "valentina-granite": 8500,
+                        "valentina-marble": 10800,
                     },
                     colorable:false,
                     choosable:{

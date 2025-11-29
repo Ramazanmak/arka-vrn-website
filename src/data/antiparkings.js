@@ -25,12 +25,12 @@ const antiparkings = {
                         }
                     },
                     _cost: {
-                        "hemiellipse-granite": 2100,
+                        "hemiellipse-granite": 2000,
                         "hemiellipse-marble": 2500,
-                        "hemiellipse-smooth-grey": 1500,
-                        "hemiellipse-smooth-red": 1700,
-                        "hemiellipse-smooth-yellow": 1700,
-                        "hemiellipse-smooth-white":1700
+                        "hemiellipse-smooth-grey": 1100,
+                        "hemiellipse-smooth-red": 1200,
+                        "hemiellipse-smooth-yellow": 1200,
+                        "hemiellipse-smooth-white":1200
                     },
                     get cost() {
                         return this._cost
@@ -70,12 +70,12 @@ const antiparkings = {
                         }
                     },
                     cost:{
-                        "hemisphere-granite": 2100,
+                        "hemisphere-granite": 2000,
                         "hemisphere-marble": 2500,
-                        "hemisphere-smooth-grey":1500,
-                        "hemisphere-smooth-red":1700,
-                        "hemisphere-smooth-yellow":1700,
-                        "hemisphere-smooth-white":1700
+                        "hemisphere-smooth-grey":1100,
+                        "hemisphere-smooth-red":1200,
+                        "hemisphere-smooth-yellow":1200,
+                        "hemisphere-smooth-white":1200
                     },
                     choosable:{
                         types:{},
@@ -287,41 +287,3 @@ const antiparkings = {
 
 export {antiparkings}
 
-
-
-/*
-    .subcategory-item-extended-wrapper{
-        height:80vh;
-        margin:60px auto;
-        border-radius:10px;
-        padding:30px 10px;
-        max-width: 450px;
-        border-top:2px solid var(--second-main-color);
-        border-bottom:2px solid var(--second-main-color);
-        box-shadow: 0 0 5px -2px var(--contacts-bg-color);      
-        box-sizing: border-box;
-        transition:0.4s;
-    }
-    .subcategory-item-extended{
-        height:100%;
-        overflow-y: scroll;
-        scrollbar-width: none;
-    }
-
-
-    @media (min-width:560px){
-        .item-content{
-            padding:30px;
-        }
-    }
-
-    @media (min-width: 1024px){
-        .item-content{
-            display: flex;
-            flex-direction:row;
-            justify-content: space-between;
-            width:100%;
-            max-width: none;
-        }
-    }
-*/

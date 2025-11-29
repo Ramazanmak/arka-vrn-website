@@ -71,8 +71,8 @@ const vases = {
                     description:[],
                     sizes:{
                         "default":{
-                            height:40,
-                            diameter:59,
+                            height:59,
+                            diameter:40,
                         }
                     },
                     cost:{
@@ -185,8 +185,8 @@ const vases = {
                         }
                     },
                     cost:{
-                        "lilia-granite": 8500,
-                        "lilia-marble": 10800,
+                        "lilia-granite": 9000,
+                        "lilia-marble": 11300,
                     },
                     colorable:false,
                     choosable:{
@@ -213,8 +213,8 @@ const vases = {
                         }
                     },
                     cost:{
-                        "victoria-granite": 8800,
-                        "victoria-marble": 11000,
+                        "victoria-granite": 9300,
+                        "victoria-marble": 11500,
                     },
                     colorable:false,
                     choosable:{
@@ -241,8 +241,8 @@ const vases = {
                         }
                     },
                     cost:{
-                        "elena-granite": 8900,
-                        "elena-marble": 11200,
+                        "elena-granite": 9400,
+                        "elena-marble": 11700,
                     },
                     colorable:false,
                     choosable:{
@@ -268,7 +268,7 @@ const vases = {
                         }
                     },
                     cost:{
-                        "eva-smooth": 7500,
+                        "eva-smooth": 8000,
                     },
                     colorable:false,
                     choosable:{
