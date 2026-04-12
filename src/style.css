@@ -1,5 +1,6 @@
 html{
     font-size:14pt;
+    --duration: 300ms;
 }
 body{
     margin:0;

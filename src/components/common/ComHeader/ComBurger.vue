@@ -1,60 +1,80 @@
-<script setup>
-import {ref} from 'vue'
-
-
-</script>
-
-
 <template>
-    <div class="burger">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-    </div>
+  <button class="burger" tabindex="0">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+  </button>
+  <div class="burger__shutter"></div>
 </template>
 
 <style scoped>
 
+input {
+  width:1px;
+  height:1px;
+  background-color:transparent;
+}
+
 .burger{
-    cursor:pointer;
-    height:100%;
-    aspect-ratio:1 / 1;
-    margin-top:1vh;
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
+  text-align: center;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  width: 1.8em;
+  aspect-ratio:1 / 1;
 }
 
 .bar1, .bar2, .bar3{
-    width:60%;
-    height:3px;
+    width:100%;
+    height:4px;
     background-color: #fff;
-    margin:4px 0;
-    transition:0.4s
-}
-.bar1{
-    margin:10% 0;
+    transition:0.4s;
+    margin-bottom:5px;
 }
 
-.change .bar1 {
+.bar3 {
+  margin-bottom:0;
+}
+
+.burger__shutter {
+  display: block;
+  position:absolute;
+  top:0;
+  left:-101%;
+  width:100%;
+  height:100vh;
+}
+
+:focus + .burger__shutter {
+  left:0;
+}
+
+.burger:focus .bar1 {
     transform: translate(0,230%) rotate(45deg) ;
     border-radius: 5px;
 }
 
-.change .bar2 {opacity: 0;}
+.burger:focus  .bar2 {opacity: 0;}
 
-.change .bar3 {
-    transform: translate(0,-230%) rotate(-45deg);
+.burger:focus  .bar3 {
+    transform: translate(0,-200%) rotate(-45deg);
     border-radius: 5px;
 }
 
 @media (min-width:560px){
     .bar1, .bar2, .bar3{
         height:3px;
-        margin:5px 0;
     }
-    .change .bar1 {
+    .burger:focus > .bar1 {
         transform: translate(0,260%) rotate(45deg) ;
     }
     
-    .change .bar3 {
+    .burger:focus > .bar3 {
         transform: translate(0,-260%) rotate(-45deg);
     }
 }
@@ -62,13 +82,12 @@ import {ref} from 'vue'
 @media (min-width:768px){
     .bar1, .bar2, .bar3{
         height:4px;
-        margin:5px 0;
     }
-    .change .bar1 {
+    .burger:focus > .bar1 {
         transform: translate(0,220%) rotate(45deg) ;
     }
     
-    .change .bar3 {
+    .burger:focus > .bar3 {
         transform: translate(0,-220%) rotate(-45deg);
     }
 }
