@@ -43,13 +43,7 @@ template{
     display:block;
     color:white;
     transition-duration: var(--duration);
-    margin:0 1vw;
-  }
-  .social-media__item:first-of-type{
-    margin-right:2vw;
-  }
-  .social-media__item{
-    margin-right:0.4vw
+    margin:0 0 0 2vw;
   }
   @media (hover:hover){
     .social-media__item:hover {

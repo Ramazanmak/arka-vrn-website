@@ -12,10 +12,10 @@ import ComFooter from '../common/ComFooter.vue';
 
 <template>
     <ComHeader/>
-    <HomeFirstScreen :is-main="true"/>
-    <About/>
+    <HomeFirstScreen/>
     <Catalogue />
     <Advantages/> 
+    <About/>
     <ContactUs :isMain="true"/>
     <ComFooter/>
 </template>

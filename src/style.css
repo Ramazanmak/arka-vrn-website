@@ -1,17 +1,23 @@
 html{
     font-size:14pt;
     --duration: 300ms;
+    scroll-behavior: smooth;
+}
+button, a {
+    -webkit-user-select: none; 
+    user-select: none;
 }
 body{
     margin:0;
     --main-font-family:"Roboto", serif;
-    --second-main-color:#E96311;
+    --second-main-color:rgb(233, 99, 17);
     --contacts-bg-color:#292929;
     --main-bg-color:#efefef;
-    --side-padding:7%;
+    --side-padding:4vw;
     --h2-font-size:28px;  
     --h2-font-weight:500;
     --font-base:16px;
+    --headerHeight: 50px;
 }
 .highlighted{
     color:var(--second-main-color);
@@ -34,7 +40,7 @@ body{
 
 @media (min-width:560px){
     body{
-      --side-padding:10%;
+      --side-padding:5vw;
       --h2-font-size:32px;
       --font-base:18px
     }
@@ -42,22 +48,17 @@ body{
 
 @media (min-width:768px){
     body{
-      --side-padding:10%;
+      --side-padding:10vw;
       --h2-font-size:30px;  
     }
 }
 
-@media (min-width:930px){
-    body{
-      --side-padding:11%;
-    }
-}
 
 @media (min-width:1024px){
     body{
-      --side-padding:11%;
       --h2-font-size:36px;  
-      --font-base:19px
+      --font-base:19px;
+      --headerHeight: 60px;
     }
     .tippy-box[data-theme~='arka']{
         background-color: var(--contacts-bg-color);
@@ -77,7 +78,6 @@ body{
 
 @media (min-width:1600px){
     body{
-        --side-padding:13%;
         --h2-font-size:50px;
         --font-base:24px  
     }

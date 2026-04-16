@@ -77,11 +77,6 @@ onMounted(()=>{
 
 <template>
     <section class="category-wrapper" @keydown.escape="antichoose">
-        <CategoryDescription 
-            :description="props.categoryObject.description" 
-            :routeName="categoryObject.routeName"
-        />
-
         
         <h2 v-if="props.categoryObject.empty"> 
             {{ props.categoryObject.description }}
@@ -171,6 +166,11 @@ onMounted(()=>{
             </div>
 
         </div>
+
+        <CategoryDescription 
+            :description="props.categoryObject.description" 
+            :routeName="categoryObject.routeName"
+        />
     </section>
 </template>
 
@@ -341,6 +341,9 @@ onMounted(()=>{
     }
 
     @media (min-width:1024px){
+        .category-wrapper {
+          padding-top: 100px;
+        }
         .subcategory-item{
             width:25%;
             margin:15px;

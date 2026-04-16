@@ -55,14 +55,14 @@ input {
 }
 
 .burger:focus .bar1 {
-    transform: translate(0,230%) rotate(45deg) ;
+    transform: translate(0,220%) rotate(45deg) ;
     border-radius: 5px;
 }
 
 .burger:focus  .bar2 {opacity: 0;}
 
 .burger:focus  .bar3 {
-    transform: translate(0,-200%) rotate(-45deg);
+    transform: translate(0,-220%) rotate(-45deg);
     border-radius: 5px;
 }
 

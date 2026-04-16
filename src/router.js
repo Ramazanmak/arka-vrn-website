@@ -2,7 +2,6 @@ import {createWebHistory, createRouter} from 'vue-router';
 
 import HomeView from './components/views/HomeView.vue';
 import CategoryPageView from './components/views/CategoryPageView.vue';
-import ThankYou from './components/views/ThankYou.vue'
 
 
 const routes = [
@@ -14,10 +13,6 @@ const routes = [
         path:'/categories/:categoryName',
         component:CategoryPageView, 
     },
-    {
-        path:'/thankyou',
-        component:ThankYou,
-    }
 ]
 
 const router = createRouter({

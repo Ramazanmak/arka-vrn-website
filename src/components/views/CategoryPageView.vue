@@ -17,7 +17,6 @@ const data = catalogueFull.find(el => el.routeName == route.params.categoryName)
 
 <template>
     <ComHeader></ComHeader>
-    <CategoryFirstScreen :pageName="data.name" :bgImage="data.bgImage"/>
     <ProductList :category-object="data"/>
     <CatPageTouchUs /> 
     <ComFooter />
