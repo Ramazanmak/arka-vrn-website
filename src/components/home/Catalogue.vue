@@ -94,6 +94,7 @@ function goToCategory(category){
         font-size:var(--h2-font-size);
         color:var(--second-main-color);
         font-weight:500;
+        text-align: center;
     }
     
     .catalogue__body-link{
@@ -198,9 +199,6 @@ function goToCategory(category){
         }
         .catalogue__caption{
             font-size:10px;
-        }
-        .catalogue__header{
-            text-align:center;
         }
     }
     

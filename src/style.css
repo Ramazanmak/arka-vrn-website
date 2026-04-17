@@ -1,5 +1,5 @@
 html{
-    font-size:14pt;
+    font-size:18px;
     --duration: 300ms;
     scroll-behavior: smooth;
 }
@@ -70,23 +70,46 @@ body{
 }
 
 @media (min-width:1440px){
+    html {
+      font-size: 20px;
+    }
     body{
       --h2-font-size:40px;  
-      --font-base:23px
+      --font-base:23px;
+      --headerHeight: 60px;
     }
-}
-
-@media (min-width:1600px){
+  }
+  
+  @media (min-width:1600px){
+    html {
+      font-size: 26px;
+    }
     body{
-        --h2-font-size:50px;
-        --font-base:24px  
+      --h2-font-size:50px;
+      --font-base:24px;   
+      --headerHeight: 70px;
     }
 }
 
 @media (min-width:1920px){
+    html {
+      font-size: 28px;
+    }
     body{
         --side-padding:15%;
         --h2-font-size:60px;  
-        --font-base:29px
+        --font-base:29px;
+        --headerHeight: 80px;
+    }
+}
+@media (min-width:2560px){
+    html {
+      font-size: 32px;
+    }
+    body{
+        --side-padding:15%;
+        --h2-font-size:60px;  
+        --font-base:29px;
+        --headerHeight: 90px;
     }
 }

@@ -81,7 +81,6 @@ function scrollTo(id){
 header{
   width:100%;
   height:var(--headerHeight);
-  max-height: 60px;
   box-sizing:border-box;
   background-color:#000;
   color:white;
@@ -228,7 +227,6 @@ nav{
     display:none;
   }
   header{
-    max-height: 80px;
     padding:10px 25px;
   }
   .nav-list {

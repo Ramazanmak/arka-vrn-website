@@ -70,7 +70,7 @@ onUnmounted(() => {
 <style scoped>
     .hero {
       width: 100%;
-      height: 560px;
+      height: 600px;
       padding-top:var(--headerHeight);
       transition-duration: var(--duration);
       background-color: var(--main-bg-color);
@@ -82,7 +82,7 @@ onUnmounted(() => {
 
     .hero-bg-wrapper {
       width: 100%;
-      height: 420px;
+      height: 470px;
       position: relative;
     }
 
@@ -138,7 +138,7 @@ onUnmounted(() => {
       width: 100%;
       height: 100%;
       background-size: cover;
-      background-position: 80% 80%;
+      background-position: 75% 80%;
       position: absolute;
       top:0;
       transition-duration: 500ms;
@@ -240,8 +240,31 @@ onUnmounted(() => {
  
 
     @media (min-width:1440px){
-        .hero {
-          height: 700px;
-        }
+      .hero-link {
+        width:220px;
+      }
+      .hero {
+        height: 700px;
+      }
+    }
+
+
+    @media (min-width: 1920px) {
+      .hero-link { 
+        width:250px;
+      }
+      .hero {
+        height:920px;
+      }
+    }
+
+     @media (min-width: 2560px) {
+      .hero-link {
+        font-size: 1.3em;
+        width:350px;
+      }
+      .hero {
+        height:1200px;
+      }
     }
 </style>
