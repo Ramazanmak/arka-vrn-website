@@ -170,7 +170,7 @@ onUnmounted(() => {
       border:2px solid var(--second-main-color);
       background-color: var(--second-main-color);
       padding:0.5em 1.5em;
-      width:150px;
+      width:200px;
       border-radius: 1em;
       font-family:var(--main-font-family);
       font-size:1em;
@@ -244,7 +244,7 @@ onUnmounted(() => {
         width:220px;
       }
       .hero {
-        height: 700px;
+        height: 740px;
       }
     }
 

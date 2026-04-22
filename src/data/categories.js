@@ -4,6 +4,7 @@ import {benches} from "./benches"
 import { antiparkings } from "./antiparkings"
 import { platfrorms } from "./platforms"
 import {blocks} from "./blocks"
+import { fences } from "./fences"
 
 
 
@@ -13,7 +14,8 @@ const catalogueFull = [
     bins,
     antiparkings,
     platfrorms,
-    blocks
+    blocks,
+    fences
 ]
 
 export {catalogueFull}

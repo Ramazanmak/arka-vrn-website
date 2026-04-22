@@ -125,6 +125,7 @@ watchEffect(() => {
 
 watchEffect(() => {
     if (isColorsAllowed.value){
+        console.log(props.itemProps.colors)
         chosenColors.value = Object.keys(props.itemProps.colors[preConfigurationId.value])[0];
     }
 })

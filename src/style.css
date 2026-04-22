@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 html{
     font-size:18px;
     --duration: 300ms;
@@ -13,6 +16,9 @@ body{
     --second-main-color:rgb(233, 99, 17);
     --contacts-bg-color:#292929;
     --main-bg-color:#efefef;
+    --global-500: #e9e8eb;
+    --global-600: #a1a1a1;
+    --global-700: #7d7d7d;
     --side-padding:4vw;
     --h2-font-size:28px;  
     --h2-font-weight:500;
@@ -48,7 +54,7 @@ body{
 
 @media (min-width:768px){
     body{
-      --side-padding:10vw;
+      --side-padding:7vw;
       --h2-font-size:30px;  
     }
 }
@@ -96,7 +102,7 @@ body{
       font-size: 28px;
     }
     body{
-        --side-padding:15%;
+        --side-padding:10vw;
         --h2-font-size:60px;  
         --font-base:29px;
         --headerHeight: 80px;
@@ -107,7 +113,7 @@ body{
       font-size: 32px;
     }
     body{
-        --side-padding:15%;
+        --side-padding:10vw;
         --h2-font-size:60px;  
         --font-base:29px;
         --headerHeight: 90px;

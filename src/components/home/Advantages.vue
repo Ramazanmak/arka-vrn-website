@@ -1,178 +1,229 @@
 <script setup>
 import { ref } from 'vue';
+import { advantages } from '../../data/advantages';
 
-const advantages = ref([
-    {
-        id:1,
-        name:"Низкие цены",
-        text:"У нас нет лишних наценок, потому что мы производители. Гарантируем лучшие цены в сочетании с отличным качеством",
-        src:"/general/advantages/cost.png"
-    },
-    {
-        id:2,
-        name:"Высокое качество",
-        text:"Мы изготавливаем нашу продукцию только из высококачественного сырья, строго соблюдая все стандарты производства бетонных изделий",
-        src:"/general/advantages/quality.png"
-    },
-    {
-        id:3,
-        name:"Многолетний опыт",
-        text:"Уже более 25 лет мы производим железобетонные изделия высокого качества, проверенные временем",
-        src:"/general/advantages/experience.png"
-    },
-    {
-        id:4,
-        name:"Высококлассное оборудование",
-        text:"Производство продукции осуществляется на высокотехнологичном оборудовании",
-        src:"/general/advantages/equipment.png"
-    },
-    {
-        id:5,
-        name:"Погрузка",
-        text:"Мы осуществляем БЕСПЛАТНУЮ погрузку изделий на транспортное средство",
-        src:"/general/advantages/loading.png"
-    },
-    {
-        id:6,
-        name:"Доставка",
-        text:"Мы будем рады помочь Вам с транспортировкой наших изделий до места установки",
-        src:"/general/advantages/delivery.png"
-    },
-    {
-        id:7,
-        name:"Широкий ассортимент",
-        text:"Вы сможете подобрать подходящий и интересный именно Вам вариант, исходя из предпочтений стиля, дизайна и цены",
-        src:"/general/advantages/range.png"
-    }
-])
+const advants = ref(advantages);
+  
 </script>
 
 <template>
-    <section class="advantages" id="advantages">
-        <h2 class="advantages__header"> Наши преимущества </h2>
-        <p class="advantages__description">Мы работаем на качество и долговечность наших изделий</p>
+  <section class="advantages" id="advantages">
+    <h2 class="header"> Наши преимущества </h2>
+    <p class="description">Мы работаем на качество и долговечность наших изделий</p>
 
-        <div class="advantages__body">
-            <div class="advantages__item-wrapper" v-for="adv in advantages" :key="adv.id">
-                <img class="advantages__item-image" :src="adv.src" :alt="adv.name">
-                <div class="advantages__item-description">
-                    <h3 class="advantages__item-header"> <span>{{ adv.name }} </span></h3>
-                    <p class="advantages__item-text"> {{ adv.text }}</p>
-                </div>
-            </div>
+    <div class="body">
+      <div class="item-wrapper" v-for="adv in advants" :key="adv.id">
+        <div class="item-header-wrapper">
+          <img class="item-image" loading="lazy" :src="adv.src" :alt="adv.name">
+          <div class="item-promo">
+            <span class="item-promo__main highlighted"> {{ adv.mainPromo }}</span>
+            <span class="item-promo__second"> {{ adv.secondPromo }}</span>
+          </div>
         </div>
-    </section>
+        <div class="item-description">
+          <div class="item-description__wrapper">
+            <h3 class="item-name"> <span>{{ adv.name }} </span></h3>
+            <p class="item-text"> {{ adv.text }}</p>
+          </div>
+          <div class="animated-line">
+            <div class="animated-line__inner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped>
-    .advantages{
-        background-color: var(--main-bg-color);
-        padding:50px var(--side-padding) 50px;
-        font-family: var(--main-font-family);
-        --h3-adv-font-size:calc((var(--h2-font-size)) - 7px)
-    }
+  .advantages{
+    background-color: var(--global-500);
+    padding:50px var(--side-padding) 50px;
+    font-family: var(--main-font-family);
+    --h3-adv-font-size:calc((var(--h2-font-size)) - 7px)
+    transition-duration: var(--duration);
+  }
 
-    .advantages__header{
-        margin:0;
-        padding-bottom:15px;
-        font-size:var(--h2-font-size);
-        color:var(--second-main-color); 
-        font-weight:var(--h2-font-weight);
-        text-align:center;
-    }
+  .advantages * {
+    transition-duration: inherit;
+  }
 
-    .advantages__description{
-        text-align:center;
-        font-size:16px;
-        font-weight:300;
-        line-height: 1.5;
-        padding-bottom:10px;
-    }
+  .header{
+    margin:0;
+    margin-bottom:15px;
+    font-size:var(--h2-font-size);
+    color:var(--second-main-color); 
+    font-weight:var(--h2-font-weight);
+    text-align:center;
+  }
 
-    .advantages__body{
-        display:flex;
-        width:100%;
-        flex-flow:row wrap;
-        justify-content: space-around;
-    }
+  .description{
+    text-align:center;
+    font-size:1em;
+    margin-bottom:2em;
+  }
 
-    .advantages__item-wrapper{
-        padding:10px 5px;
-        text-align: center;
-        width:90%;
-        /* border:1px solid black;  */
-    }
+  .body{
+    display:flex;
+    width:100%;
+    gap:1em;
+    flex-flow:row wrap;
+    justify-content: space-around;
+  }
 
-    .advantages__item-image{
-        padding:15px 0;
-        display:block;
-        margin:0 auto;
-        width:40%;
-        aspect-ratio: 1 / 1;
-    }
+  .item-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap:1em;
+    padding:10px 5px;
+    text-align: left;
+    width:90%;
+    padding: 1em;
+    border: 2px solid var(--global-600);  
+    border-radius: 1em;
+    background-color: white;
+    transition-duration: 500ms;
+    box-shadow: 0 0 10px 1px var(--global-600)
+  }
+  
+  .item-header-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 
-    .advantages__item-description{
-        display:flex;
-        flex-direction:column;
-        justify-content:space-around;
-        /* border:1px solid red; */
-    }
-    .advantages__item-header{
-        margin:0;
-        font-size:20px;
-        font-weight:400;
-        height:2.5em;
-    }
+  .item-promo {
+    flex-grow:1;
+    width:70%;
+  }
 
-    .advantages__item-text{
-        font-size:12px;
-        font-weight:300;
-        padding:0 8% 30px;
-    }
+  .item-promo__main{
+    display: block;
+    margin:0;
+    font-size:1.5em;
+    text-align: right;
+  }
+  .item-promo__second{
+    display: block;
+    margin:0;
+    font-size: 0.6em; 
+    font-weight: 700;
+    color: var(--global-700);
+    text-transform: uppercase;
+    text-align: right;
+    text-wrap: wrap;
+  }
 
-    @media (min-width:480px){
-       
-        .advantages__item-wrapper{
-            width:40%;
-        }
-        .advantages__item-header{
-            padding-bottom:15px;
-        }
+  .item-image{
+    display:block;
+    margin:0;
+    aspect-ratio: 1;
+    width:25%;
+  }
+
+  .item-description{
+    justify-self: flex-end;
+    flex-grow:1;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap:1em;
+    width:100%;
+    /* border:1px solid red; */
+  }
+
+  .item-description__wrapper{
+    max-width:100%;
+  }
+
+  .item-name{
+    font-weight:600;
+    flex-grow:0;
+    margin:0 0 1em;
+  }
+
+  .item-text{
+    font-size: 0.9em;
+    color:var(--global-700);
+    text-wrap:stable;
+    margin:0 0 1em;
+  }
+
+  .animated-line {
+    width:100%;
+    height: 3px;
+    background-color: var(--global-600);
+    justify-self: flex-end;
+  }
+  .animated-line__inner {
+    width:0%;
+    height: 100%;
+    background-color: var(--second-main-color);
+  }
+  
+  @media (hover) {
+    .item-wrapper:hover {
+      border-color: var(--second-main-color);
+      transform: scale(105%);
+      box-shadow: 0 0 10px 1px var(--second-main-color);
+
+      .item-name {
+        color: var(--second-main-color)
+      }
+
+      .animated-line__inner {
+        width: 100%;
+      }
     }
+  }
+  @media (hover:none) {
+    .item-wrapper:active {
+      border-color: var(--second-main-color);
+      transform: scale(105%);
+      box-shadow: 0 0 10px 1px var(--second-main-color);
+
+      .item-name {
+        color: var(--second-main-color)
+      }
+
+      .animated-line__inner {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (min-width:560px){
+     
+    .item-wrapper{
+      width:45%;
+    }
+  }
 
    
 
-    @media (min-width:1024px){
-        .advantages{
-            padding-bottom:100px;
-        }
-        .advantages__body{
-            justify-content:center;
-        }
-        .advantages__item-wrapper{
-            width:23%;
-        }
+  @media (min-width:1024px){
+    .advantages{
+      padding-bottom:100px;
     }
-
-    @media (min-width:1440px){
-        .advantages__description{
-            font-size:18px;
-        }
-
-        .advantages__item-header{
-            font-size:21px;
-        }
-        .advantages__item-text{
-            font-size:14px;
-        }
+    .body{
+      justify-content:center;
     }
-
-    @media (min-width:1920px){
-        .advantages__item-header{
-            font-size:25px;
-        }
-        .advantages__item-text{
-            font-size:16px;
-        }
+    .item-wrapper{
+      width:31%;
     }
+  }
+
+  @media (min-width:1440px){
+    .item-name{
+      font-size:21px;
+    }
+  }
+
+  @media (min-width:1920px){
+    .item-name{
+      font-size:25px;
+    }
+  }
 </style>
