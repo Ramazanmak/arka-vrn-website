@@ -13,9 +13,9 @@ const fences = {
             cardType:"short",
             items:[
                 {
-                    name:"Неаполь",
-                    folderName:"naples",
-                    folderPath:"/catalogue/fences/naples/",
+                    name:"Неаполь (верхняя панель)",
+                    folderName:"naples-top",
+                    folderPath:"/catalogue/fences/naples-top/",
                     description:[],
                     sizes:{
                         "default":{
@@ -23,8 +23,8 @@ const fences = {
                         }
                     },
                     cost: {
-                        "naples-smooth-gray": 1000,
-                        "naples-smooth-coloured": 1000,
+                        "naples-top-smooth-gray": 1000,
+                        "naples-top-smooth-coloured": 1000,
                     },
                     choosable:{
                         types:{},
@@ -35,16 +35,16 @@ const fences = {
                     },
                     colorable:true,
                     colors:{
-                        "naples-smooth":{
+                        "naples-top-smooth":{
                             "gray":"Не окрашеный",
                             "coloured":"Окрашеный в ваш цвет",
                         }
                     },
                 },
                 {
-                    name:"Флоренция",
-                    folderName:"florence",
-                    folderPath:"/catalogue/fences/florence/",
+                    name:"Неаполь (средняя панель)",
+                    folderName:"naples-mid",
+                    folderPath:"/catalogue/fences/naples-mid/",
                     description:[],
                     sizes:{
                         "default":{
@@ -52,8 +52,8 @@ const fences = {
                         }
                     },
                     cost: {
-                        "florence-smooth-gray": 1000,
-                        "florence-smooth-coloured": 1000,
+                        "naples-mid-smooth-gray": 1000,
+                        "naples-mid-smooth-coloured": 1000,
                     },
                     choosable:{
                         types:{},
@@ -64,7 +64,94 @@ const fences = {
                     },
                     colorable:true,
                     colors:{
-                        "florence-smooth":{
+                        "naples-mid-smooth":{
+                            "gray":"Не окрашеный",
+                            "coloured":"Окрашеный в ваш цвет",
+                        }
+                    },
+                },
+                {
+                    name:"Флоренция (верхняя панель)",
+                    folderName:"florence-top",
+                    folderPath:"/catalogue/fences/florence-top/",
+                    description:[],
+                    sizes:{
+                        "default":{
+                            length:200,
+                        }
+                    },
+                    cost: {
+                        "florence-top-smooth-gray": 1000,
+                        "florence-top-smooth-coloured": 1000,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                          "smooth": "Гладкий бетон"
+                        },
+                    },
+                    colorable:true,
+                    colors:{
+                        "florence-top-smooth":{
+                            "gray":"Не окрашеный",
+                            "coloured":"Окрашеный в ваш цвет",
+                        }
+                    },
+                },
+                {
+                    name:"Флоренция (средняя панель)",
+                    folderName:"florence-mid",
+                    folderPath:"/catalogue/fences/florence-mid/",
+                    description:[],
+                    sizes:{
+                        "default":{
+                            length:200,
+                        }
+                    },
+                    cost: {
+                        "florence-mid-smooth-gray": 1000,
+                        "florence-mid-smooth-coloured": 1000,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                          "smooth": "Гладкий бетон"
+                        },
+                    },
+                    colorable:true,
+                    colors:{
+                        "florence-mid-smooth":{
+                            "gray":"Не окрашеный",
+                            "coloured":"Окрашеный в ваш цвет",
+                        }
+                    },
+                },
+                {
+                    name:'Панель "Кирпич"',
+                    folderName:"brick-panel",
+                    folderPath:"/catalogue/fences/brick-panel/",
+                    description:[],
+                    sizes:{
+                        "default":{
+                            length:200,
+                        }
+                    },
+                    cost: {
+                        "brick-panel-smooth-gray": 1000,
+                        "brick-panel-smooth-coloured": 1000,
+                    },
+                    choosable:{
+                        types:{},
+                        woods:{},
+                        materials:{
+                          "smooth": "Гладкий бетон"
+                        },
+                    },
+                    colorable:true,
+                    colors:{
+                        "brick-panel-smooth":{
                             "gray":"Не окрашеный",
                             "coloured":"Окрашеный в ваш цвет",
                         }

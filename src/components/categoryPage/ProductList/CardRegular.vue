@@ -117,7 +117,7 @@ function calcMinimalCost(item){
     .subcategory-item-header{
         padding:5px 0 20px 0;
         height:2em;
-        margin:0;
+        margin:0 0 1em;
         font-size:20px;
         font-weight:600;
         color:var(--contacts-bg-color) ;
