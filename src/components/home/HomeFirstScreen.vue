@@ -70,7 +70,7 @@ onUnmounted(() => {
 <style scoped>
     .hero {
       width: 100%;
-      height: 600px;
+      height: 650px;
       padding-top:var(--headerHeight);
       transition-duration: var(--duration);
       background-color: var(--main-bg-color);
