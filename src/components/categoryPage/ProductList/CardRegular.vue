@@ -34,6 +34,7 @@ function calcMinimalCost(item){
     <picture class="subcategory-item__image-first-layer">
         <source type="image/webp":srcset="itemProps.folderPath + itemProps.folderName + '.webp'"/>
         <img 
+            loading="lazy"
             :src="itemProps.folderPath + itemProps.folderName + '.png'" 
             class="subcategory-item__image"/>
     </picture>
@@ -54,7 +55,7 @@ function calcMinimalCost(item){
             </p>
 
             <button
-                :id="itemProps.folderName" 
+                :id="itemProps.folderName + '-basket'" 
                 class="subcategory-item__add-button"
                 @click.stop>
                 + 

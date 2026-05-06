@@ -252,32 +252,6 @@ function goToCategory(category){
     }
   }
 
-  @media(hover:none){
-    .catalogue__body-link:active {
-      transform: scale(105%);
-      border-color: var(--second-main-color);
-      box-shadow: 0 0 10px 1px var(--second-main-color);
-
-      
-      .catalogue__image {
-        transform: scale(108%);
-        transition-duration: 500ms;
-      }
-
-      .catalogue__more-wrapper{
-        opacity: 100%;
-        transform: rotate(-135deg);
-      }
-      
-      .catalogue__caption {
-        color:var(--second-main-color);
-      }
-
-      .animated-line__inner {
-        width: 100%;
-      }
-    }
-  }
 
   
   @media (min-width:560px){

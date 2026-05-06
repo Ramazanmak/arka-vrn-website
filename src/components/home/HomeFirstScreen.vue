@@ -44,8 +44,8 @@ onUnmounted(() => {
         </div>
         <div class="hero-link-wrapper">
           <a class="hero-link"
-            href="#catalogue">
-            К продукции
+            href="#advantages">
+            Преимущества
           </a>
           <a class="hero-link"
             target="_blank"

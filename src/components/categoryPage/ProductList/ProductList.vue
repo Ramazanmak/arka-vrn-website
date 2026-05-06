@@ -2,10 +2,14 @@
 import CardRegular from './CardRegular.vue';
 import CardExtended from './CardExtended.vue';
 import CategoryDescription from './CategoryDescription.vue';
+import { catalogue } from '../../../data/catalogue';
 import tippy from 'tippy.js'
 import 'tippy.js/dist/tippy.css';
 
-import {ref, computed, onBeforeUnmount, onMounted} from 'vue'
+import {ref, computed, onBeforeUnmount, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+
 
 const props = defineProps({
     categoryObject:{
@@ -19,8 +23,9 @@ const props = defineProps({
     }
 })
 
+
 const chosenItem = ref();
-const chosenSubcategoryName = ref("")
+const chosenSubcategory = ref({})
 const isExtendedCardHidden = ref(false)
 
 const subcategories = props.categoryObject.subcategories;
@@ -31,34 +36,13 @@ const extendedCardWrapperClasses = computed(() => {
     }       
 })
 
+const router = useRouter();
+const route = useRoute();
+
 function chooseItem(item, subcategoryName){
-    chosenItem.value = item;
-    chosenSubcategoryName.value = subcategoryName;
-    isExtendedCardHidden.value = false;
-    toggleBodyScroll()
+    router.push(`/categories/${props.categoryObject.routeName}/${item.folderName}`, {params: true});
+    
 }
-
-function antichoose(){
-    chosenItem.value=undefined;
-    chosenSubcategoryName.value="";
-    isExtendedCardHidden.value = true;
-    toggleBodyScroll()
-}
-
-function toggleBodyScroll(){
-    const body = document.querySelector('body');
-    if (!isExtendedCardHidden.value){
-        body.style.overflow = 'hidden'
-    } else {
-        body.style.overflow = 'auto'
-    }
-
-}
-
-onBeforeUnmount(()=>{
-    const body = document.querySelector('body');
-    body.style.overflow = 'auto'
-})
 
 onMounted(()=>{
     const buttons = Array.from(document.getElementsByClassName('subcategory-item__add-button'))
@@ -72,6 +56,13 @@ onMounted(()=>{
         })
     })
 })
+
+function filterData(subcategory){
+  const res = catalogue.filter((el) => (el.subcategory == subcategory));
+  
+  return res
+}
+
 
 </script>
 
@@ -99,12 +90,11 @@ onMounted(()=>{
                         class="subcategory__list-regular" 
                         v-if="subcategory.cardType === 'short'"
                     >
-                        
                         <article
                             class="subcategory-item"
-                            v-for="item in subcategory.items"
+                            v-for="item in filterData(subcategory.id)"
                             @click="chooseItem(item, subcategory.name)"
-
+                            :id="item.folderName"
                             >
                             <CardRegular 
                                 :itemProps="item" 
@@ -132,37 +122,7 @@ onMounted(()=>{
                     </div>
                 </div>
 
-                <div :class="[
-                        'subcategory__extended-card-wrapper',
-                        extendedCardWrapperClasses
-                        ]"
-                        v-if="chosenSubcategoryName !== ''"
-                        @click="antichoose"
-                        @scroll.stop
-                    >
-                    <div class="subcategory__extended-card">
-                        <div 
-                            class="subcategory__extended-inner-wrapper"
-                            @click.stop>
-                            <CardExtended
-                                :itemProps="chosenItem"
-                                :subcategory="chosenSubcategoryName"
-                                
-                            />
-                        </div>
-                        <picture 
-                            class="subcategory__extended-card-close"
-                            @click.prevent = "antichoose">
-                            <source type="img/svg" src="/general/close_btn.svg">
-                            <source type="img/png" src="/general/close_btn.png">
-                            <img 
-                                class="subcategory__extended-card-close-image" 
-                                src="/general/close_btn.png" 
-                                alt="Закрыть">
-                        </picture>
-                    </div>
-
-                </div>
+                
             </div>
 
         </div>

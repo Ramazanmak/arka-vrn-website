@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family:"Roboto", serif;
 }
 html{
     font-size:18px;
@@ -16,7 +17,7 @@ body{
     --second-main-color:rgb(233, 99, 17);
     --contacts-bg-color:#292929;
     --main-bg-color:#efefef;
-    --global-500: #e9e8eb;
+    --global-500: #f0f0f1;
     --global-600: #a1a1a1;
     --global-700: #7d7d7d;
     --side-padding:4vw;
