@@ -6,15 +6,66 @@
   import { namesOfProps, allChoosableProps, unitsOfProps} from '../../data/vocabulary'
   import ComFooter from '../common/ComFooter.vue';
   import tippy from 'tippy.js';
+  import { getProductSeo } from '../../seo';
+  import { useHead } from '@unhead/vue';
 
+  
   const route = useRoute();
   const router = useRouter();
+
+  const data = ref(catalogue.find(el => el.id === route.params.slug));
+
+  // SEO optimization
+
+  useHead(() => {
+    if (!data.value) {
+      return {
+        title: 'Товар не найден | АРКА',
+        meta: [
+          {
+            name: 'robots',
+            content: 'noindex',
+          },
+        ],
+      }
+    }
+
+    const seo = getProductSeo(data.value)
+
+    return {
+      title: seo.title,
+      meta: [
+        {
+          name: 'description',
+          content: seo.description,
+        },
+        {
+          property: 'og:title',
+          content: seo.title,
+        },
+        {
+          property: 'og:description',
+          content: seo.description,
+        },
+        {
+          property: 'og:url',
+          content: seo.canonical,
+        },
+      ],
+      link: [
+        {
+          rel: 'canonical',
+          href: seo.canonical,
+        },
+      ],
+    }
+  })
+
 
   function popRouter() {
     router.back();
   }
 
-  const data = ref(catalogue.find(el => el.id === route.params.slug));
 
   onMounted(()=>{
     tippy('[data-tippy-content]',{
@@ -147,6 +198,8 @@
     // console.log(colouredConfId.value);
     changeImageSource(colouredConfId.value);
   })
+
+
 
 </script>
 
@@ -320,16 +373,15 @@
 .image-wrapper {
   width: 100%;
   display: block;
-  padding: 1.5em 1em;
   
   border-radius: 1em;
-  border: 2px solid var(--second-main-color);
   .image {
+    border-radius: 0.9em;
     display: block;
     max-width: 80%;
+    max-height: 300px;
     aspect-ratio: initial;
-    max-height:220px;
-    margin: auto;
+    margin: 0;
   }
 
 }
@@ -503,7 +555,6 @@
         .image {
           display: block;
           max-width: 100%;
-          margin: auto;
         }
       }
     }

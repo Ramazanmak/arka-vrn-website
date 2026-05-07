@@ -5,7 +5,7 @@ import ComSocialMedia from './ComSocialMedia.vue';
 import { useRoute, useRouter} from 'vue-router'
 
 
-// реализация скролла до нужного элемента!
+// scrolling to a chosen element
 
 const router = useRouter();
 const route = useRoute();
@@ -28,15 +28,15 @@ function scrollTo(id){
     <header v-bind="$attrs">
       <nav>
         <div class="nav-list">
-          <a  @click="scrollTo('about')" class="nav__button" > О нас </a>
-          <a @click="scrollTo('catalogue')" class="nav__button"> Каталог </a>
-          <a @click="scrollTo('contacts')" class="nav__button"> Контакты </a>
+          <RouterLink :to="`/#about`" @click="scrollTo('about')" class="nav__button" > О нас </RouterLink>
+          <RouterLink :to="`/#catalogue`" @click="scrollTo('catalogue')" class="nav__button"> Каталог </RouterLink>
+          <RouterLink :to="`/#contacts`" @click="scrollTo('contacts')" class="nav__button"> Контакты </RouterLink>
         </div>
       </nav>
   
-      <router-link to="/" class="logo">
+      <RouterLink to="/" class="logo">
         <img class="logo__img" src="/general/new_logo_dark_v3.png" alt="Логотип"/>
-      </router-link>  
+      </RouterLink>  
   
       <div class="social-media">
         <ComSocialMedia></ComSocialMedia>
@@ -44,9 +44,9 @@ function scrollTo(id){
       </div>
       <aside class="aside-nav aside-nav_hidden" @mousedown.prevent>
         <nav class="nav-list-mobile">
-          <a @mousedown.stop="[scrollTo('about')]" class="aside-nav__link"  > О нас </a>
-          <a @mousedown.stop="[scrollTo('catalogue')]" class="aside-nav__link"> Каталог </a>
-          <a @mousedown.stop="[scrollTo('contacts')]" class="aside-nav__link"> Контакты </a>
+          <RouterLink :to="`/#about`" @mousedown.stop="[scrollTo('about')]" class="aside-nav__link"  > О нас </RouterLink>
+          <RouterLink  :to="`/#catalogue`" @mousedown.stop="[scrollTo('catalogue')]" class="aside-nav__link"> Каталог </RouterLink>
+          <RouterLink  :to="`/#contacts`" @mousedown.stop="[scrollTo('contacts')]" class="aside-nav__link"> Контакты </RouterLink>
         </nav>
 
         <div class="social-media-mobile">

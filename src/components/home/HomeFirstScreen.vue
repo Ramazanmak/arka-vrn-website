@@ -251,7 +251,7 @@ onUnmounted(() => {
 
     @media (min-width: 1920px) {
       .hero-link { 
-        width:250px;
+        width:350px;
       }
       .hero {
         height:920px;
@@ -261,7 +261,7 @@ onUnmounted(() => {
      @media (min-width: 2560px) {
       .hero-link {
         font-size: 1.3em;
-        width:350px;
+        width:500px;
       }
       .hero {
         height:1200px;

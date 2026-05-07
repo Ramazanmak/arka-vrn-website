@@ -68,7 +68,7 @@ const catalogueFull = [
     {
       id:"antiparkings",
       name:"Антипарковочные элементы",
-      routeName:"antiparking",
+      routeName:"antiparkings",
       empty:false,
       bgImage:"/general/catalogue/antiparkings.png",
       description:'/catalogue/antiparkings/antiparkings-description/antiparkings.md',

@@ -215,15 +215,4 @@ const advants = ref(advantages);
     }
   }
 
-  @media (min-width:1440px){
-    .item-name{
-      font-size:21px;
-    }
-  }
-
-  @media (min-width:1920px){
-    .item-name{
-      font-size:25px;
-    }
-  }
 </style>

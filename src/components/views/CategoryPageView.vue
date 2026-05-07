@@ -1,6 +1,8 @@
 <script setup>
-
+import { getCategorySeo } from "../../seo";
+import { useHead } from "@unhead/vue";
 import {useRoute, useRouter} from "vue-router";
+import { ref } from "vue";
 
 import ComHeader from '../common/ComHeader/ComHeader.vue';
 import ComFooter from '../common/ComFooter.vue';
@@ -11,11 +13,57 @@ import { catalogueFull } from '../../data/categories';
 
 const route = useRoute();
 const router = useRouter();
-const data = catalogueFull.find(el => el.routeName == route.params.categoryName);
+const data = ref(catalogueFull.find(el => el.routeName == route.params.categoryName));
 
 function popRouter() {
   router.back();
 }
+
+// SEO optimization
+
+useHead(() => {
+  if (!data.value) {
+    return {
+      title: 'Страница не найдена | АРКА',
+      meta: [
+        {
+          name: 'robots',
+          content: 'noindex',
+        },
+      ],
+    }
+  }
+
+  const seo = getCategorySeo(data.value)
+
+  return {
+    title: seo.title,
+    meta: [
+      {
+        name: 'description',
+        content: seo.description,
+      },
+      {
+        property: 'og:title',
+        content: seo.title,
+      },
+      {
+        property: 'og:description',
+        content: seo.description,
+      },
+      {
+        property: 'og:url',
+        content: seo.canonical,
+      },
+    ],
+    link: [
+      {
+        rel: 'canonical',
+        href: seo.canonical,
+      },
+    ],
+  }
+})
 
 </script>
 

@@ -6,8 +6,7 @@ import { catalogue } from '../../../data/catalogue';
 import tippy from 'tippy.js'
 import 'tippy.js/dist/tippy.css';
 
-import {ref, computed, onBeforeUnmount, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import {ref, computed, onMounted } from 'vue';
 
 
 
@@ -29,20 +28,7 @@ const chosenSubcategory = ref({})
 const isExtendedCardHidden = ref(false)
 
 const subcategories = props.categoryObject.subcategories;
-const extendedCardWrapperClasses = computed(() => {
-    return {
-        'subcategory__extended-card-wrapper_hidden':isExtendedCardHidden.value,
-        'subcategory__extended-card-wrapper_visible':!isExtendedCardHidden.value
-    }       
-})
 
-const router = useRouter();
-const route = useRoute();
-
-function chooseItem(item, subcategoryName){
-    router.push(`/categories/${props.categoryObject.routeName}/${item.folderName}`, {params: true});
-    
-}
 
 onMounted(()=>{
     const buttons = Array.from(document.getElementsByClassName('subcategory-item__add-button'))
@@ -59,7 +45,6 @@ onMounted(()=>{
 
 function filterData(subcategory){
   const res = catalogue.filter((el) => (el.subcategory == subcategory));
-  
   return res
 }
 
@@ -90,41 +75,20 @@ function filterData(subcategory){
                         class="subcategory__list-regular" 
                         v-if="subcategory.cardType === 'short'"
                     >
-                        <article
+                        <RouterLink
                             class="subcategory-item"
                             v-for="item in filterData(subcategory.id)"
-                            @click="chooseItem(item, subcategory.name)"
+                            :to="`/categories/${item.subcategory}/${item.id}`"
                             :id="item.folderName"
                             >
                             <CardRegular 
                                 :itemProps="item" 
                                 :subcategory="subcategory.name"
                             />
-                        </article>
-
-                        
-                    </div>
-                    <!-- Если требуются длинные карточки сразу -->
-                    <div 
-                        class="subcategory__list-extended"
-                        v-else-if="subcategory.cardType === 'extended'"
-                    >
-                        <article
-                            class="subcategory-item-extended"
-                            v-for="item in subcategory.items"
-                        >
-                            <CardExtended 
-                                :itemProps="item" 
-                                :subcategory="subcategory.name"/>
-                        </article>
-
-                        
+                        </RouterLink>
                     </div>
                 </div>
-
-                
             </div>
-
         </div>
 
         <CategoryDescription 
@@ -168,6 +132,8 @@ function filterData(subcategory){
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        text-decoration: none;
+        color:inherit;
     }
 
     .subcategory-item-extended{

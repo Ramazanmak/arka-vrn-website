@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from 'vue'
-import {useRouter, useRoute} from 'vue-router'
+import {useRouter, useRoute, RouterLink} from 'vue-router'
 
 const catalogueItems = ref([
   {
@@ -31,7 +31,7 @@ const catalogueItems = ref([
   {
     id:4,
     name:"Антипарковочные элементы",
-    routeName:"antiparking",
+    routeName:"antiparkings",
     description: "Полусферы и столбики для организации парковочного пространства",
     src1:"/general/catalogue/antiparkings.webp",
     src2:"/general/catalogue/antiparkings.png"
@@ -65,10 +65,6 @@ const catalogueItems = ref([
 
 const router = useRouter();
 const route = useRoute()
-
-function goToCategory(category){
-  router.push(`/categories/${category}`)
-}
 </script>
 
 <template>
@@ -76,10 +72,10 @@ function goToCategory(category){
     <h2 class="catalogue__header"> Наша продукция </h2>
     
     <div class="catalogue__body">
-      <a
+      <RouterLink
         class="catalogue__body-link" 
         v-for="category in catalogueItems" 
-        @click.stop="goToCategory(category.routeName)"
+        :to="`/categories/${category.routeName}`"
       >
         <picture class="catalogue__image-block">
           <source type="image/webp" :srcset="category.src1">
@@ -98,7 +94,7 @@ function goToCategory(category){
           <img class="catalogue__more-logo" style="color:white; fill:white" src="/general/catalogue/long-arrow.svg" alt="more">
           </img>
         </div>
-      </a>
+      </RouterLink>
     </div>
   </section>
 </template>
@@ -283,9 +279,5 @@ function goToCategory(category){
     }
   }
 
-  @media (min-width:1920px){
-    .catalogue__caption{
-      font-size:18px;
-    }
-  }
+
 </style>
