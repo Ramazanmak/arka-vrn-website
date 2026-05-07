@@ -49,8 +49,8 @@ onUnmounted(() => {
           </a>
           <a class="hero-link"
             target="_blank"
-            href="https://arka-vrn.ru/Checklist_MAF_hidden_risks.pdf"
-            download="Checklist_MAF_hidden_risks.pdf">
+            href="https://arka-vrn.ru/catalogue-brochure.pdf"
+            download="catalogue-brochure.pdf">
             Скачать каталог
           </a>
         </div>
