@@ -1,5 +1,6 @@
 <script setup>
   import ComHeader from '../common/ComHeader/ComHeader.vue';
+  import BackButton from '../common/BackButton.vue';
   import {reactive, ref, computed, watchEffect, onMounted, watch} from 'vue'
   import {useRoute, useRouter} from 'vue-router';
   import { catalogue } from '../../data/catalogue';
@@ -60,11 +61,6 @@
       ],
     }
   })
-
-
-  function popRouter() {
-    router.back();
-  }
 
 
   onMounted(()=>{
@@ -206,15 +202,10 @@
 <template>
   <ComHeader></ComHeader>
   <div class="wrapper">
-    <div class="top-layer">
-      <button class="back-button" @click="popRouter()">
-        <img class="back-arrow" style="color:white; fill:white" src="/general/catalogue/long-arrow.svg" alt="more">
-        </img> 
-      </button>
-    </div>
+    <BackButton/>
     <div class="meta-info">
-      <h2 class="name"> {{ data.name }}</h2>
-      <h3 class="subcategory"> Категория: <span class="highlighted">{{ data.subcategoryName }}</span></h3>
+      <h1 class="name"> {{ data.name }}</h1>
+      <h2 class="subcategory"> Категория: <span class="highlighted">{{ data.subcategoryName }}</span></h2>
     </div>
 
     <div class="main-info">
@@ -242,7 +233,7 @@
         <div class="parameters">
           <!-- Sizes-->
           <section class="parameter-section">
-            <h2 class="parameter-name">Габариты</h2>
+            <h3 class="parameter-name">Габариты</h3>
             <div class="parameter-values-list">
               <span v-for="(sizeValue, sizeName) of data.sizes[uncolouredConfId] || data.sizes['default']"> {{namesOfProps[sizeName]}}: {{sizeValue + ' ' + unitsOfProps[sizeName] + ';' }} </span>
             </div>
@@ -251,7 +242,7 @@
           <template v-for="(parValue, parName) of data.choosable">
             <section class="parameter-section"  v-if="Object.keys(data.choosable[parName]).length > 0">
   
-              <h2 class="parameter-name"> {{ namesOfProps[parName] }}</h2>
+              <h3 class="parameter-name"> {{ namesOfProps[parName] }}</h3>
               <ul
                 class="parameter-values-list"
                 v-if="Object.keys(parValue).length > 0"
@@ -271,7 +262,7 @@
   
           <transition>
             <section class="parameter-section" :class="{'parameter-section_hidden' : !isColorAllowed}" v-if="isColorAllowed">
-              <h2 class="parameter-name"> Цвет</h2>
+              <h3 class="parameter-name"> Цвет</h3>
               <ul class="parameter-values-list">
                 <li
                   class="parameter-value"
@@ -330,24 +321,7 @@
 }
 
 
-.back-button{
-  position: fixed;
-  border-radius: 100%;
-  border: none;
-  width: var(--headerHeight);
-  aspect-ratio: 1;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  background-color: transparent;
 
-  .back-arrow {
-    display: block;
-    margin: auto;
-    height: 50%;
-    transform: rotate(90deg)
-  }
-}
 
 .meta-info{
   padding-top: 0.5em;
@@ -559,12 +533,7 @@
       }
     }
   }
-  .back-button {
-    top: 13vh;
-    left: 4vh;
-    width: 3em;
-    background-color: var(--contacts-bg-color);
-  }
+  
 }
 
 

@@ -1,7 +1,8 @@
 <script setup>
 import { getCategorySeo } from "../../seo";
 import { useHead } from "@unhead/vue";
-import {useRoute, useRouter} from "vue-router";
+import {useRoute} from "vue-router";
+import BackButton from "../common/BackButton.vue";
 import { ref } from "vue";
 
 import ComHeader from '../common/ComHeader/ComHeader.vue';
@@ -12,12 +13,8 @@ import { catalogueFull } from '../../data/categories';
 
 
 const route = useRoute();
-const router = useRouter();
 const data = ref(catalogueFull.find(el => el.routeName == route.params.categoryName));
 
-function popRouter() {
-  router.back();
-}
 
 // SEO optimization
 
@@ -68,12 +65,7 @@ useHead(() => {
 </script>
 
 <template>
-    <div class="top-layer">
-      <button class="back-button" @click="popRouter()">
-        <img class="back-arrow" style="color:white; fill:white" src="/general/catalogue/long-arrow.svg" alt="more">
-        </img> 
-      </button>
-    </div>
+    <BackButton/>
     <ComHeader></ComHeader>
     <ProductList :category-object="data"/>
     <CatPageTouchUs /> 
@@ -81,33 +73,4 @@ useHead(() => {
 </template>
 
 <style scoped>
-
-.back-button{
-  position: fixed;
-  border-radius: 100%;
-  border: none;
-  width: var(--headerHeight);
-  aspect-ratio: 1;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  background-color: transparent;
-
-  .back-arrow {
-    display: block;
-    margin: auto;
-    height: 50%;
-    transform: rotate(90deg)
-  }
-}
-
-@media (min-width: 768px) {
-  .back-button {
-    top: 13vh;
-    left: 4vh;
-    width: 3em;
-    background-color: var(--contacts-bg-color);
-  }
-}
-
 </style>

@@ -19,8 +19,8 @@ export function getHomeSeo() {
 
 export function getCategorySeo(category) {
   return {
-    title: `${category.name} в Воронеже - купить от производителя | ARKA`,
-    description: `${category.name} для благоустройства территорий. Производство в Воронеже, доставка по области, работа с юрлицами, ИП, УК, ТСЖ и застройщиками.`,
+    title: category.seoTitle || `${category.name} в Воронеже - купить от производителя | ARKA`,
+    description: category.seoDescription || `${category.name} для благоустройства территорий. Производство в Воронеже, доставка по области, работа с юрлицами, ИП, УК, ТСЖ и застройщиками.`,
     canonical: getCanonical(`categories/${category.routeName}`),
   }
 }
@@ -34,3 +34,4 @@ export function getProductSeo(product) {
 
   }
 }
+

@@ -52,11 +52,21 @@ function filterData(subcategory){
 </script>
 
 <template>
-    <section class="category-wrapper" @keydown.escape="antichoose">
-        
-        <h2 v-if="props.categoryObject.empty"> 
-            {{ props.categoryObject.description }}
-        </h2>
+  <section class="category-wrapper">
+
+      <h1 class="category-header">
+        {{ props.categoryObject.name }}
+      </h1>
+      
+      <CategoryDescription 
+          :description="props.categoryObject.description" 
+          :routeName="categoryObject.routeName"
+      />
+
+      <h2 v-if="props.categoryObject.empty"> 
+        {{ props.categoryObject.description }}
+      </h2>
+      
     
         <div v-else class="content-wrapper">
             <div id="category" class="category">
@@ -64,11 +74,11 @@ function filterData(subcategory){
                     v-for="subcategory in subcategories" 
                     class="subcategory"
                 >
-                    <h3  
+                    <h2  
                         class="subcategory-name"
                     >
                      {{ subcategory.name }}
-                    </h3>
+                    </h2>
 
                     <!-- Если требуются короткие карточки -->
                     <div 
@@ -78,7 +88,7 @@ function filterData(subcategory){
                         <RouterLink
                             class="subcategory-item"
                             v-for="item in filterData(subcategory.id)"
-                            :to="`/categories/${item.subcategory}/${item.id}`"
+                            :to="`/categories/${item.category}/${item.id}`"
                             :id="item.folderName"
                             >
                             <CardRegular 
@@ -90,17 +100,20 @@ function filterData(subcategory){
                 </div>
             </div>
         </div>
-
-        <CategoryDescription 
-            :description="props.categoryObject.description" 
-            :routeName="categoryObject.routeName"
-        />
     </section>
 </template>
 
 <style scoped>
 
     /* GENERAL */
+
+    .category-header {
+      padding:20px 0;
+      color:var(--сontacts-bg-color);
+      font-size:2em;
+      font-weight:var(--h2-font-weight);
+      text-align: center;
+    }
 
     .category-wrapper{
         background-color: var(--main-bg-color);
@@ -154,7 +167,7 @@ function filterData(subcategory){
         border-top:2px solid var(--contacts-bg-color);
         border-bottom:2px solid var(--contacts-bg-color);
     }
-    .subcategory-item:hover  h3{
+    .subcategory-item:hover  h2{
         color:var(--second-main-color);
 
     }

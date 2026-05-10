@@ -15,6 +15,7 @@ body{
     margin:0;
     --main-font-family:"Roboto", serif;
     --second-main-color:rgb(233, 99, 17);
+    --second-main-color-pale: rgb(255, 150, 85);
     --contacts-bg-color:#292929;
     --main-bg-color:#efefef;
     --global-500: #f0f0f1;

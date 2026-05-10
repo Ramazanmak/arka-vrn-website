@@ -7,16 +7,15 @@ export function getStaticRoutes() {
 
   const categoryRoutes = catalogueFull
     .filter((category) => !category.empty)
-    .map((category) => `/categories/${category.routeName}`);
+    .map((category) => `/categories/${category.routeName}/`);
 
   const productRoutes = catalogue.map((product) => {
     return `/categories/${product.category}/${product.id}`;
   })
-
+  
   return [
     '/',
     ...categoryRoutes,
     ...productRoutes,
   ]
 }
-

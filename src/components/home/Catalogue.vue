@@ -47,14 +47,14 @@ const catalogueItems = ref([
   {
     id:6,
     name:"Бетонные блоки и крышки",
-    routeName:"concrete-blocks",
+    routeName:"blocks",
     description: "Надёжные решения для благоустройства и строительства",
-    src1:"/general/catalogue/concrete-blocks.webp",
-    src2:"/general/catalogue/concrete-blocks.png"
+    src1:"/general/catalogue/blocks.webp",
+    src2:"/general/catalogue/blocks.png"
   },
   {
     id:7,
-    name:"Заборы",
+    name:"Еврозаборы",
     routeName:"fences",
     description: "Надёжные решения для ограждения придомовых участков",
     src1:"/general/catalogue/fences.webp",

@@ -8,6 +8,8 @@ const catalogueFull = [
       empty:false,
       bgImage:"/general/catalogue/vases.png",
       description:'/catalogue/vases/vases-description/vases.md',
+      seoTitle: "Вазоны в Воронеже - купить у производителя!",
+      seoDescription: "Бетонные и комбинированные вазоны с доставкой по Воронежской и соседним областям. Широкий ассортимент вазонов для решения различных задач благоустройства. Наши вазоны украсят любое пространство. Большая вариативность и быстрое производство. Работаем с муниципалитетами, физлицами, юрлицами, ИП, УК, ТСЖ и застройщиками.",
       subcategories:[
         {
           id: "concreteVases",
@@ -31,6 +33,8 @@ const catalogueFull = [
       empty:false,
       bgImage:"/general/catalogue/benches.png",
       description:'/catalogue/benches/benches-description/benches.md',
+      seoTitle: "Парковые диваны и скамейки в Воронеже - купить у производителя!",
+      seoDescription: "Удобные, функциональные и надёжные парковые диваны для оформления зон отдыха, парков и придомовых территорий. Широкий ассортимент продукции позволит подобрать решение, подходящее именно вам! Есть возможность создания индивидуальных решений под ваши нужды. Работаем с муниципалитетами, физлицами, юрлицами, ИП, УК, ТСЖ и застройщиками. ",
       subcategories:[
         {
           id: "parkSofas",
@@ -55,10 +59,12 @@ const catalogueFull = [
       empty:false,
       bgImage:"/general/catalogue/bins.png",
       description:'/catalogue/bins/bins-description/bins.md',
+      seoTitle: "Урны бетонные в Воронеже - купить у производителя!",
+      seoDescription: "Удобные, функциональные и надёжные урны для поддержания чистоты общественных пространств и придомовых территорий. Поможем подобрать решения, подходящие под ваши задумки и потребности. Оформлять сбор мусора и отходов можно красиво! Работаем с муниципалитетами, физлицами, юрлицами, ИП, УК, ТСЖ и застройщиками.",
       subcategories:[
         {
           id: "bins", 
-          name:"Урны",
+          name:"Урны бетонные",
           message:"Временно не производим исполнения из мраморной крошки.",
           caution:[],
           cardType:"short",
@@ -72,6 +78,8 @@ const catalogueFull = [
       empty:false,
       bgImage:"/general/catalogue/antiparkings.png",
       description:'/catalogue/antiparkings/antiparkings-description/antiparkings.md',
+      seoTitle: "Антипарковочные элементы в Воронеже - купить у производителя!",
+      seoDescription: "Надёжные, долговечные и лаконичные элементы для ограничения парковочных пространств. Наш широкий ассортимент позволит подобрать красивое и функциональное решение для обеспечения безопасности и удобства общественных пространств и частных территорий. Работаем с муниципалитетами, физлицами, юрлицами, ИП, УК, ТСЖ и застройщиками.",
       subcategories:[
         {
           id: "antiparkingHemispheres",
@@ -96,6 +104,8 @@ const catalogueFull = [
       empty:false,
       bgImage:"/general/catalogue/platforms.png",
       description:'/catalogue/platforms/platforms-description/platforms.md',
+      seoTitle: "Мусорные площадки в Воронеже - купить у производителя!",
+      seoDescription: "Вместительные и удобные мусорные площадки для сбора мусора и отходов в жилых зонах. В наличии площадки открытого и закрытого типов. Наша компания имеет многолетний опыт установки и обслуживания мусорных площадок по всей Воронежской области и не только. Работаем с муниципалитетами, физлицами, юрлицами, ИП, УК, ТСЖ и застройщиками.",
       subcategories:[
         {
           id: "platforms",
@@ -109,10 +119,12 @@ const catalogueFull = [
     {
       id:"blocks",
       name:"Бетонные блоки и крышки",
-      routeName:"concrete-blocks",
+      routeName:"blocks",
       empty:false,
-      bgImage:"/general/catalogue/concrete-blocks.png",
+      bgImage:"/general/catalogue/blocks.png",
       description:'/catalogue/blocks/blocks-description/blocks.md',
+      seoTitle: "Бетонные блоки и крышки в Воронеже - купить у производителя!",
+      seoDescription: "Бетонные блоки и крышки для оформления придомовых, частных территорий и общественных пространств. Простота изготовления и надёжность товаров в широком ассортименте - наши отличительные черты. Мы поможем вам подобрать решения, подходящие под потребности вашего участка. Работаем с муниципалитетами, физлицами, юрлицами, ИП, УК, ТСЖ и застройщиками.",
       subcategories:[
         {
           id: "blocks",
@@ -125,15 +137,17 @@ const catalogueFull = [
     },
     {
       id:"fences",
-      name:"Бетонные заборы",
+      name:"Еврозаборы",
       routeName:"fences",
       empty:false,
       bgImage:"/general/catalogue/fences.png",
       description:'/catalogue/fences/fences-description/fences.md',
+      seoTitle: "Еврозаборы в Воронеже - купить у производителя!",
+      seoDescription: "Модульные и надёжные еврозаборы для ограждения участков любой формы и площади. Широкий ассортимент и модульная конструкция позволяют создать забор, подходящий именно вам. Надёжность и скорость изготовления позволяют возвести крепкий забор в кратчайшие сроки. Работаем с муниципалитетами, физлицами, юрлицами, ИП, УК, ТСЖ и застройщиками.",
       subcategories:[
         {
           id: "concreteFences",
-          name:"Бетонные заборы",
+          name:"Еврозаборы",
           message:"Исполняются в вариантах из мытого и гладкого бетона. Доступна покраска гладкого бетона в любой цвет.",
           caution:"Временно не производим исполнения из мраморной крошки.",
           cardType:"short",

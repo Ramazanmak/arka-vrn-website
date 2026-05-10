@@ -47,9 +47,6 @@ onMounted(() => {
 
     
     <div class="description">
-        <h2 class="description__header">
-            Описание
-        </h2>
         <div class="description__text">
             <template v-if="routeName==='platforms'">
                 <div class="description__extra">
@@ -86,14 +83,6 @@ onMounted(() => {
 <style scoped>
     .description{
         padding:0px 0px 20px;
-    }
-    
-    .description__header{
-        padding:20px 0;
-        color:var(--second-main-color);
-        font-size:var(--h2-font-size);
-        font-weight:var(--h2-font-weight);
-        text-align: center;
     }
     
     .description__text{
@@ -141,7 +130,7 @@ onMounted(() => {
             border-radius: 20px;
         }
         .description{
-            padding:50px 0 40px;
+            padding:0 0 40px;
         }
         .description__extra{
             padding: 0;

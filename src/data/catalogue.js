@@ -519,13 +519,13 @@ const catalogue = [
         "id": "barrel",
         "category": "vases",
         "categoryName": "Вазоны",
-        "subcategory": "metalVases",
-        "subcategoryName": "Вазоны металлические",
+        "subcategory": "concreteVases",
+        "subcategoryName": "Вазоны бетонные",
         "photos": {
-            "barrel-metal-mahogany":{
+            "barrel-smooth":{
               "types": "",
-              "woods": "mahogany",
-              "materials": "metal",
+              "woods": "",
+              "materials": "smooth",
               "colors": ""
             }
         },
@@ -541,17 +541,12 @@ const catalogue = [
             }
         },
         "cost": {
-            "barrel-metal-rosewood": 10000,
-            "barrel-metal-mahogany": 10000
+            "barrel-smooth": 10000,
         },
         "colorable": false,
         "choosable": {
-            "woods": {
-              "rosewood": "Палисандр",
-              "mahogany": "Махагон"
-            },
             "materials": {
-                "metal": "Металл"
+                "smooth": "Гладкий бетон"
             }
         },
         "colors": {}
@@ -560,13 +555,13 @@ const catalogue = [
         "id": "barrel-big",
         "category": "vases",
         "categoryName": "Вазоны",
-        "subcategory": "metalVases",
-        "subcategoryName": "Вазоны металлические",
+        "subcategory": "concreteVases",
+        "subcategoryName": "Вазоны бетонные",
         "photos": {
-            "barrel-big-metal-mahogany":{
+            "barrel-big-smooth":{
               "types": "",
-              "woods": "mahogany",
-              "materials": "metal",
+              "woods": "",
+              "materials": "smooth",
               "colors": ""
             }
         },
@@ -582,17 +577,12 @@ const catalogue = [
             }
         },
         "cost": {
-            "barrel-big-metal-rosewood": 15000,
-            "barrel-big-metal-mahogany": 15000
+            "barrel-big-smooth": 15000,
         },
         "colorable": false,
         "choosable": {
-            "woods": {
-              "rosewood": "Палисандр",
-              "mahogany": "Махагон"
-            },
             "materials": {
-                "metal": "Металл"
+                "smooth": "Гладкий бетон"
             }
         },
         "colors": {}
