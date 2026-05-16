@@ -7,7 +7,6 @@ import { ref } from "vue";
 
 import ComHeader from '../common/ComHeader/ComHeader.vue';
 import ComFooter from '../common/ComFooter.vue';
-import CatPageTouchUs from '../categoryPage/CatPageTouchUs.vue';
 import ProductList from '../categoryPage/ProductList/ProductList.vue';
 import { catalogueFull } from '../../data/categories';
 
@@ -68,7 +67,6 @@ useHead(() => {
     <BackButton/>
     <ComHeader></ComHeader>
     <ProductList :category-object="data"/>
-    <CatPageTouchUs /> 
     <ComFooter />
 </template>
 

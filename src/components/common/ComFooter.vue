@@ -4,100 +4,112 @@
 
 <template>
     <footer>
-        <div class="copyright-wrapper">
-            <div class="copyright">
-                <h2 class="footer__header">
-                    COPYRIGHT
-                </h2>
-                АРКА © 2025 все права защищены
-            </div>
-            <div class="privacy">
-                <p class="privacy__text">
-                    ИП Яшугин С.В. (arka-vrn.ru) 2020. Любое использование либо копирование материалов или подборки материалов сайта, элементов дизайна и оформления допускается с разрешения правообладателя и с указанием ссылки на источник arka-vrn.ru. Цены на товары и услуги, указанные на сайте, не являются публичной офертой.
-                </p>
-            </div>
+        <div class="footer-content">
+
+          <div class="sector-wrapper">
+            <h2 class="logo highlighted"> АРКА</h2>
+            <p class="slogan">
+              Производство бетонных изделий для благоустройства городских пространств
+            </p>
+          </div>
+
+          <div class="sector-wrapper">
+            <h2 class="contacts-header"> Контакты</h2>
+            <a class="contact-way" href="tel:+79036514678">
+              +7-903-651-46-78
+            </a>
+            <a class="contact-way" href="tel:+79003034943">
+              +7-900-303-49-43
+            </a>
+            <a class="contact-way" href="tel:+79284245759">
+              +7-928-424-57-59
+            </a>
+            <a class="contact-way" href="mailto:arka.zabor@yandex.ru"> arka.zabor@yandex.ru</a>
+            <span class="contact-way" > Воронежская обл., Новая Усмань, ул. Дорожная, 1-А/1</span>
+          </div>
+
+          <div class="sector-wrapper">
+            <h2 class="contacts-header"> Режим работы</h2>
+
+            <span class="contact-way" > Пн.—Пт.: 08:00 — 17:00</span>
+            <span class="contact-way" > Сб.—Вс.: Выходной</span>
+          </div>
+          
         </div>
+        <div class="copyright-wrapper">
+          <div class="copyright">
+            АРКА © 2026 все права защищены
+          </div>
+          <div class="privacy">
+            <p class="privacy__text">
+              ИП Яшугин С.В. (arka-vrn.ru) 2020. Любое использование либо копирование материалов или подборки материалов сайта, элементов дизайна и оформления допускается с разрешения правообладателя и с указанием ссылки на источник arka-vrn.ru. Цены на товары и услуги, указанные на сайте, не являются публичной офертой.
+            </p>
+        </div>
+      </div>
     </footer>
 
 </template>
 
 <style scoped>
-    footer{
-        background-color: #1f1f1f;
-        padding:20px var(--side-padding);
-        width:100%;
-        font-family: var(--main-font-family);
-        line-height: 1.5em;
-        box-sizing: border-box;
-    }
-    .footer__header{
-        color:#525252;
-        /* font-size:var(--h2-font-size); */
-        font-weight:var(--h2-font-weight);
-        margin:0;
-        padding-bottom:20px;
-    }
-    .copyright-wrapper{
-        padding-top:20px;
-        color:#818181;
-        font-weight:200;
-        font-size:10px
-    }
 
-    .privacy{
-        padding:30px 0 0;
-    }
+footer {
+  padding: 3em var(--side-padding);
+  color: var(--global-700);
+  font-size: 0.8em;
+  border-top: 1px solid var(--contacts-bg-color);
+  background-color: var(--global-500);
+}
 
-    @media(min-width:768px){
-        .copyright-wrapper{
-            display:flex;
-            flex-flow: row wrap;
-            justify-content:space-between;
-            align-items: center;
-            padding-top:70px;
-            padding-bottom:70px;
-        }
-        .privacy{
-            padding-top:0;
-            padding-left:70px;
-            margin:0;
-            width:55%;        
-            flex-grow: 1;
-        }
-        .copyright{
-            text-align: center;
-            width: 32%;
-            flex-grow: 0;
-            flex-shrink:1;
-        }
-        .privacy__text{
-            margin:0 auto;
-        }
-    }
+.footer-content {
+  display:flex;
+  flex-direction: column;
+  padding-bottom: 2em;
+  border-bottom: 1px solid var(--contacts-bg-color);
+  gap: 2em;
+  margin:0 auto 2em;
+  max-width: 1500px;
+}
 
-    @media (min-width:1600px){
-        footer{
-            padding:50px var(--side-padding);
-        }
-        .footer__header{
-            padding-bottom:40px;
-        }
-        .privacy__text, .copyright{
-            font-size:20px;
-            line-height:1.5em;
-        }
-        .copyright{
-            text-align:left;
-        }
-    }
+.sector-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
 
-    @media (min-width:2400px){
-        footer{
-            padding:100px var(--side-padding);
-        }
-        .privacy__text, .copyright{
-            font-size:23px;
-            line-height:1.5em;
-        }
-    }
+.logo {
+  font-size: 1.8em;
+  margin: 0 0 .5rem;
+}
+.slogan {
+  margin: 0;
+}
+
+.contacts-header {
+  font-size: 1.3em;
+  margin: 0 0 0.5em;
+}
+
+.contact-way{
+  font-weight:500;
+  color:var(--global-700);
+  text-decoration: none;
+  transition:var(--duration)
+}
+a.contact-way:hover{
+  color:var(--second-main-color)
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    display: grid;
+    grid-template-columns: 1fr 0.7fr 0.8fr;
+    gap: 5em;
+  }
+
+  .copyright-wrapper {
+    text-align: center;
+    max-width: 1500px;
+    margin: auto
+  }
+}
 </style>

@@ -141,7 +141,7 @@ onUnmounted(() => {
       margin: auto;
       padding: 0.3em 1em;
       width: 60%;
-      max-width: 400px;
+      max-width: 300px;
       font-size: 1em;
       text-align: center;
       border: 3px solid var(--second-main-color);
@@ -233,6 +233,7 @@ onUnmounted(() => {
 
       .promo-bg-text {
         font-size: 1.5em;
+        max-width: 400px;
       }
     }
  
@@ -244,6 +245,13 @@ onUnmounted(() => {
       .promo {
         height: 720px;
       }
+      .promo-bg-text {
+        max-width: 600px;
+      }
+      .promo-bg-control_arrow-container {
+        height:4em;
+      }
+
     }
 
 
@@ -253,6 +261,9 @@ onUnmounted(() => {
       }
       .promo {
         height:920px;
+      }
+      .promo-bg-control_arrow-container {
+        height:6em;
       }
     }
 

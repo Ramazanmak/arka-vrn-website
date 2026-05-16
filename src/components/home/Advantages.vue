@@ -36,11 +36,13 @@ const advants = ref(advantages);
 
 <style scoped>
   .advantages{
-    background-color: var(--global-500);
-    padding:50px var(--side-padding) 50px;
+    background-color: var(--main-bg-color);
+    padding: 0 var(--side-padding) 50px;
     font-family: var(--main-font-family);
     --h3-adv-font-size:calc((var(--h2-font-size)) - 7px)
     transition-duration: var(--duration);
+    max-width: 2000px;
+    margin: auto;
   }
 
   .advantages * {

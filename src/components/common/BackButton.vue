@@ -47,4 +47,15 @@ function popRouter() {
     background-color: var(--contacts-bg-color);
   }
 }
+@media (min-width: 1440px) {
+  .back-button {
+    width: 3.5em;
+  }
+}
+@media (min-width: 2040px) {
+  .back-button {
+    top: 9vh;
+    width: 7em;
+  }
+}
 </style>

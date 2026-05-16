@@ -101,10 +101,11 @@ const route = useRoute()
 
 <style scoped>
   .catalogue{
-    background-color: var(--main-bg-color);
     padding:70px var(--side-padding) 50px;
     font-family: var(--main-font-family);
     transition-duration: var(--duration);
+    max-width: 2000px;
+    margin: auto;
   }
 
   .catalogue * {
@@ -159,8 +160,7 @@ const route = useRoute()
     justify-content: space-between;
     gap: 1em;
   }
-  
- 
+
 
   .catalogue__image{
     display:block;
@@ -171,10 +171,12 @@ const route = useRoute()
   }
 
   .catalogue__card-bottom {
+    flex-grow: 1;
     min-height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 1em;
   }
   
   .catalogue__caption{
@@ -185,9 +187,9 @@ const route = useRoute()
   }
 
   .catalogue__card-description {
-    margin:0 0 1em;
     font-size: 0.8em;
     color: var(--global-700);
+    margin: 0;
   }
 
   .animated-line {

@@ -12,7 +12,7 @@ import { questions } from '../../data/questions';
     <div class="question-container">
       <div class="qa-item" v-for="item in questions" :key="item.id">
         <label class="question-wrapper"> 
-          <input type="checkbox" hidden aria-hidden>
+          <input type="checkbox" hidden>
           <span class="question-text"> {{ item.question }}</span>
           <div class="question-button"></div>
         </label>
@@ -32,7 +32,9 @@ import { questions } from '../../data/questions';
 
 .question-sector {
   padding: 0 var(--side-padding);
-  background-color: var(--main-bg-color);  
+  background-color: var(--main-bg-color);
+  max-width: 2000px;
+  margin: 0 auto 4em;  
 }
 
 .question-container {

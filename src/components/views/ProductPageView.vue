@@ -317,11 +317,9 @@
 
 .wrapper {
   padding: var(--headerHeight) var(--side-padding) 0;
-  margin: 0 0 4em
+  margin: 0 auto 4em;
+  max-width: 2000px;
 }
-
-
-
 
 .meta-info{
   padding-top: 0.5em;

@@ -23,6 +23,7 @@ import ContactUsText from './ContactUsText.vue';
         width:100%;
         font-family: var(--main-font-family);
         line-height: 1.5em;
+        margin-bottom: 3em;
     }
     
     .contacts__map{
@@ -32,8 +33,8 @@ import ContactUsText from './ContactUsText.vue';
     }
     
     .contacts__body{
-        color:#fff;
-        background-color: var(--contacts-bg-color);
+        color:var(--contacts-bg-color);
+        background-color: var(--global-500);
         padding: 50px var(--side-padding);
         width: 100%;
         box-sizing: border-box;
