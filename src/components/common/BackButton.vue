@@ -45,6 +45,11 @@ function popRouter() {
     left: 4vh;
     width: 3em;
     background-color: var(--contacts-bg-color);
+    transition-duration: var(--duration);
+  }
+
+  .back-button:hover {
+    background-color: var(--contacts-bg-color-pale) ;
   }
 }
 @media (min-width: 1440px) {

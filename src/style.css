@@ -3,122 +3,188 @@
   font-family:"Roboto", serif;
 }
 html{
-    font-size:18px;
-    --duration: 300ms;
-    scroll-behavior: smooth;
+  font-size:18px;
+  --duration: 300ms;
+  scroll-behavior: smooth;
 }
 button, a {
-    -webkit-user-select: none; 
-    user-select: none;
+  -webkit-user-select: none; 
+  user-select: none;
 }
 body{
-    margin:0;
-    --main-font-family:"Roboto", serif;
-    --second-main-color:rgb(233, 99, 17);
-    --second-main-color-pale: rgb(255, 150, 85);
-    --contacts-bg-color:#292929;
-    --main-bg-color:#f9f7f7;
-    --global-500: #f0f0f1;
-    --global-600: #a1a1a1;
-    --global-700: #7d7d7d;
-    --side-padding:4vw;
-    --h2-font-size:28px;  
-    --h2-font-weight:500;
-    --font-base:16px;
-    --headerHeight: 50px;
-    background-color: var(--main-bg-color);
+  margin:0;
+  --main-font-family:"Roboto", serif;
+  --second-main-color:#e96311;
+  --second-main-color-pale: rgb(255, 150, 85);
+  --contacts-bg-color:#292929;
+  --contacts-bg-color-pale:#585757;
+  --main-bg-color:#f9f7f7;
+  --global-500: #f0f0f1;
+  --global-600: #a1a1a1;
+  --global-700: #7d7d7d;
+  --side-padding:4vw;
+  --h2-font-size:28px;  
+  --h2-font-weight:500;
+  --font-base:16px;
+  --headerHeight: 50px;
+  background-color: var(--main-bg-color);
+
+  .b24-window-close {
+    top: 10px;
+    right: 7px;
+
+    @media (min-width: 1024px) {
+      & {
+        right: 15px;
+      }
+    }
+  }
+
+
+  .b24-form-header-title {
+    margin: auto;
+    text-align: center;
+    width: 80%;
+    font-weight: 700;
+    color: var(--second-main-color);
+    line-height: 1.3;
+  }
+
+  .b24-window-popup-p-center {
+    padding-top:var(--headerHeight);
+    border-radius: 20px;
+  }
+
+  .b24-window-popup-wrapper,  .b24-window-scrollable, .b24-form-scroll-textable {
+    border-radius: 1em;
+  }
+  .b24-form-content {
+    padding-top: 4em;
+    border-radius: 2em;
+  }
+  .b24-window-scroll-anchor {
+    height: 0;
+  }
+
+  .b24-form-header-padding, .b24-window-scroll-arrow-up {
+    display: none;
+  }
 }
+
 .highlighted{
-    color:var(--second-main-color);
-    font-weight:800;
+  color:var(--second-main-color);
+  font-weight:800;
 }
 
 .tippy-box[data-theme~='arka']{
-    background-color: var(--contacts-bg-color);
-    font-family:var(--main-font-family);
-    font-size:calc(var(--font-base) - 2px);
-    padding:5px;
-    width:50vw
+  background-color: var(--contacts-bg-color);
+  font-family:var(--main-font-family);
+  font-size:calc(var(--font-base) - 2px);
+  padding:5px;
+  width:50vw
+}
+
+.feedback-button {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  border: none;
+  border-radius: 100%;
+  background-color: white;
+  border: 2px solid var(--second-main-color);
+  width: 4em;
+  aspect-ratio: 1;
+  color: var(--second-main-color);
+  transition-duration: var(--duration);
+  box-shadow:0 0 7px 1px var(--second-main-color);
+  svg {
+    width: 75%;
+  }
+}
+
+.feedback-button:hover {
+  box-shadow:0 0 10px 5px var(--second-main-color);
+  width: 4.5em;
 }
 
 @media (min-width:450px){
-    body{
-        --h2-font-size:30px;
-    }
+  body{
+    --h2-font-size:30px;
+  }
 }
 
 @media (min-width:560px){
-    body{
-      --side-padding:5vw;
-      --h2-font-size:32px;
-      --font-base:18px
-    }
+  body{
+    --side-padding:5vw;
+    --h2-font-size:32px;
+    --font-base:18px
+  }
 }
 
 @media (min-width:768px){
    html {
-      font-size: 18px;
-    }
-    body{
-      --side-padding:7vw;
-      --h2-font-size:30px;  
-    }
+    font-size: 18px;
+  }
+  body{
+    --side-padding:7vw;
+    --h2-font-size:30px;  
+  }
 }
 
 
 @media (min-width:1024px){
-    body{
-      --h2-font-size:36px;  
-      --font-base:19px;
-      --headerHeight: 60px;
-    }
-    .tippy-box[data-theme~='arka']{
-        background-color: var(--contacts-bg-color);
-        font-family:var(--main-font-family);
-        font-size:calc(var(--font-base) - 5px);
-        padding:5px;
-        width:50vw
-    }
+  body{
+    --h2-font-size:36px;  
+    --font-base:19px;
+    --headerHeight: 60px;
+  }
+  .tippy-box[data-theme~='arka']{
+    background-color: var(--contacts-bg-color);
+    font-family:var(--main-font-family);
+    font-size:calc(var(--font-base) - 5px);
+    padding:5px;
+    width:50vw
+  }
 }
 
 @media (min-width:1440px){
-    html {
-      font-size: 21px;
-    }
-    body{
-      --h2-font-size:40px;  
-      --font-base:23px;
-      --headerHeight: 60px;
-    }
+  html {
+    font-size: 21px;
+  }
+  body{
+    --h2-font-size:40px;  
+    --font-base:23px;
+    --headerHeight: 60px;
+  }
   }
   
   @media (min-width:1600px){
-    body{
-      --h2-font-size:50px;
-      --font-base:24px;   
-      --headerHeight: 70px;
-    }
+  body{
+    --h2-font-size:50px;
+    --font-base:24px;   
+    --headerHeight: 70px;
+  }
 }
 
 @media (min-width:1920px){
-    html {
-      font-size: 25px;
-    }
-    body{
-        --side-padding:10vw;
-        --h2-font-size:60px;  
-        --font-base:29px;
-        --headerHeight: 80px;
-    }
+  html {
+    font-size: 25px;
+  }
+  body{
+    --side-padding:10vw;
+    --h2-font-size:60px;  
+    --font-base:29px;
+    --headerHeight: 80px;
+  }
 }
 @media (min-width:2560px){
-    html {
-      font-size: 27px;
-    }
-    body{
-        --side-padding:10vw;
-        --h2-font-size:60px;  
-        --font-base:29px;
-        --headerHeight: 90px;
-    }
+  html {
+    font-size: 27px;
+  }
+  body{
+    --side-padding:10vw;
+    --h2-font-size:60px;  
+    --font-base:29px;
+    --headerHeight: 90px;
+  }
 }

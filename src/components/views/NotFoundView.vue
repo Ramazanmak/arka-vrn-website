@@ -5,3 +5,9 @@
     <RouterLink to="/">На главную</RouterLink>
   </main>
 </template>
+
+<style scoped>
+.not-found {
+  padding: 3em;
+}
+</style>

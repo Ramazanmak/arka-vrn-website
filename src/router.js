@@ -3,6 +3,7 @@
   import HomeView from './components/views/HomeView.vue';
   import CategoryPageView from './components/views/CategoryPageView.vue';
   import ProductPageView from './components/views/ProductPageView.vue';
+  import NotFoundView from './components/views/NotFoundView.vue';
 
 
   const routes = [
@@ -21,20 +22,9 @@
       {
         path: '/:pathMatch(.*)*',
         name: 'not-found',
-        component: () => import('./components/views/NotFoundView.vue'),
+        component: NotFoundView,
       },
   ]
 
-  // const router = createRouter({
-  //     history: createWebHistory(),
-  //     routes,
-  //     scrollBehavior(to, from, savedPosition) {
-  //     if (savedPosition) {
-  //       return savedPosition
-  //     } else {
-  //       return { top: 0 }
-  //     }
-  //   },
-  // });
 
   export default routes;

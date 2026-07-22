@@ -52,12 +52,18 @@ const catalogue = [
         "subcategory": "concreteVases",
         "subcategoryName": "Вазоны бетонные",
         "photos": {
-            "sofia-granite":{
-              "types": "",
-              "woods": "",
-              "materials": "granite",
-              "colors": ""
-            },
+          "sofia-granite":{
+            "types": "",
+            "woods": "",
+            "materials": "granite",
+            "colors": ""
+          },
+          "sofia-marble":{
+            "types": "",
+            "woods": "",
+            "materials": "marble",
+            "colors": ""
+          },
         },
         "name": "София",
         "folderName": "sofia",
@@ -190,6 +196,12 @@ const catalogue = [
               "materials": "granite",
               "colors": ""
             },
+            "valentina-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
+              "colors": ""
+            },
         },
         "name": "Валентина",
         "folderName": "valentina",
@@ -231,6 +243,12 @@ const catalogue = [
               "materials": "granite",
               "colors": ""
             },
+            "darina-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
+              "colors": ""
+            },
         },
         "name": "Дарина",
         "folderName": "darina",
@@ -270,6 +288,12 @@ const catalogue = [
               "types": "",
               "woods": "",
               "materials": "granite",
+              "colors": ""
+            },
+            "lilia-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
               "colors": ""
             },
         },
@@ -430,6 +454,53 @@ const catalogue = [
             "woods": {},
             "materials": {
                 "smooth": "Гладкий бетон"
+            }
+        },
+        "colors": {}
+    },
+    {
+        "id": "ester",
+        "category": "vases",
+        "categoryName": "Вазоны",
+        "subcategory": "concreteVases",
+        "subcategoryName": "Вазоны бетонные",
+        "photos": {
+            "ester-granite":{
+              "types": "",
+              "woods": "",
+              "materials": "granite",
+              "colors": ""
+            },
+            "ester-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
+              "colors": ""
+            },
+        },
+        "name": "Эстер",
+        "folderName": "ester",
+        "folderPath": "/catalogue/vases/ester/",
+        "description": [],
+        "sizes": {
+            "default": {
+                "height": 45,
+                "width": 40,
+                "length": 140,
+                "weight": 300
+            }
+        },
+        "cost": {
+            "ester-granite": 18000,
+            "ester-marble": 22000,
+        },
+        "colorable": false,
+        "choosable": {
+            "types": {},
+            "woods": {},
+            "materials": {
+                "granite": "Гранитная крошка",
+                "marble": "Мраморная крошка"
             }
         },
         "colors": {}
@@ -1233,6 +1304,12 @@ const catalogue = [
               "materials": "marble",
               "colors": ""
             },
+            "hemiellipse-smooth-gray":{
+              "types": "",
+              "woods": "",
+              "materials": "smooth",
+              "colors": "gray"
+            },
             "hemiellipse-smooth-coloured":{
               "types": "",
               "woods": "",
@@ -1291,6 +1368,12 @@ const catalogue = [
               "materials": "marble",
               "colors": ""
             },
+            "hemisphere-smooth-gray":{
+              "types": "",
+              "woods": "",
+              "materials": "smooth",
+              "colors": "gray"
+            },
             "hemisphere-smooth-coloured":{
               "types": "",
               "woods": "",
@@ -1331,12 +1414,65 @@ const catalogue = [
         }
     },
     {
+        "id": "hemisphere-stand",
+        "category": "antiparkings",
+        "categoryName": "Антипарковочные элементы",
+        "subcategory": "antiparkingHemispheres",
+        "subcategoryName": "Антипарковочные полусферы",
+        "photos": {
+            "hemisphere-stand-granite":{
+              "types": "",
+              "woods": "",
+              "materials": "granite",
+              "colors": ""
+            },
+            "hemisphere-stand-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
+              "colors": ""
+            }
+        },
+        "name": "Полусфера на подставке",
+        "folderName": "hemisphere-stand",
+        "folderPath": "/catalogue/antiparkings/hemisphere-stand/",
+        "description": [],
+        "sizes": {
+            "default": {
+                "height": 45,
+                "length": 60,
+                "width": 60,
+                "weight": 90
+            }
+        },
+        "cost": {
+            "hemisphere-stand-granite": 6000,
+            "hemisphere-stand-marble": 7500
+        },
+        "colorable": false,
+        "choosable": {
+            "types": {},
+            "woods": {},
+            "materials": {
+                "granite": "Гранитная крошка",
+                "marble": "Мраморная крошка"
+            }
+        },
+        "colors": {}
+    },
+    {
         "id": "sphere",
         "category": "antiparkings",
         "categoryName": "Антипарковочные элементы",
         "subcategory": "antiparkingHemispheres",
         "subcategoryName": "Антипарковочные полусферы",
         "photos": {
+            "sphere-granite":{
+              "types": "",
+              "woods": "",
+              "materials": "granite",
+              "colors": ""
+            },
             "sphere-marble":{
               "types": "",
               "woods": "",
@@ -1344,9 +1480,56 @@ const catalogue = [
               "colors": ""
             }
         },
-        "name": "Шар антипарковочный",
+        "name": "Шар",
         "folderName": "sphere",
         "folderPath": "/catalogue/antiparkings/sphere/",
+        "description": [],
+        "sizes": {
+            "default": {
+                "height": 55,
+                "length": 50,
+                "width": 50,
+                "weight": 140
+            }
+        },
+        "cost": {
+            "sphere-granite": 6400,
+            "sphere-marble": 8000
+        },
+        "colorable": false,
+        "choosable": {
+            "types": {},
+            "woods": {},
+            "materials": {
+                "granite": "Гранитная крошка",
+                "marble": "Мраморная крошка"
+            }
+        },
+        "colors": {}
+    },
+    {
+        "id": "sphere-stand",
+        "category": "antiparkings",
+        "categoryName": "Антипарковочные элементы",
+        "subcategory": "antiparkingHemispheres",
+        "subcategoryName": "Антипарковочные полусферы",
+        "photos": {
+            "sphere-stand-granite":{
+              "types": "",
+              "woods": "",
+              "materials": "granite",
+              "colors": ""
+            },
+            "sphere-stand-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
+              "colors": ""
+            },
+        },
+        "name": "Шар на подставке",
+        "folderName": "sphere-stand",
+        "folderPath": "/catalogue/antiparkings/sphere-stand/",
         "description": [],
         "sizes": {
             "default": {
@@ -1356,8 +1539,54 @@ const catalogue = [
             }
         },
         "cost": {
-            "sphere-granite": 7200,
-            "sphere-marble": 8800
+            "sphere-stand-granite": 7200,
+            "sphere-stand-marble": 8800
+        },
+        "colorable": false,
+        "choosable": {
+            "types": {},
+            "woods": {},
+            "materials": {
+                "granite": "Гранитная крошка",
+                "marble": "Мраморная крошка"
+            }
+        },
+        "colors": {}
+    },
+    {
+        "id": "sphere-pedestal",
+        "category": "antiparkings",
+        "categoryName": "Антипарковочные элементы",
+        "subcategory": "antiparkingHemispheres",
+        "subcategoryName": "Антипарковочные полусферы",
+        "photos": {
+            "sphere-pedestal-granite":{
+              "types": "",
+              "woods": "",
+              "materials": "granite",
+              "colors": ""
+            },
+            "sphere-pedestal-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
+              "colors": ""
+            }
+        },
+        "name": "Шар на постаменте",
+        "folderName": "sphere-pedestal",
+        "folderPath": "/catalogue/antiparkings/sphere-pedestal/",
+        "description": [],
+        "sizes": {
+            "default": {
+                "height": 55,
+                "diameter": 50,
+                "weight": 178
+            }
+        },
+        "cost": {
+            "sphere-pedestal-granite": 13000,
+            "sphere-pedestal-marble": 15000
         },
         "colorable": false,
         "choosable": {
@@ -1377,6 +1606,12 @@ const catalogue = [
         "subcategory": "antiparkingColumns",
         "subcategoryName": "Антипарковочные столбики",
         "photos": {
+            "moscow-granite":{
+              "types": "",
+              "woods": "",
+              "materials": "granite",
+              "colors": ""
+            },
             "moscow-marble":{
               "types": "",
               "woods": "",
@@ -1424,6 +1659,18 @@ const catalogue = [
               "materials": "granite",
               "colors": ""
             },
+            "stopham-30-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
+              "colors": ""
+            },
+            "stopham-30-smooth-gray":{
+              "types": "",
+              "woods": "",
+              "materials": "smooth",
+              "colors": "gray"
+            },
             "stopham-30-smooth-coloured":{
               "types": "",
               "woods": "",
@@ -1470,13 +1717,30 @@ const catalogue = [
         "subcategory": "antiparkingColumns",
         "subcategoryName": "Антипарковочные столбики",
         "photos": {
+            "stopham-50-granite":{
+              "types": "",
+              "woods": "",
+              "materials": "granite",
+              "colors": ""
+            },
+            "stopham-50-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
+              "colors": ""
+            },
+            "stopham-50-smooth-gray":{
+              "types": "",
+              "woods": "",
+              "materials": "smooth",
+              "colors": "gray"
+            },
             "stopham-50-smooth-coloured":{
               "types": "",
               "woods": "",
               "materials": "smooth",
               "colors": "coloured"
             },
-            "stopham-50-extra-1":{},
         },
         "name": "Антипарковочный столбик 'Стопхам' (50см)",
         "folderName": "stopham-50",
@@ -1517,6 +1781,24 @@ const catalogue = [
         "subcategory": "antiparkingColumns",
         "subcategoryName": "Антипарковочные столбики",
         "photos": {
+            "stopham-75-granite":{
+              "types": "",
+              "woods": "",
+              "materials": "granite",
+              "colors": ""
+            },
+            "stopham-75-marble":{
+              "types": "",
+              "woods": "",
+              "materials": "marble",
+              "colors": ""
+            },
+            "stopham-75-smooth-gray":{
+              "types": "",
+              "woods": "",
+              "materials": "smooth",
+              "colors": "gray"
+            },
             "stopham-75-smooth-coloured":{
               "types": "",
               "woods": "",
@@ -1591,8 +1873,8 @@ const catalogue = [
             "Дополнительные подкатные плиты обеспечивают плавный подход к площадке и удобное выкатывание контейнеров"
         ],
         "cost": {
-            "thank-opened": "от 100000",
-            "thank-closed": "от 100000"
+            "thank-opened": "100000",
+            "thank-closed": "100000"
         },
         "colorable": false,
         "choosable": {
@@ -1638,8 +1920,8 @@ const catalogue = [
             "Конструкция самостоящей панели позволяет собрать площадку любых конфигураций и размеров"
         ],
         "cost": {
-            "flower-opened": "от 100000",
-            "flower-closed": "от 100000"
+            "flower-opened": "100000",
+            "flower-closed": "100000"
         },
         "colorable": false,
         "choosable": {
@@ -2007,6 +2289,13 @@ const catalogue = [
               "materials": "smooth",
               "colors": "gray"
             },
+            "naples-top-smooth-coloured": {
+              "types": "",
+              "woods": "",
+              "materials": "smooth",
+              "colors": "coloured"
+            },
+            "naples-top-smooth-extra-1": {},
         },
         "name": "Неаполь (верхняя панель)",
         "folderName": "naples-top",
@@ -2047,6 +2336,13 @@ const catalogue = [
               "materials": "smooth",
               "colors": "gray"
             },
+            "naples-mid-smooth-coloured": {
+              "types": "",
+              "woods": "",
+              "materials": "smooth",
+              "colors": "coloured"
+            },
+            "naples-mid-smooth-extra-1": {},
         },
         "name": "Неаполь (средняя панель)",
         "folderName": "naples-mid",
@@ -2287,6 +2583,13 @@ const catalogue = [
               "materials": "smooth",
               "colors": "gray"
             },
+            "vienna-top-smooth-coloured":{
+              "types": "",
+              "woods": "",
+              "materials": "smooth",
+              "colors": "coloured"
+            },
+            "vienna-top-smooth-extra-1":{},
           },
         "name": "Вена (верхняя панель)",
         "folderName": "vienna-top",
