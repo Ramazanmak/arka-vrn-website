@@ -256,8 +256,8 @@ const catalogue = [
         "description": [],
         "sizes": {
             "default": {
-                "height": 40,
-                "width": 45,
+                "height": 45,
+                "width": 40,
                 "length": 100,
                 "weight": 153
             }
