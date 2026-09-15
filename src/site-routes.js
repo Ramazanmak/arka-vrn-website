@@ -15,6 +15,7 @@ export function getStaticRoutes() {
   
   return [
     '/',
+    "/fence-calculator/",
     ...categoryRoutes,
     ...productRoutes,
   ]
