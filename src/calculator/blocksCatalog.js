@@ -198,7 +198,7 @@ export const columnCoverBlocks = [
         dimensionsText: "40 × 40 см",
         lengthMm: 400,
         widthMm: 400,
-        heightMm: null,
+        heightMm: 100,
         massKg: 15,
         note: "Высота в прайсе не указана",
         prices: { gray: 410, colored: 560, colorMix: null },
