@@ -15,6 +15,7 @@ import {
 
 import {
     createFenceSvg,
+    getDrawingLegend,
 } from "../../calculator/graphics.js";
 
 import {
@@ -60,8 +61,7 @@ const form = reactive({
         },
 
         parapet: {
-            productId:
-                "parapet-flat-390x190x50",
+            productId: "parapet-flat-390x190x50",
             finishId: "gray",
         },
 
@@ -88,15 +88,11 @@ const form = reactive({
 });
 
 
-/*
- * Описание полей выбора материалов.
- * Благодаря этому не нужно вручную дублировать
- * одинаковую разметку для каждого изделия.
- */
 const materialGroups = [
     {
         title: "Основные блоки",
         open: true,
+
         items: [
             {
                 key: "columnBlock",
@@ -115,48 +111,56 @@ const materialGroups = [
     {
         title: "Крышки и парапеты",
         open: true,
+
         items: [
             {
                 key: "columnCover",
                 label: "Крышка столба",
                 catalog: columnCoverBlocks,
-                required: true,
+                required: false,
+                emptyLabel: "Без крышки",
             },
             {
                 key: "parapet",
                 label: "Парапет пролёта",
                 catalog: parapetBlocks,
-                required: true,
+                required: false,
+                emptyLabel: "Без парапета",
             },
         ],
     },
     {
         title: "Основания и подкрышники",
         open: false,
+
         items: [
             {
                 key: "columnBase",
                 label: "Основание столба",
                 catalog: columnBaseUnderCapBlocks,
                 required: false,
+                emptyLabel: "Без основания",
             },
             {
                 key: "columnUnderCap",
                 label: "Подкрышник столба",
                 catalog: columnBaseUnderCapBlocks,
                 required: false,
+                emptyLabel: "Без подкрышника",
             },
             {
                 key: "fenceBase",
                 label: "Основание пролёта",
                 catalog: fenceBaseUnderCapBlocks,
                 required: false,
+                emptyLabel: "Без основания",
             },
             {
                 key: "fenceUnderCap",
                 label: "Подкрышник пролёта",
                 catalog: fenceBaseUnderCapBlocks,
                 required: false,
+                emptyLabel: "Без подкрышника",
             },
         ],
     },
@@ -168,15 +172,20 @@ const calculationError = ref("");
 const fenceSvg = ref("");
 
 
-/*
- * Поддерживаем длины ворот в соответствии
- * с указанным количеством ворот.
- */
+const drawingLegendItems = computed(() => {
+    return getDrawingLegend(fenceSolution.value);
+});
+
+
+
+
+
 watch(
     [
         () => form.gatesCount,
         () => form.columnsCount,
     ],
+
     ([gatesValue, columnsValue]) => {
         const maximumGatesCount = Math.max(
             0,
@@ -213,6 +222,7 @@ watch(
             );
         }
     },
+
     {
         immediate: true,
     }
@@ -288,8 +298,9 @@ function getSelectedProduct(material) {
     }
 
     return material.catalog.find(
-        (product) =>
-            product.id === selection.productId
+        (product) => {
+            return product.id === selection.productId;
+        }
     ) ?? null;
 }
 
@@ -301,14 +312,14 @@ function getMaterialFinishes(material) {
 }
 
 
-/*
- * Если после смены модели выбранный цвет
- * недоступен, выбираем первый доступный.
- */
 function synchronizeMaterialFinish(material) {
     const selection =
         form.materials[material.key];
 
+    /*
+     * Для варианта «не использовать»
+     * исполнение выбирать не нужно.
+     */
     if (!selection.productId) {
         return;
     }
@@ -317,8 +328,9 @@ function synchronizeMaterialFinish(material) {
         getMaterialFinishes(material);
 
     const finishIsAvailable = finishes.some(
-        (finish) =>
-            finish.id === selection.finishId
+        (finish) => {
+            return finish.id === selection.finishId;
+        }
     );
 
     if (!finishIsAvailable) {
@@ -364,9 +376,6 @@ function resolveMaterial(
 }
 
 
-/*
- * Строки раздела «Количество материалов».
- */
 const materialCountRows = computed(() => {
     const solution = fenceSolution.value;
 
@@ -397,64 +406,86 @@ const materialCountRows = computed(() => {
             id: "column-covers",
             label: "Крышки столбов",
             value: solution.totalColumnCoverBlocks,
-            visible: Boolean(solution.columnCoverBlock),
+            visible: Boolean(
+                solution.columnCoverBlock
+            ),
         },
         {
             id: "full-parapets",
             label: "Целые парапеты",
-            value: solution.totalFullFenceCoverBlocks,
-            visible: Boolean(solution.fenceCoverBlock),
+            value:
+                solution.totalFullFenceCoverBlocks,
+            visible: Boolean(
+                solution.fenceCoverBlock
+            ),
         },
         {
             id: "cut-parapets",
             label: "Подрезанные парапеты",
-            value: solution.totalCuttedFenceCoverBlocks,
-            visible: Boolean(solution.fenceCoverBlock),
+            value:
+                solution.totalCuttedFenceCoverBlocks,
+            visible: Boolean(
+                solution.fenceCoverBlock
+            ),
         },
         {
             id: "column-bases",
             label: "Основания столбов",
-            value: solution.totalColumnBaseUnderBlocks,
-            visible: Boolean(solution.columnBaseUnderBlock),
+            value:
+                solution.totalColumnBaseUnderBlocks,
+            visible: Boolean(
+                solution.columnBaseUnderBlock
+            ),
         },
         {
             id: "column-under-caps",
             label: "Подкрышники столбов",
-            value: solution.totalColumnBaseCapBlocks,
-            visible: Boolean(solution.columnBaseCapBlock),
+            value:
+                solution.totalColumnBaseCapBlocks,
+            visible: Boolean(
+                solution.columnBaseCapBlock
+            ),
         },
         {
             id: "full-fence-bases",
             label: "Целые основания пролётов",
-            value: solution.totalFullFenceBaseUnderBlocks,
-            visible: Boolean(solution.fenceBaseUnderBlock),
+            value:
+                solution.totalFullFenceBaseUnderBlocks,
+            visible: Boolean(
+                solution.fenceBaseUnderBlock
+            ),
         },
         {
             id: "cut-fence-bases",
             label: "Подрезанные основания пролётов",
-            value: solution.totalCuttedFenceBaseUnderBlocks,
-            visible: Boolean(solution.fenceBaseUnderBlock),
+            value:
+                solution.totalCuttedFenceBaseUnderBlocks,
+            visible: Boolean(
+                solution.fenceBaseUnderBlock
+            ),
         },
         {
             id: "full-fence-under-caps",
             label: "Целые подкрышники пролётов",
-            value: solution.totalFullFenceBaseCapBlocks,
-            visible: Boolean(solution.fenceBaseCapBlock),
+            value:
+                solution.totalFullFenceBaseCapBlocks,
+            visible: Boolean(
+                solution.fenceBaseCapBlock
+            ),
         },
         {
             id: "cut-fence-under-caps",
             label: "Подрезанные подкрышники пролётов",
-            value: solution.totalCuttedFenceBaseCapBlocks,
-            visible: Boolean(solution.fenceBaseCapBlock),
+            value:
+                solution.totalCuttedFenceBaseCapBlocks,
+            visible: Boolean(
+                solution.fenceBaseCapBlock
+            ),
         },
     ].filter((row) => row.visible);
 });
 
 
-/*
- * Каждый линейный материал показывает
- * собственный результат подрезки.
- */
 const cutGroups = computed(() => {
     const solution = fenceSolution.value;
 
@@ -478,12 +509,15 @@ const cutGroups = computed(() => {
             length:
                 solution.fenceCoverBlockCuttedLength,
             scope: "в одном пролёте",
-            visible: Boolean(solution.fenceCoverBlock),
+            visible: Boolean(
+                solution.fenceCoverBlock
+            ),
         },
         {
             id: "fence-base",
             title: "Основания пролётов",
-            cuts: solution.fenceBaseUnderBlockCuts,
+            cuts:
+                solution.fenceBaseUnderBlockCuts,
             length:
                 solution
                     .fenceBaseUnderBlockCuttedLength,
@@ -495,7 +529,8 @@ const cutGroups = computed(() => {
         {
             id: "fence-under-cap",
             title: "Подкрышники пролётов",
-            cuts: solution.fenceBaseCapBlockCuts,
+            cuts:
+                solution.fenceBaseCapBlockCuts,
             length:
                 solution
                     .fenceBaseCapBlockCuttedLength,
@@ -514,10 +549,6 @@ function handleSubmit() {
     fenceSvg.value = "";
 
     try {
-        /*
-         * Названия здесь полностью совпадают
-         * с параметрами нового getSolution().
-         */
         const selectedMaterials = {
             columnBlock: resolveMaterial(
                 columnBlocks,
@@ -534,13 +565,15 @@ function handleSubmit() {
             columnCoverBlock: resolveMaterial(
                 columnCoverBlocks,
                 form.materials.columnCover,
-                "крышка столба"
+                "крышка столба",
+                false
             ),
 
             fenceCoverBlock: resolveMaterial(
                 parapetBlocks,
                 form.materials.parapet,
-                "парапет"
+                "парапет",
+                false
             ),
 
             columnBaseUnderBlock: resolveMaterial(
@@ -591,14 +624,18 @@ function handleSubmit() {
 
             gatesLength:
                 form.gatesLengthMeters.map(
-                    (length) =>
-                        metersToMillimeters(length)
+                    (length) => {
+                        return metersToMillimeters(
+                            length
+                        );
+                    }
                 ),
 
             ...selectedMaterials,
         };
 
-        const result = getSolution(fenceParams);
+        const result =
+            getSolution(fenceParams);
 
         if (!result) {
             calculationError.value =
@@ -608,13 +645,15 @@ function handleSubmit() {
         }
 
         if (result.error) {
-            calculationError.value = result.error;
+            calculationError.value =
+                result.error;
 
             return;
         }
 
         fenceSolution.value = result;
-        fenceSvg.value = createFenceSvg(result);
+        fenceSvg.value =
+            createFenceSvg(result);
 
         console.log(
             "Результат расчёта:",
@@ -760,7 +799,9 @@ function handleSubmit() {
                                 <input
                                     v-model.number="
                                         form
-                                            .gatesLengthMeters[index]
+                                            .gatesLengthMeters[
+                                                index
+                                            ]
                                     "
                                     type="number"
                                     min="0.1"
@@ -783,7 +824,8 @@ function handleSubmit() {
 
                         <div class="form-section-content">
                             <div
-                                v-for="material in group.items"
+                                v-for="material in
+                                    group.items"
                                 :key="material.key"
                                 class="material-card"
                             >
@@ -811,9 +853,12 @@ function handleSubmit() {
                                             v-if="
                                                 !material.required
                                             "
-                                            :value="null"
+                                            value=""
                                         >
-                                            Не использовать
+                                            {{
+                                                material.emptyLabel
+                                                    ?? "Не использовать"
+                                            }}
                                         </option>
 
                                         <option
@@ -828,6 +873,7 @@ function handleSubmit() {
                                             "
                                         >
                                             {{ product.name }}
+
                                             {{
                                                 hasCompleteDimensions(
                                                     product
@@ -874,14 +920,16 @@ function handleSubmit() {
 
                                 <p
                                     v-if="
-                                        getSelectedProduct(material)
-                                            ?.note
+                                        getSelectedProduct(
+                                            material
+                                        )?.note
                                     "
                                     class="material-note"
                                 >
                                     {{
-                                        getSelectedProduct(material)
-                                            .note
+                                        getSelectedProduct(
+                                            material
+                                        ).note
                                     }}
                                 </p>
                             </div>
@@ -1016,7 +1064,8 @@ function handleSubmit() {
 
                             <div class="result-group-content">
                                 <div
-                                    v-for="row in materialCountRows"
+                                    v-for="row in
+                                        materialCountRows"
                                     :key="row.id"
                                     class="result-row"
                                 >
@@ -1046,7 +1095,9 @@ function handleSubmit() {
                                         {{ group.title }}
                                     </h3>
 
-                                    <template v-if="group.cuts > 0">
+                                    <template
+                                        v-if="group.cuts > 0"
+                                    >
                                         <div class="result-row">
                                             <span>
                                                 Количество подрезок
@@ -1087,7 +1138,10 @@ function handleSubmit() {
                         </details>
 
                         <details
-                            class="result-group result-group-total"
+                            class="
+                                result-group
+                                result-group-total
+                            "
                             open
                         >
                             <summary>
@@ -1140,10 +1194,46 @@ function handleSubmit() {
                     Схема забора
                 </h2>
 
-                <div
-                    class="fence-svg"
-                    v-html="fenceSvg"
-                ></div>
+                <div class="fence-preview-content">
+                    <div
+                        class="fence-svg"
+                        v-html="fenceSvg"
+                    ></div>
+
+                    <aside
+                        v-if="drawingLegendItems.length"
+                        class="fence-legend"
+                        aria-label="Условные обозначения"
+                    >
+                        <h3>
+                            Обозначения
+                        </h3>
+
+                        <ul>
+                            <li
+                                v-for="item in
+                                    drawingLegendItems"
+                                :key="item.id"
+                            >
+                                <span
+                                    class="legend-sample"
+                                    :class="{
+                                        'legend-sample-dashed':
+                                            item.dashed,
+                                    }"
+                                    :style="{
+                                        borderColor:
+                                            item.color,
+                                    }"
+                                ></span>
+
+                                <span>
+                                    {{ item.label }}
+                                </span>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
             </section>
         </div>
     </main>
@@ -1447,16 +1537,62 @@ function handleSubmit() {
     margin-top: 0;
 }
 
+.fence-preview-content {
+    display: grid;
+    gap: 20px;
+}
+
 .fence-svg {
     width: 100%;
-    overflow-x: auto;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .fence-svg :deep(svg) {
     display: block;
     width: 100%;
-    min-width: 800px;
     height: auto;
+}
+
+.fence-legend {
+    padding: 16px;
+    border: 1px solid var(--global-500);
+    border-radius: 10px;
+    background-color: #fafafa;
+}
+
+.fence-legend h3 {
+    margin: 0 0 14px;
+    font-size: 1rem;
+}
+
+.fence-legend ul {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fence-legend li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.92rem;
+}
+
+.legend-sample {
+    box-sizing: border-box;
+    width: 38px;
+    height: 18px;
+    flex-shrink: 0;
+    border: 3px solid;
+    border-radius: 3px;
+    background-color: #d1d5db;
+}
+
+.legend-sample-dashed {
+    border-style: dashed;
 }
 
 @media (min-width: 900px) {
@@ -1465,8 +1601,7 @@ function handleSubmit() {
             minmax(360px, 1fr)
             minmax(360px, 1fr);
         align-items: start;
-    }
-}
+    }}
 
 @media (max-width: 600px) {
     .calculator-form,
@@ -1493,10 +1628,6 @@ function handleSubmit() {
 
     .result-price {
         padding: 14px;
-    }
-
-    .fence-svg :deep(svg) {
-        min-width: 650px;
     }
 }
 </style>
