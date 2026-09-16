@@ -13,11 +13,21 @@ import {
 } from "../../calculator/graphics.js";
 
 import {
-    columnBlock30,
-    columnCoverBlock30,
-    fenceBlock40,
-    fenceCoverBlock40,
-} from "../../calculator/blocks.js";
+    blockFinishes,
+
+    columnBlocks,
+    fenceBlocks,
+
+    columnCoverBlocks,
+    parapetBlocks,
+
+    columnBaseUnderCapBlocks,
+    fenceBaseUnderCapBlocks,
+
+    createBlock,
+    getAvailableFinishes,
+    hasCompleteDimensions,
+} from "../../calculator/blocksCatalog.js";
 
 
 const DEFAULT_GATE_LENGTH_METERS = 3;
@@ -31,6 +41,50 @@ const form = reactive({
 
     gatesCount: 0,
     gatesLengthMeters: [],
+
+    materials: {
+        columnBlock: {
+            productId: "column-block-300x300x190",
+            finishId: "gray",
+        },
+
+        fenceBlock: {
+            productId: "fence-block-390x190x190",
+            finishId: "gray",
+        },
+
+        columnCover: {
+            productId:
+                "column-cover-four-slope-300x300x50",
+            finishId: "gray",
+        },
+
+        parapet: {
+            productId:
+                "parapet-flat-390x190x50",
+            finishId: "gray",
+        },
+
+        columnBase: {
+            productId: null,
+            finishId: "gray",
+        },
+
+        columnUnderCap: {
+            productId: null,
+            finishId: "gray",
+        },
+
+        fenceBase: {
+            productId: null,
+            finishId: "gray",
+        },
+
+        fenceUnderCap: {
+            productId: null,
+            finishId: "gray",
+        },
+    },
 });
 
 
@@ -107,11 +161,111 @@ function formatPrice(value) {
     });
 }
 
+function findProduct(
+    catalog,
+    productId,
+    fieldName
+) {
+    const product = catalog.find(
+        (item) => item.id === productId
+    );
+
+    if (!product) {
+        throw new Error(
+            `Не выбрано изделие: ${fieldName}`
+        );
+    }
+
+    return product;
+}
+
+
+function resolveMaterial(
+    catalog,
+    selection,
+    fieldName,
+    required = true
+) {
+    if (!selection.productId) {
+        if (required) {
+            throw new Error(
+                `Не выбрано изделие: ${fieldName}`
+            );
+        }
+
+        return null;
+    }
+
+    const product = findProduct(
+        catalog,
+        selection.productId,
+        fieldName
+    );
+
+    return createBlock(
+        product,
+        selection.finishId
+    );
+}
 
 function handleSubmit() {
     calculationError.value = "";
     fenceSolution.value = null;
     fenceSvg.value = "";
+
+    const selectedMaterials = {
+        columnBlock: resolveMaterial(
+            columnBlocks,
+            form.materials.columnBlock,
+            "столбовой блок"
+        ),
+
+        fenceBlock: resolveMaterial(
+            fenceBlocks,
+            form.materials.fenceBlock,
+            "рядовой блок"
+        ),
+
+        columnCoverBlock: resolveMaterial(
+            columnCoverBlocks,
+            form.materials.columnCover,
+            "крышка столба"
+        ),
+
+        parapetBlock: resolveMaterial(
+            parapetBlocks,
+            form.materials.parapet,
+            "парапет"
+        ),
+
+        columnBaseBlock: resolveMaterial(
+            columnBaseUnderCapBlocks,
+            form.materials.columnBase,
+            "основание столба",
+            false
+        ),
+
+        columnUnderCapBlock: resolveMaterial(
+            columnBaseUnderCapBlocks,
+            form.materials.columnUnderCap,
+            "подкрышник столба",
+            false
+        ),
+
+        fenceBaseBlock: resolveMaterial(
+            fenceBaseUnderCapBlocks,
+            form.materials.fenceBase,
+            "основание пролёта",
+            false
+        ),
+
+        fenceUnderCapBlock: resolveMaterial(
+            fenceBaseUnderCapBlocks,
+            form.materials.fenceUnderCap,
+            "подкрышник пролёта",
+            false
+        ),
+    };
 
     const fenceParams = {
         lengthFront: metersToMillimeters(
@@ -132,11 +286,7 @@ function handleSubmit() {
             (length) => metersToMillimeters(length)
         ),
 
-        fenceBlock: fenceBlock40,
-        columnBlock: columnBlock30,
-
-        fenceCoverBlock: fenceCoverBlock40,
-        columnCoverBlock: columnCoverBlock30,
+        ...selectedMaterials,
     };
 
     try {

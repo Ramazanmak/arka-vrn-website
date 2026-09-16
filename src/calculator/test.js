@@ -3,7 +3,7 @@ import { getSolution } from "./getSolution.js";
 import {
     columnBlock30,
     fenceBlock40,
-} from "./blocks.js";
+} from "./blocksCatalog.js";
 
 
 const fenceParams = {

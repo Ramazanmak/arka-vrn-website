@@ -1,3 +1,72 @@
+function calculateLinearLayout(
+    availableLength,
+    productLength,
+    minCutLength = 100
+) {
+    if (
+        !Number.isFinite(availableLength)
+        || availableLength <= 0
+    ) {
+        throw new Error(
+            "Длина пролёта должна быть больше нуля"
+        );
+    }
+
+    if (
+        !Number.isFinite(productLength)
+        || productLength <= 0
+    ) {
+        throw new Error(
+            "Некорректная длина выбранного изделия"
+        );
+    }
+
+    let fullPieces = Math.floor(
+        availableLength / productLength
+    );
+
+    let remainder =
+        availableLength % productLength;
+
+    if (remainder === 0) {
+        return {
+            fullPieces,
+            cutPieces: 0,
+            cutPieceLength: 0,
+        };
+    }
+
+    if (remainder >= minCutLength) {
+        return {
+            fullPieces,
+            cutPieces: 1,
+            cutPieceLength: remainder,
+        };
+    }
+
+    if (fullPieces < 1) {
+        throw new Error(
+            "Пролёт слишком короткий для выбранного изделия"
+        );
+    }
+
+    fullPieces -= 1;
+    remainder += productLength;
+
+    const cutPieceLength = remainder / 2;
+
+    if (cutPieceLength < minCutLength) {
+        throw new Error(
+            "Не получается выполнить допустимую подрезку"
+        );
+    }
+
+    return {
+        fullPieces,
+        cutPieces: 2,
+        cutPieceLength,
+    };
+}
 export function getSolution(fenceParams) {
     const MIN_BLOCK_LENGTH = 100;
 
