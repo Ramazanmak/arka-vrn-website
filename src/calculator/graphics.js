@@ -1,10 +1,47 @@
-/*
- * Отрисовка одного изделия.
- */
+const DRAWING_STYLES = {
+    columnBlock: {
+        color: "#334155",
+        label: "Столбовой блок",
+    },
+    fenceBlock: {
+        color: "#2563eb",
+        label: "Рядовой блок",
+    },
+    cuttedBlock: {
+        color: "#f97316",
+        label: "Подрезанный элемент",
+        dashed: true,
+    },
+    parapet: {
+        color: "#7c3aed",
+        label: "Парапет",
+    },
+    baseUnder: {
+        color: "#16a34a",
+        label: "Основание",
+    },
+    baseCap: {
+        color: "#be185d",
+        label: "Подкрышник",
+    },
+    columnCover: {
+        color: "#dc2626",
+        label: "Крышка столба",
+    },
+    gate: {
+        color: "#0891b2",
+        label: "Ворота",
+    },
+};
+
+
 function drawBlock(
     block,
     point,
-    isCutted = false
+    {
+        outlineColor = "black",
+        isCutted = false,
+    } = {}
 ) {
     if (!block) {
         return "";
@@ -13,6 +50,10 @@ function drawBlock(
     const fillColor =
         block.color || "lightgray";
 
+    const strokeColor = isCutted
+        ? DRAWING_STYLES.cuttedBlock.color
+        : outlineColor;
+
     return `
         <rect
             x="${point.x}"
@@ -20,19 +61,17 @@ function drawBlock(
             width="${block.lengthMm}"
             height="${block.heightMm}"
             fill="${fillColor}"
-            stroke="black"
-            stroke-width="5"
+            stroke="${strokeColor}"
+            stroke-width="${isCutted ? 8 : 5}"
             stroke-dasharray="${
                 isCutted ? "20 10" : "none"
             }"
+            stroke-linejoin="round"
         />
     `;
 }
 
 
-/*
- * Проверка высоты изделия.
- */
 function getBlockHeight(block) {
     if (!block) {
         return 0;
@@ -52,9 +91,6 @@ function getBlockHeight(block) {
 }
 
 
-/*
- * Создание подрезанного изделия.
- */
 function createCuttedBlock(
     block,
     cuttedLength
@@ -75,13 +111,10 @@ function createCuttedBlock(
 
 
 /*
- * Отрисовка одного горизонтального ряда.
- *
- * При одной подрезке:
- * [целые блоки][подрезка]
- *
- * При двух подрезках:
- * [подрезка][целые блоки][подрезка]
+ * Один горизонтальный ряд любого изделия.
+ * Тип изделия задаётся цветом outlineColor.
+ * Любая подрезка дополнительно выделяется
+ * оранжевым пунктирным контуром.
  */
 function drawLinearRow({
     block,
@@ -89,6 +122,7 @@ function drawLinearRow({
     cutsCount,
     cuttedLength,
     point,
+    outlineColor,
 }) {
     if (!block) {
         return "";
@@ -117,7 +151,6 @@ function drawLinearRow({
             : 0;
 
 
-    // Левая подрезка
     if (cuttedBlock && safeCutsCount === 2) {
         svg += drawBlock(
             cuttedBlock,
@@ -125,12 +158,14 @@ function drawLinearRow({
                 x: point.x,
                 y: point.y,
             },
-            true
+            {
+                outlineColor,
+                isCutted: true,
+            }
         );
     }
 
 
-    // Целые изделия
     for (
         let index = 0;
         index < safeFullCount;
@@ -145,12 +180,14 @@ function drawLinearRow({
                     + block.lengthMm * index,
 
                 y: point.y,
+            },
+            {
+                outlineColor,
             }
         );
     }
 
 
-    // Правая подрезка
     if (
         cuttedBlock
         && (
@@ -169,7 +206,10 @@ function drawLinearRow({
 
                 y: point.y,
             },
-            true
+            {
+                outlineColor,
+                isCutted: true,
+            }
         );
     }
 
@@ -177,10 +217,6 @@ function drawLinearRow({
 }
 
 
-/*
- * Центрирование крышек, оснований
- * и подкрышников относительно столба.
- */
 function getCenteredX(
     columnX,
     columnBlock,
@@ -196,15 +232,6 @@ function getCenteredX(
 }
 
 
-/*
- * Отрисовка одного столба.
- *
- * Снизу вверх:
- * основание;
- * столбовые блоки;
- * подкрышник;
- * крышка.
- */
 function drawColumn({
     countBlocks,
     columnBlock,
@@ -214,17 +241,13 @@ function drawColumn({
     point,
 }) {
     let svg = "";
-
     let currentTop = point.y;
 
 
-    // Основание столба
     if (columnBaseUnderBlock) {
-        const blockHeight = getBlockHeight(
+        currentTop -= getBlockHeight(
             columnBaseUnderBlock
         );
-
-        currentTop -= blockHeight;
 
         svg += drawBlock(
             columnBaseUnderBlock,
@@ -234,14 +257,16 @@ function drawColumn({
                     columnBlock,
                     columnBaseUnderBlock
                 ),
-
                 y: currentTop,
+            },
+            {
+                outlineColor:
+                    DRAWING_STYLES.baseUnder.color,
             }
         );
     }
 
 
-    // Столбовые блоки
     const columnBodyBottom = currentTop;
 
     for (
@@ -253,11 +278,14 @@ function drawColumn({
             columnBlock,
             {
                 x: point.x,
-
                 y:
                     columnBodyBottom
                     - columnBlock.heightMm
                         * (index + 1),
+            },
+            {
+                outlineColor:
+                    DRAWING_STYLES.columnBlock.color,
             }
         );
     }
@@ -267,13 +295,10 @@ function drawColumn({
         - columnBlock.heightMm * countBlocks;
 
 
-    // Подкрышник столба
     if (columnBaseCapBlock) {
-        const blockHeight = getBlockHeight(
+        currentTop -= getBlockHeight(
             columnBaseCapBlock
         );
-
-        currentTop -= blockHeight;
 
         svg += drawBlock(
             columnBaseCapBlock,
@@ -283,20 +308,20 @@ function drawColumn({
                     columnBlock,
                     columnBaseCapBlock
                 ),
-
                 y: currentTop,
+            },
+            {
+                outlineColor:
+                    DRAWING_STYLES.baseCap.color,
             }
         );
     }
 
 
-    // Крышка столба
     if (columnCoverBlock) {
-        const blockHeight = getBlockHeight(
+        currentTop -= getBlockHeight(
             columnCoverBlock
         );
-
-        currentTop -= blockHeight;
 
         svg += drawBlock(
             columnCoverBlock,
@@ -306,8 +331,11 @@ function drawColumn({
                     columnBlock,
                     columnCoverBlock
                 ),
-
                 y: currentTop,
+            },
+            {
+                outlineColor:
+                    DRAWING_STYLES.columnCover.color,
             }
         );
     }
@@ -316,30 +344,14 @@ function drawColumn({
 }
 
 
-/*
- * Отрисовка одного пролёта.
- *
- * Снизу вверх:
- * основание;
- * рядовые блоки;
- * подкрышник;
- * парапет.
- *
- * Каждый вид изделия использует
- * собственное количество и подрезку.
- */
 function drawSpan(
     fenceSolution,
     point
 ) {
     let svg = "";
-
     let currentTop = point.y;
 
 
-    /*
-     * Основание пролёта.
-     */
     if (fenceSolution.fenceBaseUnderBlock) {
         const block =
             fenceSolution.fenceBaseUnderBlock;
@@ -348,30 +360,25 @@ function drawSpan(
 
         svg += drawLinearRow({
             block,
-
             fullCount:
                 fenceSolution
                     .fenceBaseUnderBlockCount,
-
             cutsCount:
                 fenceSolution
                     .fenceBaseUnderBlockCuts,
-
             cuttedLength:
                 fenceSolution
                     .fenceBaseUnderBlockCuttedLength,
-
             point: {
                 x: point.x,
                 y: currentTop,
             },
+            outlineColor:
+                DRAWING_STYLES.baseUnder.color,
         });
     }
 
 
-    /*
-     * Рядовые блоки.
-     */
     const fenceBodyBottom = currentTop;
 
     for (
@@ -387,21 +394,19 @@ function drawSpan(
 
         svg += drawLinearRow({
             block: fenceSolution.fenceBlock,
-
             fullCount:
                 fenceSolution
                     .fenceBlocksPerRowXCount,
-
             cutsCount:
                 fenceSolution.fenceBlocksCuts,
-
             cuttedLength:
                 fenceSolution.cuttedBlockLength,
-
             point: {
                 x: point.x,
                 y: rowY,
             },
+            outlineColor:
+                DRAWING_STYLES.fenceBlock.color,
         });
     }
 
@@ -411,9 +416,6 @@ function drawSpan(
             * fenceSolution.fenceBlocksPerRowYCount;
 
 
-    /*
-     * Подкрышник пролёта.
-     */
     if (fenceSolution.fenceBaseCapBlock) {
         const block =
             fenceSolution.fenceBaseCapBlock;
@@ -422,30 +424,25 @@ function drawSpan(
 
         svg += drawLinearRow({
             block,
-
             fullCount:
                 fenceSolution
                     .fenceBaseCapBlockCount,
-
             cutsCount:
                 fenceSolution
                     .fenceBaseCapBlockCuts,
-
             cuttedLength:
                 fenceSolution
                     .fenceBaseCapBlockCuttedLength,
-
             point: {
                 x: point.x,
                 y: currentTop,
             },
+            outlineColor:
+                DRAWING_STYLES.baseCap.color,
         });
     }
 
 
-    /*
-     * Парапет.
-     */
     if (fenceSolution.fenceCoverBlock) {
         const block =
             fenceSolution.fenceCoverBlock;
@@ -454,23 +451,21 @@ function drawSpan(
 
         svg += drawLinearRow({
             block,
-
             fullCount:
                 fenceSolution
                     .fenceCoverBlockFullCount,
-
             cutsCount:
                 fenceSolution
                     .fenceCoverBlockCuts,
-
             cuttedLength:
                 fenceSolution
                     .fenceCoverBlockCuttedLength,
-
             point: {
                 x: point.x,
                 y: currentTop,
             },
+            outlineColor:
+                DRAWING_STYLES.parapet.color,
         });
     }
 
@@ -478,12 +473,6 @@ function drawSpan(
 }
 
 
-/*
- * Создание последовательности:
- *
- * столб → пролёт → столб →
- * ворота → столб → пролёт...
- */
 function createSegments(fenceSolution) {
     const segments = [];
 
@@ -533,30 +522,26 @@ function createSegments(fenceSolution) {
 }
 
 
-/*
- * Отрисовка ворот.
- */
 function drawGate(
     gateLength,
     gateHeight,
     point
 ) {
-    const topY =
-        point.y - gateHeight;
-
-    const middleX =
-        point.x + gateLength / 2;
+    const topY = point.y - gateHeight;
+    const middleX = point.x + gateLength / 2;
+    const color = DRAWING_STYLES.gate.color;
 
     return `
-        <g>
+        <g
+            fill="#d9d9d9"
+            stroke="${color}"
+            stroke-width="8"
+        >
             <rect
                 x="${point.x}"
                 y="${topY}"
                 width="${gateLength}"
                 height="${gateHeight}"
-                fill="#d9d9d9"
-                stroke="black"
-                stroke-width="5"
             />
 
             <line
@@ -564,8 +549,6 @@ function drawGate(
                 y1="${topY}"
                 x2="${middleX}"
                 y2="${point.y}"
-                stroke="black"
-                stroke-width="5"
             />
 
             <line
@@ -573,8 +556,6 @@ function drawGate(
                 y1="${topY}"
                 x2="${middleX}"
                 y2="${point.y}"
-                stroke="black"
-                stroke-width="5"
             />
 
             <line
@@ -582,31 +563,23 @@ function drawGate(
                 y1="${topY}"
                 x2="${middleX}"
                 y2="${point.y}"
-                stroke="black"
-                stroke-width="5"
             />
         </g>
     `;
 }
 
 
-/*
- * Полная высота столба.
- */
 function getColumnDrawingHeight(fenceSolution) {
     return (
         getBlockHeight(
             fenceSolution.columnBaseUnderBlock
         )
-
         + fenceSolution
             .columnBlocksPerColumnCount
             * fenceSolution.columnBlock.heightMm
-
         + getBlockHeight(
             fenceSolution.columnBaseCapBlock
         )
-
         + getBlockHeight(
             fenceSolution.columnCoverBlock
         )
@@ -614,23 +587,17 @@ function getColumnDrawingHeight(fenceSolution) {
 }
 
 
-/*
- * Полная высота пролёта.
- */
 function getSpanDrawingHeight(fenceSolution) {
     return (
         getBlockHeight(
             fenceSolution.fenceBaseUnderBlock
         )
-
         + fenceSolution
             .fenceBlocksPerRowYCount
             * fenceSolution.fenceBlock.heightMm
-
         + getBlockHeight(
             fenceSolution.fenceBaseCapBlock
         )
-
         + getBlockHeight(
             fenceSolution.fenceCoverBlock
         )
@@ -638,9 +605,6 @@ function getSpanDrawingHeight(fenceSolution) {
 }
 
 
-/*
- * Общая высота схемы.
- */
 function getDrawingHeight(fenceSolution) {
     return Math.max(
         getColumnDrawingHeight(fenceSolution),
@@ -651,10 +615,6 @@ function getDrawingHeight(fenceSolution) {
 }
 
 
-/*
- * Дополнительное место слева и справа,
- * если крышка или основание шире столба.
- */
 function getHorizontalPadding(fenceSolution) {
     const columnBlocks = [
         fenceSolution.columnBlock,
@@ -677,16 +637,83 @@ function getHorizontalPadding(fenceSolution) {
         ) / 2
     );
 
-    return Math.max(
-        20,
-        overhang + 10
-    );
+    return Math.max(20, overhang + 10);
 }
 
 
-/*
- * Отрисовка всего забора.
- */
+export function getDrawingLegend(fenceSolution) {
+    if (!fenceSolution) {
+        return [];
+    }
+
+    const hasCuttedElements = [
+        fenceSolution.fenceBlocksCuts,
+        fenceSolution.fenceCoverBlockCuts,
+        fenceSolution.fenceBaseUnderBlockCuts,
+        fenceSolution.fenceBaseCapBlockCuts,
+    ].some((count) => Number(count) > 0);
+
+    return [
+        {
+            id: "column-block",
+            ...DRAWING_STYLES.columnBlock,
+            visible: Boolean(
+                fenceSolution.columnBlock
+            ),
+        },
+        {
+            id: "fence-block",
+            ...DRAWING_STYLES.fenceBlock,
+            visible: Boolean(
+                fenceSolution.fenceBlock
+            ),
+        },
+        {
+            id: "cutted-block",
+            ...DRAWING_STYLES.cuttedBlock,
+            visible: hasCuttedElements,
+        },
+        {
+            id: "parapet",
+            ...DRAWING_STYLES.parapet,
+            visible: Boolean(
+                fenceSolution.fenceCoverBlock
+            ),
+        },
+        {
+            id: "base-under",
+            ...DRAWING_STYLES.baseUnder,
+            visible: Boolean(
+                fenceSolution.columnBaseUnderBlock
+                || fenceSolution.fenceBaseUnderBlock
+            ),
+        },
+        {
+            id: "base-cap",
+            ...DRAWING_STYLES.baseCap,
+            visible: Boolean(
+                fenceSolution.columnBaseCapBlock
+                || fenceSolution.fenceBaseCapBlock
+            ),
+        },
+        {
+            id: "column-cover",
+            ...DRAWING_STYLES.columnCover,
+            visible: Boolean(
+                fenceSolution.columnCoverBlock
+            ),
+        },
+        {
+            id: "gate",
+            ...DRAWING_STYLES.gate,
+            visible:
+                fenceSolution.fenceParams
+                    .gatesLength.length > 0,
+        },
+    ].filter((item) => item.visible);
+}
+
+
 export function drawAll(fenceSolution) {
     if (
         !fenceSolution
@@ -718,32 +745,24 @@ export function drawAll(fenceSolution) {
             y: startPoint.y,
         };
 
-
         if (segmentType === "column") {
             svg += drawColumn({
                 countBlocks:
                     fenceSolution
                         .columnBlocksPerColumnCount,
-
                 columnBlock:
                     fenceSolution.columnBlock,
-
                 columnBaseUnderBlock:
                     fenceSolution
                         .columnBaseUnderBlock,
-
                 columnBaseCapBlock:
                     fenceSolution
                         .columnBaseCapBlock,
-
                 columnCoverBlock:
-                    fenceSolution
-                        .columnCoverBlock,
-
+                    fenceSolution.columnCoverBlock,
                 point: segmentPoint,
             });
         }
-
 
         if (segmentType === "span") {
             svg += drawSpan(
@@ -751,7 +770,6 @@ export function drawAll(fenceSolution) {
                 segmentPoint
             );
         }
-
 
         if (segmentType === "gate") {
             svg += drawGate(
@@ -763,7 +781,6 @@ export function drawAll(fenceSolution) {
             );
         }
 
-
         currentX += segmentLength;
     }
 
@@ -771,9 +788,6 @@ export function drawAll(fenceSolution) {
 }
 
 
-/*
- * Создание готового SVG.
- */
 export function createFenceSvg(fenceSolution) {
     if (
         !fenceSolution
@@ -782,8 +796,7 @@ export function createFenceSvg(fenceSolution) {
         return "";
     }
 
-    const svgContent =
-        drawAll(fenceSolution);
+    const svgContent = drawAll(fenceSolution);
 
     const width =
         fenceSolution.fenceParams.lengthFront;
@@ -799,14 +812,12 @@ export function createFenceSvg(fenceSolution) {
     return `
         <svg
             xmlns="http://www.w3.org/2000/svg"
-
             viewBox="
                 ${-horizontalPadding}
                 ${-verticalPadding}
                 ${width + horizontalPadding * 2}
                 ${height + verticalPadding * 2}
             "
-
             preserveAspectRatio="xMidYMid meet"
         >
             ${svgContent}
