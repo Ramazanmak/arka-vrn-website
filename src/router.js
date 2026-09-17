@@ -4,7 +4,6 @@
   import CategoryPageView from './components/views/CategoryPageView.vue';
   import ProductPageView from './components/views/ProductPageView.vue';
   import NotFoundView from './components/views/NotFoundView.vue';
-  import FenceCalculatorView from "./components/views/FenceCalculatorView.vue";
 
 
   const routes = [
@@ -21,8 +20,13 @@
           component: ProductPageView,
       },
       {
-          path: "/fence-calculator",
-          component: FenceCalculatorView,
+        path: "/fence-calculator",
+        name: "fence-calculator",
+
+        component: () =>
+            import(
+                "./components/views/FenceCalculatorView.vue"
+            ),
       },
       {
         path: '/:pathMatch(.*)*',

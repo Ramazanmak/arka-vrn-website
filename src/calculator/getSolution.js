@@ -49,6 +49,9 @@ function cutLength(
     };
 }
 
+function getBlockHeight(block) {
+    return block?.heightMm ?? 0;
+}
 
 function calculateMaterialValue(
     block,
@@ -194,6 +197,9 @@ export function getSolution(fenceParams) {
 
         totalMass: 0,
         totalPrice: 0,
+
+        actualColumnHeight: 0,
+        actualFenceHeight: 0,
 
         fenceBlock,
         columnBlock,
@@ -458,6 +464,20 @@ export function getSolution(fenceParams) {
     fenceSolution.totalCuttedFenceBaseCapBlocks =
         fenceSolution.fenceBaseCapBlockCuttedCount
         * fenceSolution.fenceSpansCount;
+    /*
+    Реальная высота забора
+     */
+    fenceSolution.actualColumnHeight = fenceSolution.columnBlocksPerColumnCount * columnBlock.heightMm
+         + getBlockHeight(columnBaseUnderBlock)
+    + getBlockHeight(columnBaseCapBlock)
+    + getBlockHeight(columnCoverBlock);
+
+    fenceSolution.actualFenceHeightMm =
+    fenceSolution.fenceBlocksPerRowYCount
+        * (fenceBlock?.heightMm ?? 0)
+    + getBlockHeight(fenceBaseUnderBlock)
+    + getBlockHeight(fenceBaseCapBlock)
+    + getBlockHeight(fenceCoverBlock);
 
 
     /*

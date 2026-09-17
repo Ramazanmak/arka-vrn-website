@@ -67,6 +67,7 @@ function drawBlock(
                 isCutted ? "20 10" : "none"
             }"
             stroke-linejoin="round"
+            vector-effect="non-scaling-stroke"
         />
     `;
 }
@@ -542,6 +543,7 @@ function drawGate(
                 y="${topY}"
                 width="${gateLength}"
                 height="${gateHeight}"
+                vector-effect="non-scaling-stroke"
             />
 
             <line
@@ -549,6 +551,7 @@ function drawGate(
                 y1="${topY}"
                 x2="${middleX}"
                 y2="${point.y}"
+                vector-effect="non-scaling-stroke"
             />
 
             <line
@@ -556,6 +559,7 @@ function drawGate(
                 y1="${topY}"
                 x2="${middleX}"
                 y2="${point.y}"
+                vector-effect="non-scaling-stroke"
             />
 
             <line
@@ -563,6 +567,7 @@ function drawGate(
                 y1="${topY}"
                 x2="${middleX}"
                 y2="${point.y}"
+                vector-effect="non-scaling-stroke"
             />
         </g>
     `;

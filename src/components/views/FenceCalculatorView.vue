@@ -6,6 +6,14 @@ import {
     watch,
 } from "vue";
 
+import {
+    useHead,
+} from "@unhead/vue";
+
+import {
+    getFenceCalculatorSeo,
+} from "../../seo.js";
+
 import ComHeader from "../common/ComHeader/ComHeader.vue";
 import ComFooter from "../common/ComFooter.vue";
 
@@ -33,6 +41,38 @@ import {
 
 const DEFAULT_GATE_LENGTH_METERS = 3;
 
+const seo = getFenceCalculatorSeo();
+
+
+useHead({
+    title: seo.title,
+
+    meta: [
+        {
+            name: "description",
+            content: seo.description,
+        },
+        {
+            property: "og:title",
+            content: seo.title,
+        },
+        {
+            property: "og:description",
+            content: seo.description,
+        },
+        {
+            property: "og:url",
+            content: seo.canonical,
+        },
+    ],
+
+    link: [
+        {
+            rel: "canonical",
+            href: seo.canonical,
+        },
+    ],
+});
 
 const form = reactive({
     lengthFrontMeters: 25,
@@ -250,7 +290,7 @@ function formatNumber(value, digits = 0) {
 function formatMeters(valueInMillimeters) {
     return formatNumber(
         Number(valueInMillimeters) / 1000,
-        2
+        3
     );
 }
 
@@ -853,7 +893,7 @@ function handleSubmit() {
                                             v-if="
                                                 !material.required
                                             "
-                                            value=""
+                                            value="null"
                                         >
                                             {{
                                                 material.emptyLabel
@@ -973,6 +1013,32 @@ function handleSubmit() {
                             </summary>
 
                             <div class="result-group-content">
+                                <div class="result-row">
+                                    <span>
+                                        Высота забора:
+                                    </span>
+
+                                    <strong>
+                                        {{
+                                            fenceSolution
+                                                .actualFenceHeightMm
+                                        }}
+                                    </strong>
+                                </div>
+
+                                <div class="result-row">
+                                    <span>
+                                        Высота колонн:
+                                    </span>
+
+                                    <strong>
+                                        {{
+                                            fenceSolution
+                                                .actualColumnHeight
+                                        }}
+                                    </strong>
+                                </div>
+
                                 <div class="result-row">
                                     <span>
                                         Общее количество столбов
