@@ -67,11 +67,9 @@ function drawBlock(
                 isCutted ? "20 10" : "none"
             }"
             stroke-linejoin="round"
-            vector-effect="non-scaling-stroke"
         />
     `;
 }
-
 
 function getBlockHeight(block) {
     if (!block) {
@@ -528,9 +526,14 @@ function drawGate(
     gateHeight,
     point
 ) {
-    const topY = point.y - gateHeight;
-    const middleX = point.x + gateLength / 2;
-    const color = DRAWING_STYLES.gate.color;
+    const topY =
+        point.y - gateHeight;
+
+    const middleX =
+        point.x + gateLength / 2;
+
+    const color =
+        DRAWING_STYLES.gate.color;
 
     return `
         <g
@@ -543,7 +546,6 @@ function drawGate(
                 y="${topY}"
                 width="${gateLength}"
                 height="${gateHeight}"
-                vector-effect="non-scaling-stroke"
             />
 
             <line
@@ -551,7 +553,6 @@ function drawGate(
                 y1="${topY}"
                 x2="${middleX}"
                 y2="${point.y}"
-                vector-effect="non-scaling-stroke"
             />
 
             <line
@@ -559,7 +560,6 @@ function drawGate(
                 y1="${topY}"
                 x2="${middleX}"
                 y2="${point.y}"
-                vector-effect="non-scaling-stroke"
             />
 
             <line
@@ -567,7 +567,6 @@ function drawGate(
                 y1="${topY}"
                 x2="${middleX}"
                 y2="${point.y}"
-                vector-effect="non-scaling-stroke"
             />
         </g>
     `;
@@ -801,10 +800,13 @@ export function createFenceSvg(fenceSolution) {
         return "";
     }
 
-    const svgContent = drawAll(fenceSolution);
+    const svgContent =
+        drawAll(fenceSolution);
 
     const width =
-        fenceSolution.fenceParams.lengthFront;
+        fenceSolution
+            .fenceParams
+            .lengthFront;
 
     const height =
         getDrawingHeight(fenceSolution);
@@ -817,12 +819,14 @@ export function createFenceSvg(fenceSolution) {
     return `
         <svg
             xmlns="http://www.w3.org/2000/svg"
+
             viewBox="
                 ${-horizontalPadding}
                 ${-verticalPadding}
                 ${width + horizontalPadding * 2}
                 ${height + verticalPadding * 2}
             "
+
             preserveAspectRatio="xMidYMid meet"
         >
             ${svgContent}

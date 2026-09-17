@@ -198,8 +198,8 @@ export function getSolution(fenceParams) {
         totalMass: 0,
         totalPrice: 0,
 
-        actualColumnHeight: 0,
-        actualFenceHeight: 0,
+        actualColumnHeightMm: 0,
+        actualFenceHeightMm: 0,
 
         fenceBlock,
         columnBlock,
@@ -465,19 +465,21 @@ export function getSolution(fenceParams) {
         fenceSolution.fenceBaseCapBlockCuttedCount
         * fenceSolution.fenceSpansCount;
     /*
-    Реальная высота забора
+     * Фактическая высота конструкции.
      */
-    fenceSolution.actualColumnHeight = fenceSolution.columnBlocksPerColumnCount * columnBlock.heightMm
-         + getBlockHeight(columnBaseUnderBlock)
-    + getBlockHeight(columnBaseCapBlock)
-    + getBlockHeight(columnCoverBlock);
+    fenceSolution.actualColumnHeightMm =
+        fenceSolution.columnBlocksPerColumnCount
+            * columnBlock.heightMm
+        + getBlockHeight(columnBaseUnderBlock)
+        + getBlockHeight(columnBaseCapBlock)
+        + getBlockHeight(columnCoverBlock);
 
     fenceSolution.actualFenceHeightMm =
-    fenceSolution.fenceBlocksPerRowYCount
-        * (fenceBlock?.heightMm ?? 0)
-    + getBlockHeight(fenceBaseUnderBlock)
-    + getBlockHeight(fenceBaseCapBlock)
-    + getBlockHeight(fenceCoverBlock);
+        fenceSolution.fenceBlocksPerRowYCount
+            * fenceBlock.heightMm
+        + getBlockHeight(fenceBaseUnderBlock)
+        + getBlockHeight(fenceBaseCapBlock)
+        + getBlockHeight(fenceCoverBlock);
 
 
     /*
