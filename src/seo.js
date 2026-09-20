@@ -34,4 +34,19 @@ export function getProductSeo(product) {
 
   }
 }
+export function getFenceCalculatorSeo() {
+    return {
+        title:
+            "Калькулятор бетонного забора — "
+            + "расчёт блоков и стоимости | АРКА",
+
+        description:
+            "Онлайн-расчёт бетонного забора: "
+            + "количество рядовых и столбовых блоков, "
+            + "крышек, парапетов, масса и стоимость.",
+
+        canonical:
+            getCanonical("fence-calculator"),
+    };
+}
 

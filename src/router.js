@@ -20,6 +20,15 @@
           component: ProductPageView,
       },
       {
+        path: "/fence-calculator",
+        name: "fence-calculator",
+
+        component: () =>
+            import(
+                "./components/views/FenceCalculatorView.vue"
+            ),
+      },
+      {
         path: '/:pathMatch(.*)*',
         name: 'not-found',
         component: NotFoundView,
