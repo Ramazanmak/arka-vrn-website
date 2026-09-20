@@ -1,14 +1,12 @@
 <script setup>
 import CardRegular from './CardRegular.vue';
-import CardExtended from './CardExtended.vue';
 import CategoryDescription from './CategoryDescription.vue';
 import { catalogue } from '../../../data/catalogue';
 import tippy from 'tippy.js'
 import 'tippy.js/dist/tippy.css';
+import { useRouter } from 'vue-router';
 
-import {ref, computed, onMounted } from 'vue';
-
-
+import { onMounted } from 'vue';
 
 const props = defineProps({
   categoryObject:{
@@ -22,13 +20,8 @@ const props = defineProps({
   }
 })
 
-
-const chosenItem = ref();
-const chosenSubcategory = ref({})
-const isExtendedCardHidden = ref(false)
-
 const subcategories = props.categoryObject.subcategories;
-
+const router = useRouter()
 
 onMounted(()=>{
   const buttons = Array.from(document.getElementsByClassName('subcategory-item__add-button'))
@@ -47,7 +40,6 @@ function filterData(subcategory){
   const res = catalogue.filter((el) => (el.subcategory == subcategory));
   return res
 }
-
 
 </script>
 
@@ -99,6 +91,19 @@ function filterData(subcategory){
         </div>
       </div>
     </div>
+
+    <template v-if="props.categoryObject.id === 'fences'">
+      <div>
+          <div 
+            class="to-basket"
+            @click="router.push('/fence-calculator')"
+            > 
+              Рассчитать в калькуляторе 
+          </div>
+        </div>
+    </template>
+
+
   </section>
 </template>
 
@@ -112,6 +117,10 @@ function filterData(subcategory){
     font-size:2em;
     font-weight:var(--h2-font-weight);
     text-align: center;
+  }
+
+  .content-wrapper {
+    margin: 0 auto 3em
   }
 
   .category-wrapper{
@@ -234,6 +243,25 @@ function filterData(subcategory){
   }
   .subcategory__extended-card-close-image{
     width:20px;
+  }
+  
+  .to-basket {
+    display:block;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 1em;
+    border:2px solid var(--second-main-color);
+    background-color: var(--second-main-color);
+    padding:0.5em 1.5em;
+    border-radius: 1em;
+    font-family:var(--main-font-family);
+    font-size:1em;
+    font-weight:500;
+    text-decoration:none;
+    text-align: center;
+    color:white;
+    transition:0.4s;
+    cursor:pointer;  
   }
   /* RESPONSIVENESS */
 
