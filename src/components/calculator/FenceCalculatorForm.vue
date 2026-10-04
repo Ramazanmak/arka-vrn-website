@@ -33,59 +33,29 @@ const emit = defineEmits([
 
 
 const form = reactive({
-    lengthFrontMeters: 25,
-    heightFenceMeters: 2,
-    heightColumnMeters: 2.5,
-    columnsCount: 10,
+    heightFenceM: 2,
+    heightColumnM: 2.5,
+    desiredSpanLengthM: 2,
 
-    gatesCount: 0,
-    gatesLengthMeters: [],
+    sidesCount: 2,
+    closedContour: false,
 
-    materials: {
-        columnBlock: {
-            productId:
-                "column-block-300x300x190",
-            finishId: "gray",
+    sides: [
+        {
+            id: 1,
+            name: "Сторона 1",
+            lengthM: 25,
+            gatesLengthM: [3.5],
         },
-
-        fenceBlock: {
-            productId:
-                "fence-block-390x190x190",
-            finishId: "gray",
+        {
+            id: 2,
+            name: "Сторона 2",
+            lengthM: 18,
+            gatesLengthM: [],
         },
+    ],
 
-        columnCover: {
-            productId:
-                "column-cover-four-slope-300x300x50",
-            finishId: "gray",
-        },
-
-        parapet: {
-            productId:
-                "parapet-flat-390x190x50",
-            finishId: "gray",
-        },
-
-        columnBase: {
-            productId: null,
-            finishId: "gray",
-        },
-
-        columnUnderCap: {
-            productId: null,
-            finishId: "gray",
-        },
-
-        fenceBase: {
-            productId: null,
-            finishId: "gray",
-        },
-
-        fenceUnderCap: {
-            productId: null,
-            finishId: "gray",
-        },
-    },
+    // Здесь сохраняются поля выбора материалов
 });
 
 
