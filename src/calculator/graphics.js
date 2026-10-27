@@ -516,6 +516,16 @@ function createSegments(fenceSolution) {
             ]);
         }
     }
+    // Добавляем оставшиеся ворота, если их больше,
+    // чем обычных пролётов.
+    for (
+        let gate = fenceSolution.fenceSpansCount;
+        gate < gatesLength.length;
+        gate++
+    ) {
+        segments.push(["gate", gatesLength[gate]]);
+        segments.push(["column", columnLength]);
+    }
 
     return segments;
 }
