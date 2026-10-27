@@ -408,6 +408,7 @@ function handleSubmit() {
         class="calculator-form"
         @submit.prevent="handleSubmit"
     >
+      <section class="form-panel" aria-label="Размеры и стороны">
         <details class="form-section">
             <summary>Размеры и конструкция</summary>
 
@@ -529,6 +530,9 @@ function handleSubmit() {
                 </label>
             </div>
         </details>
+        </section>
+
+        <section class="form-panel" aria-label="Выбор материалов">
 
         <details
             v-for="group in materialGroups"
@@ -546,6 +550,7 @@ function handleSubmit() {
                     :material="material"
                 />
             </div>
+          </section>
         </details>
 
         <button
@@ -560,7 +565,15 @@ function handleSubmit() {
 <style scoped>
 .calculator-form {
     display: grid;
+    gap: 30px;
+    align-items: start;
+    min-width: 0;
+}
+
+.form-panel {
+    display: grid;
     gap: 16px;
+    min-width: 0;
     padding: 24px;
     border: 1px solid var(--global-600);
     border-radius: 14px;
@@ -669,13 +682,18 @@ function handleSubmit() {
 }
 
 @media (max-width: 600px) {
-    .calculator-form {
-        padding: 18px;
+    .form-panel {
+    padding: 18px;
     }
 
     .form-section summary,
     .form-section-content {
         padding: 14px 16px;
+    }
+}
+@media (min-width: 900px) {
+    .calculator-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 </style>

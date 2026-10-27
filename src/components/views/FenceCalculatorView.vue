@@ -407,11 +407,10 @@ function showCalculationError(message) {
 
 @media (min-width: 900px) {
     .calculator-content {
-        grid-template-columns:
-            minmax(360px, 1fr)
-            minmax(360px, 1fr);
-        align-items: start;
-    }
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+    margin-top: 30px;
 }
 
 @media (max-width: 600px) {
