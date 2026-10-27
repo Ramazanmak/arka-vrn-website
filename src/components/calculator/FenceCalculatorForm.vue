@@ -84,7 +84,7 @@ const form = reactive({
 const materialGroups = [
     {
         title: "Основные блоки",
-        open: true,
+        open: false,
         items: [
             {
                 key: "columnBlock",
@@ -102,7 +102,7 @@ const materialGroups = [
     },
     {
         title: "Крышки и парапеты",
-        open: true,
+        open: false,
         items: [
             {
                 key: "columnCover",
@@ -408,12 +408,12 @@ function handleSubmit() {
         class="calculator-form"
         @submit.prevent="handleSubmit"
     >
-        <details class="form-section" open>
+        <details class="form-section">
             <summary>Размеры и конструкция</summary>
 
             <div class="form-section-content">
                 <label class="form-field">
-                    <span>Высота полотна, м</span>
+                    <span>Высота пролета, м</span>
                     <input
                         v-model.number="form.heightFenceMeters"
                         type="number"
@@ -484,7 +484,7 @@ function handleSubmit() {
             v-for="side in form.sides"
             :key="side.id"
             class="form-section"
-            open
+
         >
             <summary>{{ side.name }}</summary>
 
