@@ -1,0 +1,564 @@
+.fence-calculator {
+    --calculator-border: #e7e5e3;
+    --calculator-soft: #faf9f8;
+    --calculator-muted: #686868;
+    --calculator-padding: 24px;
+    min-height: 100vh;
+    padding: calc(var(--headerHeight) + 40px) var(--side-padding) 60px;
+    background: var(--main-bg-color);
+    color: #202020;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.fence-calculator .calculator-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.fence-calculator .calculator-title {
+    margin: 0;
+    font-size: clamp(28px, 3.5vw, 42px);
+    line-height: 1.2;
+}
+
+.fence-calculator .calculator-description {
+    margin: 12px 0 0;
+    color: var(--calculator-muted);
+}
+
+.fence-calculator .calculator-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    margin-top: 28px;
+}
+
+.fence-calculator .calculator-card {
+    min-width: 0;
+    margin: 0;
+    border: 1px solid var(--calculator-border);
+    border-radius: 14px;
+    background: white;
+}
+
+.fence-calculator .calculator-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    padding: 20px var(--calculator-padding);
+    border-bottom: 1px solid var(--calculator-border);
+}
+
+.fence-calculator .calculator-card-header h2 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.3;
+}
+
+.fence-calculator .calculator-caption {
+    color: var(--calculator-muted);
+    font-size: 14px;
+}
+
+.fence-calculator .calculator-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+}
+
+.fence-calculator .calculator-column {
+    min-width: 0;
+    padding: var(--calculator-padding);
+}
+
+.fence-calculator .calculator-column + .calculator-column {
+    border-left: 1px solid var(--calculator-border);
+}
+
+.fence-calculator .calculator-column-title {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.fence-calculator .calculator-column-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 12px;
+}
+
+.fence-calculator .calculator-column-heading .calculator-column-title {
+    margin: 0;
+}
+
+.fence-calculator .calculator-accordion {
+    min-width: 0;
+    border-bottom: 1px solid var(--calculator-border);
+}
+
+.fence-calculator .calculator-accordion:last-child {
+    border-bottom: none;
+}
+
+.fence-calculator .calculator-accordion > summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    min-height: 58px;
+    padding: 16px 4px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.fence-calculator .calculator-accordion > summary::-webkit-details-marker {
+    display: none;
+}
+
+.fence-calculator .calculator-accordion > summary::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    margin: 0 4px 4px 0;
+    border-right: 2px solid var(--second-main-color);
+    border-bottom: 2px solid var(--second-main-color);
+    transform: rotate(45deg);
+    transition: transform 200ms;
+}
+
+.fence-calculator .calculator-accordion[open] > summary::after {
+    transform: rotate(225deg);
+}
+
+.fence-calculator .calculator-accordion > summary:hover {
+    background: var(--calculator-soft);
+}
+
+.fence-calculator .calculator-summary-text {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+}
+
+.fence-calculator .calculator-summary-text small {
+    color: var(--calculator-muted);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.fence-calculator .calculator-accordion-content {
+    display: grid;
+    gap: 16px;
+    padding: 8px 4px 20px;
+}
+
+.fence-calculator .form-field {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+}
+
+.fence-calculator .form-field > span {
+    font-weight: 500;
+}
+
+.fence-calculator .form-field input,
+.fence-calculator .form-field select {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #cecbc8;
+    border-radius: 8px;
+    background: white;
+    color: inherit;
+    font: inherit;
+}
+
+.fence-calculator .form-field input:focus,
+.fence-calculator .form-field select:focus {
+    border-color: var(--second-main-color);
+    outline: 2px solid var(--second-main-color-pale);
+    outline-offset: 1px;
+}
+
+.fence-calculator .form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fence-calculator .form-checkbox input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--second-main-color);
+}
+
+.fence-calculator .calculator-note {
+    margin: 0;
+    color: var(--calculator-muted);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.fence-calculator .calculator-accordion .material-card {
+    min-width: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.fence-calculator .calculator-accordion .material-card + .material-card {
+    padding-top: 20px;
+    border-top: 1px solid var(--calculator-border);
+}
+
+.fence-calculator .calculator-accordion .material-note {
+    color: var(--calculator-muted);
+    font-size: 14px;
+}
+
+.fence-calculator .calculator-form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 18px var(--calculator-padding);
+    border-top: 1px solid var(--calculator-border);
+    border-radius: 0 0 14px 14px;
+    background: var(--calculator-soft);
+}
+
+.fence-calculator .calculate-button {
+    min-height: 46px;
+    padding: 12px 44px;
+    border: none;
+    border-radius: 8px;
+    background: var(--second-main-color);
+    color: white;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 200ms;
+}
+
+.fence-calculator .calculate-button:hover {
+    opacity: 0.88;
+}
+
+.fence-calculator .calculator-list {
+    margin: 0;
+}
+
+.fence-calculator .calculator-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--calculator-border);
+}
+
+.fence-calculator .calculator-row:last-child {
+    border-bottom: none;
+}
+
+.fence-calculator .calculator-row > :first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.fence-calculator .calculator-row dd,
+.fence-calculator .calculator-row strong {
+    max-width: 55%;
+    flex-shrink: 0;
+    margin: 0;
+    text-align: right;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+}
+
+.fence-calculator .calculator-list dt {
+    color: var(--calculator-muted);
+}
+
+.fence-calculator .calculator-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    background: var(--second-main-color);
+    color: white;
+}
+
+.fence-calculator .calculator-price span,
+.fence-calculator .calculator-price strong {
+    color: white;
+}
+
+.fence-calculator .calculator-price strong {
+    font-size: 26px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+}
+
+.fence-calculator .calculator-side-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 12px;
+}
+
+.fence-calculator .calculator-side-tabs button {
+    min-height: 44px;
+    padding: 8px 14px;
+    border: 1px solid var(--calculator-border);
+    border-radius: 8px;
+    background: white;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.fence-calculator .calculator-side-tabs button:hover {
+    border-color: var(--second-main-color);
+}
+
+.fence-calculator .calculator-side-tabs button[aria-pressed="true"] {
+    border-color: var(--second-main-color);
+    background: var(--second-main-color);
+    color: white;
+}
+
+.fence-calculator .calculator-side-note {
+    margin-top: 20px;
+}
+
+.fence-calculator .cut-result h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.fence-calculator .cut-result + .cut-result {
+    padding-top: 16px;
+    border-top: 1px solid var(--calculator-border);
+}
+
+.fence-calculator .calculation-error {
+    padding: var(--calculator-padding);
+    border: 1px solid #b42318;
+    border-radius: 14px;
+    background: white;
+    color: #b42318;
+}
+
+.fence-calculator .calculation-error h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+}
+
+.fence-calculator .calculation-error p {
+    margin: 0;
+}
+
+@media (max-width: 899px) {
+    .fence-calculator .calculator-columns {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fence-calculator .calculator-column + .calculator-column {
+        border-top: 1px solid var(--calculator-border);
+        border-left: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .fence-calculator {
+        --calculator-padding: 18px;
+        padding-top: calc(var(--headerHeight) + 24px);
+    }
+
+    .fence-calculator .calculator-card-header h2 {
+        font-size: 20px;
+    }
+
+    .fence-calculator .calculator-form-footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .fence-calculator .calculate-button {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fence-calculator *,
+    .fence-calculator *::after {
+        transition: none !important;
+    }
+}
+
+/* Сворачиваемые основные разделы */
+.fence-calculator .calculator-group > summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    border-radius: 14px 14px 0 0;
+}
+
+.fence-calculator .calculator-group > summary::-webkit-details-marker {
+    display: none;
+}
+
+.fence-calculator .calculator-group > summary::marker {
+    content: "";
+}
+
+.fence-calculator .calculator-group > summary:hover {
+    background: var(--calculator-soft);
+}
+
+.fence-calculator .calculator-group:not([open]) > summary {
+    border-bottom: none;
+    border-radius: 14px;
+}
+
+.fence-calculator .calculator-group-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.fence-calculator .calculator-group-chevron {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    margin: 0 4px 4px 0;
+    border-right: 2px solid var(--second-main-color);
+    border-bottom: 2px solid var(--second-main-color);
+    transform: rotate(45deg);
+    transition: transform 200ms;
+}
+
+.fence-calculator .calculator-group[open] > summary .calculator-group-chevron {
+    transform: rotate(225deg);
+}
+
+@media (max-width: 600px) {
+    .fence-calculator .calculator-group-meta .calculator-caption {
+        display: none;
+    }
+}
+
+/* Более крупная и насыщенная типографика */
+.fence-calculator {
+    --calculator-font-size: clamp(18px, 1.4vw, 22px);
+    --calculator-small-font-size: clamp(16px, 1.1vw, 18px);
+    font-size: var(--calculator-font-size);
+}
+
+.fence-calculator .calculator-title {
+    font-size: clamp(34px, 4vw, 56px);
+    font-weight: 700;
+}
+
+.fence-calculator .calculator-card-header h2,
+.fence-calculator .calculation-error h2 {
+    font-size: clamp(26px, 2.2vw, 32px);
+    font-weight: 700;
+}
+
+.fence-calculator .calculator-column-title {
+    font-size: clamp(22px, 1.7vw, 26px);
+    font-weight: 600;
+}
+
+.fence-calculator .calculator-accordion > summary {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.fence-calculator .form-field > span,
+.fence-calculator .form-field input,
+.fence-calculator .form-field select,
+.fence-calculator .calculator-list dt {
+    font-weight: 500;
+}
+
+.fence-calculator .calculator-list dt {
+    color: inherit;
+}
+
+.fence-calculator .calculator-row dd,
+.fence-calculator .calculator-row strong,
+.fence-calculator .calculate-button {
+    font-weight: 700;
+}
+
+.fence-calculator .calculator-caption,
+.fence-calculator .calculator-summary-text small,
+.fence-calculator .calculator-note,
+.fence-calculator .calculator-accordion .material-note,
+.fence-calculator .calculator-card .fence-preview-header p,
+.fence-calculator .calculator-card .fence-legend li,
+.fence-calculator .calculator-card .zoom-controls .show-all-button {
+    font-size: var(--calculator-small-font-size);
+}
+
+.fence-calculator .calculator-card .fence-legend h3,
+.fence-calculator .cut-result h4 {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.fence-calculator .calculator-price span {
+    font-weight: 500;
+}
+
+.fence-calculator .calculator-price strong {
+    margin-left: auto;
+    font-size: clamp(28px, 2.4vw, 36px);
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .fence-calculator {
+        --calculator-font-size: 18px;
+        --calculator-small-font-size: 16px;
+    }
+
+    .fence-calculator .calculator-card-header h2,
+    .fence-calculator .calculation-error h2 {
+        font-size: 24px;
+    }
+
+    .fence-calculator .calculator-column-title {
+        font-size: 20px;
+    }
+}

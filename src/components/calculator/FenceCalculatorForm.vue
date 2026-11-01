@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, watch } from "vue";
+import { computed, onBeforeUnmount, reactive, ref, watch } from "vue";
 
 import MaterialSelector from "./MaterialSelector.vue";
 
@@ -155,6 +155,133 @@ const materialGroups = [
         ],
     },
 ];
+
+const geometryPanel = ref(null);
+const closingAnimations = new Map();
+
+const totalLengthMeters = computed(() => {
+    return form.sides.reduce((total, side) => {
+        const length = Number(side.lengthMeters);
+        return total + (Number.isFinite(length) ? length : 0);
+    }, 0);
+});
+
+function formatMeters(value) {
+    if (value === "" || !Number.isFinite(Number(value))) {
+        return "—";
+    }
+
+    return Number(value).toLocaleString("ru-RU", {
+        maximumFractionDigits: 3,
+    });
+}
+
+function getSideSummary(side) {
+    const openings = Number(side.gatesCount) === 0
+        ? "без проёмов"
+        : `проёмов: ${side.gatesCount || "—"}`;
+
+    return `${formatMeters(side.lengthMeters)} м · ${openings}`;
+}
+
+function getMaterialGroupSummary(group) {
+    const selected = group.items.flatMap((item) => {
+        const selection = form.materials[item.key];
+        const product = item.catalog.find(
+            (entry) => entry.id === selection.productId
+        );
+
+        return product ? [{ item, product }] : [];
+    });
+
+    if (selected.length === 0) {
+        return "Не используются";
+    }
+
+    return selected.map(({ item, product }) => {
+        if (item.key === "columnBlock") {
+            return `Столбовой ${product.lengthMm} × ${product.widthMm} мм`;
+        }
+
+        if (item.key === "fenceBlock") {
+            return `Рядовой ${product.lengthMm} × ${product.widthMm} мм`;
+        }
+
+        return item.label;
+    }).join(" · ");
+}
+
+function revealInvalidField(event) {
+    let section = event.target.closest("details");
+
+    while (section) {
+        section.open = true;
+        section = section.parentElement?.closest("details");
+    }
+}
+
+function closeGeometrySections() {
+    const panel = geometryPanel.value;
+
+    if (!panel) {
+        return;
+    }
+
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    for (const section of panel.querySelectorAll("details[open]")) {
+        if (closingAnimations.has(section)) {
+            continue;
+        }
+
+        const summary = section.querySelector("summary");
+
+        if (!summary || reduceMotion || typeof section.animate !== "function") {
+            section.open = false;
+            continue;
+        }
+
+        const previousOverflow = section.style.overflow;
+        const previousPointerEvents = section.style.pointerEvents;
+        const style = getComputedStyle(section);
+        const closedHeight = summary.getBoundingClientRect().height
+            + (parseFloat(style.borderTopWidth) || 0)
+            + (parseFloat(style.borderBottomWidth) || 0);
+
+        section.style.overflow = "hidden";
+        section.style.pointerEvents = "none";
+
+        const animation = section.animate(
+            [
+                { height: `${section.getBoundingClientRect().height}px` },
+                { height: `${closedHeight}px` },
+            ],
+            { duration: 250, easing: "ease-in-out", fill: "forwards" }
+        );
+
+        const cleanup = () => {
+            animation.cancel();
+            section.style.overflow = previousOverflow;
+            section.style.pointerEvents = previousPointerEvents;
+            closingAnimations.delete(section);
+        };
+
+        closingAnimations.set(section, cleanup);
+
+        animation.finished.then(() => {
+            section.open = false;
+            cleanup();
+        }, cleanup);
+    }
+}
+
+onBeforeUnmount(() => {
+    for (const cleanup of closingAnimations.values()) {
+        cleanup();
+    }
+});
 
 // Добавление и удаление сторон
 watch(
@@ -390,6 +517,7 @@ function handleSubmit() {
         }
 
         emit("calculated", result);
+        closeGeometrySections();
     } catch (error) {
         console.error(error);
 
@@ -405,295 +533,210 @@ function handleSubmit() {
 
 <template>
     <form
-        class="calculator-form"
+        class="calculator-card calculator-form"
+        aria-labelledby="calculator-form-title"
         @submit.prevent="handleSubmit"
+        @invalid.capture="revealInvalidField"
     >
-        <section class="form-panel" aria-label="Размеры и стороны">
-            <details class="form-section">
-                <summary>Размеры и конструкция</summary>
+        <details class="calculator-group" open>
+            <summary class="calculator-card-header">
+                <h2 id="calculator-form-title">Параметры расчёта</h2>
+                <span class="calculator-group-meta">
+                    <span class="calculator-caption">
+                        Сторон: {{ form.sides.length }}
+                        · {{ formatMeters(totalLengthMeters) }} м
+                    </span>
+                    <span class="calculator-group-chevron" aria-hidden="true"></span>
+                </span>
+            </summary>
 
-                <div class="form-section-content">
-                    <label class="form-field">
-                        <span>Высота пролёта, м</span>
-                        <input
-                            v-model.number="form.heightFenceMeters"
-                            type="number"
-                            min="0.1"
-                            step="0.01"
-                            required
-                        />
-                    </label>
+            <div class="calculator-columns">
+                <section
+                    ref="geometryPanel"
+                    class="calculator-column"
+                    aria-labelledby="calculator-geometry-title"
+                >
+                    <h3
+                        id="calculator-geometry-title"
+                        class="calculator-column-title"
+                    >
+                        Конструкция и стороны
+                    </h3>
 
-                    <label class="form-field">
-                        <span>Высота столбов, м</span>
-                        <input
-                            v-model.number="form.heightColumnMeters"
-                            type="number"
-                            min="0.1"
-                            step="0.01"
-                            required
-                        />
-                    </label>
+                    <details class="calculator-accordion">
+                        <summary>
+                            <span class="calculator-summary-text">
+                                <span>Размеры и конструкция</span>
+                                <small>
+                                    Пролёт {{ formatMeters(form.heightFenceMeters) }} м
+                                    · столбы {{ formatMeters(form.heightColumnMeters) }} м
+                                </small>
+                            </span>
+                        </summary>
 
-                    <label class="form-field">
-                        <span>
-                            Длина пролёта, м
-                        </span>
-                        <input
-                            v-model.number="form.desiredSpanLengthMeters"
-                            type="number"
-                            min="0.1"
-                            step="0.01"
-                            required
-                        />
-                    </label>
+                        <div class="calculator-accordion-content">
+                            <label class="form-field">
+                                <span>Высота пролёта, м</span>
+                                <input
+                                    v-model.number="form.heightFenceMeters"
+                                    type="number"
+                                    min="0.1"
+                                    step="0.01"
+                                    required
+                                />
+                            </label>
 
-                    <label class="form-field">
-                        <span>Количество сторон</span>
-                        <select v-model.number="form.sidesCount">
-                            <option
-                                v-for="count in 4"
-                                :key="count"
-                                :value="count"
+                            <label class="form-field">
+                                <span>Высота столбов, м</span>
+                                <input
+                                    v-model.number="form.heightColumnMeters"
+                                    type="number"
+                                    min="0.1"
+                                    step="0.01"
+                                    required
+                                />
+                            </label>
+
+                            <label class="form-field">
+                                <span>Длина пролёта, м</span>
+                                <input
+                                    v-model.number="form.desiredSpanLengthMeters"
+                                    type="number"
+                                    min="0.1"
+                                    step="0.01"
+                                    required
+                                />
+                            </label>
+
+                            <label class="form-field">
+                                <span>Количество сторон</span>
+                                <select v-model.number="form.sidesCount">
+                                    <option
+                                        v-for="count in 4"
+                                        :key="count"
+                                        :value="count"
+                                    >
+                                        {{ count }}
+                                    </option>
+                                </select>
+                            </label>
+
+                            <label
+                                v-if="form.sidesCount >= 3"
+                                class="form-checkbox"
                             >
-                                {{ count }}
-                            </option>
-                        </select>
-                    </label>
+                                <input
+                                    v-model="form.closedContour"
+                                    type="checkbox"
+                                />
+                                <span>Замкнутый контур</span>
+                            </label>
 
-                    <label
-                        v-if="form.sidesCount >= 3"
-                        class="form-checkbox"
+                            <p class="calculator-note">
+                                Стороны вводятся последовательно. Соседние стороны
+                                имеют общий угловой столб. Для замкнутого контура
+                                последняя сторона соединяется с первой.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details
+                        v-for="side in form.sides"
+                        :key="side.id"
+                        class="calculator-accordion"
                     >
-                        <input
-                            v-model="form.closedContour"
-                            type="checkbox"
-                        />
-                        <span>Замкнутый контур</span>
-                    </label>
+                        <summary>
+                            <span class="calculator-summary-text">
+                                <span>{{ side.name }}</span>
+                                <small>{{ getSideSummary(side) }}</small>
+                            </span>
+                        </summary>
 
-                    <p class="form-hint">
-                        Стороны вводятся последовательно.
-                        Соседние стороны имеют общий угловой столб.
-                        Для замкнутого контура последняя сторона
-                        соединяется с первой.
-                    </p>
-                </div>
-            </details>
+                        <div class="calculator-accordion-content">
+                            <label class="form-field">
+                                <span>Длина стороны, м</span>
+                                <input
+                                    v-model.number="side.lengthMeters"
+                                    type="number"
+                                    min="1"
+                                    step="0.01"
+                                    required
+                                />
+                            </label>
 
-            <details
-                v-for="side in form.sides"
-                :key="side.id"
-                class="form-section"
-            >
-                <summary>{{ side.name }}</summary>
+                            <label class="form-field">
+                                <span>Количество проёмов</span>
+                                <input
+                                    v-model.number="side.gatesCount"
+                                    type="number"
+                                    min="0"
+                                    step="1"
+                                    required
+                                />
+                            </label>
 
-                <div class="form-section-content">
-                    <label class="form-field">
-                        <span>Длина стороны, м</span>
-                        <input
-                            v-model.number="side.lengthMeters"
-                            type="number"
-                            min="1"
-                            step="0.01"
-                            required
-                        />
-                    </label>
+                            <label
+                                v-for="(_, index) in side.gatesLengthMeters"
+                                :key="index"
+                                class="form-field"
+                            >
+                                <span>Длина проёма №{{ index + 1 }}, м</span>
+                                <input
+                                    v-model.number="side.gatesLengthMeters[index]"
+                                    type="number"
+                                    min="0.1"
+                                    step="0.01"
+                                    required
+                                />
+                            </label>
+                        </div>
+                    </details>
+                </section>
 
-                    <label class="form-field">
-                        <span>Количество проёмов </span>
-                        <input
-                            v-model.number="side.gatesCount"
-                            type="number"
-                            min="0"
-                            step="1"
-                            required
-                        />
-                    </label>
-
-                    <label
-                        v-for="(_, index) in side.gatesLengthMeters"
-                        :key="index"
-                        class="form-field"
+                <section
+                    class="calculator-column"
+                    aria-labelledby="calculator-materials-title"
+                >
+                    <h3
+                        id="calculator-materials-title"
+                        class="calculator-column-title"
                     >
-                        <span>Длина проёма №{{ index + 1 }}, м</span>
-                        <input
-                            v-model.number="side.gatesLengthMeters[index]"
-                            type="number"
-                            min="0.1"
-                            step="0.01"
-                            required
-                        />
-                    </label>
-                </div>
-            </details>
-        </section>
+                        Материалы
+                    </h3>
 
-        <section class="form-panel" aria-label="Выбор материалов">
-            <details
-                v-for="group in materialGroups"
-                :key="group.title"
-                class="form-section"
-                :open="group.open"
-            >
-                <summary>{{ group.title }}</summary>
-                <summary>{{ group.title }}</summary>
+                    <details
+                        v-for="group in materialGroups"
+                        :key="group.title"
+                        class="calculator-accordion"
+                    >
+                        <summary>
+                            <span class="calculator-summary-text">
+                                <span>{{ group.title }}</span>
+                                <small>{{ getMaterialGroupSummary(group) }}</small>
+                            </span>
+                        </summary>
 
-                <div class="form-section-content">
-                    <MaterialSelector
-                        v-for="material in group.items"
-                        :key="material.key"
-                        v-model="form.materials[material.key]"
-                        :material="material"
-                    />
-                </div>
-            </details>
+                        <div class="calculator-accordion-content">
+                            <MaterialSelector
+                                v-for="material in group.items"
+                                :key="material.key"
+                                v-model="form.materials[material.key]"
+                                :material="material"
+                            />
+                        </div>
+                    </details>
+                </section>
+            </div>
 
-            <button class="calculate-button" type="submit">
-                Рассчитать
-            </button>
-        </section>
+            <footer class="calculator-form-footer">
+                <span class="calculator-caption">
+                    Сторон: {{ form.sides.length }}
+                    · общая длина {{ formatMeters(totalLengthMeters) }} м
+                </span>
+                <button class="calculate-button" type="submit">
+                    Рассчитать
+                </button>
+            </footer>
+        </details>
     </form>
 </template>
-
-<style scoped>
-.calculator-form {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 30px;
-    align-items: start;
-    width: 100%;
-    min-width: 0;
-}
-
-.form-panel {
-    box-sizing: border-box;
-    display: grid;
-    gap: 16px;
-    min-width: 0;
-    padding: 24px;
-    border: 1px solid var(--global-600);
-    border-radius: 14px;
-    background-color: white;
-}
-
-.form-section {
-    min-width: 0;
-    overflow: hidden;
-    border: 1px solid var(--global-500);
-    border-radius: 10px;
-    background-color: white;
-}
-
-.form-section summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    padding: 15px 18px;
-    font-weight: 600;
-    cursor: pointer;
-    list-style: none;
-    user-select: none;
-}
-
-.form-section summary::-webkit-details-marker {
-    display: none;
-}
-
-.form-section summary::after {
-    content: "▼";
-    flex-shrink: 0;
-    color: var(--second-main-color);
-    transition: transform var(--duration);
-}
-
-.form-section[open] summary::after {
-    transform: rotate(180deg);
-}
-
-.form-section[open] summary {
-    border-bottom: 1px solid var(--global-500);
-}
-
-.form-section-content {
-    display: grid;
-    gap: 18px;
-    padding: 18px;
-}
-
-.form-field {
-    display: grid;
-    gap: 8px;
-    min-width: 0;
-}
-
-.form-field span {
-    font-weight: 500;
-}
-
-.form-field input,
-.form-field select {
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 0;
-    padding: 12px 14px;
-    border: 1px solid var(--global-600);
-    border-radius: 8px;
-    background-color: white;
-    color: inherit;
-    font: inherit;
-}
-
-.form-field input:focus,
-.form-field select:focus {
-    border-color: var(--second-main-color);
-    outline: 2px solid var(--second-main-color-pale);
-}
-
-.form-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.form-hint {
-    margin: 0;
-    color: var(--global-700);
-    font-size: 0.88rem;
-    line-height: 1.5;
-}
-
-.calculate-button {
-    padding: 14px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--second-main-color);
-    color: white;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity var(--duration);
-}
-
-.calculate-button:hover {
-    opacity: 0.85;
-}
-
-@media (min-width: 900px) {
-    .calculator-form {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 600px) {
-    .form-panel {
-        padding: 18px;
-    }
-
-    .form-section summary,
-    .form-section-content {
-        padding: 14px 16px;
-    }
-}
-</style>

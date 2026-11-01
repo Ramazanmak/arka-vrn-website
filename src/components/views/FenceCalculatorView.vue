@@ -1,6 +1,8 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, nextTick, ref } from "vue";
 import { useHead } from "@unhead/vue";
+
+import "../calculator/calculator.css";
 
 import { getFenceCalculatorSeo } from "../../seo.js";
 
@@ -51,6 +53,7 @@ useHead({
 const projectSolution = ref(null);
 const calculationError = ref("");
 const activeSideIndex = ref(0);
+const resultsGroup = ref(null);
 
 const activeSideSolution = computed(() => {
     return projectSolution.value
@@ -113,6 +116,12 @@ function showSolution(solution) {
     calculationError.value = "";
     activeSideIndex.value = 0;
     projectSolution.value = solution;
+
+    nextTick(() => {
+        if (resultsGroup.value) {
+            resultsGroup.value.open = true;
+        }
+    });
 }
 
 function showCalculationError(message) {
@@ -124,15 +133,11 @@ function showCalculationError(message) {
 <template>
     <ComHeader />
 
-    <main class="calculator-page">
+    <main class="fence-calculator">
         <div class="calculator-container">
-            <h1 class="calculator-title">
-                Калькулятор забора
-            </h1>
-
+            <h1 class="calculator-title">Калькулятор забора</h1>
             <p class="calculator-description">
-                Укажите длины сторон, размеры конструкции
-                и выберите материалы.
+                Укажите длины сторон, размеры конструкции и выберите материалы.
             </p>
 
             <div class="calculator-content">
@@ -145,110 +150,137 @@ function showCalculationError(message) {
                 <section
                     v-if="calculationError"
                     class="calculation-error"
-                    aria-live="polite"
+                    role="alert"
                 >
                     <h2>Ошибка расчёта</h2>
                     <p>{{ calculationError }}</p>
                 </section>
 
-                <div
+                <details
                     v-else-if="projectSolution"
-                    class="project-results"
+                    ref="resultsGroup"
+                    class="calculator-card calculator-group"
+                    aria-labelledby="calculator-results-title"
+                    open
                 >
-                    <section class="project-summary">
-                        <h2>Итог по всем сторонам</h2>
+                    <summary class="calculator-card-header">
+                        <h2 id="calculator-results-title">Результат расчёта</h2>
+                        <span class="calculator-group-meta">
+                            <span class="calculator-caption">
+                                Сторон: {{ projectSolution.totals.sidesCount }}
+                                · {{ formatNumber(projectSolution.totals.totalLengthMm / 1000, 3) }} м
+                            </span>
+                            <span class="calculator-group-chevron" aria-hidden="true"></span>
+                        </span>
+                    </summary>
 
-                        <dl class="project-list">
-                            <div
-                                v-for="[label, value] in summaryRows"
-                                :key="label"
-                                class="project-row"
+                    <div class="calculator-columns">
+                        <section
+                            class="calculator-column"
+                            aria-labelledby="calculator-total-title"
+                        >
+                            <h3
+                                id="calculator-total-title"
+                                class="calculator-column-title"
                             >
-                                <dt>{{ label }}</dt>
-                                <dd>{{ value }}</dd>
-                            </div>
-                        </dl>
+                                Общий итог
+                            </h3>
 
-                        <details class="project-materials">
-                            <summary>Все материалы</summary>
-
-                            <dl class="project-list">
+                            <dl class="calculator-list">
                                 <div
-                                    v-for="item in projectSolution.materials"
-                                    :key="item.key"
-                                    class="project-row"
+                                    v-for="[label, value] in summaryRows"
+                                    :key="label"
+                                    class="calculator-row"
                                 >
-                                    <dt>{{ item.label }}</dt>
-                                    <dd>{{ item.count }} шт.</dd>
+                                    <dt>{{ label }}</dt>
+                                    <dd>{{ value }}</dd>
+                                </div>
+
+                                <div class="calculator-row">
+                                    <dt>Общая масса</dt>
+                                    <dd>
+                                        {{ formatNumber(projectSolution.totals.totalMass, 1) }} кг
+                                    </dd>
                                 </div>
                             </dl>
 
-                            <p class="project-note">
-                                Указаны целые изделия к покупке,
-                                включая изделия для подрезки.
-                            </p>
-                        </details>
+                            <details class="calculator-accordion">
+                                <summary>Все материалы</summary>
+                                <div class="calculator-accordion-content">
+                                    <dl class="calculator-list">
+                                        <div
+                                            v-for="item in projectSolution.materials"
+                                            :key="item.key"
+                                            class="calculator-row"
+                                        >
+                                            <dt>{{ item.label }}</dt>
+                                            <dd>{{ item.count }} шт.</dd>
+                                        </div>
+                                    </dl>
+                                    <p class="calculator-note">
+                                        Указаны целые изделия к покупке, включая
+                                        изделия для подрезки. Подрезку выполняет покупатель.
+                                    </p>
+                                </div>
+                            </details>
 
-                        <div class="project-row">
-                            <span>Общая масса</span>
+                            <div class="calculator-price">
+                                <span>Стоимость всех материалов</span>
+                                <strong>
+                                    {{ formatNumber(projectSolution.totals.totalPrice) }} ₽
+                                </strong>
+                            </div>
+                        </section>
 
-                            <strong>
-                                {{
-                                    formatNumber(
-                                        projectSolution.totals.totalMass,
-                                        1
-                                    )
-                                }}
-                                кг
-                            </strong>
-                        </div>
-
-                        <div class="project-row total-price">
-                            <span>Стоимость всех материалов</span>
-
-                            <strong>
-                                {{
-                                    formatNumber(
-                                        projectSolution.totals.totalPrice
-                                    )
-                                }}
-                                ₽
-                            </strong>
-                        </div>
-                    </section>
-
-                    <div class="side-results">
-                        <div
-                            class="side-tabs"
-                            aria-label="Выбор стороны"
+                        <section
+                            class="calculator-column"
+                            aria-labelledby="calculator-detail-title"
                         >
-                            <button
-                                v-for="(side, index) in projectSolution.sideSolutions"
-                                :key="side.sideId"
-                                type="button"
-                                :class="{
-                                    active: activeSideIndex === index
-                                }"
-                                :aria-pressed="activeSideIndex === index"
-                                @click="activeSideIndex = index"
+                            <div class="calculator-column-heading">
+                                <h3
+                                    id="calculator-detail-title"
+                                    class="calculator-column-title"
+                                >
+                                    Детализация
+                                </h3>
+                                <span class="calculator-caption" aria-live="polite">
+                                    {{ activeSideSolution.sideName }}
+                                </span>
+                            </div>
+
+                            <div
+                                v-if="projectSolution.sideSolutions.length > 1"
+                                class="calculator-side-tabs"
+                                role="group"
+                                aria-label="Выбор стороны для расчёта и схемы"
                             >
-                                {{ side.sideName }}
-                            </button>
-                        </div>
+                                <button
+                                    v-for="(side, index) in projectSolution.sideSolutions"
+                                    :key="side.sideId"
+                                    type="button"
+                                    :aria-pressed="activeSideIndex === index"
+                                    aria-controls="calculator-side-result"
+                                    @click="activeSideIndex = index"
+                                >
+                                    {{ side.sideName }}
+                                </button>
+                            </div>
 
-                        <h2>{{ activeSideSolution.sideName }}</h2>
+                            <FenceCalculatorResults
+                                id="calculator-side-result"
+                                :solution="activeSideSolution"
+                            />
 
-                        <p class="project-note">
-                            В расчёте каждой стороны показаны оба
-                            крайних столба. В общем итоге общие
-                            угловые столбы учтены один раз.
-                        </p>
-
-                        <FenceCalculatorResults
-                            :solution="activeSideSolution"
-                        />
+                            <p
+                                v-if="projectSolution.sideSolutions.length > 1"
+                                class="calculator-note calculator-side-note"
+                            >
+                                В расчёте стороны показаны оба крайних столба.
+                                В общем итоге общие угловые столбы учтены один раз.
+                            </p>
+                        </section>
                     </div>
-                </div>
+                </details>
 
                 <FencePreview
                     v-if="activeSideSolution"
@@ -261,180 +293,3 @@ function showCalculationError(message) {
 
     <ComFooter />
 </template>
-
-<style scoped>
-.calculator-page {
-    min-height: 100vh;
-    padding:
-        calc(var(--headerHeight) + 40px)
-        var(--side-padding)
-        60px;
-    background-color: var(--main-bg-color);
-}
-
-.calculator-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.calculator-title {
-    margin: 0;
-    font-size: var(--h2-font-size);
-}
-
-.calculator-description {
-    margin: 12px 0 0;
-    color: var(--global-700);
-}
-
-.calculator-content {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.project-results {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
-    gap: 30px;
-    min-width: 0;
-}
-
-.project-summary,
-.calculation-error {
-    box-sizing: border-box;
-    min-width: 0;
-    padding: 24px;
-    border: 1px solid var(--global-600);
-    border-radius: 14px;
-    background-color: white;
-}
-
-.calculation-error {
-    border-color: #b42318;
-    color: #b42318;
-}
-
-.project-summary h2,
-.calculation-error h2 {
-    margin-top: 0;
-}
-
-.side-results {
-    display: grid;
-    gap: 16px;
-    min-width: 0;
-}
-
-.side-results > h2 {
-    margin: 0;
-}
-
-.project-list {
-    margin: 0;
-}
-
-.project-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--global-500);
-}
-
-.project-row dt {
-    min-width: 0;
-}
-
-.project-row dd {
-    margin: 0;
-    text-align: right;
-    font-weight: 600;
-    flex-shrink: 0;
-}
-
-.project-materials {
-    margin: 12px 0;
-    padding: 16px;
-    border: 1px solid var(--global-500);
-    border-radius: 10px;
-}
-
-.project-materials summary {
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--second-main-color);
-}
-
-.project-materials[open] .project-list {
-    margin-top: 12px;
-}
-
-.project-note {
-    margin: 0;
-    color: var(--global-700);
-    font-size: 0.88rem;
-    line-height: 1.5;
-}
-
-.project-materials .project-note {
-    margin-top: 12px;
-}
-
-.total-price {
-    flex-wrap: wrap;
-    margin-top: 12px;
-    padding: 16px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--second-main-color);
-    color: white;
-}
-
-.total-price span,
-.total-price strong {
-    color: white;
-}
-
-.side-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.side-tabs button {
-    padding: 10px 14px;
-    border: 1px solid var(--second-main-color);
-    border-radius: 8px;
-    background-color: white;
-    color: var(--second-main-color);
-    font: inherit;
-    cursor: pointer;
-}
-
-.side-tabs button.active {
-    background-color: var(--second-main-color);
-    color: white;
-}
-
-.calculator-content :deep(.fence-preview) {
-    margin-top: 0;
-    min-width: 0;
-}
-
-@media (min-width: 900px) {
-    .project-results {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 600px) {
-    .project-summary,
-    .calculation-error {
-        padding: 18px;
-    }
-}
-</style>
