@@ -1,27 +1,65 @@
+const EPSILON = 0.000001;
+const MIN_BLOCK_LENGTH = 100;
+
+// Проверка положительного числового значения
+function checkPositiveNumber(value, label) {
+    if (!Number.isFinite(value) || value <= 0) {
+        throw new Error(
+            `${label}: укажите положительное число`
+        );
+    }
+}
+
+// Раскладка изделий по длине одного пролёта
 function cutLength(
     block,
     spanLength,
-    minBlockLength = 100
+    minBlockLength = MIN_BLOCK_LENGTH
 ) {
-    const EPSILON = 0.000001;
+    checkPositiveNumber(
+        block.lengthMm,
+        "Длина изделия"
+    );
+
+    checkPositiveNumber(
+        spanLength,
+        "Длина пролёта"
+    );
+
+    checkPositiveNumber(
+        minBlockLength,
+        "Минимальная длина подрезки"
+    );
+
+    const nearestBlocks = Math.round(
+        spanLength / block.lengthMm
+    );
+
+    // Учитываем погрешность дробных чисел
+    // при точном делении без подрезки.
+    if (
+        nearestBlocks > 0
+        && Math.abs(
+            spanLength
+            - nearestBlocks * block.lengthMm
+        ) < EPSILON
+    ) {
+        return {
+            fullBlocks: nearestBlocks,
+            cutBlocks: 0,
+            cutBlockLength: 0,
+        };
+    }
 
     let fullBlocks = Math.floor(
         spanLength / block.lengthMm
     );
 
     let remainder =
-        spanLength % block.lengthMm;
+        spanLength
+        - fullBlocks * block.lengthMm;
 
-    // Без подрезки
-    if (Math.abs(remainder) < EPSILON) {
-        return {
-            fullBlocks,
-            cutBlocks: 0,
-            cutBlockLength: 0,
-        };
-    }
-
-    // Подрезка одного блока
+    // Один подрезанный элемент справа
     if (remainder >= minBlockLength) {
         return {
             fullBlocks,
@@ -30,29 +68,41 @@ function cutLength(
         };
     }
 
-    // Пролёт слишком короткий
     if (fullBlocks < 1) {
         throw new Error(
-            `Пролёт слишком короткий для изделия `
-            + `длиной ${block.lengthMm} мм`
+            `Пролёт длиной ${spanLength.toFixed(1)} мм `
+            + "слишком короткий. "
+            + `Минимальная длина подрезки — ${minBlockLength} мм`
         );
     }
 
-    // Подрезка двух блоков
+    // Заменяем один целый элемент двумя
+    // одинаковыми подрезками слева и справа.
     fullBlocks -= 1;
     remainder += block.lengthMm;
+
+    const cutBlockLength = remainder / 2;
+
+    if (cutBlockLength < minBlockLength) {
+        throw new Error(
+            "Не удалось получить подрезки длиной "
+            + `не менее ${minBlockLength} мм`
+        );
+    }
 
     return {
         fullBlocks,
         cutBlocks: 2,
-        cutBlockLength: remainder / 2,
+        cutBlockLength,
     };
 }
 
+// Если изделие не выбрано, его высота равна нулю
 function getBlockHeight(block) {
     return block?.heightMm ?? 0;
 }
 
+// Расчёт массы или стоимости выбранного изделия
 function calculateMaterialValue(
     block,
     count,
@@ -62,36 +112,81 @@ function calculateMaterialValue(
         return 0;
     }
 
-    const value = Number(block[property]);
+    const rawValue = block[property];
+    const value = Number(rawValue);
 
-    if (!Number.isFinite(value)) {
+    if (
+        rawValue == null
+        || (
+            typeof rawValue === "string"
+            && rawValue.trim() === ""
+        )
+        || !Number.isFinite(value)
+        || value < 0
+    ) {
         throw new Error(
             `У изделия «${block.name ?? "Без названия"}» `
-            + `не указано свойство ${property}`
+            + `неверно указано свойство ${property}`
         );
     }
 
     return count * value;
 }
 
+// Подбор количества обычных пролётов
+function calculateSpansCount({
+    sideLength,
+    desiredSpanLength,
+    columnLength,
+    gatesLength,
+}) {
+    const gatesTotalLength = gatesLength.reduce(
+        (total, length) => total + length,
+        0
+    );
 
+    const availableLength =
+        sideLength
+        - gatesTotalLength
+        - (gatesLength.length + 1) * columnLength;
+
+    if (availableLength <= 0) {
+        throw new Error(
+            "Недостаточно места для столбов и ворот"
+        );
+    }
+
+    // На каждый обычный пролёт приходится
+    // ещё один столб.
+    //
+    // Округляем вверх, чтобы фактическая длина
+    // пролёта не превышала желаемую максимальную.
+    return Math.max(
+        1,
+        Math.ceil(
+            availableLength
+            / (desiredSpanLength + columnLength)
+        )
+    );
+}
+
+// Расчёт одной прямой стороны забора
 export function getSolution(fenceParams) {
-    const MIN_BLOCK_LENGTH = 100;
-
     const fenceBlock =
         fenceParams.fenceBlock ?? null;
 
     const columnBlock =
         fenceParams.columnBlock ?? null;
 
-    // Парапет
+    // Парапет пролёта
     const fenceCoverBlock =
         fenceParams.fenceCoverBlock ?? null;
 
+    // Крышка столба
     const columnCoverBlock =
         fenceParams.columnCoverBlock ?? null;
 
-    // Основания снизу
+    // Основания
     const fenceBaseUnderBlock =
         fenceParams.fenceBaseUnderBlock ?? null;
 
@@ -105,7 +200,6 @@ export function getSolution(fenceParams) {
     const columnBaseCapBlock =
         fenceParams.columnBaseCapBlock ?? null;
 
-
     if (!columnBlock) {
         throw new Error(
             "Не выбран столбовой блок"
@@ -118,26 +212,91 @@ export function getSolution(fenceParams) {
         );
     }
 
+    // Все длины на входе задаются в миллиметрах
+    checkPositiveNumber(
+        fenceParams.lengthFront,
+        "Длина стороны"
+    );
 
-    // Если ворота не указаны, используем пустой массив
-    const gatesLength = Array.isArray(
-        fenceParams.gatesLength
-    )
-        ? fenceParams.gatesLength
-        : [];
+    checkPositiveNumber(
+        fenceParams.desiredSpanLength,
+        "Желаемая максимальная длина пролёта"
+    );
+
+    checkPositiveNumber(
+        fenceParams.heightColumn,
+        "Высота столбов"
+    );
+
+    checkPositiveNumber(
+        fenceParams.heightFence,
+        "Высота полотна"
+    );
+
+    // Проверяем размеры всех выбранных изделий
+    const selectedBlocks = [
+        columnBlock,
+        fenceBlock,
+        columnCoverBlock,
+        fenceCoverBlock,
+        columnBaseUnderBlock,
+        fenceBaseUnderBlock,
+        columnBaseCapBlock,
+        fenceBaseCapBlock,
+    ];
+
+    for (const block of selectedBlocks) {
+        if (!block) {
+            continue;
+        }
+
+        const name = block.name ?? "Изделие";
+
+        checkPositiveNumber(
+            block.lengthMm,
+            `${name}: длина`
+        );
+
+        checkPositiveNumber(
+            block.heightMm,
+            `${name}: высота`
+        );
+    }
+
+    // Ворота передаются массивом длин
+    if (
+        fenceParams.gatesLength != null
+        && !Array.isArray(fenceParams.gatesLength)
+    ) {
+        throw new Error(
+            "Длины ворот должны быть переданы массивом"
+        );
+    }
+
+    const gatesLength =
+        fenceParams.gatesLength ?? [];
+
+    gatesLength.forEach((length, index) => {
+        checkPositiveNumber(
+            length,
+            `Длина ворот №${index + 1}`
+        );
+    });
 
     const gatesCount = gatesLength.length;
 
     const gatesTotalLength = gatesLength.reduce(
-        (total, gateLength) =>
-            total + gateLength,
+        (total, length) => total + length,
         0
     );
-
 
     const fenceSolution = {
         columnsCount: 0,
         fenceSpansCount: 0,
+
+        desiredSpanLength:
+            fenceParams.desiredSpanLength,
+
         spansLength: 0,
 
         // Столбовые блоки
@@ -146,30 +305,27 @@ export function getSolution(fenceParams) {
         // Рядовые блоки
         fenceBlocksPerRowYCount: 0,
         fenceBlocksPerRowXCount: 0,
-
         fenceBlocksCuts: 0,
         cuttedBlockLength: 0,
 
-        // Парапеты
+        // Парапеты одного пролёта
         fenceCoverBlockFullCount: 0,
         fenceCoverBlockCuttedCount: 0,
         fenceCoverBlockCuts: 0,
         fenceCoverBlockCuttedLength: 0,
 
-        // Столбовые крышки
+        // Штучные элементы столбов
         columnCoverBlockCount: 0,
-
-        // Основания и подкрышники столбов
         columnBaseUnderBlockCount: 0,
         columnBaseCapBlockCount: 0,
 
-        // Подкрышники пролётов
+        // Подкрышники одного пролёта
         fenceBaseCapBlockCount: 0,
         fenceBaseCapBlockCuttedCount: 0,
         fenceBaseCapBlockCuts: 0,
         fenceBaseCapBlockCuttedLength: 0,
 
-        // Основания пролётов
+        // Основания одного пролёта
         fenceBaseUnderBlockCount: 0,
         fenceBaseUnderBlockCuttedCount: 0,
         fenceBaseUnderBlockCuts: 0,
@@ -180,7 +336,7 @@ export function getSolution(fenceParams) {
         totalFullFenceBlocks: 0,
         totalCuttedFenceBlocks: 0,
 
-        // Общие количества крышек
+        // Общие количества крышек и парапетов
         totalColumnCoverBlocks: 0,
         totalFullFenceCoverBlocks: 0,
         totalCuttedFenceCoverBlocks: 0,
@@ -205,10 +361,8 @@ export function getSolution(fenceParams) {
         columnBlock,
         fenceCoverBlock,
         columnCoverBlock,
-
         fenceBaseCapBlock,
         columnBaseCapBlock,
-
         fenceBaseUnderBlock,
         columnBaseUnderBlock,
 
@@ -217,30 +371,28 @@ export function getSolution(fenceParams) {
         error: null,
     };
 
-
-    // Общее количество столбов с учётом ворот
-    fenceSolution.columnsCount =
-        fenceParams.columnsCount + gatesCount;
-
     // Количество обычных пролётов
     fenceSolution.fenceSpansCount =
-        fenceParams.columnsCount - 1;
+        calculateSpansCount({
+            sideLength: fenceParams.lengthFront,
+            desiredSpanLength:
+                fenceParams.desiredSpanLength,
+            columnLength: columnBlock.lengthMm,
+            gatesLength,
+        });
 
+    // Количество столбов с учётом ворот
+    fenceSolution.columnsCount =
+        fenceSolution.fenceSpansCount
+        + gatesCount
+        + 1;
 
-    if (fenceSolution.fenceSpansCount <= 0) {
-        fenceSolution.error =
-            "Для расчёта необходимо минимум два столба";
-
-        return fenceSolution;
-    }
-
-
+    // Длина, оставшаяся для обычных пролётов
     const freeLength =
         fenceParams.lengthFront
         - gatesTotalLength
         - fenceSolution.columnsCount
             * columnBlock.lengthMm;
-
 
     if (freeLength <= 0) {
         fenceSolution.error =
@@ -250,13 +402,12 @@ export function getSolution(fenceParams) {
         return fenceSolution;
     }
 
-
+    // Фактическая длина одного обычного пролёта
     fenceSolution.spansLength =
         freeLength
         / fenceSolution.fenceSpansCount;
 
-
-    // Количество блоков по высоте
+    // Количество целых блоков по высоте
     fenceSolution.columnBlocksPerColumnCount =
         Math.floor(
             fenceParams.heightColumn
@@ -268,7 +419,6 @@ export function getSolution(fenceParams) {
             fenceParams.heightFence
             / fenceBlock.heightMm
         );
-
 
     if (
         fenceSolution.columnBlocksPerColumnCount < 1
@@ -284,22 +434,17 @@ export function getSolution(fenceParams) {
         fenceSolution.fenceBlocksPerRowYCount < 1
     ) {
         fenceSolution.error =
-            "Высота забора меньше высоты "
+            "Высота полотна меньше высоты "
             + "рядового блока";
 
         return fenceSolution;
     }
 
-
-    /*
-     * Рядовые блоки.
-     * Раскладка рассчитывается для одного ряда
-     * одного пролёта.
-     */
+    // Рядовые блоки:
+    // раскладка одного ряда одного пролёта
     const fenceBlockLayout = cutLength(
         fenceBlock,
-        fenceSolution.spansLength,
-        MIN_BLOCK_LENGTH
+        fenceSolution.spansLength
     );
 
     fenceSolution.fenceBlocksPerRowXCount =
@@ -311,86 +456,67 @@ export function getSolution(fenceParams) {
     fenceSolution.cuttedBlockLength =
         fenceBlockLayout.cutBlockLength;
 
-
-    /*
-     * Парапеты.
-     * У них собственная длина и своя подрезка.
-     */
+    // Парапеты: собственная раскладка по их длине
     if (fenceCoverBlock) {
-        const fenceCoverLayout = cutLength(
+        const layout = cutLength(
             fenceCoverBlock,
-            fenceSolution.spansLength,
-            MIN_BLOCK_LENGTH
+            fenceSolution.spansLength
         );
 
         fenceSolution.fenceCoverBlockFullCount =
-            fenceCoverLayout.fullBlocks;
+            layout.fullBlocks;
 
         fenceSolution.fenceCoverBlockCuttedCount =
-            fenceCoverLayout.cutBlocks;
+            layout.cutBlocks;
 
         fenceSolution.fenceCoverBlockCuts =
-            fenceCoverLayout.cutBlocks;
+            layout.cutBlocks;
 
         fenceSolution.fenceCoverBlockCuttedLength =
-            fenceCoverLayout.cutBlockLength;
+            layout.cutBlockLength;
     }
 
-
-    /*
-     * Основания пролётов.
-     */
+    // Основания пролётов
     if (fenceBaseUnderBlock) {
-        const fenceBaseUnderLayout = cutLength(
+        const layout = cutLength(
             fenceBaseUnderBlock,
-            fenceSolution.spansLength,
-            MIN_BLOCK_LENGTH
+            fenceSolution.spansLength
         );
 
         fenceSolution.fenceBaseUnderBlockCount =
-            fenceBaseUnderLayout.fullBlocks;
+            layout.fullBlocks;
 
-        fenceSolution
-            .fenceBaseUnderBlockCuttedCount =
-            fenceBaseUnderLayout.cutBlocks;
+        fenceSolution.fenceBaseUnderBlockCuttedCount =
+            layout.cutBlocks;
 
         fenceSolution.fenceBaseUnderBlockCuts =
-            fenceBaseUnderLayout.cutBlocks;
+            layout.cutBlocks;
 
-        fenceSolution
-            .fenceBaseUnderBlockCuttedLength =
-            fenceBaseUnderLayout.cutBlockLength;
+        fenceSolution.fenceBaseUnderBlockCuttedLength =
+            layout.cutBlockLength;
     }
 
-
-    /*
-     * Подкрышники пролётов.
-     */
+    // Подкрышники пролётов
     if (fenceBaseCapBlock) {
-        const fenceBaseCapLayout = cutLength(
+        const layout = cutLength(
             fenceBaseCapBlock,
-            fenceSolution.spansLength,
-            MIN_BLOCK_LENGTH
+            fenceSolution.spansLength
         );
 
         fenceSolution.fenceBaseCapBlockCount =
-            fenceBaseCapLayout.fullBlocks;
+            layout.fullBlocks;
 
         fenceSolution.fenceBaseCapBlockCuttedCount =
-            fenceBaseCapLayout.cutBlocks;
+            layout.cutBlocks;
 
         fenceSolution.fenceBaseCapBlockCuts =
-            fenceBaseCapLayout.cutBlocks;
+            layout.cutBlocks;
 
         fenceSolution.fenceBaseCapBlockCuttedLength =
-            fenceBaseCapLayout.cutBlockLength;
+            layout.cutBlockLength;
     }
 
-
-    /*
-     * Штучные элементы столбов.
-     * Для них подрезка не нужна.
-     */
+    // По одному выбранному штучному элементу на столб
     fenceSolution.columnCoverBlockCount =
         columnCoverBlock
             ? fenceSolution.columnsCount
@@ -406,43 +532,40 @@ export function getSolution(fenceParams) {
             ? fenceSolution.columnsCount
             : 0;
 
+    const spansCount =
+        fenceSolution.fenceSpansCount;
 
-    /*
-     * Общее количество основных блоков.
-     */
+    const rowsCount =
+        fenceSolution.fenceBlocksPerRowYCount;
+
+    // Общие количества основных блоков
     fenceSolution.totalColumnBlocks =
         fenceSolution.columnsCount
         * fenceSolution.columnBlocksPerColumnCount;
 
     fenceSolution.totalFullFenceBlocks =
-        fenceSolution.fenceBlocksPerRowYCount
+        rowsCount
         * fenceSolution.fenceBlocksPerRowXCount
-        * fenceSolution.fenceSpansCount;
+        * spansCount;
 
     fenceSolution.totalCuttedFenceBlocks =
-        fenceSolution.fenceBlocksCuts
-        * fenceSolution.fenceBlocksPerRowYCount
-        * fenceSolution.fenceSpansCount;
+        rowsCount
+        * fenceSolution.fenceBlocksCuts
+        * spansCount;
 
-
-    /*
-     * Общее количество крышек и парапетов.
-     */
+    // Общие количества крышек и парапетов
     fenceSolution.totalColumnCoverBlocks =
         fenceSolution.columnCoverBlockCount;
 
     fenceSolution.totalFullFenceCoverBlocks =
         fenceSolution.fenceCoverBlockFullCount
-        * fenceSolution.fenceSpansCount;
+        * spansCount;
 
     fenceSolution.totalCuttedFenceCoverBlocks =
         fenceSolution.fenceCoverBlockCuttedCount
-        * fenceSolution.fenceSpansCount;
+        * spansCount;
 
-
-    /*
-     * Общее количество оснований и подкрышников.
-     */
+    // Общие количества оснований и подкрышников
     fenceSolution.totalColumnBaseUnderBlocks =
         fenceSolution.columnBaseUnderBlockCount;
 
@@ -451,22 +574,22 @@ export function getSolution(fenceParams) {
 
     fenceSolution.totalFullFenceBaseUnderBlocks =
         fenceSolution.fenceBaseUnderBlockCount
-        * fenceSolution.fenceSpansCount;
+        * spansCount;
 
     fenceSolution.totalCuttedFenceBaseUnderBlocks =
         fenceSolution.fenceBaseUnderBlockCuttedCount
-        * fenceSolution.fenceSpansCount;
+        * spansCount;
 
     fenceSolution.totalFullFenceBaseCapBlocks =
         fenceSolution.fenceBaseCapBlockCount
-        * fenceSolution.fenceSpansCount;
+        * spansCount;
 
     fenceSolution.totalCuttedFenceBaseCapBlocks =
         fenceSolution.fenceBaseCapBlockCuttedCount
-        * fenceSolution.fenceSpansCount;
-    /*
-     * Фактическая высота конструкции.
-     */
+        * spansCount;
+
+    // Фактическая высота включает основания,
+    // подкрышники и крышки
     fenceSolution.actualColumnHeightMm =
         fenceSolution.columnBlocksPerColumnCount
             * columnBlock.heightMm
@@ -475,18 +598,15 @@ export function getSolution(fenceParams) {
         + getBlockHeight(columnCoverBlock);
 
     fenceSolution.actualFenceHeightMm =
-        fenceSolution.fenceBlocksPerRowYCount
-            * fenceBlock.heightMm
+        rowsCount * fenceBlock.heightMm
         + getBlockHeight(fenceBaseUnderBlock)
         + getBlockHeight(fenceBaseCapBlock)
         + getBlockHeight(fenceCoverBlock);
 
-
-    /*
-     * Все покупаемые изделия.
-     * Подрезанные элементы считаются как целые
-     * приобретённые изделия.
-     */
+    // Для каждой подрезки приобретается
+    // одно целое изделие.
+    // Повторное использование обрезков
+    // здесь не учитывается.
     const materials = [
         {
             block: columnBlock,
@@ -496,8 +616,7 @@ export function getSolution(fenceParams) {
             block: fenceBlock,
             count:
                 fenceSolution.totalFullFenceBlocks
-                + fenceSolution
-                    .totalCuttedFenceBlocks,
+                + fenceSolution.totalCuttedFenceBlocks,
         },
         {
             block: columnCoverBlock,
@@ -508,57 +627,49 @@ export function getSolution(fenceParams) {
             block: fenceCoverBlock,
             count:
                 fenceSolution.totalFullFenceCoverBlocks
-                + fenceSolution
-                    .totalCuttedFenceCoverBlocks,
+                + fenceSolution.totalCuttedFenceCoverBlocks,
         },
         {
             block: columnBaseUnderBlock,
             count:
-                fenceSolution
-                    .totalColumnBaseUnderBlocks,
+                fenceSolution.totalColumnBaseUnderBlocks,
         },
         {
             block: columnBaseCapBlock,
             count:
-                fenceSolution
-                    .totalColumnBaseCapBlocks,
+                fenceSolution.totalColumnBaseCapBlocks,
         },
         {
             block: fenceBaseUnderBlock,
             count:
-                fenceSolution
-                    .totalFullFenceBaseUnderBlocks
-                + fenceSolution
-                    .totalCuttedFenceBaseUnderBlocks,
+                fenceSolution.totalFullFenceBaseUnderBlocks
+                + fenceSolution.totalCuttedFenceBaseUnderBlocks,
         },
         {
             block: fenceBaseCapBlock,
             count:
-                fenceSolution
-                    .totalFullFenceBaseCapBlocks
-                + fenceSolution
-                    .totalCuttedFenceBaseCapBlocks,
+                fenceSolution.totalFullFenceBaseCapBlocks
+                + fenceSolution.totalCuttedFenceBaseCapBlocks,
         },
     ];
 
-
     fenceSolution.totalMass = materials.reduce(
-        (total, material) =>
+        (total, { block, count }) =>
             total
             + calculateMaterialValue(
-                material.block,
-                material.count,
+                block,
+                count,
                 "massKg"
             ),
         0
     );
 
     fenceSolution.totalPrice = materials.reduce(
-        (total, material) =>
+        (total, { block, count }) =>
             total
             + calculateMaterialValue(
-                material.block,
-                material.count,
+                block,
+                count,
                 "priceRub"
             ),
         0
@@ -566,3 +677,4 @@ export function getSolution(fenceParams) {
 
     return fenceSolution;
 }
+

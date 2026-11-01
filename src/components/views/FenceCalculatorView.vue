@@ -1,16 +1,13 @@
 <script setup>
-import { ref } from "vue";
+import { computed, nextTick, ref } from "vue";
 import { useHead } from "@unhead/vue";
 
-import {
-    getFenceCalculatorSeo,
-} from "../../seo.js";
+import "../calculator/calculator.css";
 
-import ComHeader from
-    "../common/ComHeader/ComHeader.vue";
+import { getFenceCalculatorSeo } from "../../seo.js";
 
-import ComFooter from
-    "../common/ComFooter.vue";
+import ComHeader from "../common/ComHeader/ComHeader.vue";
+import ComFooter from "../common/ComFooter.vue";
 
 import FenceCalculatorForm from
     "../calculator/FenceCalculatorForm.vue";
@@ -21,9 +18,7 @@ import FenceCalculatorResults from
 import FencePreview from
     "../calculator/FencePreview.vue";
 
-
 const seo = getFenceCalculatorSeo();
-
 
 useHead({
     title: seo.title,
@@ -55,146 +50,299 @@ useHead({
     ],
 });
 
-
-const fenceSolution = ref(null);
+const projectSolution = ref(null);
 const calculationError = ref("");
+const activeSideIndex = ref(0);
+const resultsGroup = ref(null);
 
+const activeSideSolution = computed(() => {
+    return projectSolution.value
+        ?.sideSolutions[activeSideIndex.value]
+        ?? null;
+});
 
-function clearCalculation() {
-    fenceSolution.value = null;
-    calculationError.value = "";
+function formatNumber(value, digits = 0) {
+    return Number(value).toLocaleString("ru-RU", {
+        maximumFractionDigits: digits,
+    });
 }
 
+const summaryRows = computed(() => {
+    const totals = projectSolution.value?.totals;
+
+    if (!totals) {
+        return [];
+    }
+
+    return [
+        [
+            "Количество сторон",
+            totals.sidesCount,
+        ],
+        [
+            "Общая длина, м",
+            formatNumber(totals.totalLengthMm / 1000, 3),
+        ],
+        [
+            "Количество столбов",
+            totals.columnsCount,
+        ],
+        [
+            "Количество пролётов",
+            totals.fenceSpansCount,
+        ],
+        [
+            "Количество проёмов",
+            totals.gatesCount,
+        ],
+        [
+            "Фактическая высота пролёта, м",
+            formatNumber(totals.actualFenceHeightMm / 1000, 3),
+        ],
+        [
+            "Фактическая высота столбов, м",
+            formatNumber(totals.actualColumnHeightMm / 1000, 3),
+        ],
+        [
+            "Полных поддонов",
+            formatNumber(totals.totalFullPallets),
+        ],
+    ];
+});
+
+function clearCalculation() {
+    projectSolution.value = null;
+    calculationError.value = "";
+    activeSideIndex.value = 0;
+}
 
 function showSolution(solution) {
     calculationError.value = "";
-    fenceSolution.value = solution;
+    activeSideIndex.value = 0;
+    projectSolution.value = solution;
+
+    nextTick(() => {
+        if (resultsGroup.value) {
+            resultsGroup.value.open = true;
+        }
+    });
 }
 
-
 function showCalculationError(message) {
-    fenceSolution.value = null;
+    projectSolution.value = null;
     calculationError.value = message;
 }
 </script>
 
-
 <template>
     <ComHeader />
 
-    <main class="calculator-page">
+    <main class="fence-calculator">
         <div class="calculator-container">
-            <h1 class="calculator-title">
-                Калькулятор забора
-            </h1>
-
+            <h1 class="calculator-title">Калькулятор забора</h1>
             <p class="calculator-description">
-                Укажите размеры конструкции,
-                выберите изделия и вариант
-                их исполнения.
+                Укажите длины сторон, размеры конструкции и выберите материалы.
             </p>
 
             <div class="calculator-content">
                 <FenceCalculatorForm
-                    @calculation-started="
-                        clearCalculation
-                    "
-                    @calculated="
-                        showSolution
-                    "
-                    @calculation-error="
-                        showCalculationError
-                    "
+                    @calculation-started="clearCalculation"
+                    @calculated="showSolution"
+                    @calculation-error="showCalculationError"
                 />
 
                 <section
                     v-if="calculationError"
                     class="calculation-error"
-                    aria-live="polite"
+                    role="alert"
                 >
-                    <h2>
-                        Ошибка расчёта
-                    </h2>
-
-                    <p>
-                        {{ calculationError }}
-                    </p>
+                    <h2>Ошибка расчёта</h2>
+                    <p>{{ calculationError }}</p>
                 </section>
 
-                <FenceCalculatorResults
-                    v-else-if="fenceSolution"
-                    :solution="fenceSolution"
+                <details
+                    v-else-if="projectSolution"
+                    ref="resultsGroup"
+                    class="calculator-card calculator-group"
+                    aria-labelledby="calculator-results-title"
+                    open
+                >
+                    <summary class="calculator-card-header">
+                        <h2 id="calculator-results-title">Результат расчёта</h2>
+                        <span class="calculator-group-meta">
+                            <span class="calculator-caption">
+                                Сторон: {{ projectSolution.totals.sidesCount }}
+                                · {{ formatNumber(projectSolution.totals.totalLengthMm / 1000, 3) }} м
+                            </span>
+                            <span class="calculator-group-chevron" aria-hidden="true"></span>
+                        </span>
+                    </summary>
+
+                    <div class="calculator-columns">
+                        <section
+                            class="calculator-column"
+                            aria-labelledby="calculator-total-title"
+                        >
+                            <h3
+                                id="calculator-total-title"
+                                class="calculator-column-title"
+                            >
+                                Общий итог
+                            </h3>
+
+                            <dl class="calculator-list">
+                                <div
+                                    v-for="[label, value] in summaryRows"
+                                    :key="label"
+                                    class="calculator-row"
+                                >
+                                    <dt>{{ label }}</dt>
+                                    <dd>{{ value }}</dd>
+                                </div>
+
+                                <div class="calculator-row">
+                                    <dt>Общая масса</dt>
+                                    <dd>
+                                        {{ formatNumber(projectSolution.totals.totalMass, 1) }} кг
+                                    </dd>
+                                </div>
+                            </dl>
+
+                            <details class="calculator-accordion">
+                                <summary>Все материалы</summary>
+                                <div class="calculator-accordion-content">
+                                    <dl class="calculator-list">
+                                        <div
+                                            v-for="item in projectSolution.materials"
+                                            :key="item.key"
+                                            class="calculator-row"
+                                        >
+                                            <dt>{{ item.label }}</dt>
+                                            <dd>{{ item.count }} шт.</dd>
+                                        </div>
+                                    </dl>
+                                    <p class="calculator-note">
+                                        Указаны целые изделия к покупке, включая
+                                        изделия для подрезки. Подрезку выполняет покупатель.
+                                    </p>
+                                </div>
+                            </details>
+
+                            <div class="calculator-price">
+                                <span>Стоимость всех материалов</span>
+                                <strong>
+                                    {{ formatNumber(projectSolution.totals.totalPrice) }} ₽
+                                </strong>
+                            </div>
+
+                            <details
+                                class="calculator-accordion pallet-remainders"
+                            >
+                                <summary>
+                                    <span class="calculator-summary-text">
+                                        <span>Изделия вне полных поддонов</span>
+                                        <small v-if="projectSolution.palletPlan.totalUnpackedItems > 0">
+                                            {{ formatNumber(projectSolution.palletPlan.totalUnpackedItems) }} шт.
+                                            · комплектация по согласованию
+                                        </small>
+                                        <small v-else>Остатков нет</small>
+                                    </span>
+                                </summary>
+
+                                <div class="calculator-accordion-content">
+                                    <template v-if="projectSolution.palletPlan.unpackedItems.length">
+                                        <dl class="calculator-list">
+                                            <div
+                                                v-for="item in projectSolution.palletPlan.unpackedItems"
+                                                :key="item.key"
+                                                class="calculator-row pallet-remainder-row"
+                                            >
+                                                <dt>
+                                                    <span class="pallet-product-name">{{ item.name }}</span>
+                                                    <span v-if="item.finishName" class="calculator-caption">
+                                                        {{ item.finishName }}
+                                                    </span>
+                                                    <span class="calculator-note">
+                                                        {{ item.palletQuantityNeedsConfirmation
+                                                            ? "Норма укладки требует уточнения"
+                                                            : `Норма укладки: ${formatNumber(item.palletQuantity)} шт./поддон`
+                                                        }}
+                                                    </span>
+                                                </dt>
+                                                <dd>{{ formatNumber(item.unpackedCount) }} шт.</dd>
+                                            </div>
+                                        </dl>
+
+                                        <p class="calculator-note">
+                                            Это целые изделия к отгрузке, включая изделия для подрезки.
+                                            Оператор согласует их размещение и количество дополнительных поддонов.
+                                        </p>
+                                    </template>
+                                    <p v-else class="calculator-note">
+                                        Все изделия распределены по полным поддонам.
+                                    </p>
+                                </div>
+                            </details>
+                        </section>
+
+                        <section
+                            class="calculator-column"
+                            aria-labelledby="calculator-detail-title"
+                        >
+                            <div class="calculator-column-heading">
+                                <h3
+                                    id="calculator-detail-title"
+                                    class="calculator-column-title"
+                                >
+                                    Детализация
+                                </h3>
+                                <span class="calculator-caption" aria-live="polite">
+                                    {{ activeSideSolution.sideName }}
+                                </span>
+                            </div>
+
+                            <div
+                                v-if="projectSolution.sideSolutions.length > 1"
+                                class="calculator-side-tabs"
+                                role="group"
+                                aria-label="Выбор стороны для расчёта и схемы"
+                            >
+                                <button
+                                    v-for="(side, index) in projectSolution.sideSolutions"
+                                    :key="side.sideId"
+                                    type="button"
+                                    :aria-pressed="activeSideIndex === index"
+                                    aria-controls="calculator-side-result"
+                                    @click="activeSideIndex = index"
+                                >
+                                    {{ side.sideName }}
+                                </button>
+                            </div>
+
+                            <FenceCalculatorResults
+                                id="calculator-side-result"
+                                :solution="activeSideSolution"
+                            />
+
+                            <p
+                                v-if="projectSolution.sideSolutions.length > 1"
+                                class="calculator-note calculator-side-note"
+                            >
+                                В расчёте стороны показаны оба крайних столба.
+                                В общем итоге общие угловые столбы учтены один раз.
+                            </p>
+                        </section>
+                    </div>
+                </details>
+
+                <FencePreview
+                    v-if="activeSideSolution"
+                    :key="activeSideSolution.sideId"
+                    :solution="activeSideSolution"
                 />
             </div>
-
-            <FencePreview
-                v-if="fenceSolution"
-                :solution="fenceSolution"
-            />
         </div>
     </main>
 
     <ComFooter />
 </template>
-
-
-<style scoped>
-.calculator-page {
-    min-height: 100vh;
-    padding:
-        calc(var(--headerHeight) + 40px)
-        var(--side-padding)
-        60px;
-    background-color:
-        var(--main-bg-color);
-}
-
-.calculator-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.calculator-title {
-    margin: 0;
-    font-size: var(--h2-font-size);
-}
-
-.calculator-description {
-    margin: 12px 0 0;
-    color: var(--global-700);
-}
-
-.calculator-content {
-    display: grid;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.calculation-error {
-    padding: 24px;
-    border: 1px solid #b42318;
-    border-radius: 14px;
-    background-color: white;
-    color: #b42318;
-}
-
-.calculation-error h2 {
-    margin-top: 0;
-}
-
-@media (min-width: 900px) {
-    .calculator-content {
-        grid-template-columns:
-            minmax(360px, 1fr)
-            minmax(360px, 1fr);
-        align-items: start;
-    }
-}
-
-@media (max-width: 600px) {
-    .calculation-error {
-        padding: 18px;
-    }
-}
-</style>

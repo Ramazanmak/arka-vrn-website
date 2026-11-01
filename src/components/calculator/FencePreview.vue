@@ -237,17 +237,17 @@ function formatMeters(value) {
 <template>
     <section
         v-if="fenceSvg"
-        class="fence-preview"
+        class="calculator-card fence-preview"
     >
-        <div class="fence-preview-header">
+        <header class="calculator-card-header fence-preview-header">
             <div>
                 <h2>
                     Схема забора
                 </h2>
 
-                <p>
-                    В окне отображается участок
-                    длиной
+                <p class="calculator-caption">
+                    {{ solution.sideName }}
+                    · в окне
                     <strong>
                         {{
                             formatMeters(
@@ -292,7 +292,7 @@ function formatMeters(value) {
                     Весь забор
                 </button>
             </div>
-        </div>
+        </header>
 
         <div class="fence-preview-content">
             <div
@@ -348,19 +348,14 @@ function formatMeters(value) {
 
 <style scoped>
 .fence-preview {
-    margin-top: 30px;
-    padding: 24px;
-    border: 1px solid var(--global-600);
-    border-radius: 14px;
-    background-color: white;
+    min-width: 0;
 }
 
 .fence-preview-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 20px;
+    gap: 16px;
 }
 
 .fence-preview-header h2 {
@@ -369,8 +364,8 @@ function formatMeters(value) {
 
 .fence-preview-header p {
     margin: 8px 0 0;
-    color: var(--global-700);
-    font-size: 0.9rem;
+    color: var(--calculator-muted);
+    font-size: 14px;
 }
 
 .zoom-controls {
@@ -381,19 +376,19 @@ function formatMeters(value) {
 }
 
 .zoom-controls button {
-    min-width: 42px;
-    min-height: 42px;
+    min-width: 44px;
+    min-height: 44px;
     padding: 8px 12px;
 
     border:
-        1px solid var(--global-600);
+        1px solid var(--calculator-border);
     border-radius: 8px;
 
     background-color: white;
     color: inherit;
 
     font: inherit;
-    font-size: 1.15rem;
+    font-size: 18px;
     font-weight: 600;
 
     cursor: pointer;
@@ -420,13 +415,15 @@ function formatMeters(value) {
 }
 
 .zoom-controls .show-all-button {
-    font-size: 0.9rem;
+    font-size: 14px;
     font-weight: 500;
 }
 
 .fence-preview-content {
     display: grid;
     gap: 20px;
+    min-width: 0;
+    padding: var(--calculator-padding);
 }
 
 /*
@@ -481,15 +478,13 @@ function formatMeters(value) {
     align-items: start;
     gap: 12px 24px;
 
-    padding: 14px 16px;
-    border: 1px solid var(--global-500);
-    border-radius: 10px;
-    background-color: #fafafa;
+    padding-top: 16px;
+    border-top: 1px solid var(--calculator-border);
 }
 
 .fence-legend h3 {
     margin: 0;
-    font-size: 1rem;
+    font-size: 16px;
     white-space: nowrap;
 }
 
@@ -507,7 +502,7 @@ function formatMeters(value) {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.92rem;
+    font-size: 14px;
 }
 
 .legend-sample {
@@ -526,10 +521,6 @@ function formatMeters(value) {
 }
 
 @media (max-width: 700px) {
-    .fence-preview {
-        padding: 18px;
-    }
-
     .fence-preview-header {
         flex-direction: column;
         gap: 14px;

@@ -92,7 +92,7 @@ function filterData(subcategory){
       </div>
     </div>
 
-    <template v-if="props.categoryObject.id === 'fences'">
+    <template v-if="props.categoryObject.id === 'blocks'">
       <div>
           <div 
             class="to-basket"

@@ -237,440 +237,106 @@ function formatMeters(
 }
 
 
-function formatPrice(value) {
-    const number = Number(value);
-
-    if (!Number.isFinite(number)) {
-        return "—";
-    }
-
-    return number.toLocaleString("ru-RU", {
-        style: "currency",
-        currency: "RUB",
-        maximumFractionDigits: 0,
-    });
-}
 </script>
 
 
 <template>
-    <section class="calculation-result">
-        <h2>
-            Результат расчёта
-        </h2>
+    <div class="side-calculation">
+        <details class="calculator-accordion">
+            <summary>
+                <span class="calculator-summary-text">
+                    <span>Параметры стороны</span>
+                    <small>
+                        Пролётов: {{ solution.fenceSpansCount }}
+                        · длина пролёта {{ formatMeters(solution.spansLength) }} м
+                    </small>
+                </span>
+            </summary>
 
-        <div class="result-groups">
-            <details class="result-group">
-                <summary>
-                    Параметры забора
-                </summary>
-
-                <div class="result-group-content">
-                    <div class="result-row">
-                        <span>
-                            Фактическая высота полотна
-                        </span>
-
-                        <strong>
-                            {{
-                                formatMeters(
-                                    solution
-                                        .actualFenceHeightMm
-                                )
-                            }}
-                            м
-                        </strong>
+            <div class="calculator-accordion-content">
+                <dl class="calculator-list">
+                    <div class="calculator-row">
+                        <dt>Фактическая высота пролёта</dt>
+                        <dd>{{ formatMeters(solution.actualFenceHeightMm) }} м</dd>
                     </div>
-
-                    <div class="result-row">
-                        <span>
-                            Фактическая высота столбов
-                        </span>
-
-                        <strong>
-                            {{
-                                formatMeters(
-                                    solution
-                                        .actualColumnHeightMm
-                                )
-                            }}
-                            м
-                        </strong>
+                    <div class="calculator-row">
+                        <dt>Фактическая высота столбов</dt>
+                        <dd>{{ formatMeters(solution.actualColumnHeightMm) }} м</dd>
                     </div>
-
-                    <div class="result-row">
-                        <span>
-                            Общее количество столбов
-                        </span>
-
-                        <strong>
-                            {{ solution.columnsCount }}
-                        </strong>
+                    <div class="calculator-row">
+                        <dt>Количество столбов</dt>
+                        <dd>{{ solution.columnsCount }}</dd>
                     </div>
-
-                    <div class="result-row">
-                        <span>
-                            Количество пролётов
-                        </span>
-
-                        <strong>
-                            {{
-                                solution
-                                    .fenceSpansCount
-                            }}
-                        </strong>
+                    <div class="calculator-row">
+                        <dt>Количество пролётов</dt>
+                        <dd>{{ solution.fenceSpansCount }}</dd>
                     </div>
-
-                    <div class="result-row">
-                        <span>
-                            Длина одного пролёта
-                        </span>
-
-                        <strong>
-                            {{
-                                formatMeters(
-                                    solution.spansLength
-                                )
-                            }}
-                            м
-                        </strong>
+                    <div class="calculator-row">
+                        <dt>Длина одного пролёта</dt>
+                        <dd>{{ formatMeters(solution.spansLength) }} м</dd>
                     </div>
-
-                    <div class="result-row">
-                        <span>
-                            Количество ворот
-                        </span>
-
-                        <strong>
-                            {{ gatesLength.length }}
-                        </strong>
+                    <div class="calculator-row">
+                        <dt>Количество проёмов</dt>
+                        <dd>{{ gatesLength.length }}</dd>
                     </div>
-
                     <div
-                        v-for="(
-                            gateLength,
-                            index
-                        ) in gatesLength"
+                        v-for="(gateLength, index) in gatesLength"
                         :key="index"
-                        class="result-row"
+                        class="calculator-row"
                     >
-                        <span>
-                            Длина ворот
-                            №{{ index + 1 }}
-                        </span>
-
-                        <strong>
-                            {{
-                                formatMeters(
-                                    gateLength
-                                )
-                            }}
-                            м
-                        </strong>
+                        <dt>Длина проёма №{{ index + 1 }}</dt>
+                        <dd>{{ formatMeters(gateLength) }} м</dd>
                     </div>
-                </div>
-            </details>
+                </dl>
+            </div>
+        </details>
 
-            <details class="result-group">
-                <summary>
-                    Количество материалов
-                </summary>
-
-                <div class="result-group-content">
+        <details class="calculator-accordion">
+            <summary>Количество материалов</summary>
+            <div class="calculator-accordion-content">
+                <dl class="calculator-list">
                     <div
-                        v-for="row in
-                            materialCountRows"
+                        v-for="row in materialCountRows"
                         :key="row.id"
-                        class="result-row"
+                        class="calculator-row"
                     >
-                        <span>
-                            {{ row.label }}
-                        </span>
-
-                        <strong>
-                            {{ row.value }}
-                        </strong>
+                        <dt>{{ row.label }}</dt>
+                        <dd>{{ row.value }} шт.</dd>
                     </div>
+                </dl>
+                <p class="calculator-note">
+                    Изделия под подрезку поставляются целыми.
+                    Подрезку выполняет покупатель.
+                </p>
+            </div>
+        </details>
 
-                    <p class="result-hint">
-                        Изделия под подрезку
-                        поставляются целыми.
-                        Подрезку выполняет покупатель.
+        <details class="calculator-accordion">
+            <summary>Информация о подрезке</summary>
+            <div class="calculator-accordion-content">
+                <section
+                    v-for="group in cutGroups"
+                    :key="group.id"
+                    class="cut-result"
+                >
+                    <h4>{{ group.title }}</h4>
+                    <dl v-if="group.cuts > 0" class="calculator-list">
+                        <div class="calculator-row">
+                            <dt>Количество подрезок {{ group.scope }}</dt>
+                            <dd>{{ group.cuts }}</dd>
+                        </div>
+                        <div class="calculator-row">
+                            <dt>Длина подрезанного изделия</dt>
+                            <dd>{{ formatNumber(group.length, 1) }} мм</dd>
+                        </div>
+                    </dl>
+                    <p v-else class="calculator-note">
+                        Подрезка не требуется.
                     </p>
-                </div>
-            </details>
+                </section>
+            </div>
+        </details>
 
-            <details class="result-group">
-                <summary>
-                    Информация о подрезке
-                </summary>
 
-                <div class="result-group-content">
-                    <div
-                        v-for="group in cutGroups"
-                        :key="group.id"
-                        class="cut-result"
-                    >
-                        <h3>
-                            {{ group.title }}
-                        </h3>
-
-                        <template
-                            v-if="group.cuts > 0"
-                        >
-                            <div class="result-row">
-                                <span>
-                                    Количество подрезок
-                                    {{ group.scope }}
-                                </span>
-
-                                <strong>
-                                    {{ group.cuts }}
-                                </strong>
-                            </div>
-
-                            <div class="result-row">
-                                <span>
-                                    Длина подрезанного
-                                    изделия
-                                </span>
-
-                                <strong>
-                                    {{
-                                        formatNumber(
-                                            group.length,
-                                            1
-                                        )
-                                    }}
-                                    мм
-                                </strong>
-                            </div>
-                        </template>
-
-                        <p
-                            v-else
-                            class="no-cuts-message"
-                        >
-                            Подрезка не требуется.
-                        </p>
-                    </div>
-                </div>
-            </details>
-
-            <details
-                class="
-                    result-group
-                    result-group-total
-                "
-                open
-            >
-                <summary>
-                    Масса и стоимость
-                </summary>
-
-                <div class="result-group-content">
-                    <div class="result-row">
-                        <span>
-                            Масса всех изделий
-                        </span>
-
-                        <strong>
-                            {{
-                                formatNumber(
-                                    solution.totalMass,
-                                    1
-                                )
-                            }}
-                            кг
-                        </strong>
-                    </div>
-
-                    <div
-                        class="
-                            result-row
-                            result-price
-                        "
-                    >
-                        <span>
-                            Стоимость материалов
-                        </span>
-
-                        <strong>
-                            {{
-                                formatPrice(
-                                    solution.totalPrice
-                                )
-                            }}
-                        </strong>
-                    </div>
-                </div>
-            </details>
-        </div>
-    </section>
+    </div>
 </template>
-
-
-<style scoped>
-.calculation-result {
-    padding: 24px;
-    border: 1px solid var(--global-600);
-    border-radius: 14px;
-    background-color: white;
-}
-
-.calculation-result h2 {
-    margin-top: 0;
-}
-
-.result-groups {
-    display: grid;
-    gap: 12px;
-}
-
-.result-group {
-    overflow: hidden;
-    border: 1px solid var(--global-500);
-    border-radius: 10px;
-    background-color: white;
-}
-
-.result-group summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 16px 20px;
-    font-size: 1.05rem;
-    font-weight: 600;
-    cursor: pointer;
-    list-style: none;
-    user-select: none;
-    transition:
-        background-color var(--duration);
-}
-
-.result-group summary:hover {
-    background-color: #fff7f2;
-}
-
-.result-group summary::-webkit-details-marker {
-    display: none;
-}
-
-.result-group summary::after {
-    content: "▼";
-    flex-shrink: 0;
-    color: var(--second-main-color);
-    font-size: 1rem;
-    line-height: 1;
-    transition: transform var(--duration);
-}
-
-.result-group[open] summary::after {
-    transform: rotate(180deg);
-}
-
-.result-group[open] summary {
-    border-bottom:
-        1px solid var(--global-500);
-}
-
-.result-group-content {
-    padding: 12px 20px 18px;
-}
-
-.result-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 12px 0;
-    border-bottom:
-        1px solid var(--global-500);
-}
-
-.result-row:last-child {
-    border-bottom: none;
-}
-
-.result-row strong {
-    flex-shrink: 0;
-    text-align: right;
-}
-
-.result-hint {
-    margin: 14px 0 0;
-    color: var(--global-700);
-    font-size: 0.88rem;
-    line-height: 1.45;
-}
-
-.cut-result + .cut-result {
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top:
-        1px solid var(--global-500);
-}
-
-.cut-result h3 {
-    margin: 0 0 6px;
-    font-size: 1rem;
-}
-
-.no-cuts-message {
-    margin: 0;
-    padding: 8px 0 0;
-    color: var(--global-700);
-}
-
-.result-group-total {
-    border-color:
-        var(--second-main-color);
-}
-
-.result-price {
-    margin: 8px 0;
-    padding: 16px;
-    border: none;
-    border-radius: 8px;
-    background-color:
-        var(--second-main-color);
-    color: white;
-}
-
-.result-price span,
-.result-price strong {
-    color: white;
-}
-
-.result-price span {
-    font-weight: 600;
-}
-
-.result-price strong {
-    font-size: 1.35rem;
-}
-
-@media (max-width: 600px) {
-    .calculation-result {
-        padding: 18px;
-    }
-
-    .result-group summary {
-        padding: 14px 16px;
-    }
-
-    .result-group-content {
-        padding: 14px 16px;
-    }
-
-    .result-row {
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .result-price {
-        padding: 14px;
-    }
-}
-</style>
