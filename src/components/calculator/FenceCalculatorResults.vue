@@ -268,7 +268,7 @@ function formatPrice(value) {
                 <div class="result-group-content">
                     <div class="result-row">
                         <span>
-                            Фактическая высота полотна
+                            Фактическая высота пролёта
                         </span>
 
                         <strong>
@@ -300,7 +300,7 @@ function formatPrice(value) {
 
                     <div class="result-row">
                         <span>
-                            Общее количество столбов
+                            Количество столбов
                         </span>
 
                         <strong>
@@ -453,55 +453,6 @@ function formatPrice(value) {
                         >
                             Подрезка не требуется.
                         </p>
-                    </div>
-                </div>
-            </details>
-
-            <details
-                class="
-                    result-group
-                    result-group-total
-                "
-                open
-            >
-                <summary>
-                    Масса и стоимость
-                </summary>
-
-                <div class="result-group-content">
-                    <div class="result-row">
-                        <span>
-                            Масса всех изделий
-                        </span>
-
-                        <strong>
-                            {{
-                                formatNumber(
-                                    solution.totalMass,
-                                    1
-                                )
-                            }}
-                            кг
-                        </strong>
-                    </div>
-
-                    <div
-                        class="
-                            result-row
-                            result-price
-                        "
-                    >
-                        <span>
-                            Стоимость материалов
-                        </span>
-
-                        <strong>
-                            {{
-                                formatPrice(
-                                    solution.totalPrice
-                                )
-                            }}
-                        </strong>
                     </div>
                 </div>
             </details>

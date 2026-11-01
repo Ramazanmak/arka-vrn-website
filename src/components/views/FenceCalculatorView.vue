@@ -81,19 +81,19 @@ const summaryRows = computed(() => {
             formatNumber(totals.totalLengthMm / 1000, 3),
         ],
         [
-            "Количество столбов без повторов",
+            "Количество столбов",
             totals.columnsCount,
         ],
         [
-            "Количество обычных пролётов",
+            "Количество пролётов",
             totals.fenceSpansCount,
         ],
         [
-            "Количество ворот",
+            "Количество проёмов",
             totals.gatesCount,
         ],
         [
-            "Фактическая высота полотна, м",
+            "Фактическая высота пролёта, м",
             formatNumber(totals.actualFenceHeightMm / 1000, 3),
         ],
         [
@@ -191,6 +191,7 @@ function showCalculationError(message) {
 
                         <div class="project-row">
                             <span>Общая масса</span>
+
                             <strong>
                                 {{
                                     formatNumber(
@@ -204,6 +205,7 @@ function showCalculationError(message) {
 
                         <div class="project-row total-price">
                             <span>Стоимость всех материалов</span>
+
                             <strong>
                                 {{
                                     formatNumber(
@@ -215,43 +217,45 @@ function showCalculationError(message) {
                         </div>
                     </section>
 
-                    <div
-                        class="side-tabs"
-                        aria-label="Выбор стороны"
-                    >
-                        <button
-                            v-for="(side, index) in projectSolution.sideSolutions"
-                            :key="side.sideId"
-                            type="button"
-                            :class="{
-                                active: activeSideIndex === index
-                            }"
-                            :aria-pressed="activeSideIndex === index"
-                            @click="activeSideIndex = index"
+                    <div class="side-results">
+                        <div
+                            class="side-tabs"
+                            aria-label="Выбор стороны"
                         >
-                            {{ side.sideName }}
-                        </button>
+                            <button
+                                v-for="(side, index) in projectSolution.sideSolutions"
+                                :key="side.sideId"
+                                type="button"
+                                :class="{
+                                    active: activeSideIndex === index
+                                }"
+                                :aria-pressed="activeSideIndex === index"
+                                @click="activeSideIndex = index"
+                            >
+                                {{ side.sideName }}
+                            </button>
+                        </div>
+
+                        <h2>{{ activeSideSolution.sideName }}</h2>
+
+                        <p class="project-note">
+                            В расчёте каждой стороны показаны оба
+                            крайних столба. В общем итоге общие
+                            угловые столбы учтены один раз.
+                        </p>
+
+                        <FenceCalculatorResults
+                            :solution="activeSideSolution"
+                        />
                     </div>
-
-                    <h2>{{ activeSideSolution.sideName }}</h2>
-
-                    <p class="project-note">
-                        В расчёте каждой стороны показаны оба
-                        крайних столба. В общем итоге общие
-                        угловые столбы учтены один раз.
-                    </p>
-
-                    <FenceCalculatorResults
-                        :solution="activeSideSolution"
-                    />
                 </div>
-            </div>
 
-            <FencePreview
-                v-if="activeSideSolution"
-                :key="activeSideSolution.sideId"
-                :solution="activeSideSolution"
-            />
+                <FencePreview
+                    v-if="activeSideSolution"
+                    :key="activeSideSolution.sideId"
+                    :solution="activeSideSolution"
+                />
+            </div>
         </div>
     </main>
 
@@ -286,41 +290,47 @@ function showCalculationError(message) {
 
 .calculator-content {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 30px;
     margin-top: 30px;
 }
 
+.project-results {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 30px;
+    min-width: 0;
+}
+
+.project-summary,
 .calculation-error {
+    box-sizing: border-box;
+    min-width: 0;
     padding: 24px;
-    border: 1px solid #b42318;
+    border: 1px solid var(--global-600);
     border-radius: 14px;
     background-color: white;
+}
+
+.calculation-error {
+    border-color: #b42318;
     color: #b42318;
 }
 
+.project-summary h2,
 .calculation-error h2 {
     margin-top: 0;
 }
 
-.project-results {
+.side-results {
     display: grid;
     gap: 16px;
     min-width: 0;
 }
 
-.project-results > h2 {
+.side-results > h2 {
     margin: 0;
-}
-
-.project-summary {
-    padding: 24px;
-    border: 1px solid var(--global-600);
-    border-radius: 14px;
-    background: white;
-}
-
-.project-summary h2 {
-    margin-top: 0;
 }
 
 .project-list {
@@ -333,6 +343,10 @@ function showCalculationError(message) {
     gap: 16px;
     padding: 12px 0;
     border-bottom: 1px solid var(--global-500);
+}
+
+.project-row dt {
+    min-width: 0;
 }
 
 .project-row dd {
@@ -371,11 +385,12 @@ function showCalculationError(message) {
 }
 
 .total-price {
+    flex-wrap: wrap;
     margin-top: 12px;
     padding: 16px;
     border: none;
     border-radius: 8px;
-    background: var(--second-main-color);
+    background-color: var(--second-main-color);
     color: white;
 }
 
@@ -394,28 +409,31 @@ function showCalculationError(message) {
     padding: 10px 14px;
     border: 1px solid var(--second-main-color);
     border-radius: 8px;
-    background: white;
+    background-color: white;
     color: var(--second-main-color);
     font: inherit;
     cursor: pointer;
 }
 
 .side-tabs button.active {
-    background: var(--second-main-color);
+    background-color: var(--second-main-color);
     color: white;
 }
 
+.calculator-content :deep(.fence-preview) {
+    margin-top: 0;
+    min-width: 0;
+}
+
 @media (min-width: 900px) {
-    .calculator-content {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 30px;
-    margin-top: 30px;
+    .project-results {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 600px) {
-    .calculation-error,
-    .project-summary {
+    .project-summary,
+    .calculation-error {
         padding: 18px;
     }
 }

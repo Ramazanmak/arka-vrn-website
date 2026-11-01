@@ -408,169 +408,166 @@ function handleSubmit() {
         class="calculator-form"
         @submit.prevent="handleSubmit"
     >
-      <section class="form-panel" aria-label="Размеры и стороны">
-        <details class="form-section">
-            <summary>Размеры и конструкция</summary>
+        <section class="form-panel" aria-label="Размеры и стороны">
+            <details class="form-section">
+                <summary>Размеры и конструкция</summary>
 
-            <div class="form-section-content">
-                <label class="form-field">
-                    <span>Высота пролета, м</span>
-                    <input
-                        v-model.number="form.heightFenceMeters"
-                        type="number"
-                        min="0.1"
-                        step="0.01"
-                        required
-                    />
-                </label>
+                <div class="form-section-content">
+                    <label class="form-field">
+                        <span>Высота пролёта, м</span>
+                        <input
+                            v-model.number="form.heightFenceMeters"
+                            type="number"
+                            min="0.1"
+                            step="0.01"
+                            required
+                        />
+                    </label>
 
-                <label class="form-field">
-                    <span>Высота столбов, м</span>
-                    <input
-                        v-model.number="form.heightColumnMeters"
-                        type="number"
-                        min="0.1"
-                        step="0.01"
-                        required
-                    />
-                </label>
+                    <label class="form-field">
+                        <span>Высота столбов, м</span>
+                        <input
+                            v-model.number="form.heightColumnMeters"
+                            type="number"
+                            min="0.1"
+                            step="0.01"
+                            required
+                        />
+                    </label>
 
-                <label class="form-field">
-                    <span>
-                        Желаемая максимальная длина пролёта, м
-                    </span>
-                    <input
-                        v-model.number="form.desiredSpanLengthMeters"
-                        type="number"
-                        min="0.1"
-                        step="0.01"
-                        required
-                    />
-                </label>
+                    <label class="form-field">
+                        <span>
+                            Длина пролёта, м
+                        </span>
+                        <input
+                            v-model.number="form.desiredSpanLengthMeters"
+                            type="number"
+                            min="0.1"
+                            step="0.01"
+                            required
+                        />
+                    </label>
 
-                <label class="form-field">
-                    <span>Количество сторон</span>
-                    <select v-model.number="form.sidesCount">
-                        <option
-                            v-for="count in 4"
-                            :key="count"
-                            :value="count"
-                        >
-                            {{ count }}
-                        </option>
-                    </select>
-                </label>
+                    <label class="form-field">
+                        <span>Количество сторон</span>
+                        <select v-model.number="form.sidesCount">
+                            <option
+                                v-for="count in 4"
+                                :key="count"
+                                :value="count"
+                            >
+                                {{ count }}
+                            </option>
+                        </select>
+                    </label>
 
-                <label
-                    v-if="form.sidesCount >= 3"
-                    class="form-checkbox"
-                >
-                    <input
-                        v-model="form.closedContour"
-                        type="checkbox"
-                    />
-                    <span>Замкнутый контур</span>
-                </label>
+                    <label
+                        v-if="form.sidesCount >= 3"
+                        class="form-checkbox"
+                    >
+                        <input
+                            v-model="form.closedContour"
+                            type="checkbox"
+                        />
+                        <span>Замкнутый контур</span>
+                    </label>
 
-                <p class="form-hint">
-                    Стороны вводятся последовательно.
-                    Соседние стороны имеют общий угловой столб.
-                    Для замкнутого контура последняя сторона
-                    соединяется с первой.
-                </p>
-            </div>
-        </details>
+                    <p class="form-hint">
+                        Стороны вводятся последовательно.
+                        Соседние стороны имеют общий угловой столб.
+                        Для замкнутого контура последняя сторона
+                        соединяется с первой.
+                    </p>
+                </div>
+            </details>
 
-        <details
-            v-for="side in form.sides"
-            :key="side.id"
-            class="form-section"
+            <details
+                v-for="side in form.sides"
+                :key="side.id"
+                class="form-section"
+            >
+                <summary>{{ side.name }}</summary>
 
-        >
-            <summary>{{ side.name }}</summary>
+                <div class="form-section-content">
+                    <label class="form-field">
+                        <span>Длина стороны, м</span>
+                        <input
+                            v-model.number="side.lengthMeters"
+                            type="number"
+                            min="1"
+                            step="0.01"
+                            required
+                        />
+                    </label>
 
-            <div class="form-section-content">
-                <label class="form-field">
-                    <span>Длина стороны, м</span>
-                    <input
-                        v-model.number="side.lengthMeters"
-                        type="number"
-                        min="1"
-                        step="0.01"
-                        required
-                    />
-                </label>
+                    <label class="form-field">
+                        <span>Количество проёмов </span>
+                        <input
+                            v-model.number="side.gatesCount"
+                            type="number"
+                            min="0"
+                            step="1"
+                            required
+                        />
+                    </label>
 
-                <label class="form-field">
-                    <span>Количество ворот на этой стороне</span>
-                    <input
-                        v-model.number="side.gatesCount"
-                        type="number"
-                        min="0"
-                        step="1"
-                        required
-                    />
-                </label>
-
-                <label
-                    v-for="(_, index) in side.gatesLengthMeters"
-                    :key="index"
-                    class="form-field"
-                >
-                    <span>
-                        Длина ворот №{{ index + 1 }}, м
-                    </span>
-                    <input
-                        v-model.number="side.gatesLengthMeters[index]"
-                        type="number"
-                        min="0.1"
-                        step="0.01"
-                        required
-                    />
-                </label>
-            </div>
-        </details>
+                    <label
+                        v-for="(_, index) in side.gatesLengthMeters"
+                        :key="index"
+                        class="form-field"
+                    >
+                        <span>Длина проёма №{{ index + 1 }}, м</span>
+                        <input
+                            v-model.number="side.gatesLengthMeters[index]"
+                            type="number"
+                            min="0.1"
+                            step="0.01"
+                            required
+                        />
+                    </label>
+                </div>
+            </details>
         </section>
 
         <section class="form-panel" aria-label="Выбор материалов">
+            <details
+                v-for="group in materialGroups"
+                :key="group.title"
+                class="form-section"
+                :open="group.open"
+            >
+                <summary>{{ group.title }}</summary>
+                <summary>{{ group.title }}</summary>
 
-        <details
-            v-for="group in materialGroups"
-            :key="group.title"
-            class="form-section"
-            :open="group.open"
-        >
-            <summary>{{ group.title }}</summary>
+                <div class="form-section-content">
+                    <MaterialSelector
+                        v-for="material in group.items"
+                        :key="material.key"
+                        v-model="form.materials[material.key]"
+                        :material="material"
+                    />
+                </div>
+            </details>
 
-            <div class="form-section-content">
-                <MaterialSelector
-                    v-for="material in group.items"
-                    :key="material.key"
-                    v-model="form.materials[material.key]"
-                    :material="material"
-                />
-            </div>
-          </section>
-        </details>
-
-        <button
-            class="calculate-button"
-            type="submit"
-        >
-            Рассчитать
-        </button>
+            <button class="calculate-button" type="submit">
+                Рассчитать
+            </button>
+        </section>
     </form>
 </template>
 
 <style scoped>
 .calculator-form {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 30px;
     align-items: start;
+    width: 100%;
     min-width: 0;
 }
 
 .form-panel {
+    box-sizing: border-box;
     display: grid;
     gap: 16px;
     min-width: 0;
@@ -581,6 +578,7 @@ function handleSubmit() {
 }
 
 .form-section {
+    min-width: 0;
     overflow: hidden;
     border: 1px solid var(--global-500);
     border-radius: 10px;
@@ -627,6 +625,7 @@ function handleSubmit() {
 .form-field {
     display: grid;
     gap: 8px;
+    min-width: 0;
 }
 
 .form-field span {
@@ -671,7 +670,7 @@ function handleSubmit() {
     border-radius: 8px;
     background-color: var(--second-main-color);
     color: white;
-    font-size: 1rem;
+    font: inherit;
     font-weight: 600;
     cursor: pointer;
     transition: opacity var(--duration);
@@ -681,19 +680,20 @@ function handleSubmit() {
     opacity: 0.85;
 }
 
+@media (min-width: 900px) {
+    .calculator-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 @media (max-width: 600px) {
     .form-panel {
-    padding: 18px;
+        padding: 18px;
     }
 
     .form-section summary,
     .form-section-content {
         padding: 14px 16px;
-    }
-}
-@media (min-width: 900px) {
-    .calculator-form {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 </style>
