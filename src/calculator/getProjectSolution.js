@@ -1,4 +1,5 @@
 import { getSolution } from "./getSolution.js";
+import { getPalletPlan } from "./getPalletPlan.js";
 
 const MATERIAL_GROUPS = [
     [
@@ -207,10 +208,17 @@ export function getProjectSolution({
         0
     );
 
+    // Комплектуем весь заказ после объединения сторон и общих столбов.
+    // В count уже входят целые изделия, которые покупатель будет подрезать.
+    const palletPlan = getPalletPlan(materials);
+    totals.totalFullPallets = palletPlan.totalFullPallets;
+    totals.totalUnpackedItems = palletPlan.totalUnpackedItems;
+
     return {
         sideSolutions,
         totals,
         materials,
+        palletPlan,
         closedContour,
         error: null,
     };

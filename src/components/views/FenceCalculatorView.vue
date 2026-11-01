@@ -103,6 +103,10 @@ const summaryRows = computed(() => {
             "Фактическая высота столбов, м",
             formatNumber(totals.actualColumnHeightMm / 1000, 3),
         ],
+        [
+            "Полных поддонов",
+            formatNumber(totals.totalFullPallets),
+        ],
     ];
 });
 
@@ -230,6 +234,55 @@ function showCalculationError(message) {
                                     {{ formatNumber(projectSolution.totals.totalPrice) }} ₽
                                 </strong>
                             </div>
+
+                            <details
+                                class="calculator-accordion pallet-remainders"
+                            >
+                                <summary>
+                                    <span class="calculator-summary-text">
+                                        <span>Изделия вне полных поддонов</span>
+                                        <small v-if="projectSolution.palletPlan.totalUnpackedItems > 0">
+                                            {{ formatNumber(projectSolution.palletPlan.totalUnpackedItems) }} шт.
+                                            · комплектация по согласованию
+                                        </small>
+                                        <small v-else>Остатков нет</small>
+                                    </span>
+                                </summary>
+
+                                <div class="calculator-accordion-content">
+                                    <template v-if="projectSolution.palletPlan.unpackedItems.length">
+                                        <dl class="calculator-list">
+                                            <div
+                                                v-for="item in projectSolution.palletPlan.unpackedItems"
+                                                :key="item.key"
+                                                class="calculator-row pallet-remainder-row"
+                                            >
+                                                <dt>
+                                                    <span class="pallet-product-name">{{ item.name }}</span>
+                                                    <span v-if="item.finishName" class="calculator-caption">
+                                                        {{ item.finishName }}
+                                                    </span>
+                                                    <span class="calculator-note">
+                                                        {{ item.palletQuantityNeedsConfirmation
+                                                            ? "Норма укладки требует уточнения"
+                                                            : `Норма укладки: ${formatNumber(item.palletQuantity)} шт./поддон`
+                                                        }}
+                                                    </span>
+                                                </dt>
+                                                <dd>{{ formatNumber(item.unpackedCount) }} шт.</dd>
+                                            </div>
+                                        </dl>
+
+                                        <p class="calculator-note">
+                                            Это целые изделия к отгрузке, включая изделия для подрезки.
+                                            Оператор согласует их размещение и количество дополнительных поддонов.
+                                        </p>
+                                    </template>
+                                    <p v-else class="calculator-note">
+                                        Все изделия распределены по полным поддонам.
+                                    </p>
+                                </div>
+                            </details>
                         </section>
 
                         <section
