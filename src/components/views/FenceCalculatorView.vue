@@ -18,6 +18,8 @@ import FenceCalculatorResults from
 import FencePreview from
     "../calculator/FencePreview.vue";
 
+import { createPdf } from "../calculator/createPdf/createPdf.js";
+
 const seo = getFenceCalculatorSeo();
 
 useHead({
@@ -54,6 +56,9 @@ const projectSolution = ref(null);
 const calculationError = ref("");
 const activeSideIndex = ref(0);
 const resultsGroup = ref(null);
+
+const pdfLoading = ref(false);
+const pdfError = ref("");
 
 const activeSideSolution = computed(() => {
     return projectSolution.value
@@ -132,6 +137,29 @@ function showCalculationError(message) {
     projectSolution.value = null;
     calculationError.value = message;
 }
+
+async function handleDownloadPdf() {
+    if (!projectSolution.value || pdfLoading.value) {
+        return;
+    }
+
+    pdfLoading.value = true;
+    pdfError.value = "";
+
+    try {
+        // Передаём готовый расчёт в функцию создания PDF.
+        await createPdf(projectSolution.value);
+    } catch (error) {
+        console.error(error);
+
+        pdfError.value = error instanceof Error
+            ? error.message
+            : "Не удалось создать PDF";
+    } finally {
+        pdfLoading.value = false;
+    }
+}
+
 </script>
 
 <template>
@@ -233,6 +261,21 @@ function showCalculationError(message) {
                                 <strong>
                                     {{ formatNumber(projectSolution.totals.totalPrice) }} ₽
                                 </strong>
+                            </div>
+
+                            <div v-if="projectSolution" style="margin-top: 16px;">
+                                <button
+                                    class="calculate-button"
+                                    type="button"
+                                    :disabled="pdfLoading"
+                                    @click="handleDownloadPdf"
+                                >
+                                    {{ pdfLoading ? "Создание PDF…" : "Скачать PDF" }}
+                                </button>
+
+                                <p v-if="pdfError" role="alert">
+                                    {{ pdfError }}
+                                </p>
                             </div>
 
                             <details
